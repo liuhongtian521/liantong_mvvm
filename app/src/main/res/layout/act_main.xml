@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <!--<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </LinearLayout>-->
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_0"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/rg_bottom"/>
+
+
+
+        <!--<com.google.android.material.tabs.TabLayout
+            android:focusableInTouchMode="true"
+            android:id="@+id/tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_48"
+            android:background="@color/white"
+            app:tabIndicatorColor="@color/colorPrimary"
+            app:tabMaxWidth="200dp"
+            app:tabMinWidth="100dp"
+            app:tabMode="fixed"
+            android:textSize="@dimen/sp_10"
+            app:tabSelectedTextColor="#286AFF"
+            app:tabTextColor="#666666"
+            app:tabIndicatorHeight="0dp"
+            app:tabBackground="@android:color/transparent"
+            app:tabRippleColor="@android:color/transparent"
+            app:layout_constraintBottom_toBottomOf="parent" />-->
+
+
+        <!--<FrameLayout
+            android:id="@+id/main_layout_content"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_0"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/rg_bottom"/>-->
+
+        <RadioGroup
+            android:id="@+id/rg_bottom"
+            android:layout_width="@dimen/dp_400"
+            android:layout_height="@dimen/dp_50"
+            android:orientation="horizontal"
+            android:background="#E6E6E6"
+            android:gravity="center_vertical"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <RadioButton
+                android:focusableInTouchMode="true"
+                android:id="@+id/rb_szbj"
+                android:layout_width="@dimen/dp_100"
+                android:layout_height="@dimen/dp_34"
+                android:text="数字班级"
+                android:textSize="@dimen/sp_13"
+                android:textColor="@drawable/text_tab_selector"
+                android:button="@null"
+                android:gravity="center"
+                android:paddingLeft="@dimen/dp_10"
+                android:drawableLeft="@drawable/ic_tab_selector_szbj"
+                android:background="@drawable/ic_tab_selector_bg"/>
+            <RadioButton
+                android:focusableInTouchMode="true"
+                android:id="@+id/rb_xxzs"
+                android:layout_width="@dimen/dp_100"
+                android:layout_height="@dimen/dp_34"
+                android:text="学习助手"
+                android:textSize="@dimen/sp_13"
+                android:textColor="@drawable/text_tab_selector"
+                android:button="@null"
+                android:gravity="center"
+                android:paddingLeft="@dimen/dp_10"
+                android:drawableLeft="@drawable/ic_tab_selector_xxzy"
+                android:background="@drawable/ic_tab_selector_bg"/>
+            <RadioButton
+                android:focusableInTouchMode="true"
+                android:id="@+id/rb_tl"
+                android:layout_width="@dimen/dp_100"
+                android:layout_height="@dimen/dp_34"
+                android:text="讨论"
+                android:textSize="@dimen/sp_13"
+                android:textColor="@drawable/text_tab_selector"
+                android:button="@null"
+                android:gravity="center"
+                android:paddingLeft="@dimen/dp_10"
+                android:drawableLeft="@drawable/ic_tab_selector_tl"
+                android:background="@drawable/ic_tab_selector_bg"/>
+            <RadioButton
+                android:focusableInTouchMode="true"
+                android:id="@+id/rb_gr"
+                android:layout_width="@dimen/dp_100"
+                android:layout_height="@dimen/dp_34"
+                android:text="个人"
+                android:textSize="@dimen/sp_13"
+                android:textColor="@drawable/text_tab_selector"
+                android:button="@null"
+                android:gravity="center"
+                android:paddingLeft="@dimen/dp_10"
+                android:drawableLeft="@drawable/ic_tab_selector_gr"
+                android:background="@drawable/ic_tab_selector_bg"/>
+
+        </RadioGroup>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

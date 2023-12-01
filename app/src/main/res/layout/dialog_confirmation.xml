@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="@dimen/dp_250"
+            android:layout_height="@dimen/dp_150"
+            android:background="@drawable/white_round_corner"
+            android:minHeight="@dimen/dp_175"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/dp_20"
+            android:paddingTop="@dimen/dp_20"
+            android:paddingRight="@dimen/dp_14"
+            android:paddingBottom="@dimen/dp_20">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="确定要退回该订单吗？"
+                android:textColor="#1E1E1E"
+                android:textSize="@dimen/sp_12" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_14"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="@dimen/dp_20"
+                    android:text="交易账户"
+                    android:textColor="#969696"
+                    android:textSize="@dimen/sp_9" />
+
+                <TextView
+                    android:id="@+id/txt_account"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="赵天然"
+                    android:textColor="#1E1E1E"
+                    android:textSize="@dimen/sp_10" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="@dimen/dp_20"
+                    android:text="退款金额"
+                    android:textColor="#969696"
+                    android:textSize="@dimen/sp_9" />
+
+                <TextView
+                    android:id="@+id/txt_money"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="31.5元"
+                    android:textColor="#1E1E1E"
+                    android:textSize="@dimen/sp_10" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="right|bottom"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/txt_quick"
+                    android:layout_width="@dimen/dp_70"
+                    android:layout_height="@dimen/dp_27"
+                    android:layout_marginRight="@dimen/dp_12"
+                    android:background="@drawable/bg_back"
+                    android:gravity="center"
+                    android:text="取消"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_10" />
+                <Button
+                    android:id="@+id/btn_sure"
+                    android:layout_width="@dimen/dp_98"
+                    android:layout_height="@dimen/dp_27"
+                    android:background="@drawable/bg_login_btn_two"
+                    android:gravity="center"
+                    android:text="确定"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_10" />
+            </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
+
+</LinearLayout>

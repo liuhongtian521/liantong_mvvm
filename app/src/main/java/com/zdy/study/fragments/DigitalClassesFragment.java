@@ -1,0 +1,75 @@
+package com.zdy.study.fragments;
+
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.databinding.DataBindingUtil;
+import androidx.recyclerview.widget.GridLayoutManager;
+
+import com.askia.common.base.ARouterPath;
+import com.askia.common.base.BaseFragment;
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.zdy.study.R;
+import com.zdy.study.adapter.MainMenuAdapter;
+import com.zdy.study.databinding.FragmentCurrentClassBinding;
+import com.zdy.study.databinding.FragmentDigtalClassesBinding;
+
+import java.util.ArrayList;
+
+
+//CurrentClassFragment.java
+public class DigitalClassesFragment extends BaseFragment {
+
+    private FragmentDigtalClassesBinding mDataBinding;
+    @Override
+    public void onInit() {
+//        mDataBinding.currentText.setText(getArguments().getString("TITLE"));
+        ArrayList<String> list = new ArrayList<>();
+        list.add("课程查询");
+        list.add("电子课件");
+        list.add("学习资料");
+        list.add("学员手册");
+        list.add("联播快速");
+        list.add("网络课程");
+        list.add("在院服务");
+        list.add("通讯录");
+        MainMenuAdapter adapter = new MainMenuAdapter(list);
+
+        GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 4);//第二个参数为网格的列数
+        mDataBinding.rvMainMenu.setLayoutManager(layoutManager);
+        mDataBinding.rvMainMenu.setAdapter(adapter);
+        mDataBinding.rvMainMenu.setItemAnimator(null);
+//        mDataBinding.rvMainMenu.setBindFragment(this);
+        adapter.setOnItemClickListener((adapter1, view, position) ->
+                startActivityByRouter(ARouterPath.LOGIN_ACTIVITY));
+    }
+
+    @Override
+    public void onInitViewModel() {
+    }
+
+    @Override
+    public View onInitDataBinding(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {
+        mDataBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_digtal_classes, container, false);
+        return mDataBinding.getRoot();
+    }
+
+    @Override
+    public void onSubscribeViewModel() {
+
+    }
+
+    public static DigitalClassesFragment newInstance(String title){
+        Bundle arguments = new Bundle();
+        arguments.putString("TITLE", title);
+        DigitalClassesFragment fragment = new DigitalClassesFragment();
+        fragment.setArguments(arguments);
+        return fragment;
+    }
+ 
+
+}
