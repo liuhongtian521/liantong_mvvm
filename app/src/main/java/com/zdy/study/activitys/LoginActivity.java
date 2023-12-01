@@ -12,6 +12,7 @@ import com.askia.common.base.ARouterPath;
 import com.askia.common.base.BaseActivity;
 import com.askia.coremodel.datamodel.http.params.consume.HttpLoginParams;
 import com.blankj.utilcode.util.ToastUtils;
+import com.google.android.material.tabs.TabLayout;
 import com.zdy.study.R;
 import com.zdy.study.cdatamodel.viewmodel.LoginViewModel;
 import com.zdy.study.databinding.ActLoginBinding;
@@ -33,6 +34,14 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     public void onInit() {
+
+        TabLayout.Tab tab2 = mDataBinding.tabLayout.newTab();
+        tab2.setText("密码登录");
+        mDataBinding.tabLayout.addTab(tab2);
+
+        TabLayout.Tab tab = mDataBinding.tabLayout.newTab();
+        tab.setText("验证码登录");
+        mDataBinding.tabLayout.addTab(tab);
 
     }
 
@@ -67,7 +76,7 @@ public class LoginActivity extends BaseActivity {
             Toast.makeText(this, "手机号和密码不能为空", Toast.LENGTH_SHORT).show();
             return;
         }*/
-        HttpLoginParams httpLoginParams = new HttpLoginParams();
+        /*HttpLoginParams httpLoginParams = new HttpLoginParams();
         httpLoginParams.setUsername(mDataBinding.editPhone.getText().toString());
        // SharedPreUtil.getInstance().setUsername(mDataBinding.editPhone.getText().toString());
         try {
@@ -78,6 +87,6 @@ public class LoginActivity extends BaseActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        mViewModel.login(httpLoginParams);
+        mViewModel.login(httpLoginParams);*/
     }
 }

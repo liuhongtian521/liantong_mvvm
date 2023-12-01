@@ -9,144 +9,190 @@
             type="com.zdy.study.activitys.LoginActivity" />
     </data>
 
-
-    <RelativeLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@mipmap/bg_login_zdy">
+
+            <ImageView
+                android:layout_width="@dimen/dp_160"
+                android:layout_height="@dimen/dp_71"
+                android:src="@mipmap/ic_login_logo"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginTop="@dimen/dp_119"/>
 
 
-        <ImageView
-            android:id="@+id/img_title"
-            android:layout_width="@dimen/dp_176"
-            android:layout_height="@dimen/dp_36"
-            android:layout_marginLeft="@dimen/dp_26"
-            android:layout_marginTop="@dimen/dp_16"
-            android:visibility="invisible" />
-
-
-        <TextView
-            android:id="@+id/tv_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/img_title"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/dp_10"
-            android:text="欢迎使用智慧超市"
-            android:textColor="@color/white"
-            android:textSize="@dimen/sp_19" />
-
-        <RelativeLayout
-            android:id="@+id/rel_view"
-            android:layout_width="@dimen/dp_320"
-            android:layout_height="@dimen/dp_230"
-            android:layout_below="@+id/tv_title"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/dp_20"
-            android:background="@drawable/icon_bg_edit">
-
-
-            <LinearLayout
-                android:focusableInTouchMode="true"
-                android:id="@+id/lin_password"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_36"
-                android:layout_centerInParent="true"
-                android:layout_marginLeft="@dimen/dp_35"
-                android:layout_marginTop="@dimen/dp_20"
-                android:layout_marginRight="@dimen/dp_35"
-                android:layout_marginBottom="@dimen/dp_20"
-                android:background="@drawable/bg_edit"
-                android:gravity="center|left"
-                android:orientation="horizontal"
-                android:paddingLeft="@dimen/dp_10">
-
+            <androidx.leanback.tab.LeanbackTabLayout
+                android:id="@+id/tab_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:tabIndicatorColor="#B90A0A"
+                app:tabMaxWidth="200dp"
+                app:tabMinWidth="100dp"
+                app:tabMode="fixed"
+                android:textSize="@dimen/sp_10"
+                app:tabSelectedTextColor="#1E1E1E"
+                app:tabTextColor="#767882"
+                app:tabIndicatorHeight="0dp"
+                android:layout_marginTop="@dimen/dp_267"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"/>
+            
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_input"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/tab_layout"
+                android:layout_marginTop="@dimen/dp_44"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent">
 
                 <EditText
-                    android:id="@+id/edit_password"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@null"
-                    android:gravity="center|left"
-                    android:hint="请输入登录密码"
-                    android:text=""
-                    android:inputType="textPassword"
-                    android:textSize="@dimen/sp_11" />
-
-
-                <ImageView
-                    android:id="@+id/iv_psd"
-                    android:layout_width="@dimen/dp_35"
-                    android:layout_height="@dimen/dp_35"
-                    android:layout_gravity="center" />
-
-            </LinearLayout>
-
-            <LinearLayout
-
-                android:id="@+id/lin_phone"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_36"
-                android:layout_above="@+id/lin_password"
-                android:layout_marginLeft="@dimen/dp_35"
-                android:layout_marginRight="@dimen/dp_35"
-                android:background="@drawable/bg_edit"
-                android:gravity="center|left"
-                android:orientation="horizontal"
-                android:paddingLeft="@dimen/dp_10"
-                android:paddingRight="@dimen/dp_14">
-
-
-                <EditText
-                    android:id="@+id/edit_phone"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@null"
-                    android:gravity="center|left"
+                    android:id="@+id/et_login_phone"
+                    android:layout_width="@dimen/dp_280"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/sp_14"
                     android:hint="请输入手机号"
-                    android:text=""
-                    android:textSize="@dimen/sp_11" />
-            </LinearLayout>
+                    android:inputType="phone"
+                    android:maxLength="11"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:background="@null"/>
+                <View
+                    android:layout_width="@dimen/dp_0"
+                    android:layout_height="@dimen/dp_1"
+                    android:background="#DBD4CC"
+                    android:layout_marginTop="@dimen/dp_10"
+                    app:layout_constraintTop_toBottomOf="@+id/et_login_phone"
+                    app:layout_constraintLeft_toLeftOf="@+id/et_login_phone"
+                    app:layout_constraintRight_toRightOf="@+id/et_login_phone"/>
+
+                <LinearLayout
+                    android:id="@+id/ll_login_password"
+                    android:layout_width="@dimen/dp_280"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintTop_toBottomOf="@+id/et_login_phone"
+                    android:layout_marginTop="@dimen/dp_51"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent">
+
+                    <EditText
+                        android:id="@+id/et_login_password"
+                        android:layout_width="@dimen/dp_280"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/sp_14"
+                        android:hint="请输入密码"
+                        android:inputType="textPassword"
+                        android:background="@null"/>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_1"
+                        android:background="#DBD4CC"
+                        android:layout_marginTop="@dimen/dp_10" />
+                </LinearLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_login_phonecode"
+                    android:layout_width="@dimen/dp_280"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintTop_toBottomOf="@+id/ll_login_password"
+                    android:layout_marginTop="@dimen/dp_51"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent">
+
+                    <EditText
+                        android:id="@+id/et_login_phonecode"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/sp_14"
+                        android:hint="请输入短信验证码"
+                        android:inputType="number"
+                        android:background="@null"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toLeftOf="@+id/tv_login_phonecode"
+                        app:layout_constraintTop_toTopOf="parent"/>
+
+                    <TextView
+                        android:id="@+id/tv_login_phonecode"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="获取验证码"
+                        android:textSize="@dimen/sp_14"
+                        android:textColor="#B90A0A"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"/>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_1"
+                        android:background="#DBD4CC"
+                        android:layout_marginTop="@dimen/dp_10"
+                        app:layout_constraintTop_toBottomOf="@+id/et_login_phonecode"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-            <com.zdy.study.fcWidgets.FCButton
-                android:id="@+id/btn_login"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_36"
-                android:layout_below="@+id/lin_password"
-                android:layout_marginLeft="@dimen/dp_35"
-                android:layout_marginRight="@dimen/dp_35"
-                android:background="@color/gray_55"
-                android:gravity="center"
-                android:onClick="@{handlers::login}"
-                android:orientation="horizontal"
-                android:paddingLeft="@dimen/dp_14"
-                android:paddingRight="@dimen/dp_14"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_login_imcode"
+                    android:layout_width="@dimen/dp_280"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintTop_toBottomOf="@+id/cl_login_phonecode"
+                    android:layout_marginTop="@dimen/dp_51"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent">
+
+                    <EditText
+                        android:id="@+id/et_login_imcode"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/sp_14"
+                        android:hint="请输入图形校验码"
+                        android:inputType="text"
+                        android:background="@null"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toLeftOf="@+id/iv_login_imcode"
+                        app:layout_constraintTop_toTopOf="parent"/>
+
+                    <ImageView
+                        android:id="@+id/iv_login_imcode"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"/>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_1"
+                        android:background="#DBD4CC"
+                        android:layout_marginTop="@dimen/dp_10"
+                        app:layout_constraintTop_toBottomOf="@+id/et_login_imcode"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <Button
+                android:layout_width="@dimen/dp_280"
+                android:layout_height="@dimen/dp_40"
                 android:text="登录"
                 android:textColor="@color/white"
-                android:textSize="@dimen/sp_12"
-                android:focusableInTouchMode="true" />
+                android:textSize="@dimen/sp_14"
+                android:layout_marginTop="@dimen/dp_40"
+                android:background="@drawable/shape_4_red"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cl_input"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
 
 
-
-
-            <com.zdy.study.fcWidgets.FCLinearLayout
-                android:focusableInTouchMode="true"
-                android:layout_width="@dimen/dp_100"
-                android:background="@color/white"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true">
-                <TextView
-                    android:id="@+id/tv_sn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-
-                    android:text="设备码"
-                    android:textColor="@color/_888888" />
-            </com.zdy.study.fcWidgets.FCLinearLayout>
-        </RelativeLayout>
-    </RelativeLayout>
 
 
 </layout>
