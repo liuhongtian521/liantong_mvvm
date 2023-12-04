@@ -2,6 +2,7 @@ package com.askia.common.util;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.graphics.Rect;
 import android.net.Uri;
@@ -196,5 +197,16 @@ public class ImageUtil {
         return bitmap;
     }
 
-
+    /**
+     * Base64转Bitmap
+     *
+     * @param base64String base64数据流
+     * @return Bitmap 图片
+     */
+    public static Bitmap base642Bitmap(String base64String) {
+        if (null == base64String) throw new NullPointerException();
+        byte[] decode = Base64.decode(base64String.split(",")[1], Base64.DEFAULT);
+        Bitmap mBitmap = BitmapFactory.decodeByteArray(decode, 0, decode.length);
+        return mBitmap;
+    }
 }

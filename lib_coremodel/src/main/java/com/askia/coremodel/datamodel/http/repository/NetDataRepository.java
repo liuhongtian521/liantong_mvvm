@@ -5,7 +5,6 @@ package com.askia.coremodel.datamodel.http.repository;
 import androidx.lifecycle.MutableLiveData;
 
 import com.askia.coremodel.datamodel.http.ApiClient;
-import com.askia.coremodel.datamodel.http.entities.BaseResponseData;
 import com.askia.coremodel.datamodel.http.entities.ConsumeRecordData;
 import com.askia.coremodel.datamodel.http.entities.GetCPListResponseData;
 import com.askia.coremodel.datamodel.http.entities.HotSearchData;
@@ -20,7 +19,9 @@ import com.askia.coremodel.datamodel.http.entities.QueryFaceZipsUrlsData;
 import com.askia.coremodel.datamodel.http.entities.StuInfoData;
 import com.askia.coremodel.datamodel.http.entities.TimeLisData;
 import com.askia.coremodel.datamodel.http.entities.WeekMealsData;
+import com.askia.coremodel.datamodel.http.entities.consume.BaseResponseData;
 import com.askia.coremodel.datamodel.http.entities.consume.CBaseResponseData;
+import com.askia.coremodel.datamodel.http.entities.consume.CaptchaResultBean;
 import com.askia.coremodel.datamodel.http.entities.consume.HttpCheckTokenBean;
 import com.askia.coremodel.datamodel.http.entities.consume.HttpCommentRankBean;
 import com.askia.coremodel.datamodel.http.entities.consume.HttpConsumeBannerBean;
@@ -61,9 +62,22 @@ public class NetDataRepository {
 
     private ResponseObserv responseObserv = null;
 
-    /**
-     * 消费机
-     **/
+
+    //获取图片验证码
+    public static Observable<CaptchaResultBean> captcha() {
+        Observable<CaptchaResultBean> responseData = ApiClient.getNetDataService()
+                .captcha();
+        return responseData;
+    }
+
+    /*public void captcha(MutableLiveData<CaptchaResultBean> mLoginLiveData,
+                      CompositeDisposable mDisposable) {
+        Observable<CaptchaResultBean> responseData = ApiClient.getNetDataService()
+                .captcha();
+        if (responseObserv == null)
+            responseObserv = new ResponseObserv();
+        responseObserv.responseObserv(responseData, mLoginLiveData, mDisposable);
+    }*/
 
     // 获取消费机配置
     public static Observable<HttpConsumeConfigBean> getConsumeConfig(String sn) {

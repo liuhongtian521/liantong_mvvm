@@ -3,7 +3,7 @@ package com.askia.coremodel.datamodel.http.repository;
 
 import androidx.lifecycle.MutableLiveData;
 
-import com.askia.coremodel.datamodel.http.entities.BaseResponseData;
+import com.askia.coremodel.datamodel.http.entities.consume.BaseResponseData;
 import com.blankj.utilcode.util.ToastUtils;
 
 import java.net.SocketTimeoutException;
@@ -36,6 +36,10 @@ public class ResponseObserv<T extends BaseResponseData> {
 
                     @Override
                     public void onError(@NonNull Throwable e) {
+                        BaseResponseData b = new BaseResponseData();
+                        b.setSuccess(false);
+                        b.setMessage(e.toString());
+                        resultData.postValue((T) b);
                         if (e instanceof SocketTimeoutException) {
                             ToastUtils.showLong("连接超时，请重试");
                         } else {
