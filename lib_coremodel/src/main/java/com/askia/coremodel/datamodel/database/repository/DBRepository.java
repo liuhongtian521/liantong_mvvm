@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.text.TextUtils;
 
 import com.askia.coremodel.datamodel.database.db.UserLoginData;
+import com.askia.coremodel.datamodel.http.entities.consume.HttpLoginResult;
 import com.askia.coremodel.util.DeviceUtils;
 
 import static com.tencent.bugly.beta.tinker.TinkerManager.getApplication;
@@ -53,6 +54,22 @@ public class DBRepository {
     //保存用户登陆信息
     public static void StoreUserLoginData(UserLoginData userLoginData) {
         SharedPreUtil.getInstance().putUser(userLoginData);
+    }
+
+    //查询用户登陆信息
+    @SuppressLint("MissingPermission")
+    public static HttpLoginResult QueryTVUserLoginData() {
+        HttpLoginResult userLoginData = SharedPreUtil.getInstance().getTVUser();
+        if (userLoginData == null) {
+            userLoginData = new HttpLoginResult();
+            StoreTVUserLoginData(userLoginData);
+        }
+        return userLoginData;
+    }
+
+    //保存用户登陆信息
+    public static void StoreTVUserLoginData(HttpLoginResult userLoginData) {
+        SharedPreUtil.getInstance().putTVUser(userLoginData);
     }
 
     //设置是否显示欢迎页面

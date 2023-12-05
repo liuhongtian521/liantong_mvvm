@@ -1,5 +1,6 @@
 package com.zdy.study.activitys;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.text.TextUtils;
 import android.util.Log;
@@ -14,6 +15,7 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.askia.common.base.ARouterPath;
 import com.askia.common.base.BaseActivity;
 import com.askia.common.util.ImageUtil;
+import com.askia.coremodel.datamodel.database.repository.DBRepository;
 import com.askia.coremodel.datamodel.database.repository.SharedPreUtil;
 import com.askia.coremodel.datamodel.http.ApiConstants;
 import com.askia.coremodel.datamodel.http.entities.consume.HttpLoginResult;
@@ -48,6 +50,8 @@ public class LoginActivity extends BaseActivity {
 
     ActLoginBinding mDataBinding;
     private LoginViewModel mViewModel;
+
+    private int pageTab = 0;
 
 
     @Override
@@ -106,7 +110,7 @@ public class LoginActivity extends BaseActivity {
         mDataBinding.tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-
+                pageTab = tab.getPosition();
                 if(tab.getPosition() == 0){//点击密码登录
                     mDataBinding.clLoginPhonecode.setVisibility(View.GONE);
                     mDataBinding.llLoginPassword.setVisibility(View.VISIBLE);
@@ -132,23 +136,42 @@ public class LoginActivity extends BaseActivity {
 
     }
 
+
+    public void getImgCode(View v){
+        //获取图片验证码
+        mViewModel.getCaptcha();
+    }
+
     public void login(View view) {
-
-        SharedPreUtil.getInstance().putCaptchacode(mDataBinding.etLoginImcode.getText().toString());
-//        mViewModel.login("18943453434","CScs@135");
-
+        if (TextUtils.isEmpty(mDataBinding.etLoginPhone.getText())){
+            ToastUtils.showLong("请输入手机号！");
+            return;
+        }
+        if (TextUtils.isEmpty(mDataBinding.etLoginPassword.getText())){
+            ToastUtils.showLong("请输入密码！");
+            return;
+        }
+        if (TextUtils.isEmpty(mDataBinding.etLoginImcode.getText())&& pageTab == 0){
+            ToastUtils.showLong("请输入图形验证码！");
+            return;
+        }
+        if (TextUtils.isEmpty(mDataBinding.etLoginPhonecode.getText())&& pageTab == 1){
+            ToastUtils.showLong("请输入短信验证码！");
+            return;
+        }
+        showLogadingDialog();
         postUser( new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
                 call.request().toString();
             }
 
+            @SuppressLint("CheckResult")
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 dismissNetDialog();
                 String ss = response.body().string();
-                ToastUtils.showLong(ss);
-                /*HttpLoginResult httpLoginResult =  new Gson().fromJson(ss, HttpLoginResult.class);
+                HttpLoginResult httpLoginResult =  new Gson().fromJson(ss, HttpLoginResult.class);
                 if (!TextUtils.isEmpty(httpLoginResult.getError_description())){
                     Observable.just(1L)
                             .subscribeOn(Schedulers.io())
@@ -159,16 +182,12 @@ public class LoginActivity extends BaseActivity {
                             }, throwable -> {
                                 throwable.printStackTrace();
                             });
-
-                    mViewModel.getCode();
-
-                    Log.e("TagSnake", "登录失败" + httpLoginResult.getMessage() + httpLoginResult.getCode());
+                    //获取图片验证码
+                    mViewModel.getCaptcha();
                 }else{
-                    SharedPreUtil.getInstance().putPsd(binding.etPassWord.getText().toString());
-                    SharedPreUtil.getInstance().putUserName(binding.etUserName.getText().toString());
-                    SharedPreUtil.getInstance().putToken(httpLoginResult.getAccess_token());
-                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                }*/
+                    DBRepository.StoreTVUserLoginData(httpLoginResult);
+                    ToastUtils.showLong("登录成功");
+                }
             }
         });
     }
@@ -196,10 +215,19 @@ public class LoginActivity extends BaseActivity {
 
         String url = "";
         try {
-            String rsaPws = EncryptUtils.encryptMD5ToString("CScs@135").toLowerCase();
+//            String rsaPws = EncryptUtils.encryptMD5ToString("CScs@135").toLowerCase();
+            String rsaPws = EncryptUtils.encryptMD5ToString(mDataBinding.etLoginPassword.getText().toString()).toLowerCase();
             url = ApiConstants.HOST+"/cdls-auth/oauth/token";
-            url+= "?" +
+            /*url+= "?" +
                     "username="+"18943453434"+"&"+
+                    "password="+rsaPws+"&"+
+                    "grant_type=captcha&"+
+                    "scope=all&"+
+                    "type=account&"+
+                    "tenantId=000000";*/
+
+            url+= "?" +
+                    "username="+mDataBinding.etLoginPhone.getText().toString()+"&"+
                     "password="+rsaPws+"&"+
                     "grant_type=captcha&"+
                     "scope=all&"+
@@ -207,20 +235,17 @@ public class LoginActivity extends BaseActivity {
                     "tenantId=000000";
 
 
-
         } catch (Exception e) {
             e.printStackTrace();
 
         }
-
-        String kesdfy = key;
-        String dd = mDataBinding.etLoginImcode.getText().toString();
+        String code = mDataBinding.etLoginImcode.getText().toString();
 
         Request request = new Request.Builder().url(url).post(requestBody)
-                .addHeader("Authorization","Basic c3dvcmQ6c3dvcmRfc2VjcmV0")
-                .addHeader("Captcha-Code",dd)
-                .addHeader("Captcha-Key",kesdfy)
-                .addHeader("Cache-Control","no-cache")
+                .addHeader("Authorization","Basic cGFkOnBhZF9zZWNyZXQ=")
+                .addHeader("Captcha-Code",code)
+                .addHeader("Captcha-Key",key)
+                .addHeader("Tenant-Id","000000")
                 .build();
         //4.创建一个call对象,参数就是Request请求对象
         okHttpClient.newCall(request).enqueue(callback);

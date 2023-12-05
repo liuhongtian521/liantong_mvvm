@@ -13,12 +13,14 @@ import com.askia.coremodel.datamodel.database.db.UserLoginData;
 import com.askia.coremodel.datamodel.http.entities.ConsumeRecordData;
 import com.askia.coremodel.datamodel.http.entities.consume.HttpConsumeBannerBean;
 import com.askia.coremodel.datamodel.http.entities.consume.HttpConsumeConfigBean;
+import com.askia.coremodel.datamodel.http.entities.consume.HttpLoginResult;
 import com.blankj.utilcode.util.LogUtils;
 
 public class SharedPreUtil {
 
     // 用户名key
     public final static String KEY_NAME = "KEY_NAME";
+    public final static String KEY_NAME_TV = "KEY_NAME_TV";
 
     public final static String KEY_LEVEL = "KEY_LEVEL";
 
@@ -48,6 +50,7 @@ public class SharedPreUtil {
     private static SharedPreUtil s_SharedPreUtil;
 
     private static UserLoginData s_User = null;
+    private static HttpLoginResult s_TVUser = null;
 
     private static HttpConsumeConfigBean.ResultBean sConsumeConfig = null;
     private static HttpConsumeBannerBean sConsumeBannerBean = null;
@@ -153,6 +156,43 @@ public class SharedPreUtil {
         s_User = user;
     }
 
+
+    public synchronized void putTVUser(HttpLoginResult user) {
+
+        Editor editor = msp.edit();
+
+        String str = "";
+        try {
+            str = SerializableUtil.obj2Str(user);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        editor.putString(KEY_NAME_TV, str);
+        editor.commit();
+
+        s_TVUser = user;
+    }
+    public synchronized HttpLoginResult getTVUser() {
+
+        if (s_TVUser == null) {
+            //获取序列化的数据
+            String str = msp.getString(SharedPreUtil.KEY_NAME_TV, "");
+
+            try {
+                Object obj = SerializableUtil.str2Obj(str);
+                if (obj != null) {
+                    s_TVUser = (HttpLoginResult) obj;
+                }
+
+            } catch (StreamCorruptedException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return s_TVUser;
+    }
     /*public synchronized String getUserName(){
         String str = msp.getString(SharedPreUtil.USERNAME,"");
         return str;

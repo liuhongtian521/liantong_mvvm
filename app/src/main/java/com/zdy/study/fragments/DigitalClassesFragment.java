@@ -1,6 +1,7 @@
 package com.zdy.study.fragments;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.askia.common.base.ARouterPath;
 import com.askia.common.base.BaseFragment;
+import com.askia.coremodel.datamodel.database.repository.DBRepository;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.zdy.study.R;
 import com.zdy.study.adapter.MainMenuAdapter;
@@ -44,8 +46,20 @@ public class DigitalClassesFragment extends BaseFragment {
         mDataBinding.rvMainMenu.setAdapter(adapter);
         mDataBinding.rvMainMenu.setItemAnimator(null);
 //        mDataBinding.rvMainMenu.setBindFragment(this);
-        adapter.setOnItemClickListener((adapter1, view, position) ->
-                startActivityByRouter(ARouterPath.LOGIN_ACTIVITY));
+        adapter.setOnItemClickListener((adapter1, view, position) -> {
+            if (TextUtils.isEmpty(DBRepository.QueryTVUserLoginData().getAccess_token())){
+                startActivityByRouter(ARouterPath.LOGIN_ACTIVITY);
+            }else {
+                switch (position){
+                    case 0:
+
+                        break;
+                }
+            }
+        });
+
+
+
     }
 
     @Override

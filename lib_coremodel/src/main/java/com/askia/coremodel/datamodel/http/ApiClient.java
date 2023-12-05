@@ -30,7 +30,7 @@ public class ApiClient {
      * @return
      */
     public static NetDataService getNetDataService() {
-        String host = DBRepository.QueryUserLoginData().getApiUrl();
+        String host = "";
         if (host == null || host.trim().equals("")) {
             host = ApiConstants.HOST;
         }
@@ -127,7 +127,9 @@ public class ApiClient {
                         @Override
                         public Response intercept(Chain chain) throws IOException {
                             Request.Builder builder = chain.request().newBuilder();
-                            builder.addHeader("Blade-Auth", DBRepository.QueryUserLoginData().getToken());
+                            builder.addHeader("Blade-Auth", DBRepository.QueryTVUserLoginData().getAccess_token())
+                                    .addHeader("Authorization","Basic cGFkOnBhZF9zZWNyZXQ=")
+                                    .addHeader("Tenant-Id","000000");
                             Response response = chain.proceed(builder.build());
                             return response;
                         }

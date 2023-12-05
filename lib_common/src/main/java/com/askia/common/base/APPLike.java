@@ -96,14 +96,14 @@ public class APPLike extends DefaultApplicationLike {
                 .build();*/
 
         // 调试时，将第三个参数改为true
-        if (DBRepository.QueryUserLoginData() == null || DBRepository.QueryUserLoginData().getSchoolId() == null || DBRepository.QueryUserLoginData().getSchoolId().equals("")) {
+        /*if (DBRepository.QueryUserLoginData() == null || DBRepository.QueryUserLoginData().getSchoolId() == null || DBRepository.QueryUserLoginData().getSchoolId().equals("")) {
             BuglyUtils.init(sInstance, null);
         } else {
             BuglyStrategy buglyStrategy = new BuglyStrategy();
             buglyStrategy.setAppChannel(DBRepository.QueryUserLoginData().getSchoolId());
             Log.e("TagSnake appid", DBRepository.QueryUserLoginData().getSchoolId());
             BuglyUtils.init(sInstance, buglyStrategy);
-        }
+        }*/
     }
 
    /* private PermissionListener mPermissionListener = new PermissionListener() {
