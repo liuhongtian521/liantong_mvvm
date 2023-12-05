@@ -1,6 +1,8 @@
 package com.askia.coremodel.datamodel.http.entities.consume;
 
-public class CaptchaResultBean {
+import java.io.Serializable;
+
+public class CaptchaResultBean implements Serializable {
 
 
     /**

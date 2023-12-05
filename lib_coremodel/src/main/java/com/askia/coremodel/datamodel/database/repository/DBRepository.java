@@ -1,5 +1,6 @@
 package com.askia.coremodel.datamodel.database.repository;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.text.TextUtils;
@@ -23,6 +24,7 @@ public class DBRepository {
     }
 
     //查询用户登陆信息
+    @SuppressLint("MissingPermission")
     public static UserLoginData QueryUserLoginData() {
         UserLoginData userLoginData = SharedPreUtil.getInstance().getUser();
         if (userLoginData == null) {

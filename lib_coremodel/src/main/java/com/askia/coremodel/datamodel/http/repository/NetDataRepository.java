@@ -22,6 +22,7 @@ import com.askia.coremodel.datamodel.http.entities.WeekMealsData;
 import com.askia.coremodel.datamodel.http.entities.consume.BaseResponseData;
 import com.askia.coremodel.datamodel.http.entities.consume.CBaseResponseData;
 import com.askia.coremodel.datamodel.http.entities.consume.CaptchaResultBean;
+import com.askia.coremodel.datamodel.http.entities.consume.DiscussRoomListBean;
 import com.askia.coremodel.datamodel.http.entities.consume.HttpCheckTokenBean;
 import com.askia.coremodel.datamodel.http.entities.consume.HttpCommentRankBean;
 import com.askia.coremodel.datamodel.http.entities.consume.HttpConsumeBannerBean;
@@ -79,23 +80,31 @@ public class NetDataRepository {
         responseObserv.responseObserv(responseData, mLoginLiveData, mDisposable);
     }*/
 
-    // 获取消费机配置
-    public static Observable<HttpConsumeConfigBean> getConsumeConfig(String sn) {
-        Observable<HttpConsumeConfigBean> responseData = ApiClient.getNetDataService()
-                .getConsumeConfig(sn);
-        return responseData;
-    }
+
 
     //登录
-    public void login(RequestBody body,
+    public void login( String username,
+                       String password,
                       MutableLiveData<HttpLoginResult> mLoginLiveData,
                       CompositeDisposable mDisposable) {
         Observable<HttpLoginResult> responseData = ApiClient.getNetDataService()
-                .login(body);
+                .login(username, password, "000000", "account", "all", "captcha");
         if (responseObserv == null)
             responseObserv = new ResponseObserv();
         responseObserv.responseObserv(responseData, mLoginLiveData, mDisposable);
     }
+
+    //登录
+    public void pageListPad(String argPage, String argPageSize,
+                      MutableLiveData<BaseResponseData<DiscussRoomListBean>> mLoginLiveData,
+                      CompositeDisposable mDisposable) {
+        Observable<BaseResponseData<DiscussRoomListBean>> responseData = ApiClient.getNetDataService()
+                .pageListPad(argPage, argPageSize);
+        if (responseObserv == null)
+            responseObserv = new ResponseObserv();
+        responseObserv.responseObserv(responseData, mLoginLiveData, mDisposable);
+    }
+
 
     //修改密码
     public static Observable<CBaseResponseData> changePassword(RequestBody body) {

@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.askia.coremodel.BuildConfig;
 import com.askia.coremodel.datamodel.database.repository.DBRepository;
+import com.askia.coremodel.datamodel.database.repository.SharedPreUtil;
 import com.askia.coremodel.datamodel.http.service.NetDataService;
 import com.blankj.utilcode.util.LogUtils;
 
@@ -126,7 +127,7 @@ public class ApiClient {
                         @Override
                         public Response intercept(Chain chain) throws IOException {
                             Request.Builder builder = chain.request().newBuilder();
-                            builder.addHeader("X-Access-Token", DBRepository.QueryUserLoginData().getToken());
+                            builder.addHeader("Blade-Auth", DBRepository.QueryUserLoginData().getToken());
                             Response response = chain.proceed(builder.build());
                             return response;
                         }

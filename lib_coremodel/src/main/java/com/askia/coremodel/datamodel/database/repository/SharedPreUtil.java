@@ -32,6 +32,8 @@ public class SharedPreUtil {
     public final static String DIRECTION = "SHOW_FACE_DIRECTION";
     public final static String USERNAME = "USERNAME";
     public final static String PASSWORD = "PASSWORD";
+    public final static String CaptchaKey = "Captcha-Key";
+    public final static String Captchacode = "Captcha-code";
 
 
 
@@ -287,6 +289,28 @@ public class SharedPreUtil {
 
         editor.commit();
         s_User = null;
+    }
+
+    public synchronized void putCaptchaKey(String transmitCode){
+        Editor editor = msp.edit();
+        editor.putString(CaptchaKey, transmitCode);
+        editor.commit();
+    }
+
+    public synchronized String getCaptchaKey() {
+        String str = msp.getString(SharedPreUtil.CaptchaKey, "");
+        return str;
+    }
+
+    public synchronized void putCaptchacode(String transmitCode){
+        Editor editor = msp.edit();
+        editor.putString(Captchacode, transmitCode);
+        editor.commit();
+    }
+
+    public synchronized String getCaptchacode() {
+        String str = msp.getString(SharedPreUtil.Captchacode, "");
+        return str;
     }
 
 }

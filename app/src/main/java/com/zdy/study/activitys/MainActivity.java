@@ -15,6 +15,7 @@ import com.zdy.study.adapter.ViewPager2Adapter;
 import com.zdy.study.databinding.ActMainBinding;
 import com.zdy.study.fragments.CurrentClassFragment;
 import com.zdy.study.fragments.DigitalClassesFragment;
+import com.zdy.study.fragments.DiscussRoomFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,7 +49,7 @@ public class MainActivity extends BaseActivity {
         mFragments = new ArrayList<>();
         mFragments.add(DigitalClassesFragment.newInstance(tabTitle[0]));
         mFragments.add(CurrentClassFragment.newInstance(tabTitle[1]));
-        mFragments.add(CurrentClassFragment.newInstance(tabTitle[2]));
+        mFragments.add(DiscussRoomFragment.newInstance(tabTitle[2]));
         mFragments.add(CurrentClassFragment.newInstance(tabTitle[3]));
 //        mFragments.add(CurrentClassFragment.newInstance(tabTitle[4]));
     }
