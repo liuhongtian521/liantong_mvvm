@@ -2,6 +2,7 @@ package com.zdy.study.activitys;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -70,8 +71,6 @@ public class LoginActivity extends BaseActivity {
     @Override
     public void onInitViewModel() {
         mViewModel = ViewModelProviders.of(this).get(LoginViewModel.class);
-
-
     }
 
     @Override
@@ -159,7 +158,7 @@ public class LoginActivity extends BaseActivity {
             ToastUtils.showLong("请输入短信验证码！");
             return;
         }
-        showLogadingDialog();
+        showNetDialog();
         postUser( new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
@@ -187,6 +186,10 @@ public class LoginActivity extends BaseActivity {
                 }else{
                     DBRepository.StoreTVUserLoginData(httpLoginResult);
                     ToastUtils.showLong("登录成功");
+                    Bundle bundle = getIntent().getExtras();
+                    if (!TextUtils.isEmpty(bundle.getString("url")))
+                        startActivityByRouter(bundle.getString("url"));
+                    finish();
                 }
             }
         });

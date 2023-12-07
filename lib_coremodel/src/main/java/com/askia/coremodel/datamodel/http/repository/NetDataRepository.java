@@ -40,6 +40,7 @@ import com.askia.coremodel.datamodel.http.entities.consume.HttpStudentGetFoodBea
 import com.askia.coremodel.datamodel.http.entities.consume.HttpSyncShoppingBean;
 import com.askia.coremodel.datamodel.http.entities.consume.HttpSysCodeBean;
 import com.askia.coremodel.datamodel.http.entities.consume.HttpWorkbenchStatisticsBean;
+import com.askia.coremodel.datamodel.http.entities.consume.StuyMaterialsListBean;
 import com.askia.coremodel.datamodel.http.entities.query.AdListData;
 import com.askia.coremodel.datamodel.http.entities.query.PeopleMoneyData;
 import com.askia.coremodel.util.DeviceUtils;
@@ -80,10 +81,8 @@ public class NetDataRepository {
         responseObserv.responseObserv(responseData, mLoginLiveData, mDisposable);
     }*/
 
-
-
     //登录
-    public void login( String username,
+    /*public void login( String username,
                        String password,
                       MutableLiveData<HttpLoginResult> mLoginLiveData,
                       CompositeDisposable mDisposable) {
@@ -92,9 +91,20 @@ public class NetDataRepository {
         if (responseObserv == null)
             responseObserv = new ResponseObserv();
         responseObserv.responseObserv(responseData, mLoginLiveData, mDisposable);
+    }*/
+
+    //获取电子课件
+    public void queryCoursewareListByUser(String argPage, String argPageSize,
+                                          MutableLiveData<BaseResponseData<StuyMaterialsListBean>> mLoginLiveData,
+                            CompositeDisposable mDisposable) {
+        Observable<BaseResponseData<StuyMaterialsListBean>> responseData = ApiClient.getNetDataService()
+                .queryCoursewareListByUser(argPage, argPageSize, argPage, argPageSize);
+        if (responseObserv == null)
+            responseObserv = new ResponseObserv();
+        responseObserv.responseObserv(responseData, mLoginLiveData, mDisposable);
     }
 
-    //登录
+    //讨论室列表
     public void pageListPad(String argPage, String argPageSize,
                       MutableLiveData<BaseResponseData<DiscussRoomListBean>> mLoginLiveData,
                       CompositeDisposable mDisposable) {

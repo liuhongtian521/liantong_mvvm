@@ -47,15 +47,19 @@ public class DigitalClassesFragment extends BaseFragment {
         mDataBinding.rvMainMenu.setItemAnimator(null);
 //        mDataBinding.rvMainMenu.setBindFragment(this);
         adapter.setOnItemClickListener((adapter1, view, position) -> {
-//            if (TextUtils.isEmpty(DBRepository.QueryTVUserLoginData().getAccess_token())){
-//                startActivityByRouter(ARouterPath.LOGIN_ACTIVITY);
-//            }else {
-                switch (position){
-                    case 0:  startActivityByRouter(ARouterPath.CourseQueryActivity);
-
-                        break;
-                }
-//            }
+            String url = "";
+            switch (position){
+                case 1:
+                    url = ARouterPath.STUDY_mATERIALS;
+                    break;
+            }
+            if (TextUtils.isEmpty(DBRepository.QueryTVUserLoginData().getAccess_token())){
+                Bundle bundle = new Bundle();
+                bundle.putString("url", url);
+                startActivityByRouter(ARouterPath.LOGIN_ACTIVITY, bundle);
+            }else{
+                startActivityByRouter(url);
+            }
         });
 
 

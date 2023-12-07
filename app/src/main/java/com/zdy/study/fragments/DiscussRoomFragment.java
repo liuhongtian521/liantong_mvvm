@@ -46,11 +46,11 @@ public class DiscussRoomFragment extends BaseFragment {
     @Override
     public void onSubscribeViewModel() {
         mViewModel.getPageListPadData().observe(this, listResult -> {
-            if(!listResult.isSuccess()){
+            /*if(!listResult.isSuccess()){
                 ToastUtils.showLong(listResult.getMessage().toString());
                 return;
             }
-            ToastUtils.showLong(listResult.getMessage().toString());
+            ToastUtils.showLong(listResult.getMessage().toString());*/
 
         });
     }

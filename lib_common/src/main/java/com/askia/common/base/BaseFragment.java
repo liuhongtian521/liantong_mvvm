@@ -264,6 +264,10 @@ public abstract class BaseFragment extends Fragment {
         ARouter.getInstance().build(path).navigation();
     }
 
+    public void startActivityByRouter(String path, Bundle b) {
+        ARouter.getInstance().build(path).with(b).navigation();
+    }
+
     public void setCacheViewFromContent(View focusView){
         this.focusView = focusView;
     }

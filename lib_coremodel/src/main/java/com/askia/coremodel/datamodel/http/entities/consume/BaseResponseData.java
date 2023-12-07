@@ -9,6 +9,7 @@ public class BaseResponseData<T> implements Serializable
     private String message;
     private int code;
     private T result;
+    private T data;
     private long timestamp;
 
     public boolean isSuccess() {
@@ -44,11 +45,18 @@ public class BaseResponseData<T> implements Serializable
     }
 
     public T getResult() {
-
         return result;
     }
 
     public void setResult(T result) {
         this.result = result;
+    }
+
+    public T getData() {
+        return data;
+    }
+
+    public void setData(T data) {
+        this.data = data;
     }
 }

@@ -10,6 +10,7 @@ import com.askia.coremodel.datamodel.http.entities.consume.DiscussRoomListBean;
 import com.askia.coremodel.datamodel.http.entities.consume.HttpConsumeConfigBean;
 
 import com.askia.coremodel.datamodel.http.entities.consume.HttpLoginResult;
+import com.askia.coremodel.datamodel.http.entities.consume.StuyMaterialsListBean;
 
 
 import io.reactivex.Observable;
@@ -31,14 +32,22 @@ public interface NetDataService {
     Observable<CaptchaResultBean> captcha();
 
     //登录
-    @POST("/cdls-auth/oauth/token")
+   /* @POST("/cdls-auth/oauth/token")
     Observable<HttpLoginResult> login(@Query("username") String username,
                                       @Query("password") String password,
                                       @Query("tenantId") String tenantId,
                                       @Query("type") String type,
                                       @Query("scope") String scope,
-                                      @Query("grant_type") String grant_type);
+                                      @Query("grant_type") String grant_type);*/
 
+
+    // 电子课件
+//    @GET("/cdls-bds/CoursewareInfoController/queryCoursewareInfoList")
+    @GET("/cdls-bds/App/queryCoursewareListByUser")
+    Observable<BaseResponseData<StuyMaterialsListBean>> queryCoursewareListByUser(@Query("size") String size,
+                                                                                  @Query("current") String current,
+                                                                                  @Query("argPage") String argPage,
+                                                                                  @Query("argPageSize") String argPageSize);
 
     // 讨论室列表
     @GET("/cdls-cms/DiscussionRoomController/pageListPad")

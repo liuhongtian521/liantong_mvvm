@@ -73,12 +73,12 @@ public class LoginViewModel extends BaseViewModel {
     }
 
     //登录
-    public void login(String account, String password) {
+    /*public void login(String account, String password) {
         HttpLoginParams params = new HttpLoginParams();
         params.setUsername(account.trim());
 
         String rsaPws = EncryptUtils.encryptMD5ToString(password.trim());
-        /*try {
+        *//*try {
 //            String rsaPws = RSAUtils.encrypt(password.trim(), Constans.publicKey);
             String rsaPws = EncryptUtils.encryptMD5ToString(password.trim());
 
@@ -86,7 +86,7 @@ public class LoginViewModel extends BaseViewModel {
             params.setPassword(ss);
         } catch (Exception e) {
             throw new RuntimeException(e);
-        }*/
+        }*//*
         params.setTenantId("000000");
         params.setType("account");
         params.setScope("all");
@@ -95,6 +95,6 @@ public class LoginViewModel extends BaseViewModel {
         if (netDataRepository == null)
             netDataRepository = new NetDataRepository();
         netDataRepository.login(account, rsaPws, mLoginLiveData, mDisposable);
-    }
+    }*/
 
 }
