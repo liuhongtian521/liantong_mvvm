@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/group_one"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:orientation="horizontal">
+
+            <com.zdy.study.fcWidgets.FCTextview
+                android:id="@+id/tv_year_1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="2020年" />
+
+            <com.zdy.study.fcWidgets.FCTextview
+                android:id="@+id/tv_year_2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="2021年" />
+
+            <com.zdy.study.fcWidgets.FCTextview
+                android:id="@+id/tv_year_3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="2022年" />
+
+            <com.zdy.study.fcWidgets.FCTextview
+                android:id="@+id/tv_year_4"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="2023年" />
+
+            <com.zdy.study.fcWidgets.FCTextview
+                android:id="@+id/tv_year_5"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="2024年" />
+
+            <com.zdy.study.fcWidgets.FCTextview
+                android:id="@+id/tv_year_6"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="2025年" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/group_two"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+
+                <com.zdy.study.fcWidgets.FCTextview
+                    android:id="@+id/tv_month_1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="1 月" />
+
+                <com.zdy.study.fcWidgets.FCTextview
+                    android:id="@+id/tv_month_2"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="2 月" />
+
+                <com.zdy.study.fcWidgets.FCTextview
+                    android:id="@+id/tv_month_3"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="3 月" />
+
+                <com.zdy.study.fcWidgets.FCTextview
+                    android:id="@+id/tv_month_4"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="4 月" />
+
+                <com.zdy.study.fcWidgets.FCTextview
+                    android:id="@+id/tv_month_5"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="5 月" />
+
+                <com.zdy.study.fcWidgets.FCTextview
+                    android:id="@+id/tv_month_6"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="6 月" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+
+                <com.zdy.study.fcWidgets.FCTextview
+                    android:id="@+id/tv_month_7"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="7 月" />
+
+                <com.zdy.study.fcWidgets.FCTextview
+                    android:id="@+id/tv_month_8"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="8 月" />
+
+                <com.zdy.study.fcWidgets.FCTextview
+                    android:id="@+id/tv_month_9"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="9 月" />
+
+                <com.zdy.study.fcWidgets.FCTextview
+                    android:id="@+id/tv_month_10"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="10 月" />
+
+                <com.zdy.study.fcWidgets.FCTextview
+                    android:id="@+id/tv_month_11"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="11 月" />
+
+                <com.zdy.study.fcWidgets.FCTextview
+                    android:id="@+id/tv_month_12"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="12 月" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+
+                <com.zdy.study.fcWidgets.FCButton
+                    android:id="@+id/yes"
+                    android:layout_marginRight="3dp"
+                    android:layout_marginLeft="3dp"
+                    android:focusableInTouchMode="true"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/ic_tab_selector_bg"
+                    android:gravity="center"
+                    android:text="确定"
+                    android:textColor="@drawable/text_tab_selector" />
+
+                <com.zdy.study.fcWidgets.FCButton
+                    android:id="@+id/no"
+                    android:layout_marginRight="3dp"
+                    android:layout_marginLeft="3dp"
+                    android:focusableInTouchMode="true"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/ic_tab_selector_bg"
+                    android:gravity="center"
+                    android:text="取消"
+                    android:textColor="@drawable/text_tab_selector" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+</layout>

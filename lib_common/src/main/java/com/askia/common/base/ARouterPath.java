@@ -15,6 +15,8 @@ public class ARouterPath {
     public static final String LOGIN_ACTIVITY = "/activity/login";
     /*首页*/
     public static final String MAIN_ACTIVITY = "/activity/main";
+    /*課程查詢 詳情*/
+    public static final String CourseQueryActivity = "/activity/CourseQueryActivity";
 
 
 

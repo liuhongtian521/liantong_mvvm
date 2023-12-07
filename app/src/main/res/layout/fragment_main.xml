@@ -5,83 +5,122 @@
 
     </data>
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="145dp"
-        android:background="@mipmap/ic_main_head_bg">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="15dp">
+            android:layout_height="145dp"
+            android:background="@mipmap/ic_main_head_bg">
 
-            <ImageView
-                android:id="@+id/im_start"
-                android:layout_width="70dp"
-                android:layout_height="30dp"
-                android:background="@mipmap/ic_main_start" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="15dp">
 
-            <com.zdy.study.fcWidgets.FCImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                <ImageView
+                    android:id="@+id/im_start"
+                    android:layout_width="70dp"
+                    android:layout_height="30dp"
+                    android:background="@mipmap/ic_main_start" />
+
+                <com.zdy.study.fcWidgets.FCImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="9dp"
+                    android:layout_marginRight="65dp"
+                    android:background="@mipmap/ic_main_search"
+                    android:focusableInTouchMode="true" />
+
+                <com.zdy.study.fcWidgets.FCImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="9dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@mipmap/ic_main_bell"
+                    android:focusableInTouchMode="true" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="100dp"
+                android:layout_height="22dp"
                 android:layout_alignParentEnd="true"
-                android:layout_marginTop="9dp"
-                android:layout_marginRight="65dp"
-                android:background="@mipmap/ic_main_search"
-                android:focusableInTouchMode="true" />
+                android:layout_alignParentBottom="true"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="1dp"
+                android:background="@mipmap/ic_main_right">
 
-            <com.zdy.study.fcWidgets.FCImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_alignParentEnd="true"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="9dp"
-                android:layout_marginRight="15dp"
-                android:background="@mipmap/ic_main_bell"
-                android:focusableInTouchMode="true" />
+                <TextView
+                    android:id="@+id/tv_main_month"
+                    android:layout_width="10dp"
+                    android:layout_height="8dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginLeft="12dp"
+                    android:text="3月"
+                    android:textColor="@color/app_white"
+                    android:textSize="6sp" />
+
+                <TextView
+                    android:id="@+id/tv_main_day"
+                    android:layout_width="13dp"
+                    android:layout_height="12dp"
+                    android:layout_below="@+id/tv_main_month"
+                    android:layout_marginLeft="12.5dp"
+                    android:text="31"
+                    android:textColor="@color/app_white"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tv_main_week"
+                    android:layout_width="27dp"
+                    android:layout_height="13dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginRight="15.5dp"
+                    android:text="星期三"
+                    android:textColor="@color/app_black2"
+                    android:textSize="9sp" />
+            </RelativeLayout>
 
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_width="100dp"
-            android:layout_height="22dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="1dp"
-            android:background="@mipmap/ic_main_right">
-
+            android:layout_width="match_parent"
+            android:layout_height="82dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp">
             <TextView
+                android:background="@mipmap/ic_course_example"
+                android:layout_width="68dp"
+                android:layout_marginLeft="9dp"
+                android:layout_height="33dp"/>
+            <TextView
+                android:gravity="center"
+                android:text="实践案例"
+                android:layout_marginTop="3dp"
+                android:layout_marginLeft="19dp"
+                android:textSize="11sp"
                 android:textColor="@color/app_white"
-                android:textSize="6sp"
-                android:id="@+id/tv_main_month"
-                android:layout_width="10dp"
-                android:layout_height="8dp"
-                android:layout_alignParentStart="true"
-                android:layout_marginLeft="12dp"
-                android:text="3月" />
-
-            <TextView
-                android:textColor="@color/app_white"
-                android:textSize="12sp"
-                android:id="@+id/tv_main_day"
-                android:layout_width="13dp"
-                android:layout_height="12dp"
-                android:layout_below="@+id/tv_main_month"
-                android:layout_marginLeft="12.5dp"
-                android:text="31" />
-
-            <TextView
-                android:id="@+id/tv_main_week"
-                android:layout_width="27dp"
-                android:layout_height="13dp"
+                android:layout_width="50dp"
+                android:layout_height="15dp"/>
+            <com.zdy.study.fcWidgets.FCTextview
+                android:focusableInTouchMode="true"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="10dp"
                 android:layout_alignParentEnd="true"
-                android:layout_centerInParent="true"
-                android:layout_marginRight="15.5dp"
-                android:text="星期三"
-                android:textColor="@color/app_black2"
-                android:textSize="9sp" />
-        </RelativeLayout>
+                android:textSize="11sp"
+                android:textColor="#FF4C4E5A"
+                android:text="更多 >"
+                android:gravity="right"
+                android:layout_width="33dp"
+                android:layout_height="16dp"/>
 
-    </RelativeLayout>
+        </RelativeLayout>
+    </LinearLayout>
 </layout>
