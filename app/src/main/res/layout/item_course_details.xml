@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:layout_marginTop="@dimen/dp_12"
+    android:paddingBottom="12dp"
+    android:background="@drawable/white_round_corner_left"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="32dp">
+
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="71dp"
+            android:layout_height="16dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="6dp"
+            android:gravity="center"
+            android:text="四"
+            android:textColor="#4C4E5A"
+            android:textSize="11sp" />
+
+        <TextView
+            android:id="@+id/tv_style"
+            android:layout_width="56dp"
+            android:layout_height="38dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:layout_marginTop="3dp"
+            android:layout_marginRight="13dp"
+            android:gravity="center"
+            android:text="22"
+            android:textColor="@color/app_black3"
+            android:textSize="14sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_alignParentBottom="true"
+            android:background="#FFE2E4E8" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:layout_marginTop="8.5dp"
+        android:paddingLeft="13dp"
+        android:paddingRight="@dimen/dp_13"
+        android:textColor="@color/app_black3"
+        android:textSize="13sp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_classes_room"
+            android:layout_width="10dp"
+            android:layout_height="11dp"
+            android:layout_marginLeft="13dp"
+            android:layout_marginRight="13dp"
+            android:background="@mipmap/ic_classroom" />
+
+        <TextView
+            android:id="@+id/tv_classes_room"
+            android:layout_width="wrap_content"
+            android:layout_height="16dp"
+            android:layout_marginLeft="7dp"
+            android:layout_toRightOf="@+id/iv_classes_room"
+            android:textColor="#4C4E5A"
+            android:textSize="10sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_name"
+            android:layout_width="10dp"
+            android:layout_height="11dp"
+            android:layout_marginLeft="13dp"
+            android:layout_marginRight="13dp"
+            android:background="@mipmap/ic_teacher" />
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="16dp"
+            android:layout_marginLeft="7dp"
+            android:layout_toRightOf="@+id/iv_name"
+            android:textColor="#4C4E5A"
+            android:textSize="10sp" />
+        <TextView
+            android:visibility="gone"
+            android:textColor="#714A22"
+            android:textSize="10sp"
+            android:layout_marginRight="13dp"
+            android:gravity="center_vertical"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="16dp"/>
+    </RelativeLayout>
+</LinearLayout>

@@ -2,6 +2,7 @@ package com.askia.coremodel.datamodel.http.entities.consume;
 
 
 import java.io.Serializable;
+import java.util.List;
 
 public class BaseResponseData<T> implements Serializable
 {

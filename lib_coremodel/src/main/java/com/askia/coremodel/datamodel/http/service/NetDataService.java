@@ -1,17 +1,19 @@
 package com.askia.coremodel.datamodel.http.service;
 
 
-
-
 import com.askia.coremodel.datamodel.http.entities.consume.BaseResponseData;
 import com.askia.coremodel.datamodel.http.entities.consume.CBaseResponseData;
 import com.askia.coremodel.datamodel.http.entities.consume.CaptchaResultBean;
+import com.askia.coremodel.datamodel.http.entities.consume.CourseDetailsResponse;
+import com.askia.coremodel.datamodel.http.entities.consume.CourseQueryResponseBean;
 import com.askia.coremodel.datamodel.http.entities.consume.DiscussRoomListBean;
 import com.askia.coremodel.datamodel.http.entities.consume.HttpConsumeConfigBean;
 
 import com.askia.coremodel.datamodel.http.entities.consume.HttpLoginResult;
 import com.askia.coremodel.datamodel.http.entities.consume.StuyMaterialsListBean;
 
+
+import java.util.List;
 
 import io.reactivex.Observable;
 import io.reactivex.Scheduler;
@@ -54,6 +56,9 @@ public interface NetDataService {
     Observable<BaseResponseData<DiscussRoomListBean>> pageListPad(@Query("argPage") String argPage,
                                                                   @Query("argPageSize") String argPageSize);
 
+    // 联播速递列表
+    @GET("/cdls-cms/ApisController/queryContListByAudit")
+    Observable<BaseResponseData<DiscussRoomListBean>> queryContListByAudit(@Query("argStruCode") String argStruCode,@Query("size") String size, @Query("current") String current, @Query("argPage") String argPage, @Query("argPageSize") String argPageSize);
 
 
     //修改密码
@@ -61,6 +66,11 @@ public interface NetDataService {
     @PUT("/campuscanteen/sys/user/changePassword")
     Observable<CBaseResponseData> changePassword(@Body RequestBody userinfo);//(@Field("username") String username, @Field("password") String password);
 
-
+    // 课程查询
+    @GET("/cdls-bds/App/queryCalendar")
+    Observable<BaseResponseData<List<CourseQueryResponseBean.DataBean>>> queryCalendar(@Query("queryDate") String queryDate);
+    // 课程详情查询
+    @GET("/cdls-bds/CurriculumInfoController/queryCurriculumInfoList")
+    Observable<BaseResponseData<CourseDetailsResponse>> queryCurriculumInfoList(@Query("classesId") String classesId, @Query("curriculumDate") String curriculumDate, @Query("size") String size, @Query("current") String current, @Query("argPage") String argPage, @Query("argPageSize") String argPageSize);
 
 }

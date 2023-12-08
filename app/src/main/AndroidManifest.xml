@@ -70,6 +70,10 @@
             android:name=".activitys.CourseQueryActivity"
             android:launchMode="singleTask"
             android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".activitys.BroadcastExpressActivity"
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="stateHidden" />
 
         <activity
             android:name=".activitys.StudyMaterialsActivity"

@@ -27,6 +27,7 @@ import java.util.ArrayList;
 public class DigitalClassesFragment extends BaseFragment {
 
     private FragmentDigtalClassesBinding mDataBinding;
+
     @Override
     public void onInit() {
 //        mDataBinding.currentText.setText(getArguments().getString("TITLE"));
@@ -48,20 +49,27 @@ public class DigitalClassesFragment extends BaseFragment {
 //        mDataBinding.rvMainMenu.setBindFragment(this);
         adapter.setOnItemClickListener((adapter1, view, position) -> {
             String url = "";
-            switch (position){
+            switch (position) {
+                //课程查询
+                case 0:
+                    url = ARouterPath.CourseQueryActivity;
+                    break;
                 case 1:
                     url = ARouterPath.STUDY_mATERIALS;
                     break;
+                case 4:
+                    url = ARouterPath.BroadcastExpressActivity;
+                    break;
+
             }
-            if (TextUtils.isEmpty(DBRepository.QueryTVUserLoginData().getAccess_token())){
+            if (TextUtils.isEmpty(DBRepository.QueryTVUserLoginData().getAccess_token())) {
                 Bundle bundle = new Bundle();
                 bundle.putString("url", url);
                 startActivityByRouter(ARouterPath.LOGIN_ACTIVITY, bundle);
-            }else{
+            } else {
                 startActivityByRouter(url);
             }
         });
-
 
 
     }
@@ -81,13 +89,13 @@ public class DigitalClassesFragment extends BaseFragment {
 
     }
 
-    public static DigitalClassesFragment newInstance(String title){
+    public static DigitalClassesFragment newInstance(String title) {
         Bundle arguments = new Bundle();
         arguments.putString("TITLE", title);
         DigitalClassesFragment fragment = new DigitalClassesFragment();
         fragment.setArguments(arguments);
         return fragment;
     }
- 
+
 
 }

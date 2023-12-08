@@ -198,7 +198,7 @@ public class DatePickerDialog extends DialogFragment implements DialogInterface.
         });
         //1月份
         textView_month1.setOnClickListener(v -> {
-            month = "1";
+            month = "01";
             textView_month1.setTextColor(getResources().getColor(R.color.app_white));
             textView_month1.setBackground(mContext.getResources().getDrawable(R.color.app_red));
             textView_month2.setTextColor(getResources().getColor(R.color.app_black));
@@ -226,7 +226,7 @@ public class DatePickerDialog extends DialogFragment implements DialogInterface.
         });
         //2月份
         textView_month2.setOnClickListener(v -> {
-            month = "2";
+            month = "02";
             textView_month2.setTextColor(getResources().getColor(R.color.app_white));
             textView_month2.setBackground(mContext.getResources().getDrawable(R.color.app_red));
             textView_month1.setTextColor(getResources().getColor(R.color.app_black));
@@ -254,7 +254,7 @@ public class DatePickerDialog extends DialogFragment implements DialogInterface.
         });
         //3月份
         textView_month3.setOnClickListener(v -> {
-            month = "3";
+            month = "03";
             textView_month3.setTextColor(getResources().getColor(R.color.app_white));
             textView_month3.setBackground(mContext.getResources().getDrawable(R.color.app_red));
             textView_month2.setTextColor(getResources().getColor(R.color.app_black));
@@ -282,7 +282,7 @@ public class DatePickerDialog extends DialogFragment implements DialogInterface.
         });
         //4月份
         textView_month4.setOnClickListener(v -> {
-            month = "4";
+            month = "04";
             textView_month4.setTextColor(getResources().getColor(R.color.app_white));
             textView_month4.setBackground(mContext.getResources().getDrawable(R.color.app_red));
             textView_month2.setTextColor(getResources().getColor(R.color.app_black));
@@ -310,7 +310,7 @@ public class DatePickerDialog extends DialogFragment implements DialogInterface.
         });
         //5月份
         textView_month5.setOnClickListener(v -> {
-            month = "5";
+            month = "05";
             textView_month5.setTextColor(getResources().getColor(R.color.app_white));
             textView_month5.setBackground(mContext.getResources().getDrawable(R.color.app_red));
             textView_month2.setTextColor(getResources().getColor(R.color.app_black));
@@ -338,7 +338,7 @@ public class DatePickerDialog extends DialogFragment implements DialogInterface.
         });
         //6月份
         textView_month6.setOnClickListener(v -> {
-            month = "6";
+            month = "06";
             textView_month6.setTextColor(getResources().getColor(R.color.app_white));
             textView_month6.setBackground(mContext.getResources().getDrawable(R.color.app_red));
             textView_month2.setTextColor(getResources().getColor(R.color.app_black));
@@ -366,7 +366,7 @@ public class DatePickerDialog extends DialogFragment implements DialogInterface.
         });
         //7月份
         textView_month7.setOnClickListener(v -> {
-            month = "7";
+            month = "07";
             textView_month7.setTextColor(getResources().getColor(R.color.app_white));
             textView_month7.setBackground(mContext.getResources().getDrawable(R.color.app_red));
             textView_month2.setTextColor(getResources().getColor(R.color.app_black));
@@ -394,7 +394,7 @@ public class DatePickerDialog extends DialogFragment implements DialogInterface.
         });
         //8月份
         textView_month8.setOnClickListener(v -> {
-            month = "8";
+            month = "08";
             textView_month8.setTextColor(getResources().getColor(R.color.app_white));
             textView_month8.setBackground(mContext.getResources().getDrawable(R.color.app_red));
             textView_month2.setTextColor(getResources().getColor(R.color.app_black));
@@ -422,7 +422,7 @@ public class DatePickerDialog extends DialogFragment implements DialogInterface.
         });
         //9月份
         textView_month9.setOnClickListener(v -> {
-            month = "9";
+            month = "09";
             textView_month9.setTextColor(getResources().getColor(R.color.app_white));
             textView_month9.setBackground(mContext.getResources().getDrawable(R.color.app_red));
             textView_month2.setTextColor(getResources().getColor(R.color.app_black));

@@ -10,7 +10,6 @@ package com.askia.common.base;
 public class ARouterPath {
 
 
-
     /*登录*/
     public static final String LOGIN_ACTIVITY = "/activity/login";
     /*首页*/
@@ -19,9 +18,8 @@ public class ARouterPath {
     public static final String CourseQueryActivity = "/activity/CourseQueryActivity";
     /*电子课件*/
     public static final String STUDY_mATERIALS = "/activity/stuyMaterials";
-
-
-
+    /*联播速递*/
+    public static final String BroadcastExpressActivity = "/activity/BroadcastExpressActivity";
 
 
 }

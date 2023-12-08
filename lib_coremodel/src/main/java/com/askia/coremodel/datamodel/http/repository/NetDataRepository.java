@@ -1,7 +1,6 @@
 package com.askia.coremodel.datamodel.http.repository;
 
 
-
 import androidx.lifecycle.MutableLiveData;
 
 import com.askia.coremodel.datamodel.http.ApiClient;
@@ -22,6 +21,8 @@ import com.askia.coremodel.datamodel.http.entities.WeekMealsData;
 import com.askia.coremodel.datamodel.http.entities.consume.BaseResponseData;
 import com.askia.coremodel.datamodel.http.entities.consume.CBaseResponseData;
 import com.askia.coremodel.datamodel.http.entities.consume.CaptchaResultBean;
+import com.askia.coremodel.datamodel.http.entities.consume.CourseDetailsResponse;
+import com.askia.coremodel.datamodel.http.entities.consume.CourseQueryResponseBean;
 import com.askia.coremodel.datamodel.http.entities.consume.DiscussRoomListBean;
 import com.askia.coremodel.datamodel.http.entities.consume.HttpCheckTokenBean;
 import com.askia.coremodel.datamodel.http.entities.consume.HttpCommentRankBean;
@@ -44,6 +45,8 @@ import com.askia.coremodel.datamodel.http.entities.consume.StuyMaterialsListBean
 import com.askia.coremodel.datamodel.http.entities.query.AdListData;
 import com.askia.coremodel.datamodel.http.entities.query.PeopleMoneyData;
 import com.askia.coremodel.util.DeviceUtils;
+
+import java.util.List;
 
 import io.reactivex.Observable;
 import io.reactivex.Observer;
@@ -96,7 +99,7 @@ public class NetDataRepository {
     //获取电子课件
     public void queryCoursewareListByUser(String argPage, String argPageSize,
                                           MutableLiveData<BaseResponseData<StuyMaterialsListBean>> mLoginLiveData,
-                            CompositeDisposable mDisposable) {
+                                          CompositeDisposable mDisposable) {
         Observable<BaseResponseData<StuyMaterialsListBean>> responseData = ApiClient.getNetDataService()
                 .queryCoursewareListByUser(argPage, argPageSize, argPage, argPageSize);
         if (responseObserv == null)
@@ -106,10 +109,47 @@ public class NetDataRepository {
 
     //讨论室列表
     public void pageListPad(String argPage, String argPageSize,
-                      MutableLiveData<BaseResponseData<DiscussRoomListBean>> mLoginLiveData,
-                      CompositeDisposable mDisposable) {
+                            MutableLiveData<BaseResponseData<DiscussRoomListBean>> mLoginLiveData,
+                            CompositeDisposable mDisposable) {
         Observable<BaseResponseData<DiscussRoomListBean>> responseData = ApiClient.getNetDataService()
                 .pageListPad(argPage, argPageSize);
+        if (responseObserv == null)
+            responseObserv = new ResponseObserv();
+        responseObserv.responseObserv(responseData, mLoginLiveData, mDisposable);
+    }
+    //联播速列表
+
+    public void queryContListByAudit(String argStruCode, String size, String current, String argPage,
+                                     String argPageSize,
+                                     MutableLiveData<BaseResponseData<DiscussRoomListBean>> mLoginLiveData,
+                                     CompositeDisposable mDisposable) {
+        Observable<BaseResponseData<DiscussRoomListBean>> responseData = ApiClient.getNetDataService()
+                .queryContListByAudit(argStruCode, size, current, argPage,
+                        argPageSize);
+        if (responseObserv == null)
+            responseObserv = new ResponseObserv();
+        responseObserv.responseObserv(responseData, mLoginLiveData, mDisposable);
+    }
+
+    //课程查询
+    public void queryCalendar(String queryDate,
+                              MutableLiveData<BaseResponseData<List<CourseQueryResponseBean.DataBean>>> mLoginLiveData,
+                              CompositeDisposable mDisposable) {
+        Observable<BaseResponseData<List<CourseQueryResponseBean.DataBean>>> responseData = ApiClient.getNetDataService()
+                .queryCalendar(queryDate);
+        if (responseObserv == null)
+            responseObserv = new ResponseObserv();
+        responseObserv.responseObserv(responseData, mLoginLiveData, mDisposable);
+    }
+    //课程详情列表查询
+
+    public void queryCurriculumInfoList(String classesId, String curriculumDate, String size, String current, String argPage,
+                                        String argPageSize,
+                                        MutableLiveData<BaseResponseData<CourseDetailsResponse>> mLoginLiveData,
+                                        CompositeDisposable mDisposable) {
+        Observable<BaseResponseData<CourseDetailsResponse>> responseData = ApiClient.getNetDataService()
+                .queryCurriculumInfoList(classesId, curriculumDate, size, current, argPage,
+                        argPageSize);
         if (responseObserv == null)
             responseObserv = new ResponseObserv();
         responseObserv.responseObserv(responseData, mLoginLiveData, mDisposable);
