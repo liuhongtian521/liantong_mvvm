@@ -24,6 +24,7 @@ import com.askia.coremodel.datamodel.http.entities.consume.CaptchaResultBean;
 import com.askia.coremodel.datamodel.http.entities.consume.CourseDetailsResponse;
 import com.askia.coremodel.datamodel.http.entities.consume.CourseQueryResponseBean;
 import com.askia.coremodel.datamodel.http.entities.consume.DiscussRoomListBean;
+import com.askia.coremodel.datamodel.http.entities.consume.EBookListBean;
 import com.askia.coremodel.datamodel.http.entities.consume.HttpCheckTokenBean;
 import com.askia.coremodel.datamodel.http.entities.consume.HttpCommentRankBean;
 import com.askia.coremodel.datamodel.http.entities.consume.HttpConsumeBannerBean;
@@ -41,6 +42,7 @@ import com.askia.coremodel.datamodel.http.entities.consume.HttpStudentGetFoodBea
 import com.askia.coremodel.datamodel.http.entities.consume.HttpSyncShoppingBean;
 import com.askia.coremodel.datamodel.http.entities.consume.HttpSysCodeBean;
 import com.askia.coremodel.datamodel.http.entities.consume.HttpWorkbenchStatisticsBean;
+import com.askia.coremodel.datamodel.http.entities.consume.StuyManualListBean;
 import com.askia.coremodel.datamodel.http.entities.consume.StuyMaterialsListBean;
 import com.askia.coremodel.datamodel.http.entities.query.AdListData;
 import com.askia.coremodel.datamodel.http.entities.query.PeopleMoneyData;
@@ -98,10 +100,32 @@ public class NetDataRepository {
 
     //获取电子课件
     public void queryCoursewareListByUser(String argPage, String argPageSize,
+                                          MutableLiveData<BaseResponseData<EBookListBean>> mLoginLiveData,
+                            CompositeDisposable mDisposable) {
+        Observable<BaseResponseData<EBookListBean>> responseData = ApiClient.getNetDataService()
+                .queryCoursewareListByUser(argPage, argPageSize, argPage, argPageSize);
+        if (responseObserv == null)
+            responseObserv = new ResponseObserv();
+        responseObserv.responseObserv(responseData, mLoginLiveData, mDisposable);
+    }
+
+    //学习资料
+    public void queryLearningMaterials(String argPage, String argPageSize,
                                           MutableLiveData<BaseResponseData<StuyMaterialsListBean>> mLoginLiveData,
                                           CompositeDisposable mDisposable) {
         Observable<BaseResponseData<StuyMaterialsListBean>> responseData = ApiClient.getNetDataService()
-                .queryCoursewareListByUser(argPage, argPageSize, argPage, argPageSize);
+                .queryLearningMaterials(argPage, argPageSize, argPage, argPageSize);
+        if (responseObserv == null)
+            responseObserv = new ResponseObserv();
+        responseObserv.responseObserv(responseData, mLoginLiveData, mDisposable);
+    }
+
+    //学习手册
+    public void queryStudentHandbook(String argPage, String argPageSize,
+                                       MutableLiveData<BaseResponseData<StuyManualListBean>> mLoginLiveData,
+                                       CompositeDisposable mDisposable) {
+        Observable<BaseResponseData<StuyManualListBean>> responseData = ApiClient.getNetDataService()
+                .queryStudentHandbook(argPage, argPageSize, argPage, argPageSize);
         if (responseObserv == null)
             responseObserv = new ResponseObserv();
         responseObserv.responseObserv(responseData, mLoginLiveData, mDisposable);

@@ -28,18 +28,18 @@ public class StudyMaterialsViewModel extends BaseViewModel {
 
 
 
-    //电子课件
+    //学习资料
     private MutableLiveData<BaseResponseData<StuyMaterialsListBean>> mMaterialsLiveData = new MutableLiveData<>();
 
     public MutableLiveData<BaseResponseData<StuyMaterialsListBean>> getmMaterialsLiveData() {
         return mMaterialsLiveData;
     }
 
-    //电子课件列表
-    public void queryCoursewareListByUser(String page, String size) {
+    //学习资料列表
+    public void queryLearningMaterials(String page, String size) {
         if (netDataRepository == null)
             netDataRepository = new NetDataRepository();
-        netDataRepository.queryCoursewareListByUser(page, size, mMaterialsLiveData, mDisposable);
+        netDataRepository.queryLearningMaterials(page, size, mMaterialsLiveData, mDisposable);
     }
 
 }

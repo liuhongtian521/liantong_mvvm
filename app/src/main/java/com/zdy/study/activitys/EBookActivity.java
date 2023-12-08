@@ -3,38 +3,37 @@ package com.zdy.study.activitys;
 import android.view.View;
 
 import androidx.databinding.DataBindingUtil;
-import androidx.leanback.widget.OnChildViewHolderSelectedListener;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.askia.common.base.ARouterPath;
 import com.askia.common.base.BaseActivity;
+import com.askia.coremodel.datamodel.http.entities.consume.EBookListBean;
 import com.askia.coremodel.datamodel.http.entities.consume.StuyMaterialsListBean;
 import com.blankj.utilcode.util.ToastUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.zdy.study.R;
-import com.zdy.study.adapter.MainMenuAdapter;
+import com.zdy.study.adapter.EBookAdapter;
 import com.zdy.study.adapter.StudyMaterialsAdapter;
-import com.zdy.study.cdatamodel.viewmodel.LoginViewModel;
+import com.zdy.study.cdatamodel.viewmodel.EBookViewModel;
 import com.zdy.study.cdatamodel.viewmodel.StudyMaterialsViewModel;
+import com.zdy.study.databinding.ActEbookBinding;
 import com.zdy.study.databinding.ActStudyMaterialsBinding;
 
 import java.util.ArrayList;
 import java.util.List;
 
-//学习资料
-@Route(path = ARouterPath.STUDY_mATERIALS)
-public class StudyMaterialsActivity extends BaseActivity {
+//电子课件
+@Route(path = ARouterPath.EBOOK_ACTIVIGY)
+public class EBookActivity extends BaseActivity {
 
-    private ActStudyMaterialsBinding mDataBinding;
-    private StudyMaterialsViewModel mViewModel;
+    private ActEbookBinding mDataBinding;
+    private EBookViewModel mViewModel;
 
     //
-    private List<StuyMaterialsListBean.RecordsBean> dataList = new ArrayList<>();
-    private StudyMaterialsAdapter adapter;
+    private List<EBookListBean.RecordsBean> dataList = new ArrayList<>();
+    private EBookAdapter adapter;
 
     private int pageNo = 1;
     private String pageSize = "10";
@@ -60,12 +59,12 @@ public class StudyMaterialsActivity extends BaseActivity {
 
     @Override
     public void onInitViewModel() {
-        mViewModel = ViewModelProviders.of(this).get(StudyMaterialsViewModel.class);
+        mViewModel = ViewModelProviders.of(this).get(EBookViewModel.class);
     }
 
     @Override
     public void onInitDataBinding() {
-        mDataBinding = DataBindingUtil.setContentView(this, R.layout.act_study_materials);
+        mDataBinding = DataBindingUtil.setContentView(this, R.layout.act_ebook);
     }
 
     @Override
@@ -114,8 +113,8 @@ public class StudyMaterialsActivity extends BaseActivity {
 
     private void initDataList(){
 
-        mViewModel.queryLearningMaterials(String.valueOf(pageNo), pageSize);
-        adapter = new StudyMaterialsAdapter(dataList, new StudyMaterialsAdapter.SMAdapterCallBack() {
+        mViewModel.queryCoursewareListByUser(String.valueOf(pageNo), pageSize);
+        adapter = new EBookAdapter(dataList, new EBookAdapter.SMAdapterCallBack() {
             @Override
             public void loadMore() {
                 ToastUtils.showLong("sdfsdf");
@@ -137,7 +136,6 @@ public class StudyMaterialsActivity extends BaseActivity {
         adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                String url = dataList.get(position).getLearningMaterialsUrl();
 
             }
         });

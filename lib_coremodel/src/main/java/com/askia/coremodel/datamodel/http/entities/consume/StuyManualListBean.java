@@ -2,11 +2,11 @@ package com.askia.coremodel.datamodel.http.entities.consume;
 
 import java.util.List;
 
-public class StuyMaterialsListBean {
+public class StuyManualListBean {
 
 
     /**
-     * records : [{"learningMaterialsType":"pptx","learningMaterialsTag":1,"learningMaterialsUrl":"http%3A%2F%2Fcldscmsvideo.oss-cn-huhehaote-nebula-1.aliyuncs.com%2Fef82226cad644163b2e8c839582f056c.pptx%3FExpires%3D1701929469%26OSSAccessKeyId%3DLTAI5tE8k22tASfQeMbdKwo6%26Signature%3Di9KlKDg79PB2zP%252Bw4YH5RRw5xTw%253D","learningMaterialsName":"新建 PPTX 演示文稿"}]
+     * records : [{"classesName":"中央企业领导人员治企能力提升专题培训班（第6期）","classStudentHandbookUrl":"http%3A%2F%2Fcldscmsvideo.oss-cn-huhehaote-nebula-1.aliyuncs.com%2F1f310d7dfa8a4bcdb166442938451381.pdf%3FExpires%3D1701931450%26OSSAccessKeyId%3DLTAI5tE8k22tASfQeMbdKwo6%26Signature%3DiAxJMo71oApmdkdSv8bLbbGrOt0%253D"}]
      * total : 1
      * size : 10
      * current : 1
@@ -101,47 +101,27 @@ public class StuyMaterialsListBean {
 
     public static class RecordsBean {
         /**
-         * learningMaterialsType : pptx
-         * learningMaterialsTag : 1
-         * learningMaterialsUrl : http%3A%2F%2Fcldscmsvideo.oss-cn-huhehaote-nebula-1.aliyuncs.com%2Fef82226cad644163b2e8c839582f056c.pptx%3FExpires%3D1701929469%26OSSAccessKeyId%3DLTAI5tE8k22tASfQeMbdKwo6%26Signature%3Di9KlKDg79PB2zP%252Bw4YH5RRw5xTw%253D
-         * learningMaterialsName : 新建 PPTX 演示文稿
+         * classesName : 中央企业领导人员治企能力提升专题培训班（第6期）
+         * classStudentHandbookUrl : http%3A%2F%2Fcldscmsvideo.oss-cn-huhehaote-nebula-1.aliyuncs.com%2F1f310d7dfa8a4bcdb166442938451381.pdf%3FExpires%3D1701931450%26OSSAccessKeyId%3DLTAI5tE8k22tASfQeMbdKwo6%26Signature%3DiAxJMo71oApmdkdSv8bLbbGrOt0%253D
          */
 
-        private String learningMaterialsType;
-        private int learningMaterialsTag;
-        private String learningMaterialsUrl;
-        private String learningMaterialsName;
+        private String classesName;
+        private String classStudentHandbookUrl;
 
-        public String getLearningMaterialsType() {
-            return learningMaterialsType;
+        public String getClassesName() {
+            return classesName;
         }
 
-        public void setLearningMaterialsType(String learningMaterialsType) {
-            this.learningMaterialsType = learningMaterialsType;
+        public void setClassesName(String classesName) {
+            this.classesName = classesName;
         }
 
-        public int getLearningMaterialsTag() {
-            return learningMaterialsTag;
+        public String getClassStudentHandbookUrl() {
+            return classStudentHandbookUrl;
         }
 
-        public void setLearningMaterialsTag(int learningMaterialsTag) {
-            this.learningMaterialsTag = learningMaterialsTag;
-        }
-
-        public String getLearningMaterialsUrl() {
-            return learningMaterialsUrl;
-        }
-
-        public void setLearningMaterialsUrl(String learningMaterialsUrl) {
-            this.learningMaterialsUrl = learningMaterialsUrl;
-        }
-
-        public String getLearningMaterialsName() {
-            return learningMaterialsName;
-        }
-
-        public void setLearningMaterialsName(String learningMaterialsName) {
-            this.learningMaterialsName = learningMaterialsName;
+        public void setClassStudentHandbookUrl(String classStudentHandbookUrl) {
+            this.classStudentHandbookUrl = classStudentHandbookUrl;
         }
     }
 }

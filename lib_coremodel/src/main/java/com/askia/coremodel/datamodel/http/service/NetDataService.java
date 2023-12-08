@@ -7,9 +7,11 @@ import com.askia.coremodel.datamodel.http.entities.consume.CaptchaResultBean;
 import com.askia.coremodel.datamodel.http.entities.consume.CourseDetailsResponse;
 import com.askia.coremodel.datamodel.http.entities.consume.CourseQueryResponseBean;
 import com.askia.coremodel.datamodel.http.entities.consume.DiscussRoomListBean;
+import com.askia.coremodel.datamodel.http.entities.consume.EBookListBean;
 import com.askia.coremodel.datamodel.http.entities.consume.HttpConsumeConfigBean;
 
 import com.askia.coremodel.datamodel.http.entities.consume.HttpLoginResult;
+import com.askia.coremodel.datamodel.http.entities.consume.StuyManualListBean;
 import com.askia.coremodel.datamodel.http.entities.consume.StuyMaterialsListBean;
 
 
@@ -46,11 +48,24 @@ public interface NetDataService {
     // 电子课件
 //    @GET("/cdls-bds/CoursewareInfoController/queryCoursewareInfoList")
     @GET("/cdls-bds/App/queryCoursewareListByUser")
-    Observable<BaseResponseData<StuyMaterialsListBean>> queryCoursewareListByUser(@Query("size") String size,
-                                                                                  @Query("current") String current,
+    Observable<BaseResponseData<EBookListBean>> queryCoursewareListByUser(@Query("current") String current,
+                                                                          @Query("size") String size,
+                                                                          @Query("argPage") String argPage,
+                                                                          @Query("argPageSize") String argPageSize);
+
+    // 学习资料
+    @GET("/cdls-bds/App/queryLearningMaterials")
+    Observable<BaseResponseData<StuyMaterialsListBean>> queryLearningMaterials(@Query("current") String current,
+                                                                                  @Query("size") String size,
                                                                                   @Query("argPage") String argPage,
                                                                                   @Query("argPageSize") String argPageSize);
 
+    // 学习手册
+    @GET("/cdls-bds/App/queryStudentHandbook")
+    Observable<BaseResponseData<StuyManualListBean>> queryStudentHandbook(@Query("current") String current,
+                                                                          @Query("size") String size,
+                                                                          @Query("argPage") String argPage,
+                                                                          @Query("argPageSize") String argPageSize);
     // 讨论室列表
     @GET("/cdls-cms/DiscussionRoomController/pageListPad")
     Observable<BaseResponseData<DiscussRoomListBean>> pageListPad(@Query("argPage") String argPage,

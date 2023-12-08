@@ -182,5 +182,10 @@ dependencies {
     //LeanbackTabLayout
     api 'androidx.leanback:leanback:1.0.0'
     api "androidx.leanback:leanback-tab:1.1.0-beta01"
+    //pdf
+    api 'com.github.chrisbanes:PhotoView:2.1.4'
+    //pdf2
+    api 'com.joanzapata.pdfview:android-pdfview:1.0.4@aar'
+
 
 }

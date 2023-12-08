@@ -17,7 +17,15 @@ public class ARouterPath {
     /*課程查詢 詳情*/
     public static final String CourseQueryActivity = "/activity/CourseQueryActivity";
     /*电子课件*/
+    public static final String EBOOK_ACTIVIGY = "/activity/ebook";
+    /*学习资料*/
     public static final String STUDY_mATERIALS = "/activity/stuyMaterials";
+    /*学习手册*/
+    public static final String STUDY_MANUAL = "/activity/stuyManual";
+
+    /*pdf查看*/
+    public static final String WEBVIEW = "/activity/webView";
+
     /*联播速递*/
     public static final String BroadcastExpressActivity = "/activity/BroadcastExpressActivity";
 
