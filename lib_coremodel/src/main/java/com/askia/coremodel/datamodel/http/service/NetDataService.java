@@ -1,7 +1,9 @@
 package com.askia.coremodel.datamodel.http.service;
 
 
+import com.askia.coremodel.datamodel.http.entities.consume.AddressBookResponseBean;
 import com.askia.coremodel.datamodel.http.entities.consume.BaseResponseData;
+import com.askia.coremodel.datamodel.http.entities.consume.BroadcastExpressResponBean;
 import com.askia.coremodel.datamodel.http.entities.consume.CBaseResponseData;
 import com.askia.coremodel.datamodel.http.entities.consume.CaptchaResultBean;
 import com.askia.coremodel.datamodel.http.entities.consume.CourseDetailsResponse;
@@ -73,7 +75,11 @@ public interface NetDataService {
 
     // 联播速递列表
     @GET("/cdls-cms/ApisController/queryContListByAudit")
-    Observable<BaseResponseData<DiscussRoomListBean>> queryContListByAudit(@Query("argStruCode") String argStruCode,@Query("size") String size, @Query("current") String current, @Query("argPage") String argPage, @Query("argPageSize") String argPageSize);
+    Observable<BaseResponseData<BroadcastExpressResponBean>> queryContListByAudit( @Query("argPage") String argPage, @Query("argPageSize") String argPageSize,@Query("argStruCode") String argStruCode);
+
+    // 通讯录列表
+    @GET("/cdls-bds/App/queryStudentInfoListByClass")
+    Observable<BaseResponseData<AddressBookResponseBean>> queryStudentInfoListByClass(@Query("argPage") String argPage, @Query("argPageSize") String argPageSize, @Query("classesId") String classesId);
 
 
     //修改密码

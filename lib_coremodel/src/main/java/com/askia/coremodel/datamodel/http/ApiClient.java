@@ -127,6 +127,7 @@ public class ApiClient {
                         @Override
                         public Response intercept(Chain chain) throws IOException {
                             Request.Builder builder = chain.request().newBuilder();
+                            Log.e("Blade-Auth", "intercept: "+DBRepository.QueryTVUserLoginData().getAccess_token());
                             builder.addHeader("Blade-Auth", DBRepository.QueryTVUserLoginData().getAccess_token())
                                     .addHeader("Authorization","Basic cGFkOnBhZF9zZWNyZXQ=")
                                     .addHeader("Tenant-Id","000000");

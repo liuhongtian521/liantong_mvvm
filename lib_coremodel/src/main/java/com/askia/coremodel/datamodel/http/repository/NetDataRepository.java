@@ -18,7 +18,9 @@ import com.askia.coremodel.datamodel.http.entities.QueryFaceZipsUrlsData;
 import com.askia.coremodel.datamodel.http.entities.StuInfoData;
 import com.askia.coremodel.datamodel.http.entities.TimeLisData;
 import com.askia.coremodel.datamodel.http.entities.WeekMealsData;
+import com.askia.coremodel.datamodel.http.entities.consume.AddressBookResponseBean;
 import com.askia.coremodel.datamodel.http.entities.consume.BaseResponseData;
+import com.askia.coremodel.datamodel.http.entities.consume.BroadcastExpressResponBean;
 import com.askia.coremodel.datamodel.http.entities.consume.CBaseResponseData;
 import com.askia.coremodel.datamodel.http.entities.consume.CaptchaResultBean;
 import com.askia.coremodel.datamodel.http.entities.consume.CourseDetailsResponse;
@@ -143,13 +145,25 @@ public class NetDataRepository {
     }
     //联播速列表
 
-    public void queryContListByAudit(String argStruCode, String size, String current, String argPage,
-                                     String argPageSize,
-                                     MutableLiveData<BaseResponseData<DiscussRoomListBean>> mLoginLiveData,
+    public void queryContListByAudit(String argPage,
+                                     String argPageSize,String argStruCode,
+                                     MutableLiveData<BaseResponseData<BroadcastExpressResponBean>> mLoginLiveData,
                                      CompositeDisposable mDisposable) {
-        Observable<BaseResponseData<DiscussRoomListBean>> responseData = ApiClient.getNetDataService()
-                .queryContListByAudit(argStruCode, size, current, argPage,
-                        argPageSize);
+        Observable<BaseResponseData<BroadcastExpressResponBean>> responseData = ApiClient.getNetDataService()
+                .queryContListByAudit( argPage,
+                        argPageSize, argStruCode);
+        if (responseObserv == null)
+            responseObserv = new ResponseObserv();
+        responseObserv.responseObserv(responseData, mLoginLiveData, mDisposable);
+    }
+    //通讯录
+    public void queryStudentInfoListByClass(String argPage,
+                                     String argPageSize, String classesId,
+                                     MutableLiveData<BaseResponseData<AddressBookResponseBean>> mLoginLiveData,
+                                     CompositeDisposable mDisposable) {
+        Observable<BaseResponseData<AddressBookResponseBean>> responseData = ApiClient.getNetDataService()
+                .queryStudentInfoListByClass(argPage,
+                        argPageSize, classesId);
         if (responseObserv == null)
             responseObserv = new ResponseObserv();
         responseObserv.responseObserv(responseData, mLoginLiveData, mDisposable);
