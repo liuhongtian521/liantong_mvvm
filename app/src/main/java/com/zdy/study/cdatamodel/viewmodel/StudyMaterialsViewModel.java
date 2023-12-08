@@ -8,6 +8,7 @@ import com.askia.coremodel.datamodel.http.entities.consume.BaseResponseData;
 import com.askia.coremodel.datamodel.http.entities.consume.CaptchaResultBean;
 import com.askia.coremodel.datamodel.http.entities.consume.DiscussRoomListBean;
 import com.askia.coremodel.datamodel.http.entities.consume.HttpLoginResult;
+import com.askia.coremodel.datamodel.http.entities.consume.StudyDictionaryBean;
 import com.askia.coremodel.datamodel.http.entities.consume.StuyMaterialsListBean;
 import com.askia.coremodel.datamodel.http.params.consume.HttpLoginParams;
 import com.askia.coremodel.datamodel.http.repository.NetDataRepository;
@@ -15,6 +16,7 @@ import com.askia.coremodel.util.EncryptUtils;
 import com.askia.coremodel.viewmodel.BaseViewModel;
 
 import java.net.SocketTimeoutException;
+import java.util.List;
 
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -26,7 +28,12 @@ public class StudyMaterialsViewModel extends BaseViewModel {
 
     private  NetDataRepository netDataRepository = null;
 
+    //学习资料字典
+    private MutableLiveData<BaseResponseData<List<StudyDictionaryBean>>> mDictionaryLiveData = new MutableLiveData<>();
 
+    public MutableLiveData<BaseResponseData<List<StudyDictionaryBean>>> getmDictionaryLiveData() {
+        return mDictionaryLiveData;
+    }
 
     //学习资料
     private MutableLiveData<BaseResponseData<StuyMaterialsListBean>> mMaterialsLiveData = new MutableLiveData<>();
@@ -35,11 +42,18 @@ public class StudyMaterialsViewModel extends BaseViewModel {
         return mMaterialsLiveData;
     }
 
-    //学习资料列表
-    public void queryLearningMaterials(String page, String size) {
+    //学习资料字典
+    public void dictionary(String code) {
         if (netDataRepository == null)
             netDataRepository = new NetDataRepository();
-        netDataRepository.queryLearningMaterials(page, size, mMaterialsLiveData, mDisposable);
+        netDataRepository.dictionary(code, mDictionaryLiveData, mDisposable);
+    }
+
+    //学习资料列表
+    public void queryLearningMaterials(String dictKey, String page, String size) {
+        if (netDataRepository == null)
+            netDataRepository = new NetDataRepository();
+        netDataRepository.queryLearningMaterials(dictKey, page, size, mMaterialsLiveData, mDisposable);
     }
 
 }

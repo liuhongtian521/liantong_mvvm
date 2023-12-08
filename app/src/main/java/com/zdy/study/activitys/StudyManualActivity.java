@@ -21,6 +21,7 @@ import com.zdy.study.R;
 import com.zdy.study.adapter.StudyManualAdapter;
 import com.zdy.study.cdatamodel.viewmodel.StudyManualViewModel;
 import com.zdy.study.databinding.ActStudyManualBinding;
+import com.zdy.study.tools.WpsUtil;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -47,9 +48,15 @@ public class StudyManualActivity extends BaseActivity {
 
     private int pageNo = 1;
     private String pageSize = "10";
+    private String fileName = "zdy.pdf";
     @Override
     public void onInit() {
         initDataList();
+        //标题
+        mDataBinding.includeLayout.preferenceActivityTitleText.setText("学习手册");
+        mDataBinding.includeLayout.preferenceActivityTitleImage.setOnClickListener(v -> {
+            finish();
+        });
     }
 
     @Override
@@ -108,8 +115,20 @@ public class StudyManualActivity extends BaseActivity {
                     throw new RuntimeException(e);
                 }
 
+                /*WpsUtil wpsUtil = new WpsUtil(new WpsUtil.WpsInterface() {
+                    @Override
+                    public void doRequest(String filePath) {
+
+                    }
+
+                    @Override
+                    public void doFinish() {
+
+                    }
+                }, "", url.trim().replace("\\", "/"), true, StudyManualActivity.this);
+                wpsUtil.openDocument();*/
+
                 String finalUrl = url;
-                showNetDialog();
                 new Thread(() ->{
                     downloadFile1(finalUrl);
                 }).start();
@@ -123,8 +142,7 @@ public class StudyManualActivity extends BaseActivity {
             //下载路径，如果路径无效了，可换成你的下载路径
             final long startTime = System.currentTimeMillis();
             Log.i("DOWNLOAD","startTime="+startTime);
-            //下载函数
-//            filename = timeSeconds+"zdy.apk";
+
             //获取文件名
             URL myURL = new URL(url);
             URLConnection conn = myURL.openConnection();
@@ -139,7 +157,7 @@ public class StudyManualActivity extends BaseActivity {
                 file1.mkdirs();
             }
             //把数据存入路径+文件名
-            FileOutputStream fos = new FileOutputStream(file1 + PdfViewActivity.fileName);
+            FileOutputStream fos = new FileOutputStream(file1 + fileName);
             byte buf[] = new byte[1024];
             int downLoadFileSize = 0;
             do{
@@ -162,14 +180,15 @@ public class StudyManualActivity extends BaseActivity {
                 //更新进度条
             } while (true);
 //            downLoadBack.complete(true);
-            dismissNetDialog();
-            startActivity(new Intent(this, PdfViewActivity.class));
+//            startActivity(new Intent(this, PdfViewActivity.class));
+            File file = new File(getExternalCacheDir() + fileName);
+            WpsUtil.openDocWithSimple(file, this);
+//            openDocWithSimple
             Log.i("DOWNLOAD","download success");
             Log.i("DOWNLOAD","totalTime="+ (System.currentTimeMillis() - startTime));
 
             is.close();
         } catch (Exception ex) {
-            dismissNetDialog();
 //            downLoadBack.complete(false);
             Log.e("DOWNLOAD", "error: " + ex.getMessage(), ex);
         }

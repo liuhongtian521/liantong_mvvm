@@ -13,6 +13,7 @@ import com.askia.coremodel.datamodel.http.entities.consume.EBookListBean;
 import com.askia.coremodel.datamodel.http.entities.consume.HttpConsumeConfigBean;
 
 import com.askia.coremodel.datamodel.http.entities.consume.HttpLoginResult;
+import com.askia.coremodel.datamodel.http.entities.consume.StudyDictionaryBean;
 import com.askia.coremodel.datamodel.http.entities.consume.StuyManualListBean;
 import com.askia.coremodel.datamodel.http.entities.consume.StuyMaterialsListBean;
 
@@ -55,9 +56,15 @@ public interface NetDataService {
                                                                           @Query("argPage") String argPage,
                                                                           @Query("argPageSize") String argPageSize);
 
+
+    // 学习资料字典
+    @GET("/cdls-system/dict-biz/dictionary")
+    Observable<BaseResponseData<List<StudyDictionaryBean>>> dictionary(@Query("code") String code);
+
     // 学习资料
     @GET("/cdls-bds/App/queryLearningMaterials")
-    Observable<BaseResponseData<StuyMaterialsListBean>> queryLearningMaterials(@Query("current") String current,
+    Observable<BaseResponseData<StuyMaterialsListBean>> queryLearningMaterials(@Query("dictKey") String dictKey,
+                                                                               @Query("current") String current,
                                                                                   @Query("size") String size,
                                                                                   @Query("argPage") String argPage,
                                                                                   @Query("argPageSize") String argPageSize);

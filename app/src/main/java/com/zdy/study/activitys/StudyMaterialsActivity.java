@@ -1,9 +1,11 @@
 package com.zdy.study.activitys;
 
+import android.util.Log;
 import android.view.View;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.leanback.widget.OnChildViewHolderSelectedListener;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -12,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.askia.common.base.ARouterPath;
 import com.askia.common.base.BaseActivity;
+import com.askia.coremodel.datamodel.http.entities.consume.BaseResponseData;
+import com.askia.coremodel.datamodel.http.entities.consume.StudyDictionaryBean;
 import com.askia.coremodel.datamodel.http.entities.consume.StuyMaterialsListBean;
 import com.blankj.utilcode.util.ToastUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -21,7 +25,16 @@ import com.zdy.study.adapter.StudyMaterialsAdapter;
 import com.zdy.study.cdatamodel.viewmodel.LoginViewModel;
 import com.zdy.study.cdatamodel.viewmodel.StudyMaterialsViewModel;
 import com.zdy.study.databinding.ActStudyMaterialsBinding;
+import com.zdy.study.tools.WpsUtil;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.URL;
+import java.net.URLConnection;
+import java.net.URLDecoder;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,10 +51,15 @@ public class StudyMaterialsActivity extends BaseActivity {
 
     private int pageNo = 1;
     private String pageSize = "10";
+    private String fileName = "";
     @Override
     public void onInit() {
-        initRefresh();
         initDataList();
+        //标题
+        mDataBinding.includeLayout.preferenceActivityTitleText.setText("学习资料");
+        mDataBinding.includeLayout.preferenceActivityTitleImage.setOnClickListener(v -> {
+            finish();
+        });
 
         /*List<StuyMaterialsListBean.RecordsBean> list = new ArrayList<>();
 
@@ -97,24 +115,19 @@ public class StudyMaterialsActivity extends BaseActivity {
             if(goodsData.getResult().getRecords().size() < pageSize)
                 mBinding.srlResult.setEnableLoadMore(false);*/
         });
-    }
+        mViewModel.getmDictionaryLiveData().observe(this, listResult -> {
+            if(!listResult.isSuccess()){
+                ToastUtils.showLong(listResult.getMessage().toString());
+                return;
+            }
 
-    private void initRefresh(){
-        /*mDataBinding.srlResult.setOnRefreshListener(refreshLayout -> {
-            pageNo = 1;
-            mDataBinding.srlResult.setEnableLoadMore(true); //可以加载更多
         });
-        mDataBinding.srlResult.setOnLoadMoreListener(refreshLayout -> {
-            pageNo ++;
-//            mViewModel.queryCoursewareListByUser(String.valueOf(pageNo), pageSize);
-
-            mDataBinding.srlResult.setEnableLoadMore(false);
-        });*/
     }
+
 
     private void initDataList(){
-
-        mViewModel.queryLearningMaterials(String.valueOf(pageNo), pageSize);
+        mViewModel.dictionary("CLASS_MATERIAL_TAG");
+        mViewModel.queryLearningMaterials("", String.valueOf(pageNo), pageSize);
         adapter = new StudyMaterialsAdapter(dataList, new StudyMaterialsAdapter.SMAdapterCallBack() {
             @Override
             public void loadMore() {
@@ -137,10 +150,94 @@ public class StudyMaterialsActivity extends BaseActivity {
         adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                String url = dataList.get(position).getLearningMaterialsUrl();
+                String url = null;
+                try {
+                    url = new String(dataList.get(position).getLearningMaterialsUrl().getBytes(), "UTF-8");
+                    url = URLDecoder.decode(url, "UTF-8");
+                } catch (UnsupportedEncodingException e) {
+                    throw new RuntimeException(e);
+                }
+                fileName = "zdy."+dataList.get(position).getLearningMaterialsType();
+
+                /*WpsUtil wpsUtil = new WpsUtil(new WpsUtil.WpsInterface() {
+                    @Override
+                    public void doRequest(String filePath) {
+
+                    }
+
+                    @Override
+                    public void doFinish() {
+
+                    }
+                }, "", url.trim().replace("\\", "/"), true, StudyManualActivity.this);
+                wpsUtil.openDocument();*/
+
+                String finalUrl = url;
+
+                new Thread(() ->{
+                    downloadFile1(finalUrl);
+                }).start();
 
             }
         });
+    }
+
+    public void downloadFile1(String url) {
+        try{
+            //下载路径，如果路径无效了，可换成你的下载路径
+            final long startTime = System.currentTimeMillis();
+            Log.i("DOWNLOAD","startTime="+startTime);
+            //下载函数
+//            filename = timeSeconds+"zdy.apk";
+            //获取文件名
+            URL myURL = new URL(url);
+            URLConnection conn = myURL.openConnection();
+            conn.connect();
+            InputStream is = conn.getInputStream();
+            int fileSize = conn.getContentLength();//根据响应获取文件大小
+            if (fileSize <= 0) throw new RuntimeException("无法获知文件大小 ");
+            if (is == null) throw new RuntimeException("stream is null");
+            File file1 = getExternalCacheDir();
+            Log.i("DOWNLOAD",getExternalCacheDir().toString());
+            if(!file1.exists()){
+                file1.mkdirs();
+            }
+            //把数据存入路径+文件名
+            FileOutputStream fos = new FileOutputStream(file1 + fileName);
+            byte buf[] = new byte[1024];
+            int downLoadFileSize = 0;
+            do{
+                //循环读取
+                int numread = is.read(buf);
+                if (numread == -1)
+                {
+                    break;
+                }
+                fos.write(buf, 0, numread);
+                downLoadFileSize += numread;
+
+                DecimalFormat df=new DecimalFormat("0.00");//设置保留位数
+
+                String ss = df.format((float)downLoadFileSize/fileSize);
+//                Log.i("DOWNLOAD","download "+ss+"%");
+                /*if (downLoadBack != null)
+                    downLoadBack.downFileSize(ss);*/
+
+                //更新进度条
+            } while (true);
+//            downLoadBack.complete(true);
+//            startActivity(new Intent(this, PdfViewActivity.class));
+            File file = new File(getExternalCacheDir() + fileName);
+            WpsUtil.openDocWithSimple(file, this);
+//            openDocWithSimple
+            Log.i("DOWNLOAD","download success");
+            Log.i("DOWNLOAD","totalTime="+ (System.currentTimeMillis() - startTime));
+
+            is.close();
+        } catch (Exception ex) {
+//            downLoadBack.complete(false);
+            Log.e("DOWNLOAD", "error: " + ex.getMessage(), ex);
+        }
     }
     @Override
     public void onMResume() {

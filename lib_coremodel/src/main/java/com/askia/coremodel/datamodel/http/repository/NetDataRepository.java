@@ -44,6 +44,7 @@ import com.askia.coremodel.datamodel.http.entities.consume.HttpStudentGetFoodBea
 import com.askia.coremodel.datamodel.http.entities.consume.HttpSyncShoppingBean;
 import com.askia.coremodel.datamodel.http.entities.consume.HttpSysCodeBean;
 import com.askia.coremodel.datamodel.http.entities.consume.HttpWorkbenchStatisticsBean;
+import com.askia.coremodel.datamodel.http.entities.consume.StudyDictionaryBean;
 import com.askia.coremodel.datamodel.http.entities.consume.StuyManualListBean;
 import com.askia.coremodel.datamodel.http.entities.consume.StuyMaterialsListBean;
 import com.askia.coremodel.datamodel.http.entities.query.AdListData;
@@ -112,11 +113,22 @@ public class NetDataRepository {
     }
 
     //学习资料
-    public void queryLearningMaterials(String argPage, String argPageSize,
+    public void queryLearningMaterials(String dictKey, String argPage, String argPageSize,
                                           MutableLiveData<BaseResponseData<StuyMaterialsListBean>> mLoginLiveData,
                                           CompositeDisposable mDisposable) {
         Observable<BaseResponseData<StuyMaterialsListBean>> responseData = ApiClient.getNetDataService()
-                .queryLearningMaterials(argPage, argPageSize, argPage, argPageSize);
+                .queryLearningMaterials(dictKey, argPage, argPageSize, argPage, argPageSize);
+        if (responseObserv == null)
+            responseObserv = new ResponseObserv();
+        responseObserv.responseObserv(responseData, mLoginLiveData, mDisposable);
+    }
+
+    //学习字典
+    public void dictionary(String code,
+                                       MutableLiveData<BaseResponseData<List<StudyDictionaryBean>>> mLoginLiveData,
+                                       CompositeDisposable mDisposable) {
+        Observable<BaseResponseData<List<StudyDictionaryBean>>> responseData = ApiClient.getNetDataService()
+                .dictionary(code);
         if (responseObserv == null)
             responseObserv = new ResponseObserv();
         responseObserv.responseObserv(responseData, mLoginLiveData, mDisposable);

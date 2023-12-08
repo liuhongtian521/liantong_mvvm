@@ -11,6 +11,9 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <include
+            android:id="@+id/include_layout"
+            layout="@layout/title_style_white" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rl_materials"

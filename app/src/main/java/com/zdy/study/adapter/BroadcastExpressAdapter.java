@@ -6,6 +6,7 @@ import com.askia.coremodel.datamodel.http.entities.consume.BroadcastExpressRespo
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.zdy.study.R;
+import com.zdy.study.widgets.VideoViewConstraintLayout;
 
 import java.util.List;
 
@@ -16,8 +17,11 @@ public class BroadcastExpressAdapter extends BaseQuickAdapter<BroadcastExpressRe
 
     @Override
     protected void convert(BaseViewHolder helper, BroadcastExpressResponBean.PageDataBean item) {
-       helper.setText(R.id.time_length, item.getContVideo().getTimeLength());
        helper.setText(R.id.tv_content, item.getContName());
+
+        VideoViewConstraintLayout layout = helper.getView(R.id.vcl_video);
+        layout.setUrl(item.getContVideo().getVideoUrl());
+
         //截取天数
     }
 }
