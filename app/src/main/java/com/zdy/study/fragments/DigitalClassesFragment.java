@@ -66,6 +66,9 @@ public class DigitalClassesFragment extends BaseFragment {
                 case 4:
                     url = ARouterPath.BroadcastExpressActivity;
                     break;
+                case 7:
+                    url = ARouterPath.AddressBookActivity;
+                    break;
 
             }
             if (TextUtils.isEmpty(DBRepository.QueryTVUserLoginData().getAccess_token())) {

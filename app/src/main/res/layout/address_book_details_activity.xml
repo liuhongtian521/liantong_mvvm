@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:background="@color/app_white"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <include
+            android:id="@+id/include_layout"
+            layout="@layout/title_style_white" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="177dp"
+            android:background="@drawable/address_book_bg"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_head"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center_vertical"
+                android:background="@mipmap/ic_head" />
+
+            <TextView
+                android:layout_width="54dp"
+                android:layout_height="22dp"
+                android:layout_below="@+id/iv_head"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="@dimen/dp_15"
+                android:textColor="@color/app_black3"
+                android:textSize="@dimen/sp_18" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp">
+
+            <TextView
+                android:layout_width="52dp"
+                android:layout_height="22dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="15dp"
+                android:text="手机号"
+                android:textColor="@color/app_black3"
+                android:textSize="14sp" />
+
+            <TextView
+
+                android:id="@+id/tv_telephone_number"
+                android:layout_width="87dp"
+                android:layout_height="22dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerInParent="true"
+                android:layout_marginRight="23dp"
+                android:textColor="#767882"
+                android:textSize="14sp" />
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp">
+
+            <TextView
+                android:layout_width="52dp"
+                android:layout_height="22dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="15dp"
+                android:text="职业"
+                android:textColor="@color/app_black3"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_career"
+                android:layout_width="87dp"
+                android:layout_height="22dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerInParent="true"
+                android:layout_marginRight="23dp"
+                android:textColor="#767882"
+                android:textSize="14sp" />
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp">
+
+            <TextView
+                android:layout_width="52dp"
+                android:layout_height="22dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="15dp"
+                android:text="班级"
+                android:textColor="@color/app_black3"
+                android:textSize="14sp" />
+
+            <TextView
+                android:text="1555555555"
+                android:id="@+id/tv_class"
+                android:layout_width="87dp"
+                android:layout_height="22dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerInParent="true"
+                android:layout_marginRight="23dp"
+                android:textColor="#767882"
+                android:textSize="14sp" />
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
+</layout>

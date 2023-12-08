@@ -30,6 +30,8 @@ public class ARouterPath {
     public static final String BroadcastExpressActivity = "/activity/BroadcastExpressActivity";
     /*通讯录*/
     public static final String AddressBookActivity = "/activity/AddressBookActivity";
+    /*通讯录*/
+    public static final String AddressBookDetailsActivity = "/activity/AddressBookDetailsActivity";
 
 
 }

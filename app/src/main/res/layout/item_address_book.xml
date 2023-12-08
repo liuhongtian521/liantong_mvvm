@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:paddingTop="10dp">
+
+        <ImageView
+            android:id="@+id/iv_head"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@mipmap/ic_head" />
+
+        <TextView
+            android:id="@+id/tv_head_name"
+            android:layout_width="42dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="6dp"
+            android:layout_toRightOf="@+id/iv_head"
+            android:gravity="center_vertical"
+         />
+
+        <TextView
+            android:id="@+id/tv_telephone"
+            android:layout_width="82dp"
+            android:layout_height="17dp"
+            android:layout_below="@+id/tv_head_name"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="4dp"
+            android:layout_toRightOf="@+id/iv_head"
+            android:gravity="center_vertical"
+            android:textColor="#767882"
+            android:textSize="12sp" />
+
+        <View
+            android:layout_marginLeft="65dp"
+            android:layout_marginTop="@dimen/dp_13"
+            android:layout_below="@+id/tv_telephone"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#E2E4E8" />
+
+    </RelativeLayout>
+
+</LinearLayout>

@@ -1,5 +1,7 @@
 package com.zdy.study.activitys;
 
+import android.util.Log;
+
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -8,11 +10,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.askia.common.base.ARouterPath;
 import com.askia.common.base.BaseActivity;
+import com.askia.coremodel.datamodel.http.entities.consume.AddressBookResponseBean;
 import com.askia.coremodel.datamodel.http.entities.consume.BroadcastExpressResponBean;
 import com.zdy.study.R;
+import com.zdy.study.adapter.AddressBookAdapter;
 import com.zdy.study.adapter.BroadcastExpressAdapter;
 import com.zdy.study.cdatamodel.viewmodel.AddressBookViewModel;
 import com.zdy.study.cdatamodel.viewmodel.BroadcastExpressViewModel;
+import com.zdy.study.databinding.AddressBookActivityBinding;
 import com.zdy.study.databinding.BroadcastExpressActivityBinding;
 
 import java.util.ArrayList;
@@ -21,23 +26,25 @@ import java.util.List;
 /*通讯录 */
 @Route(path = ARouterPath.AddressBookActivity)
 public class AddressBookActivity extends BaseActivity {
+    private AddressBookActivityBinding mDataBinding;
     private AddressBookViewModel viewModel;
-    private List<BroadcastExpressResponBean.PageDataBean> list;
+    private List<AddressBookResponseBean.RecordsBean> list;
     private RecyclerView recyclerView;
-    private BroadcastExpressAdapter adapter;
+    private AddressBookAdapter adapter;
+
     @Override
     public void onInit() {
         //标题
-//        mDataBinding.includeLayout.preferenceActivityTitleText.setText("通讯录");
-//        mDataBinding.includeLayout.preferenceActivityTitleImage.setOnClickListener(v -> {
-//            finish();
-//        });
+        mDataBinding.includeLayout.preferenceActivityTitleText.setText("通讯录");
+        mDataBinding.includeLayout.preferenceActivityTitleImage.setOnClickListener(v -> {
+            finish();
+        });
         list = new ArrayList<>();
-//        viewModel.queryContListByAudit("1", "10", "E8\u200C81\u200C94E6\u200C92\u200CAD_parent");
-//        recyclerView = mDataBinding.rvBroadcastExpress;
+        viewModel.queryStudentInfoListByClass("1", "10000", "");
+        recyclerView = mDataBinding.rvAddressBook;
 
         LinearLayoutManager manager2 = new LinearLayoutManager(this);//数字为行数或列数
-        adapter = new BroadcastExpressAdapter(list);
+        adapter = new AddressBookAdapter(list,this);
         recyclerView.setLayoutManager(manager2);
         recyclerView.setAdapter(adapter);
     }
@@ -49,11 +56,20 @@ public class AddressBookActivity extends BaseActivity {
 
     @Override
     public void onInitDataBinding() {
-      //  mDataBinding = DataBindingUtil.setContentView(this, R.layout.address_book_activity);
+        mDataBinding = DataBindingUtil.setContentView(this, R.layout.address_book_activity);
     }
 
     @Override
     public void onSubscribeViewModel() {
+        viewModel.getPageListPadData().observe(this, listResult -> {
+            if (listResult.isSuccess()) {
+                if (null != listResult.getData()) {
+                    list.clear();
+                    list.addAll(listResult.getData().getRecords());
+                }
+            }
+            adapter.notifyDataSetChanged();
+        });
 
     }
 
