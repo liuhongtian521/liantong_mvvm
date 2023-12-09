@@ -19,6 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="上一页"
+        android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/fcb_next_page"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginRight="@dimen/dp_8"

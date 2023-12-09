@@ -49,6 +49,16 @@ public class LoadMoreConstraintLayout extends ConstraintLayout {
         this.loadLitetsner = loadLitetsner;
     }
 
+    public void setPreviousPageVisibility(int visibility){
+        if (fcbPreviousPage.getVisibility() != visibility)
+            fcbPreviousPage.setVisibility(visibility);
+    }
+
+    public void setNextPageVisibility(int visibility){
+        if (fcbNextPage.getVisibility() != visibility)
+            fcbNextPage.setVisibility(visibility);
+    }
+
     public interface LoadLitetsner{
         void nextPage();
         void previousPage();

@@ -19,6 +19,7 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.askia.common.base.ARouterPath;
 import com.askia.common.base.BaseActivity;
 import com.askia.coremodel.datamodel.http.entities.consume.BroadcastExpressResponBean;
+import com.blankj.utilcode.util.ToastUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.zdy.study.R;
 import com.zdy.study.adapter.BroadcastExpressAdapter;
@@ -26,6 +27,7 @@ import com.zdy.study.adapter.CourseQueryDetailsAdapter;
 import com.zdy.study.cdatamodel.viewmodel.BroadcastExpressViewModel;
 import com.zdy.study.cdatamodel.viewmodel.CourseQueryViewModel;
 import com.zdy.study.databinding.BroadcastExpressActivityBinding;
+import com.zdy.study.widgets.LoadMoreConstraintLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +39,8 @@ public class BroadcastExpressActivity extends BaseActivity {
     private List<BroadcastExpressResponBean.PageDataBean> list;
     private RecyclerView recyclerView;
     private BroadcastExpressAdapter adapter;
+    private int page = 1;
+    private String pageSize = "10";
 
 
     @Override
@@ -47,8 +51,13 @@ public class BroadcastExpressActivity extends BaseActivity {
         mDataBinding.includeLayout.preferenceActivityTitleImage.setOnClickListener(v -> {
             finish();
         });
+        initList();
+        initLoad();
+    }
+
+    private void initList(){
         list = new ArrayList<>();
-        viewModel.queryContListByAudit("1", "10", "E8\u200C81\u200C94E6\u200C92\u200CAD_parent");
+        viewModel.queryContListByAudit(String.valueOf(page), pageSize, "E8\u200C81\u200C94E6\u200C92\u200CAD_parent");
         recyclerView = mDataBinding.rvBroadcastExpress;
         GridLayoutManager layoutManager = new GridLayoutManager(this, 2);//第二个参数为网格的列数
 //        LinearLayoutManager manager2 = new LinearLayoutManager(this);//数字为行数或列数
@@ -62,7 +71,23 @@ public class BroadcastExpressActivity extends BaseActivity {
             startActivityByRouter(ARouterPath.VideoActivity, bundle);
         });
     }
+    private void initLoad(){
+        mDataBinding.lmView.setLoadLitetsner(new LoadMoreConstraintLayout.LoadLitetsner() {
+            @Override
+            public void nextPage() {
+                page ++;
+                showNetDialog();
+                viewModel.queryContListByAudit(String.valueOf(page), pageSize, "E8\u200C81\u200C94E6\u200C92\u200CAD_parent");
+            }
 
+            @Override
+            public void previousPage() {
+                page --;
+                showNetDialog();
+                viewModel.queryContListByAudit(String.valueOf(page), pageSize, "E8\u200C81\u200C94E6\u200C92\u200CAD_parent");
+            }
+        });
+    }
     @Override
     public void onInitViewModel() {
         viewModel = ViewModelProviders.of(this).get(BroadcastExpressViewModel.class);
@@ -77,13 +102,21 @@ public class BroadcastExpressActivity extends BaseActivity {
     @Override
     public void onSubscribeViewModel() {
         viewModel.getPageListPadData().observe(this, listResult -> {
-            if (listResult.isSuccess()) {
-                if (null != listResult.getResult()) {
-                    list.clear();
-                    list.addAll(listResult.getResult().getPageData());
-                    Log.e("BroadcastExpressActivity", "onSubscribeViewModel: "+list.toString() );
-                }
+            dismissNetDialog();
+            if(!listResult.isSuccess()){
+                ToastUtils.showLong(listResult.getMessage().toString());
+                return;
             }
+            if (page == 1)
+                mDataBinding.lmView.setPreviousPageVisibility(View.GONE);
+            else
+                mDataBinding.lmView.setPreviousPageVisibility(View.VISIBLE);
+            if (listResult.getResult().getPageData().size() < 10)
+                mDataBinding.lmView.setNextPageVisibility(View.GONE);
+            else
+                mDataBinding.lmView.setNextPageVisibility(View.VISIBLE);
+            list.clear();
+            list.addAll(listResult.getResult().getPageData());
             adapter.notifyDataSetChanged();
         });
 

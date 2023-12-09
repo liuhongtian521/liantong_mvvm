@@ -13,6 +13,7 @@
             android:id="@+id/include_layout"
             layout="@layout/title_style_white" />
         <com.zdy.study.widgets.LoadMoreConstraintLayout
+            android:id="@+id/lm_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <androidx.recyclerview.widget.RecyclerView
