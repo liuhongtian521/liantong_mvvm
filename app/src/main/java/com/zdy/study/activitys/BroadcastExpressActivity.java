@@ -2,13 +2,16 @@ package com.zdy.study.activitys;
 
 import android.annotation.SuppressLint;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
+import android.view.View;
 import android.widget.MediaController;
 import android.widget.VideoView;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,6 +19,7 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.askia.common.base.ARouterPath;
 import com.askia.common.base.BaseActivity;
 import com.askia.coremodel.datamodel.http.entities.consume.BroadcastExpressResponBean;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.zdy.study.R;
 import com.zdy.study.adapter.BroadcastExpressAdapter;
 import com.zdy.study.adapter.CourseQueryDetailsAdapter;
@@ -46,12 +50,17 @@ public class BroadcastExpressActivity extends BaseActivity {
         list = new ArrayList<>();
         viewModel.queryContListByAudit("1", "10", "E8\u200C81\u200C94E6\u200C92\u200CAD_parent");
         recyclerView = mDataBinding.rvBroadcastExpress;
-
-        LinearLayoutManager manager2 = new LinearLayoutManager(this);//数字为行数或列数
+        GridLayoutManager layoutManager = new GridLayoutManager(this, 2);//第二个参数为网格的列数
+//        LinearLayoutManager manager2 = new LinearLayoutManager(this);//数字为行数或列数
         adapter = new BroadcastExpressAdapter(list);
-        recyclerView.setLayoutManager(manager2);
+        recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
 
+        adapter.setOnItemClickListener((adapter, view, position) -> {
+            Bundle bundle = new Bundle();
+            bundle.putString("url", list.get(position).getContVideo().getVideoUrl());
+            startActivityByRouter(ARouterPath.VideoActivity, bundle);
+        });
     }
 
     @Override

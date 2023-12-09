@@ -10,6 +10,8 @@ import androidx.annotation.RequiresApi;
 import androidx.core.view.ViewCompat;
 
 public class FCLinearLayout extends LinearLayout {
+
+    private float i = 0;
     public FCLinearLayout(Context context) {
         super(context);
         setFocusChange();
@@ -36,8 +38,8 @@ public class FCLinearLayout extends LinearLayout {
             if (b) {
                 // 此处为得到焦点时的处理内容
                 ViewCompat.animate(view)
-                        .scaleX(1.10f)
-                        .scaleY(1.10f)
+                        .scaleX(i==0? 1.10f: i)
+                        .scaleY(i==0? 1.10f: i)
                         .translationZ(1)
                         .start();
 
@@ -50,5 +52,8 @@ public class FCLinearLayout extends LinearLayout {
                         .start();
             }
         });
+    }
+    public void setScale(float i){
+        this.i = i;
     }
 }

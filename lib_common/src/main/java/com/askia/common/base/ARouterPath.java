@@ -33,5 +33,6 @@ public class ARouterPath {
     /*通讯录*/
     public static final String AddressBookDetailsActivity = "/activity/AddressBookDetailsActivity";
 
-
+    /*视频播放*/
+    public static final String VideoActivity = "/activity/VideoActivity";
 }

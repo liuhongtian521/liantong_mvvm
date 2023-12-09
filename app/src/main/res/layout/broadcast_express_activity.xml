@@ -12,9 +12,15 @@
         <include
             android:id="@+id/include_layout"
             layout="@layout/title_style_white" />
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_broadcast_express"
+        <com.zdy.study.widgets.LoadMoreConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_broadcast_express"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/dp_100"
+                android:layout_marginBottom="@dimen/dp_20"/>
+        </com.zdy.study.widgets.LoadMoreConstraintLayout>
     </LinearLayout>
 </layout>

@@ -63,7 +63,8 @@ public class WpsUtil {
     // 打开本地文件
     public static void openDocWithSimple(File file, Context context) {
         try {
-            Intent intent = context.getPackageManager().getLaunchIntentForPackage("cn.wps.moffice_eng");
+//            Intent intent = context.getPackageManager().getLaunchIntentForPackage("cn.wps.moffice_eng");
+            Intent intent = context.getPackageManager().getLaunchIntentForPackage("cn.wps.moffice_i18n_TV");
 
             Bundle bundle = new Bundle();
             //打开模式

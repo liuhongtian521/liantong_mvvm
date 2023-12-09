@@ -4,6 +4,7 @@ import android.content.Context;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Handler;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.view.ViewCompat;
 
 import com.zdy.study.R;
+import com.zdy.study.fcWidgets.FCImageView;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -26,8 +28,10 @@ import java.util.Calendar;
 public class VideoViewConstraintLayout extends ConstraintLayout {
     private VideoView videoView;
     private SeekBar seekBar;
+    private FCImageView fiv_onoff;
     private TextView textViewTime ,textViewCurrentPosition;
     private boolean isPlaying = false;
+    private String url;
 
     private Handler handler = new Handler();
     private Runnable runnable = new Runnable() {
@@ -49,29 +53,12 @@ public class VideoViewConstraintLayout extends ConstraintLayout {
         videoView =  findViewById(R.id.videoView);
         textViewTime =  findViewById(R.id.textViewTime);
         textViewCurrentPosition =  findViewById(R.id.textViewCurrentPosition);
+        fiv_onoff =  findViewById(R.id.fiv_onoff);
         seekBar = (SeekBar) findViewById(R.id.seekBar);
         // 为进度条添加进度更改事件
         seekBar.setOnSeekBarChangeListener(onSeekBarChangeListener);
-        videoView.setOnFocusChangeListener((view, b) -> {
-            if (b) {
-                // 此处为得到焦点时的处理内容
-                ViewCompat.animate(view)
-                        .scaleX(1.10f)
-                        .scaleY(1.10f)
-                        .translationZ(1)
-                        .start();
-
-            } else {
-                // 此处为失去焦点时的处理内容
-                ViewCompat.animate(view)
-                        .scaleX(1)
-                        .scaleY(1)
-                        .translationZ(1)
-                        .start();
-            }
-        });
-        videoView.setOnClickListener(view -> play());
-        videoView.setEnabled(false);
+        fiv_onoff.setOnClickListener(view -> play());
+        fiv_onoff.setEnabled(false);
 
     }
 
@@ -91,14 +78,17 @@ public class VideoViewConstraintLayout extends ConstraintLayout {
     }
 
     public void setUrl(String url){
-        final Uri uri = Uri.parse(url);
-        videoView = (VideoView) this.findViewById(R.id.videoView);
+        this.url = url;
+        videoView = findViewById(R.id.videoView);
+        if (TextUtils.isEmpty(url))
+            return;
+        Uri uri = Uri.parse(url);
         videoView.setVideoURI(uri);
-        videoView.requestFocus();
         videoView.setOnPreparedListener(mediaPlayer -> {
             textViewTime.setText(time(videoView.getDuration()));
-            videoView.setEnabled(true);
+            fiv_onoff.setEnabled(true);
 
+            play();
         });
     }
 
@@ -129,12 +119,13 @@ public class VideoViewConstraintLayout extends ConstraintLayout {
     protected void play() {
 
         if (!isPlaying) {
+            fiv_onoff.setImageResource(R.mipmap.ic_video_pause);
             handler.postDelayed(runnable, 0);
             videoView.start();
             seekBar.setMax(videoView.getDuration());
             isPlaying = true;
         } else {
-//            buttonPlay.setText("播放");
+            fiv_onoff.setImageResource(R.mipmap.ic_video_paly2);
             if (videoView.isPlaying()) {
                 videoView.pause();
                 isPlaying = false;
@@ -154,5 +145,9 @@ public class VideoViewConstraintLayout extends ConstraintLayout {
         Calendar c = Calendar.getInstance();
         c.setTimeInMillis(millionSeconds);
         return simpleDateFormat.format(c.getTime());
+    }
+
+    public void destroy(){
+        handler.removeCallbacks(runnable);
     }
 }

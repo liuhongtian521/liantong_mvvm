@@ -103,6 +103,10 @@
             android:windowSoftInputMode="stateHidden" />
 
         <activity
+            android:name=".activitys.VideoActivity"
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
             android:name=".activitys.WebViewActivity"
             android:launchMode="singleTask"
             android:windowSoftInputMode="stateHidden" />
