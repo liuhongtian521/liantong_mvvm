@@ -74,8 +74,6 @@ public class VideoViewConstraintLayout extends ConstraintLayout {
     public VideoViewConstraintLayout(@NonNull Context context) {
         super(context);
 
-
-
     }
 
     public void setUrl(String url){
@@ -117,7 +115,7 @@ public class VideoViewConstraintLayout extends ConstraintLayout {
         }
     };
 
-    protected void play() {
+    public void play() {
 
         if (!isPlaying) {
             fiv_onoff.setImageResource(R.mipmap.ic_video_pause);
@@ -150,5 +148,7 @@ public class VideoViewConstraintLayout extends ConstraintLayout {
 
     public void destroy(){
         handler.removeCallbacks(runnable);
+        videoView.stopPlayback();
+
     }
 }

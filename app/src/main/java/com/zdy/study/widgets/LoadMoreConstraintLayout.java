@@ -49,6 +49,7 @@ public class LoadMoreConstraintLayout extends ConstraintLayout {
             if (loadLitetsner != null)
                 loadLitetsner.previousPage();
         });
+        showEmptyView(GONE);
     }
 
     public void setLoadLitetsner(LoadLitetsner loadLitetsner){

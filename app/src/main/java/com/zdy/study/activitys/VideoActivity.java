@@ -1,5 +1,7 @@
 package com.zdy.study.activitys;
 
+import android.view.KeyEvent;
+
 import androidx.databinding.DataBindingUtil;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -40,6 +42,29 @@ public class VideoActivity extends BaseActivity {
 
     }
 
+    public boolean onKeyDown(int kCode, KeyEvent kEvent)
+    {
+        switch(kCode)
+        {
+            case KeyEvent.KEYCODE_DPAD_LEFT:
+                return true;
+
+            case KeyEvent.KEYCODE_DPAD_UP:
+                return true;
+
+            case KeyEvent.KEYCODE_DPAD_RIGHT:
+                return true;
+
+            case KeyEvent.KEYCODE_DPAD_DOWN:
+                return true;
+            case KeyEvent.KEYCODE_DPAD_CENTER:
+                mDataBinding.vvcl.play();
+                return true;
+            case KeyEvent.KEYCODE_BACK:
+                finish();
+                return false; }
+        return super.onKeyDown(kCode,kEvent);
+    }
     @Override
     protected void onDestroy() {
         super.onDestroy();

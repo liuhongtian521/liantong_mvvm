@@ -128,6 +128,11 @@ public class WebBasedCourseActivity extends BaseActivity {
                 ToastUtils.showLong(listResult.getMessage().toString());
                 return;
             }
+            if (listResult.getData().getRecords() == null ||listResult.getData().getRecords().size() == 0) {
+                mDataBinding.lmView.showEmptyView(View.VISIBLE);
+                return;
+            } else
+                mDataBinding.lmView.showEmptyView(View.GONE);
             if (page == 1)
                 mDataBinding.lmView.setPreviousPageVisibility(View.GONE);
             else
