@@ -8,10 +8,12 @@
     <VideoView
         android:id="@+id/videoView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="@dimen/dp_20"/>
 
     <LinearLayout
         android:layout_width="0dp"
@@ -35,6 +37,8 @@
                 android:layout_height="@dimen/dp_20"
                 android:src="@mipmap/ic_video_paly2"
                 android:focusableInTouchMode="true"
+                android:layout_marginBottom="@dimen/dp_10"
+                android:layout_marginTop="@dimen/dp_10"
                 android:layout_marginLeft="@dimen/dp_20"/>
 
             <TextView

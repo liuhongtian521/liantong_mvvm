@@ -3,6 +3,7 @@ package com.zdy.study.view;
 import com.zdy.study.R;
 import com.zdy.study.databinding.DatePickerBinding;
 import com.zdy.study.fcWidgets.FCButton;
+import com.zdy.study.fcWidgets.FCTextview;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -37,6 +38,25 @@ public class DatePickerDialog extends DialogFragment implements DialogInterface.
     private Context mContext;
     private String month;
     private String year;
+
+    FCTextview textView1;
+    FCTextview textView2;
+    FCTextview textView3;
+    FCTextview textView4;
+    FCTextview textView5;
+    FCTextview textView6;
+    FCTextview textView_month1;
+    FCTextview textView_month2;
+    FCTextview textView_month3;
+    FCTextview textView_month4;
+    FCTextview textView_month5;
+    FCTextview textView_month6;
+    FCTextview textView_month7;
+    FCTextview textView_month8;
+    FCTextview textView_month9;
+    FCTextview textView_month10;
+    FCTextview textView_month11;
+    FCTextview textView_month12;
 
     public void setListener(OnDateSetListener listener, DatePickerDialog datePicker, Context context) {
         this.listener = listener;
@@ -87,450 +107,130 @@ public class DatePickerDialog extends DialogFragment implements DialogInterface.
         super.onResume();
         FCButton buttonYes = alertDialog.findViewById(R.id.yes);
         FCButton buttonNo = alertDialog.findViewById(R.id.no);
-        TextView textView1 = alertDialog.findViewById(R.id.tv_year_1);
-        TextView textView2 = alertDialog.findViewById(R.id.tv_year_2);
-        TextView textView3 = alertDialog.findViewById(R.id.tv_year_3);
-        TextView textView4 = alertDialog.findViewById(R.id.tv_year_4);
-        TextView textView5 = alertDialog.findViewById(R.id.tv_year_5);
-        TextView textView6 = alertDialog.findViewById(R.id.tv_year_6);
-        TextView textView_month1 = alertDialog.findViewById(R.id.tv_month_1);
-        TextView textView_month2 = alertDialog.findViewById(R.id.tv_month_2);
-        TextView textView_month3 = alertDialog.findViewById(R.id.tv_month_3);
-        TextView textView_month4 = alertDialog.findViewById(R.id.tv_month_4);
-        TextView textView_month5 = alertDialog.findViewById(R.id.tv_month_5);
-        TextView textView_month6 = alertDialog.findViewById(R.id.tv_month_6);
-        TextView textView_month7 = alertDialog.findViewById(R.id.tv_month_7);
-        TextView textView_month8 = alertDialog.findViewById(R.id.tv_month_8);
-        TextView textView_month9 = alertDialog.findViewById(R.id.tv_month_9);
-        TextView textView_month10 = alertDialog.findViewById(R.id.tv_month_10);
-        TextView textView_month11 = alertDialog.findViewById(R.id.tv_month_11);
-        TextView textView_month12 = alertDialog.findViewById(R.id.tv_month_12);
+        textView1       = alertDialog.findViewById(R.id.tv_year_1);
+        textView2       = alertDialog.findViewById(R.id.tv_year_2);
+        textView3       = alertDialog.findViewById(R.id.tv_year_3);
+        textView4       = alertDialog.findViewById(R.id.tv_year_4);
+        textView5       = alertDialog.findViewById(R.id.tv_year_5);
+        textView6       = alertDialog.findViewById(R.id.tv_year_6);
+        textView_month1 = alertDialog.findViewById(R.id.tv_month_1);
+        textView_month2 = alertDialog.findViewById(R.id.tv_month_2);
+        textView_month3 = alertDialog.findViewById(R.id.tv_month_3);
+        textView_month4 = alertDialog.findViewById(R.id.tv_month_4);
+        textView_month5 = alertDialog.findViewById(R.id.tv_month_5);
+        textView_month6 = alertDialog.findViewById(R.id.tv_month_6);
+        textView_month7 = alertDialog.findViewById(R.id.tv_month_7);
+        textView_month8 = alertDialog.findViewById(R.id.tv_month_8);
+        textView_month9 = alertDialog.findViewById(R.id.tv_month_9);
+        textView_month10 = alertDialog.findViewById(R.id.tv_month_10);
+        textView_month11 = alertDialog.findViewById(R.id.tv_month_11);
+        textView_month12 = alertDialog.findViewById(R.id.tv_month_12);
+
+        textView1.setScale(1.3f);
+        textView2.setScale(1.3f);
+        textView3.setScale(1.3f);
+        textView4.setScale(1.3f);
+        textView5.setScale(1.3f);
+        textView6.setScale(1.3f);
+        textView_month1 .setScale(1.3f);
+        textView_month2.setScale(1.3f);
+        textView_month3.setScale(1.3f);
+        textView_month4.setScale(1.3f);
+        textView_month5.setScale(1.3f);
+        textView_month6.setScale(1.3f);
+        textView_month7.setScale(1.3f);
+        textView_month8.setScale(1.3f);
+        textView_month9.setScale(1.3f);
+        textView_month10.setScale(1.3f);
+        textView_month11.setScale(1.3f);
+        textView_month12.setScale(1.3f);
+
         //年
         textView1.setOnClickListener(v -> {
             year = "1";
-            textView1.setTextColor(getResources().getColor(R.color.app_white));
-            textView1.setBackground(mContext.getResources().getDrawable(R.color.app_red));
-            textView2.setTextColor(getResources().getColor(R.color.app_black));
-            textView2.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView3.setTextColor(getResources().getColor(R.color.app_black));
-            textView3.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView4.setTextColor(getResources().getColor(R.color.app_black));
-            textView4.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView5.setTextColor(getResources().getColor(R.color.app_black));
-            textView5.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView6.setTextColor(getResources().getColor(R.color.app_black));
-            textView6.setBackground(mContext.getResources().getDrawable(R.color.app_white));
+            setYear(textView1);
         });
         textView2.setOnClickListener(v -> {
             year = "2";
-            textView2.setTextColor(getResources().getColor(R.color.app_white));
-            textView2.setBackground(mContext.getResources().getDrawable(R.color.app_red));
-            textView1.setTextColor(getResources().getColor(R.color.app_black));
-            textView1.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView3.setTextColor(getResources().getColor(R.color.app_black));
-            textView3.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView4.setTextColor(getResources().getColor(R.color.app_black));
-            textView4.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView5.setTextColor(getResources().getColor(R.color.app_black));
-            textView5.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView6.setTextColor(getResources().getColor(R.color.app_black));
-            textView6.setBackground(mContext.getResources().getDrawable(R.color.app_white));
+            setYear(textView2);
         });
         textView3.setOnClickListener(v -> {
             year = "3";
-            textView3.setTextColor(getResources().getColor(R.color.app_white));
-            textView3.setBackground(mContext.getResources().getDrawable(R.color.app_red));
-            textView2.setTextColor(getResources().getColor(R.color.app_black));
-            textView2.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView1.setTextColor(getResources().getColor(R.color.app_black));
-            textView1.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView4.setTextColor(getResources().getColor(R.color.app_black));
-            textView4.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView5.setTextColor(getResources().getColor(R.color.app_black));
-            textView5.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView6.setTextColor(getResources().getColor(R.color.app_black));
-            textView6.setBackground(mContext.getResources().getDrawable(R.color.app_white));
+            setYear(textView3);
         });
         textView4.setOnClickListener(v -> {
             year = "4";
-            textView4.setTextColor(getResources().getColor(R.color.app_white));
-            textView4.setBackground(mContext.getResources().getDrawable(R.color.app_red));
-            textView2.setTextColor(getResources().getColor(R.color.app_black));
-            textView2.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView3.setTextColor(getResources().getColor(R.color.app_black));
-            textView3.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView1.setTextColor(getResources().getColor(R.color.app_black));
-            textView1.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView5.setTextColor(getResources().getColor(R.color.app_black));
-            textView5.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView6.setTextColor(getResources().getColor(R.color.app_black));
-            textView6.setBackground(mContext.getResources().getDrawable(R.color.app_white));
+            setYear(textView4);
+
         });
         textView5.setOnClickListener(v -> {
             year = "5";
-            textView5.setTextColor(getResources().getColor(R.color.app_white));
-            textView5.setBackground(mContext.getResources().getDrawable(R.color.app_red));
-            textView2.setTextColor(getResources().getColor(R.color.app_black));
-            textView2.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView3.setTextColor(getResources().getColor(R.color.app_black));
-            textView3.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView4.setTextColor(getResources().getColor(R.color.app_black));
-            textView4.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView1.setTextColor(getResources().getColor(R.color.app_black));
-            textView1.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView6.setTextColor(getResources().getColor(R.color.app_black));
-            textView6.setBackground(mContext.getResources().getDrawable(R.color.app_white));
+            setYear(textView5);
+
         });
         textView6.setOnClickListener(v -> {
             year = "6";
-            textView6.setTextColor(getResources().getColor(R.color.app_white));
-            textView6.setBackground(mContext.getResources().getDrawable(R.color.app_red));
-            textView2.setTextColor(getResources().getColor(R.color.app_black));
-            textView2.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView3.setTextColor(getResources().getColor(R.color.app_black));
-            textView3.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView4.setTextColor(getResources().getColor(R.color.app_black));
-            textView4.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView5.setTextColor(getResources().getColor(R.color.app_black));
-            textView5.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView1.setTextColor(getResources().getColor(R.color.app_black));
-            textView1.setBackground(mContext.getResources().getDrawable(R.color.app_white));
+            setYear(textView6);
         });
         //1月份
         textView_month1.setOnClickListener(v -> {
             month = "01";
-            textView_month1.setTextColor(getResources().getColor(R.color.app_white));
-            textView_month1.setBackground(mContext.getResources().getDrawable(R.color.app_red));
-            textView_month2.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month2.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month3.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month3.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month4.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month4.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month5.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month5.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month6.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month6.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month7.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month7.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month8.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month8.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month9.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month9.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month10.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month10.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month11.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month11.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month12.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month12.setBackground(mContext.getResources().getDrawable(R.color.app_white));
+            setMonth(textView_month1);
         });
         //2月份
         textView_month2.setOnClickListener(v -> {
             month = "02";
-            textView_month2.setTextColor(getResources().getColor(R.color.app_white));
-            textView_month2.setBackground(mContext.getResources().getDrawable(R.color.app_red));
-            textView_month1.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month1.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month3.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month3.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month4.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month4.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month5.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month5.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month6.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month6.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month7.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month7.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month8.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month8.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month9.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month9.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month10.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month10.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month11.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month11.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month12.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month12.setBackground(mContext.getResources().getDrawable(R.color.app_white));
+            setMonth(textView_month2);
         });
         //3月份
         textView_month3.setOnClickListener(v -> {
             month = "03";
-            textView_month3.setTextColor(getResources().getColor(R.color.app_white));
-            textView_month3.setBackground(mContext.getResources().getDrawable(R.color.app_red));
-            textView_month2.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month2.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month1.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month1.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month4.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month4.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month5.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month5.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month6.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month6.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month7.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month7.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month8.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month8.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month9.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month9.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month10.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month10.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month11.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month11.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month12.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month12.setBackground(mContext.getResources().getDrawable(R.color.app_white));
+            setMonth(textView_month3);
         });
         //4月份
         textView_month4.setOnClickListener(v -> {
             month = "04";
-            textView_month4.setTextColor(getResources().getColor(R.color.app_white));
-            textView_month4.setBackground(mContext.getResources().getDrawable(R.color.app_red));
-            textView_month2.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month2.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month3.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month3.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month1.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month1.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month5.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month5.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month6.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month6.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month7.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month7.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month8.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month8.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month9.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month9.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month10.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month10.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month11.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month11.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month12.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month12.setBackground(mContext.getResources().getDrawable(R.color.app_white));
+            setMonth(textView_month4);
         });
         //5月份
         textView_month5.setOnClickListener(v -> {
             month = "05";
-            textView_month5.setTextColor(getResources().getColor(R.color.app_white));
-            textView_month5.setBackground(mContext.getResources().getDrawable(R.color.app_red));
-            textView_month2.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month2.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month3.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month3.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month4.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month4.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month1.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month1.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month6.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month6.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month7.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month7.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month8.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month8.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month9.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month9.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month10.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month10.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month11.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month11.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month12.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month12.setBackground(mContext.getResources().getDrawable(R.color.app_white));
+            setMonth(textView_month5);
         });
         //6月份
         textView_month6.setOnClickListener(v -> {
             month = "06";
-            textView_month6.setTextColor(getResources().getColor(R.color.app_white));
-            textView_month6.setBackground(mContext.getResources().getDrawable(R.color.app_red));
-            textView_month2.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month2.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month3.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month3.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month4.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month4.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month5.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month5.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month1.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month1.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month7.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month7.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month8.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month8.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month9.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month9.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month10.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month10.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month11.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month11.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month12.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month12.setBackground(mContext.getResources().getDrawable(R.color.app_white));
+            setMonth(textView_month6);
         });
         //7月份
         textView_month7.setOnClickListener(v -> {
             month = "07";
-            textView_month7.setTextColor(getResources().getColor(R.color.app_white));
-            textView_month7.setBackground(mContext.getResources().getDrawable(R.color.app_red));
-            textView_month2.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month2.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month3.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month3.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month4.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month4.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month5.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month5.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month6.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month6.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month1.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month1.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month8.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month8.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month9.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month9.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month10.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month10.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month11.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month11.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month12.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month12.setBackground(mContext.getResources().getDrawable(R.color.app_white));
+            setMonth(textView_month7);
         });
         //8月份
         textView_month8.setOnClickListener(v -> {
             month = "08";
-            textView_month8.setTextColor(getResources().getColor(R.color.app_white));
-            textView_month8.setBackground(mContext.getResources().getDrawable(R.color.app_red));
-            textView_month2.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month2.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month3.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month3.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month4.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month4.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month5.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month5.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month6.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month6.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month7.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month7.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month1.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month1.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month9.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month9.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month10.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month10.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month11.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month11.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month12.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month12.setBackground(mContext.getResources().getDrawable(R.color.app_white));
+            setMonth(textView_month8);
         });
         //9月份
         textView_month9.setOnClickListener(v -> {
             month = "09";
-            textView_month9.setTextColor(getResources().getColor(R.color.app_white));
-            textView_month9.setBackground(mContext.getResources().getDrawable(R.color.app_red));
-            textView_month2.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month2.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month3.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month3.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month4.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month4.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month5.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month5.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month6.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month6.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month7.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month7.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month8.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month8.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month1.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month1.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month10.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month10.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month11.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month11.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month12.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month12.setBackground(mContext.getResources().getDrawable(R.color.app_white));
+            setMonth(textView_month9);
         });
         //10月份
         textView_month10.setOnClickListener(v -> {
             month = "10";
-            textView_month10.setTextColor(getResources().getColor(R.color.app_white));
-            textView_month10.setBackground(mContext.getResources().getDrawable(R.color.app_red));
-            textView_month2.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month2.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month3.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month3.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month4.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month4.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month5.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month5.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month6.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month6.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month7.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month7.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month8.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month8.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month9.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month9.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month1.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month1.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month11.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month11.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month12.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month12.setBackground(mContext.getResources().getDrawable(R.color.app_white));
+            setMonth(textView_month10);
         });
         //11月份
         textView_month11.setOnClickListener(v -> {
             month = "11";
-            textView_month11.setTextColor(getResources().getColor(R.color.app_white));
-            textView_month11.setBackground(mContext.getResources().getDrawable(R.color.app_red));
-            textView_month2.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month2.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month3.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month3.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month4.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month4.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month5.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month5.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month6.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month6.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month7.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month7.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month8.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month8.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month9.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month9.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month10.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month10.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month1.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month1.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month12.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month12.setBackground(mContext.getResources().getDrawable(R.color.app_white));
+            setMonth(textView_month11);
         });
         //12月份
         textView_month12.setOnClickListener(v -> {
             month = "12";
-            textView_month12.setTextColor(getResources().getColor(R.color.app_white));
-            textView_month12.setBackground(mContext.getResources().getDrawable(R.color.app_red));
-            textView_month2.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month2.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month3.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month3.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month4.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month4.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month5.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month5.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month6.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month6.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month7.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month7.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month8.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month8.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month9.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month9.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month10.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month10.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month11.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month11.setBackground(mContext.getResources().getDrawable(R.color.app_white));
-            textView_month1.setTextColor(getResources().getColor(R.color.app_black));
-            textView_month1.setBackground(mContext.getResources().getDrawable(R.color.app_white));
+            setMonth(textView_month12);
         });
         //确定监听
         buttonYes.setOnClickListener(new View.OnClickListener() {
@@ -551,6 +251,27 @@ public class DatePickerDialog extends DialogFragment implements DialogInterface.
 
     }
 
+    FCTextview lastYear;
+    private void setYear(FCTextview view){
+        view.setTextColor(getResources().getColor(R.color.app_white));
+        view.setBackground(mContext.getResources().getDrawable(R.color.app_red));
+        if (lastYear != null){
+            lastYear.setTextColor(getResources().getColor(R.color.app_black));
+            lastYear.setBackground(mContext.getResources().getDrawable(R.color.app_white));
+        }
+        lastYear = view;
+    }
+
+    FCTextview lastMounth;
+    private void setMonth(FCTextview view){
+        view.setTextColor(getResources().getColor(R.color.app_white));
+        view.setBackground(mContext.getResources().getDrawable(R.color.app_red));
+        if (lastMounth != null){
+            lastMounth.setTextColor(getResources().getColor(R.color.app_black));
+            lastMounth.setBackground(mContext.getResources().getDrawable(R.color.app_white));
+        }
+        lastMounth = view;
+    }
 
     @Override
     public void onAttach(@NonNull Context context) {

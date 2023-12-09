@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.zdy.study.fcWidgets.FCLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fcll"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center"
+    android:layout_marginRight="@dimen/dp_12"
+    android:layout_marginLeft="@dimen/dp_12"
     android:layout_marginTop="@dimen/dp_12"
     android:paddingBottom="12dp"
+    android:focusableInTouchMode="true"
     android:background="@drawable/white_round_corner_left"
     android:orientation="vertical">
 
@@ -109,4 +113,4 @@
             android:layout_width="wrap_content"
             android:layout_height="16dp"/>
     </RelativeLayout>
-</LinearLayout>
+</com.zdy.study.fcWidgets.FCLinearLayout>

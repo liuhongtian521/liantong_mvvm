@@ -32,6 +32,7 @@ import com.zdy.study.cdatamodel.viewmodel.LoginViewModel;
 import com.zdy.study.cdatamodel.viewmodel.StudyMaterialsViewModel;
 import com.zdy.study.databinding.ActStudyMaterialsBinding;
 import com.zdy.study.tools.WpsUtil;
+import com.zdy.study.widgets.LoadMoreConstraintLayout;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -65,11 +66,15 @@ public class StudyMaterialsActivity extends BaseActivity {
     public void onInit() {
         list = new ArrayList<>();
         initDataList();
+        initLoad();
         //标题
         mDataBinding.includeLayout.preferenceActivityTitleText.setText("学习资料");
         mDataBinding.includeLayout.preferenceActivityTitleImage.setOnClickListener(v -> {
             finish();
         });
+        showNetDialog();
+        mViewModel.dictionary("CLASS_MATERIAL_TAG");
+        mViewModel.queryLearningMaterials("", String.valueOf(pageNo), pageSize);
 
         /*List<StuyMaterialsListBean.RecordsBean> list = new ArrayList<>();
 
@@ -99,17 +104,30 @@ public class StudyMaterialsActivity extends BaseActivity {
             view = LayoutInflater.from(this).inflate(R.layout.tablayout_bg,null);
             TextView tv = (TextView) view.findViewById(R.id.tv_tablayout_name);
             tv.setText(studyDictionaryBean.getDictValue());
-         //   mDataBinding.tabLayout.setBackgroundResource(R.drawable.red_select_bg);
-            // 创建并配置子视图的布局参数
-            RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT, // 子视图的宽度为包裹内容
-                    ViewGroup.LayoutParams.MATCH_PARENT   // 子视图的高度为包裹内容
-            );
-            view.setLayoutParams(layoutParams);
            tab2.setCustomView(view);
 
             mDataBinding.tabLayout.addTab(tab2);
         }
+        mDataBinding.tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                pageTab = tab.getPosition();
+                showNetDialog();
+                mViewModel.queryLearningMaterials(list.get(pageTab).getDictKey(), String.valueOf(pageNo), pageSize);
+
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+
 //        TabLayout.Tab tab = mBinding.tlGoodsClassify.newTab();
 //        View view = LayoutInflater.from(getActivity()).inflate(R.layout.widget_choose_icon_tab_bg, null);
 //        TextView tv = (TextView) view.findViewById(R.id.choose_icon_tab_tv);
@@ -133,47 +151,61 @@ public class StudyMaterialsActivity extends BaseActivity {
     @Override
     public void onSubscribeViewModel() {
         mViewModel.getmMaterialsLiveData().observe(this, listResult -> {
-            if (!listResult.isSuccess()) {
+            dismissNetDialog();
+            if(!listResult.isSuccess()){
                 ToastUtils.showLong(listResult.getMessage().toString());
                 return;
             }
+            if (listResult.getData().getRecords().size() == 0) {
+                mDataBinding.lmMaterialsView.showEmptyView(View.VISIBLE);
+                return;
+            }else{
+                mDataBinding.lmMaterialsView.showEmptyView(View.GONE);
+            }
+            if (pageNo == 1)
+                mDataBinding.lmMaterialsView.setPreviousPageVisibility(View.GONE);
+            else
+                mDataBinding.lmMaterialsView.setPreviousPageVisibility(View.VISIBLE);
+            if (listResult.getData().getRecords().size() < 10)
+                mDataBinding.lmMaterialsView.setNextPageVisibility(View.GONE);
+            else
+                mDataBinding.lmMaterialsView.setNextPageVisibility(View.VISIBLE);
+            dataList.clear();
             dataList.addAll(listResult.getData().getRecords());
             adapter.notifyDataSetChanged();
-
-            /*if (pageNo == 1) {//page 1 刷新列表
-                goodsListAdapter.setData(goodsData.getResult().getRecords());
-                mBinding.srlResult.finishRefresh();
-                if (goodsData.getResult().getRecords().size() > 0){//缺省页隐藏
-                    mBinding.rvGoods.setVisibility(View.VISIBLE);
-                    mBinding.ivQueshengShangpin.setVisibility(View.GONE);
-                }else{                                            //缺省页显示
-                    mBinding.rvGoods.setVisibility(View.GONE);
-                    mBinding.ivQueshengShangpin.setVisibility(View.VISIBLE);
-                }
-            }else {           //page 其它  添加列表数据
-                goodsListAdapter.addData(goodsData.getResult().getRecords());
-                mBinding.srlResult.finishLoadMore();
-            }
-            goodsListAdapter.notifyDataSetChanged();
-            //设置不能加载更多
-            if(goodsData.getResult().getRecords().size() < pageSize)
-                mBinding.srlResult.setEnableLoadMore(false);*/
         });
         mViewModel.getmDictionaryLiveData().observe(this, listResult -> {
-            if (listResult.isSuccess()) {
-//                ToastUtils.showLong(listResult.getMessage().toString());
-                list.clear();
-                list.addAll(listResult.getData());
+            dismissNetDialog();
+            if(!listResult.isSuccess()){
+                ToastUtils.showLong(listResult.getMessage().toString());
+                return;
             }
-            initTab();
 
+            list.clear();
+            list.addAll(listResult.getData());
+
+            initTab();
+        });
+    }
+    private void initLoad(){
+        mDataBinding.lmMaterialsView.setLoadLitetsner(new LoadMoreConstraintLayout.LoadLitetsner() {
+            @Override
+            public void nextPage() {
+                pageNo ++;
+                showNetDialog();
+                mViewModel.queryLearningMaterials("", String.valueOf(pageNo), pageSize);
+            }
+            @Override
+            public void previousPage() {
+                pageNo --;
+                showNetDialog();
+                mViewModel.queryLearningMaterials("", String.valueOf(pageNo), pageSize);
+            }
         });
     }
 
-
     private void initDataList() {
-        mViewModel.dictionary("CLASS_MATERIAL_TAG");
-        mViewModel.queryLearningMaterials("", String.valueOf(pageNo), pageSize);
+
         adapter = new StudyMaterialsAdapter(dataList, new StudyMaterialsAdapter.SMAdapterCallBack() {
             @Override
             public void loadMore() {
@@ -219,7 +251,7 @@ public class StudyMaterialsActivity extends BaseActivity {
                 wpsUtil.openDocument();*/
 
                 String finalUrl = url;
-
+                showNetDialog();
                 new Thread(() -> {
                     downloadFile1(finalUrl);
                 }).start();
@@ -274,6 +306,7 @@ public class StudyMaterialsActivity extends BaseActivity {
 //            startActivity(new Intent(this, PdfViewActivity.class));
             File file = new File(getExternalCacheDir() + fileName);
             WpsUtil.openDocWithSimple(file, this);
+            dismissNetDialog();
 //            openDocWithSimple
             Log.i("DOWNLOAD", "download success");
             Log.i("DOWNLOAD", "totalTime=" + (System.currentTimeMillis() - startTime));

@@ -88,7 +88,7 @@ public class CourseQueryActivity extends BaseActivity {
         mRecyclerView2.setLayoutManager(manager2);
         mRecyclerView2.setAdapter(mCourseQueryDetailsAdapter);
 
-        mDataBinding.button1.setOnClickListener(v -> {
+        mDataBinding.tvYearClick.setOnClickListener(v -> {
             DatePickerDialog mDatePickerDialog = new DatePickerDialog();
             mDatePickerDialog.setListener(new DatePickerDialog.OnDateSetListener() {
                 @Override

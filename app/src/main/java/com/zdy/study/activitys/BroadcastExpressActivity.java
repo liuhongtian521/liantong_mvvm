@@ -70,6 +70,7 @@ public class BroadcastExpressActivity extends BaseActivity {
             bundle.putString("url", list.get(position).getContVideo().getVideoUrl());
             startActivityByRouter(ARouterPath.VideoActivity, bundle);
         });
+        recyclerView.requestFocus();
     }
     private void initLoad(){
         mDataBinding.lmView.setLoadLitetsner(new LoadMoreConstraintLayout.LoadLitetsner() {
@@ -106,6 +107,12 @@ public class BroadcastExpressActivity extends BaseActivity {
             if(!listResult.isSuccess()){
                 ToastUtils.showLong(listResult.getMessage().toString());
                 return;
+            }
+            if (listResult.getResult().getPageData().size() == 0) {
+                mDataBinding.lmView.showEmptyView(View.VISIBLE);
+                return;
+            }else{
+                mDataBinding.lmView.showEmptyView(View.GONE);
             }
             if (page == 1)
                 mDataBinding.lmView.setPreviousPageVisibility(View.GONE);

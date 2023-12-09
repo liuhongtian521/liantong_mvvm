@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.zdy.study.R;
+import com.zdy.study.fcWidgets.FCLinearLayout;
 
 import java.util.List;
 
@@ -30,7 +31,8 @@ public class AddressBookAdapter extends BaseQuickAdapter<AddressBookResponseBean
         if (!"".equals(item.getStudentImg())) {
             Glide.with(mContext).load(item.getStudentImg()).into(imageView);
         }
-
+        FCLinearLayout layout = helper.getView(R.id.fcll);
+        layout.setScale(1.02f);
 
     }
 }

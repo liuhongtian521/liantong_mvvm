@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.zdy.study.fcWidgets.FCLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fcll"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center_horizontal"
@@ -12,7 +13,7 @@
         android:layout_width="@dimen/dp_46"
         android:layout_height="@dimen/dp_46"
         android:src="@mipmap/ic_item_kccx"
-        android:layout_marginTop="@dimen/dp_20"/>
+        android:layout_marginTop="@dimen/dp_25"/>
 
     <TextView
         android:id="@+id/tv_menu"
@@ -22,6 +23,6 @@
         android:textSize="@dimen/sp_13"
         android:textColor="#1E1E1E"
         android:layout_marginTop="@dimen/dp_3"
-        android:layout_marginBottom="@dimen/dp_3"/>
+        android:layout_marginBottom="@dimen/dp_8"/>
 
 </com.zdy.study.fcWidgets.FCLinearLayout>

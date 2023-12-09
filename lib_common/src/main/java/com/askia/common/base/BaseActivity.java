@@ -369,11 +369,8 @@ public abstract class BaseActivity extends AppCompatActivity {
             dialogStatus = wNetLoadingDialog.isShowing();
         }
         if (!dialogStatus) {
-            wNetLoadingDialog = NetLoadingDialog.show(this, false, new DialogInterface.OnCancelListener() {
-                @Override
-                public void onCancel(DialogInterface dialog) {
-                }
-            });
+            wNetLoadingDialog = new NetLoadingDialog(this);
+            wNetLoadingDialog.show();
         }
     }
 

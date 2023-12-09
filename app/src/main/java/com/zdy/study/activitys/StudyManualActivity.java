@@ -22,6 +22,7 @@ import com.zdy.study.adapter.StudyManualAdapter;
 import com.zdy.study.cdatamodel.viewmodel.StudyManualViewModel;
 import com.zdy.study.databinding.ActStudyManualBinding;
 import com.zdy.study.tools.WpsUtil;
+import com.zdy.study.widgets.LoadMoreConstraintLayout;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -52,11 +53,14 @@ public class StudyManualActivity extends BaseActivity {
     @Override
     public void onInit() {
         initDataList();
+        initLoad();
         //标题
         mDataBinding.includeLayout.preferenceActivityTitleText.setText("学习手册");
         mDataBinding.includeLayout.preferenceActivityTitleImage.setOnClickListener(v -> {
             finish();
         });
+        showNetDialog();
+        mViewModel.queryStudentHandbook(String.valueOf(pageNo), pageSize);
     }
 
     @Override
@@ -72,18 +76,49 @@ public class StudyManualActivity extends BaseActivity {
     @Override
     public void onSubscribeViewModel() {
         mViewModel.getmMaterialsLiveData().observe(this, listResult -> {
+            dismissNetDialog();
             if(!listResult.isSuccess()){
                 ToastUtils.showLong(listResult.getMessage().toString());
                 return;
             }
+            if (listResult.getData().getRecords().size() == 0) {
+                mDataBinding.lmView.showEmptyView(View.VISIBLE);
+                return;
+            }else{
+                mDataBinding.lmView.showEmptyView(View.GONE);
+            }
+            if (pageNo == 1)
+                mDataBinding.lmView.setPreviousPageVisibility(View.GONE);
+            else
+                mDataBinding.lmView.setPreviousPageVisibility(View.VISIBLE);
+            if (listResult.getData().getRecords().size() < 10)
+                mDataBinding.lmView.setNextPageVisibility(View.GONE);
+            else
+                mDataBinding.lmView.setNextPageVisibility(View.VISIBLE);
+            dataList.clear();
             dataList.addAll(listResult.getData().getRecords());
             adapter.notifyDataSetChanged();
         });
     }
 
-    private void initDataList(){
+    private void initLoad(){
+        mDataBinding.lmView.setLoadLitetsner(new LoadMoreConstraintLayout.LoadLitetsner() {
+            @Override
+            public void nextPage() {
+                pageNo ++;
+                showNetDialog();
+                mViewModel.queryStudentHandbook(String.valueOf(pageNo), pageSize);            }
 
-        mViewModel.queryStudentHandbook(String.valueOf(pageNo), pageSize);
+            @Override
+            public void previousPage() {
+                pageNo --;
+                showNetDialog();
+                mViewModel.queryStudentHandbook(String.valueOf(pageNo), pageSize);
+            }
+        });
+    }
+
+    private void initDataList(){
         adapter = new StudyManualAdapter(dataList, new StudyManualAdapter.SMAdapterCallBack() {
             @Override
             public void loadMore() {
@@ -128,6 +163,7 @@ public class StudyManualActivity extends BaseActivity {
                 }, "", url.trim().replace("\\", "/"), true, StudyManualActivity.this);
                 wpsUtil.openDocument();*/
 
+                showNetDialog();
                 String finalUrl = url;
                 new Thread(() ->{
                     downloadFile1(finalUrl);
@@ -181,6 +217,7 @@ public class StudyManualActivity extends BaseActivity {
             } while (true);
 //            downLoadBack.complete(true);
 //            startActivity(new Intent(this, PdfViewActivity.class));
+            dismissNetDialog();
             File file = new File(getExternalCacheDir() + fileName);
             WpsUtil.openDocWithSimple(file, this);
 //            openDocWithSimple

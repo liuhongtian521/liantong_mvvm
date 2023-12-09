@@ -77,7 +77,7 @@ android {
             manifestPlaceholders = [RELEASE_TIME: releaseTime()]
             android.applicationVariants.all { variant ->
                 variant.outputs.all {
-                    outputFileName = "超市_${defaultConfig.versionName}_${defaultConfig.versionCode}_${releaseTime()}.apk"
+                    outputFileName = "zdy_${defaultConfig.versionName}_${defaultConfig.versionCode}_${releaseTime()}.apk"
                 }
 
             }

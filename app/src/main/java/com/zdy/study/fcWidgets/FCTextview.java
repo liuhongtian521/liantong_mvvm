@@ -10,6 +10,7 @@ import androidx.annotation.RequiresApi;
 import androidx.core.view.ViewCompat;
 
 public class FCTextview extends androidx.appcompat.widget.AppCompatTextView {
+    private float i = 0;
     public FCTextview(Context context) {
         super(context);
         setFocusChange();
@@ -34,8 +35,8 @@ public class FCTextview extends androidx.appcompat.widget.AppCompatTextView {
             if (b) {
                 // 此处为得到焦点时的处理内容
                 ViewCompat.animate(view)
-                        .scaleX(1.10f)
-                        .scaleY(1.10f)
+                        .scaleX(i==0? 1.10f: i)
+                        .scaleY(i==0? 1.10f: i)
                         .translationZ(1)
                         .start();
 
@@ -48,5 +49,8 @@ public class FCTextview extends androidx.appcompat.widget.AppCompatTextView {
                         .start();
             }
         });
+    }
+    public void setScale(float i){
+        this.i = i;
     }
 }

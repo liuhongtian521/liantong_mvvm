@@ -14,6 +14,7 @@ import androidx.core.view.ViewCompat;
 @SuppressLint("AppCompatCustomView")
 public class FCImageView extends ImageView {
 
+    private float i = 0;
     public FCImageView(Context context) {
         super(context);
         setFocusChange();
@@ -40,8 +41,8 @@ public class FCImageView extends ImageView {
             if (b) {
                 // 此处为得到焦点时的处理内容
                 ViewCompat.animate(view)
-                        .scaleX(1.10f)
-                        .scaleY(1.10f)
+                        .scaleX(i==0? 1.10f: i)
+                        .scaleY(i==0? 1.10f: i)
                         .translationZ(1)
                         .start();
 
@@ -54,5 +55,8 @@ public class FCImageView extends ImageView {
                         .start();
             }
         });
+    }
+    public void setScale(float i){
+        this.i = i;
     }
 }

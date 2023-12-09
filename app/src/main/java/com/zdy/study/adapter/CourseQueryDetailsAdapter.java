@@ -7,6 +7,7 @@ import com.askia.coremodel.datamodel.http.entities.consume.CourseQueryResponseBe
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.zdy.study.R;
+import com.zdy.study.fcWidgets.FCLinearLayout;
 
 import java.util.List;
 
@@ -30,6 +31,7 @@ public class CourseQueryDetailsAdapter extends BaseQuickAdapter<CourseDetailsRes
         helper.setText(R.id.tv_content, item.getCurriculumName());
         helper.setText(R.id.tv_classes_room, item.getCurriculumAddress());
         helper.setText(R.id.tv_name, item.getTeacherName());
-
+        FCLinearLayout layout = helper.getView(R.id.fcll);
+        layout.setScale(1.02f);
     }
 }

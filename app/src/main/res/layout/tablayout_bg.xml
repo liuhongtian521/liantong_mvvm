@@ -9,6 +9,13 @@
         android:textColor="@drawable/title_color_select_bg"
         android:layout_centerInParent="true"
         android:id="@+id/tv_tablayout_name"
+        android:maxEms="10"
+        android:singleLine="true"
+        android:ellipsize="end"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/dp_10"
+        android:paddingBottom="@dimen/dp_10"
+        android:paddingLeft="@dimen/dp_20"
+        android:paddingRight="@dimen/dp_20"/>
 </RelativeLayout>

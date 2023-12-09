@@ -60,6 +60,7 @@ public class VideoViewConstraintLayout extends ConstraintLayout {
         fiv_onoff.setOnClickListener(view -> play());
         fiv_onoff.setEnabled(false);
 
+        fiv_onoff.setScale(1.4f);
     }
 
     public VideoViewConstraintLayout(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {

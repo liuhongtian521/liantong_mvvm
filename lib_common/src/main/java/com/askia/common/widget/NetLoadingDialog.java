@@ -24,7 +24,7 @@ import com.yanyusong.y_divideritemdecoration.Dp2Px;
 public class NetLoadingDialog extends AlertDialog {
     ImageView img;
     private Context mContext;
-    private static NetLoadingDialog sNetLoadingDialog;
+//    private NetLoadingDialog sNetLoadingDialog;
 
     public NetLoadingDialog(@NonNull Context context) {
         super(context);
@@ -43,7 +43,7 @@ public class NetLoadingDialog extends AlertDialog {
 
     }
 
-    public static NetLoadingDialog show(Context context, boolean cancelable, OnCancelListener cancelListener) {
+   /* public NetLoadingDialog show(Context context, boolean cancelable, OnCancelListener cancelListener) {
         if(sNetLoadingDialog == null)
             sNetLoadingDialog = new NetLoadingDialog(context, cancelable, cancelListener);
         if(sNetLoadingDialog.isShowing())
@@ -69,7 +69,7 @@ public class NetLoadingDialog extends AlertDialog {
         super.show();
         fullScreenImmersive(getWindow().getDecorView());
         this.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
-    }
+    }*/
 
     private void fullScreenImmersive(View view) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {

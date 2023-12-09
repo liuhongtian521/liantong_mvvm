@@ -22,6 +22,7 @@ import com.zdy.study.cdatamodel.viewmodel.StudyMaterialsViewModel;
 import com.zdy.study.databinding.ActEbookBinding;
 import com.zdy.study.databinding.ActStudyMaterialsBinding;
 import com.zdy.study.tools.WpsUtil;
+import com.zdy.study.widgets.LoadMoreConstraintLayout;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -50,27 +51,31 @@ public class EBookActivity extends BaseActivity {
     private String fileName = "";
     @Override
     public void onInit() {
-        initRefresh();
         initDataList();
+        initLoad();
         //标题
         mDataBinding.includeLayout.preferenceActivityTitleText.setText("电子课程");
         mDataBinding.includeLayout.preferenceActivityTitleImage.setOnClickListener(v -> {
             finish();
         });
+        showNetDialog();
+        mViewModel.queryCoursewareListByUser(String.valueOf(pageNo), pageSize);
+    }
+    private void initLoad(){
+        mDataBinding.lmView.setLoadLitetsner(new LoadMoreConstraintLayout.LoadLitetsner() {
+            @Override
+            public void nextPage() {
+                pageNo ++;
+                showNetDialog();
+                mViewModel.queryCoursewareListByUser(String.valueOf(pageNo), pageSize);            }
 
-        /*List<StuyMaterialsListBean.RecordsBean> list = new ArrayList<>();
-
-        for (int i =0; i<10 ; i++){
-            StuyMaterialsListBean.RecordsBean bean = new StuyMaterialsListBean.RecordsBean();
-            bean.setCoursewareName("111");
-            list.add(bean);
-
-        }
-
-        dataList.addAll(list);
-        adapter.notifyDataSetChanged();*/
-
-
+            @Override
+            public void previousPage() {
+                pageNo --;
+                showNetDialog();
+                mViewModel.queryCoursewareListByUser(String.valueOf(pageNo), pageSize);
+            }
+        });
     }
 
     @Override
@@ -86,50 +91,34 @@ public class EBookActivity extends BaseActivity {
     @Override
     public void onSubscribeViewModel() {
         mViewModel.getmMaterialsLiveData().observe(this, listResult -> {
+            dismissNetDialog();
             if(!listResult.isSuccess()){
                 ToastUtils.showLong(listResult.getMessage().toString());
                 return;
             }
+            if (listResult.getData().getRecords().size() == 0) {
+                mDataBinding.lmView.showEmptyView(View.VISIBLE);
+                return;
+            }else{
+                mDataBinding.lmView.showEmptyView(View.GONE);
+            }
+            if (pageNo == 1)
+                mDataBinding.lmView.setPreviousPageVisibility(View.GONE);
+            else
+                mDataBinding.lmView.setPreviousPageVisibility(View.VISIBLE);
+            if (listResult.getData().getRecords().size() < 10)
+                mDataBinding.lmView.setNextPageVisibility(View.GONE);
+            else
+                mDataBinding.lmView.setNextPageVisibility(View.VISIBLE);
+            dataList.clear();
             dataList.addAll(listResult.getData().getRecords());
             adapter.notifyDataSetChanged();
-
-            /*if (pageNo == 1) {//page 1 刷新列表
-                goodsListAdapter.setData(goodsData.getResult().getRecords());
-                mBinding.srlResult.finishRefresh();
-                if (goodsData.getResult().getRecords().size() > 0){//缺省页隐藏
-                    mBinding.rvGoods.setVisibility(View.VISIBLE);
-                    mBinding.ivQueshengShangpin.setVisibility(View.GONE);
-                }else{                                            //缺省页显示
-                    mBinding.rvGoods.setVisibility(View.GONE);
-                    mBinding.ivQueshengShangpin.setVisibility(View.VISIBLE);
-                }
-            }else {           //page 其它  添加列表数据
-                goodsListAdapter.addData(goodsData.getResult().getRecords());
-                mBinding.srlResult.finishLoadMore();
-            }
-            goodsListAdapter.notifyDataSetChanged();
-            //设置不能加载更多
-            if(goodsData.getResult().getRecords().size() < pageSize)
-                mBinding.srlResult.setEnableLoadMore(false);*/
         });
     }
 
-    private void initRefresh(){
-        /*mDataBinding.srlResult.setOnRefreshListener(refreshLayout -> {
-            pageNo = 1;
-            mDataBinding.srlResult.setEnableLoadMore(true); //可以加载更多
-        });
-        mDataBinding.srlResult.setOnLoadMoreListener(refreshLayout -> {
-            pageNo ++;
-//            mViewModel.queryCoursewareListByUser(String.valueOf(pageNo), pageSize);
-
-            mDataBinding.srlResult.setEnableLoadMore(false);
-        });*/
-    }
 
     private void initDataList(){
 
-        mViewModel.queryCoursewareListByUser(String.valueOf(pageNo), pageSize);
         adapter = new EBookAdapter(dataList, new EBookAdapter.SMAdapterCallBack() {
             @Override
             public void loadMore() {
@@ -174,7 +163,7 @@ public class EBookActivity extends BaseActivity {
                 wpsUtil.openDocument();*/
 
                 String finalUrl = url;
-
+                showNetDialog();
                 new Thread(() ->{
                     downloadFile1(finalUrl);
                 }).start();
@@ -226,6 +215,7 @@ public class EBookActivity extends BaseActivity {
             } while (true);
 //            downLoadBack.complete(true);
 //            startActivity(new Intent(this, PdfViewActivity.class));
+            dismissNetDialog();
             File file = new File(getExternalCacheDir() + fileName);
             WpsUtil.openDocWithSimple(file, this);
 //            openDocWithSimple
