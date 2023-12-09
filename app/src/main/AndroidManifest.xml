@@ -110,6 +110,18 @@
             android:name=".activitys.WebViewActivity"
             android:launchMode="singleTask"
             android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".activitys.WebBasedCourseActivity"
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".activitys.WebBasedCourseDetailsActivity"
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".activitys.WebBasedCourseDetailsTwoActivity"
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="stateHidden" />
         <meta-data
             android:name="design_width_in_dp"
             android:value="771"/>

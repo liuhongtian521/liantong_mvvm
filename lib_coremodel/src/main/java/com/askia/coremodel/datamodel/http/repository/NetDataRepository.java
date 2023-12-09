@@ -47,6 +47,7 @@ import com.askia.coremodel.datamodel.http.entities.consume.HttpWorkbenchStatisti
 import com.askia.coremodel.datamodel.http.entities.consume.StudyDictionaryBean;
 import com.askia.coremodel.datamodel.http.entities.consume.StuyManualListBean;
 import com.askia.coremodel.datamodel.http.entities.consume.StuyMaterialsListBean;
+import com.askia.coremodel.datamodel.http.entities.consume.WebCourseResponseBean;
 import com.askia.coremodel.datamodel.http.entities.query.AdListData;
 import com.askia.coremodel.datamodel.http.entities.query.PeopleMoneyData;
 import com.askia.coremodel.util.DeviceUtils;
@@ -104,7 +105,7 @@ public class NetDataRepository {
     //获取电子课件
     public void queryCoursewareListByUser(String argPage, String argPageSize,
                                           MutableLiveData<BaseResponseData<EBookListBean>> mLoginLiveData,
-                            CompositeDisposable mDisposable) {
+                                          CompositeDisposable mDisposable) {
         Observable<BaseResponseData<EBookListBean>> responseData = ApiClient.getNetDataService()
                 .queryCoursewareListByUser(argPage, argPageSize, argPage, argPageSize);
         if (responseObserv == null)
@@ -114,8 +115,8 @@ public class NetDataRepository {
 
     //学习资料
     public void queryLearningMaterials(String dictKey, String argPage, String argPageSize,
-                                          MutableLiveData<BaseResponseData<StuyMaterialsListBean>> mLoginLiveData,
-                                          CompositeDisposable mDisposable) {
+                                       MutableLiveData<BaseResponseData<StuyMaterialsListBean>> mLoginLiveData,
+                                       CompositeDisposable mDisposable) {
         Observable<BaseResponseData<StuyMaterialsListBean>> responseData = ApiClient.getNetDataService()
                 .queryLearningMaterials(dictKey, argPage, argPageSize, argPage, argPageSize);
         if (responseObserv == null)
@@ -125,8 +126,8 @@ public class NetDataRepository {
 
     //学习字典
     public void dictionary(String code,
-                                       MutableLiveData<BaseResponseData<List<StudyDictionaryBean>>> mLoginLiveData,
-                                       CompositeDisposable mDisposable) {
+                           MutableLiveData<BaseResponseData<List<StudyDictionaryBean>>> mLoginLiveData,
+                           CompositeDisposable mDisposable) {
         Observable<BaseResponseData<List<StudyDictionaryBean>>> responseData = ApiClient.getNetDataService()
                 .dictionary(code);
         if (responseObserv == null)
@@ -136,8 +137,8 @@ public class NetDataRepository {
 
     //学习手册
     public void queryStudentHandbook(String argPage, String argPageSize,
-                                       MutableLiveData<BaseResponseData<StuyManualListBean>> mLoginLiveData,
-                                       CompositeDisposable mDisposable) {
+                                     MutableLiveData<BaseResponseData<StuyManualListBean>> mLoginLiveData,
+                                     CompositeDisposable mDisposable) {
         Observable<BaseResponseData<StuyManualListBean>> responseData = ApiClient.getNetDataService()
                 .queryStudentHandbook(argPage, argPageSize, argPage, argPageSize);
         if (responseObserv == null)
@@ -158,24 +159,38 @@ public class NetDataRepository {
     //联播速列表
 
     public void queryContListByAudit(String argPage,
-                                     String argPageSize,String argStruCode,
+                                     String argPageSize, String argStruCode,
                                      MutableLiveData<BaseResponseData<BroadcastExpressResponBean>> mLoginLiveData,
                                      CompositeDisposable mDisposable) {
         Observable<BaseResponseData<BroadcastExpressResponBean>> responseData = ApiClient.getNetDataService()
-                .queryContListByAudit( argPage,
+                .queryContListByAudit(argPage,
                         argPageSize, argStruCode);
         if (responseObserv == null)
             responseObserv = new ResponseObserv();
         responseObserv.responseObserv(responseData, mLoginLiveData, mDisposable);
     }
+
     //通讯录
     public void queryStudentInfoListByClass(String argPage,
-                                     String argPageSize, String classesId,
-                                     MutableLiveData<BaseResponseData<AddressBookResponseBean>> mLoginLiveData,
-                                     CompositeDisposable mDisposable) {
+                                            String argPageSize, String classesId,
+                                            MutableLiveData<BaseResponseData<AddressBookResponseBean>> mLoginLiveData,
+                                            CompositeDisposable mDisposable) {
         Observable<BaseResponseData<AddressBookResponseBean>> responseData = ApiClient.getNetDataService()
                 .queryStudentInfoListByClass(argPage,
                         argPageSize, classesId);
+        if (responseObserv == null)
+            responseObserv = new ResponseObserv();
+        responseObserv.responseObserv(responseData, mLoginLiveData, mDisposable);
+    }
+
+    //网络课程
+    public void pageByApp(String argPage,
+                          String argPageSize,
+                          MutableLiveData<BaseResponseData<WebCourseResponseBean>> mLoginLiveData,
+                          CompositeDisposable mDisposable) {
+        Observable<BaseResponseData<WebCourseResponseBean>> responseData = ApiClient.getNetDataService()
+                .pageByApp(argPage,
+                        argPageSize);
         if (responseObserv == null)
             responseObserv = new ResponseObserv();
         responseObserv.responseObserv(responseData, mLoginLiveData, mDisposable);

@@ -16,6 +16,7 @@ import com.askia.coremodel.datamodel.http.entities.consume.HttpLoginResult;
 import com.askia.coremodel.datamodel.http.entities.consume.StudyDictionaryBean;
 import com.askia.coremodel.datamodel.http.entities.consume.StuyManualListBean;
 import com.askia.coremodel.datamodel.http.entities.consume.StuyMaterialsListBean;
+import com.askia.coremodel.datamodel.http.entities.consume.WebCourseResponseBean;
 
 
 import java.util.List;
@@ -87,6 +88,10 @@ public interface NetDataService {
     // 通讯录列表
     @GET("/cdls-bds/App/queryStudentInfoListByClass")
     Observable<BaseResponseData<AddressBookResponseBean>> queryStudentInfoListByClass(@Query("argPage") String argPage, @Query("argPageSize") String argPageSize, @Query("classesId") String classesId);
+
+    // 网络课程
+    @GET("/cdls-bds/App/pageByApp")
+    Observable<BaseResponseData<WebCourseResponseBean>> pageByApp(@Query("argPage") String argPage, @Query("argPageSize") String argPageSize);
 
 
     //修改密码

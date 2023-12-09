@@ -12,6 +12,7 @@ import com.askia.common.base.ARouterPath;
 import com.askia.common.base.BaseActivity;
 import com.askia.coremodel.datamodel.http.entities.consume.AddressBookResponseBean;
 import com.askia.coremodel.datamodel.http.entities.consume.BroadcastExpressResponBean;
+import com.blankj.utilcode.util.ToastUtils;
 import com.zdy.study.R;
 import com.zdy.study.adapter.AddressBookAdapter;
 import com.zdy.study.adapter.BroadcastExpressAdapter;
@@ -44,7 +45,7 @@ public class AddressBookActivity extends BaseActivity {
         recyclerView = mDataBinding.rvAddressBook;
 
         LinearLayoutManager manager2 = new LinearLayoutManager(this);//数字为行数或列数
-        adapter = new AddressBookAdapter(list,this);
+        adapter = new AddressBookAdapter(list, this);
         recyclerView.setLayoutManager(manager2);
         recyclerView.setAdapter(adapter);
     }
@@ -62,11 +63,15 @@ public class AddressBookActivity extends BaseActivity {
     @Override
     public void onSubscribeViewModel() {
         viewModel.getPageListPadData().observe(this, listResult -> {
-            if (listResult.isSuccess()) {
-                if (null != listResult.getData()) {
-                    list.clear();
-                    list.addAll(listResult.getData().getRecords());
-                }
+
+            if (!listResult.isSuccess()) {
+                ToastUtils.showLong(listResult.getMessage().toString());
+                return;
+            }
+
+            if (null != listResult.getData()) {
+                list.clear();
+                list.addAll(listResult.getData().getRecords());
             }
             adapter.notifyDataSetChanged();
         });

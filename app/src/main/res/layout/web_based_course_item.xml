@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+<LinearLayout
+    android:paddingLeft="15dp"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_75"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_content_web"
+            android:paddingTop="5dp"
+            android:paddingRight="95dp"
+            android:gravity="center_vertical"
+            android:lines="2"
+            android:ellipsize="end"
+            android:textColor="@color/app_black3"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp_42"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_below="@+id/tv_content_web"
+            android:layout_marginTop="9dp"
+            android:id="@+id/tv_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2020-10-12"
+            android:textColor="#B0B2B4"
+            android:textSize="12sp" />
+        <ImageView
+            android:layout_alignParentRight="true"
+            android:id="@+id/iv_right_video"
+            android:layout_width="80dp"
+            android:layout_height="80dp"/>
+    </RelativeLayout>
+</LinearLayout>
+    <View
+        android:background="#E2E4E8"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"/>
+</LinearLayout>
