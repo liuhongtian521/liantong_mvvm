@@ -15,12 +15,23 @@
             android:id="@+id/include_layout"
             layout="@layout/title_style_white" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rl_materials"
-                app:focusOutFront="true"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+        <androidx.leanback.tab.LeanbackTabLayout
+            android:id="@+id/tab_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/sp_10"
+            app:tabIndicatorHeight="0dp"
+            app:tabMaxWidth="200dp"
+            app:tabMinWidth="0dp"
+            app:tabMode="auto"
 
+           />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rl_materials"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:focusOutFront="true" />
 
 
     </LinearLayout>

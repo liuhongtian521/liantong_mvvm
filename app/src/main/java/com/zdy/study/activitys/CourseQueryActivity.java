@@ -62,6 +62,7 @@ public class CourseQueryActivity extends BaseActivity {
         String dateString = formatter.format(currentDate);
         mDataBinding.tvYearClick.setVisibility(View.VISIBLE);
         mDataBinding.tvYearClick.setText(year + "年" + month + "月");
+        showNetDialog();
         mCourseQueryViewModel.getPageListPad(dateString + "-01");
 
         list = new ArrayList<>();
@@ -147,6 +148,7 @@ public class CourseQueryActivity extends BaseActivity {
     @Override
     public void onSubscribeViewModel() {
         mCourseQueryViewModel.getCalendarListData().observe(this, listResult -> {
+            dismissNetDialog();
             if (listResult.isSuccess()) {
                 if (null != listResult.getData()) {
                     list.clear();

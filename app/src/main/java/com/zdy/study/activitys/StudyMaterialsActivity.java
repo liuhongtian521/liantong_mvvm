@@ -1,7 +1,12 @@
 package com.zdy.study.activitys;
 
+import android.annotation.SuppressLint;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.leanback.widget.OnChildViewHolderSelectedListener;
@@ -19,6 +24,7 @@ import com.askia.coremodel.datamodel.http.entities.consume.StudyDictionaryBean;
 import com.askia.coremodel.datamodel.http.entities.consume.StuyMaterialsListBean;
 import com.blankj.utilcode.util.ToastUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.google.android.material.tabs.TabLayout;
 import com.zdy.study.R;
 import com.zdy.study.adapter.MainMenuAdapter;
 import com.zdy.study.adapter.StudyMaterialsAdapter;
@@ -52,8 +58,12 @@ public class StudyMaterialsActivity extends BaseActivity {
     private int pageNo = 1;
     private String pageSize = "10";
     private String fileName = "";
+    private List<StudyDictionaryBean> list;
+    private int pageTab = 0;
+
     @Override
     public void onInit() {
+        list = new ArrayList<>();
         initDataList();
         //标题
         mDataBinding.includeLayout.preferenceActivityTitleText.setText("学习资料");
@@ -76,6 +86,40 @@ public class StudyMaterialsActivity extends BaseActivity {
 
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
+    private void initTab() {
+        TabLayout.Tab tab2;
+        View view;
+        StudyDictionaryBean bean = new StudyDictionaryBean();
+        bean.setDictValue("全部");
+        list.add(0, bean);
+        for (StudyDictionaryBean studyDictionaryBean : list) {
+            tab2 = mDataBinding.tabLayout.newTab();
+          //  tab2.setText(studyDictionaryBean.getDictValue());
+            view = LayoutInflater.from(this).inflate(R.layout.tablayout_bg,null);
+            TextView tv = (TextView) view.findViewById(R.id.tv_tablayout_name);
+            tv.setText(studyDictionaryBean.getDictValue());
+         //   mDataBinding.tabLayout.setBackgroundResource(R.drawable.red_select_bg);
+            // 创建并配置子视图的布局参数
+            RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT, // 子视图的宽度为包裹内容
+                    ViewGroup.LayoutParams.MATCH_PARENT   // 子视图的高度为包裹内容
+            );
+            view.setLayoutParams(layoutParams);
+           tab2.setCustomView(view);
+
+            mDataBinding.tabLayout.addTab(tab2);
+        }
+//        TabLayout.Tab tab = mBinding.tlGoodsClassify.newTab();
+//        View view = LayoutInflater.from(getActivity()).inflate(R.layout.widget_choose_icon_tab_bg, null);
+//        TextView tv = (TextView) view.findViewById(R.id.choose_icon_tab_tv);
+////            TextView tvc = (TextView) view.findViewById(R.id.tv_count);
+//        tv.setText(name.getTypeName());
+////            tvc.setText("2");
+//        tab.setCustomView(view);
+
+    }
+
     @Override
     public void onInitViewModel() {
         mViewModel = ViewModelProviders.of(this).get(StudyMaterialsViewModel.class);
@@ -89,7 +133,7 @@ public class StudyMaterialsActivity extends BaseActivity {
     @Override
     public void onSubscribeViewModel() {
         mViewModel.getmMaterialsLiveData().observe(this, listResult -> {
-            if(!listResult.isSuccess()){
+            if (!listResult.isSuccess()) {
                 ToastUtils.showLong(listResult.getMessage().toString());
                 return;
             }
@@ -116,16 +160,18 @@ public class StudyMaterialsActivity extends BaseActivity {
                 mBinding.srlResult.setEnableLoadMore(false);*/
         });
         mViewModel.getmDictionaryLiveData().observe(this, listResult -> {
-            if(!listResult.isSuccess()){
-                ToastUtils.showLong(listResult.getMessage().toString());
-                return;
+            if (listResult.isSuccess()) {
+//                ToastUtils.showLong(listResult.getMessage().toString());
+                list.clear();
+                list.addAll(listResult.getData());
             }
+            initTab();
 
         });
     }
 
 
-    private void initDataList(){
+    private void initDataList() {
         mViewModel.dictionary("CLASS_MATERIAL_TAG");
         mViewModel.queryLearningMaterials("", String.valueOf(pageNo), pageSize);
         adapter = new StudyMaterialsAdapter(dataList, new StudyMaterialsAdapter.SMAdapterCallBack() {
@@ -157,7 +203,7 @@ public class StudyMaterialsActivity extends BaseActivity {
                 } catch (UnsupportedEncodingException e) {
                     throw new RuntimeException(e);
                 }
-                fileName = "zdy."+dataList.get(position).getLearningMaterialsType();
+                fileName = "zdy." + dataList.get(position).getLearningMaterialsType();
 
                 /*WpsUtil wpsUtil = new WpsUtil(new WpsUtil.WpsInterface() {
                     @Override
@@ -174,7 +220,7 @@ public class StudyMaterialsActivity extends BaseActivity {
 
                 String finalUrl = url;
 
-                new Thread(() ->{
+                new Thread(() -> {
                     downloadFile1(finalUrl);
                 }).start();
 
@@ -183,10 +229,10 @@ public class StudyMaterialsActivity extends BaseActivity {
     }
 
     public void downloadFile1(String url) {
-        try{
+        try {
             //下载路径，如果路径无效了，可换成你的下载路径
             final long startTime = System.currentTimeMillis();
-            Log.i("DOWNLOAD","startTime="+startTime);
+            Log.i("DOWNLOAD", "startTime=" + startTime);
             //下载函数
 //            filename = timeSeconds+"zdy.apk";
             //获取文件名
@@ -198,27 +244,26 @@ public class StudyMaterialsActivity extends BaseActivity {
             if (fileSize <= 0) throw new RuntimeException("无法获知文件大小 ");
             if (is == null) throw new RuntimeException("stream is null");
             File file1 = getExternalCacheDir();
-            Log.i("DOWNLOAD",getExternalCacheDir().toString());
-            if(!file1.exists()){
+            Log.i("DOWNLOAD", getExternalCacheDir().toString());
+            if (!file1.exists()) {
                 file1.mkdirs();
             }
             //把数据存入路径+文件名
             FileOutputStream fos = new FileOutputStream(file1 + fileName);
             byte buf[] = new byte[1024];
             int downLoadFileSize = 0;
-            do{
+            do {
                 //循环读取
                 int numread = is.read(buf);
-                if (numread == -1)
-                {
+                if (numread == -1) {
                     break;
                 }
                 fos.write(buf, 0, numread);
                 downLoadFileSize += numread;
 
-                DecimalFormat df=new DecimalFormat("0.00");//设置保留位数
+                DecimalFormat df = new DecimalFormat("0.00");//设置保留位数
 
-                String ss = df.format((float)downLoadFileSize/fileSize);
+                String ss = df.format((float) downLoadFileSize / fileSize);
 //                Log.i("DOWNLOAD","download "+ss+"%");
                 /*if (downLoadBack != null)
                     downLoadBack.downFileSize(ss);*/
@@ -230,8 +275,8 @@ public class StudyMaterialsActivity extends BaseActivity {
             File file = new File(getExternalCacheDir() + fileName);
             WpsUtil.openDocWithSimple(file, this);
 //            openDocWithSimple
-            Log.i("DOWNLOAD","download success");
-            Log.i("DOWNLOAD","totalTime="+ (System.currentTimeMillis() - startTime));
+            Log.i("DOWNLOAD", "download success");
+            Log.i("DOWNLOAD", "totalTime=" + (System.currentTimeMillis() - startTime));
 
             is.close();
         } catch (Exception ex) {
@@ -239,6 +284,7 @@ public class StudyMaterialsActivity extends BaseActivity {
             Log.e("DOWNLOAD", "error: " + ex.getMessage(), ex);
         }
     }
+
     @Override
     public void onMResume() {
 
