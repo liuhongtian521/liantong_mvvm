@@ -44,10 +44,16 @@ public class WebBasedCourseActivity extends BaseActivity {
     @Override
     public void onInit() {
         list = new ArrayList<>();
+        onInTitle();
         initList();
         initLoad();
     }
-
+    private void onInTitle() {
+        mDataBinding.includeLayout.preferenceActivityTitleText.setText("网络课程列表");
+        mDataBinding.includeLayout.preferenceActivityTitleImage.setOnClickListener(v -> {
+            finish();
+        });
+    }
     private void initList() {
 
         list = new ArrayList<>();

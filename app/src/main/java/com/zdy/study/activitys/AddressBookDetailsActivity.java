@@ -1,11 +1,14 @@
 package com.zdy.study.activitys;
 
+import android.os.Bundle;
+
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.askia.common.base.ARouterPath;
 import com.askia.common.base.BaseActivity;
+import com.bumptech.glide.Glide;
 import com.zdy.study.R;
 import com.zdy.study.cdatamodel.viewmodel.AddressBookDetailsViewModel;
 import com.zdy.study.cdatamodel.viewmodel.AddressBookViewModel;
@@ -16,9 +19,20 @@ import com.zdy.study.databinding.AddressBookDetailsActivityBinding;
 public class AddressBookDetailsActivity extends BaseActivity {
     private AddressBookDetailsActivityBinding mDataBinding;
     private AddressBookDetailsViewModel viewModel;
+
     @Override
     public void onInit() {
-        //标题
+        initTitle();
+        Bundle bundle = getIntent().getExtras();
+        Glide.with(this).load(bundle.getString("studentImg")).into(mDataBinding.ivHead);
+        mDataBinding.tvCareer.setText(bundle.getString("studentPost"));
+        mDataBinding.tvTelephoneNumber.setText(bundle.getString("studentPhone"));
+        mDataBinding.tvClass.setText(bundle.getString("classesName"));
+        mDataBinding.tvStudentName.setText(bundle.getString("studentName"));
+
+    }
+
+    private void initTitle() {
         mDataBinding.includeLayout.preferenceActivityTitleText.setText("通讯录");
         mDataBinding.includeLayout.preferenceActivityTitleImage.setOnClickListener(v -> {
             finish();

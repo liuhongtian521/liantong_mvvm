@@ -49,7 +49,7 @@ public class WebBasedCourseDetailsActivity extends BaseActivity {
     }
 
     private void onInTitle() {
-        mDataBinding.includeLayout.preferenceActivityTitleText.setText("网络课程列表");
+        mDataBinding.includeLayout.preferenceActivityTitleText.setText("网络课程详情");
         mDataBinding.includeLayout.preferenceActivityTitleImage.setOnClickListener(v -> {
             finish();
         });

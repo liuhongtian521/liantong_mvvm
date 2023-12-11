@@ -1,6 +1,7 @@
 package com.zdy.study.activitys;
 
-import android.util.Log;
+import android.os.Bundle;
+import android.view.View;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
@@ -11,15 +12,12 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.askia.common.base.ARouterPath;
 import com.askia.common.base.BaseActivity;
 import com.askia.coremodel.datamodel.http.entities.consume.AddressBookResponseBean;
-import com.askia.coremodel.datamodel.http.entities.consume.BroadcastExpressResponBean;
 import com.blankj.utilcode.util.ToastUtils;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.zdy.study.R;
 import com.zdy.study.adapter.AddressBookAdapter;
-import com.zdy.study.adapter.BroadcastExpressAdapter;
 import com.zdy.study.cdatamodel.viewmodel.AddressBookViewModel;
-import com.zdy.study.cdatamodel.viewmodel.BroadcastExpressViewModel;
 import com.zdy.study.databinding.AddressBookActivityBinding;
-import com.zdy.study.databinding.BroadcastExpressActivityBinding;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,18 +34,41 @@ public class AddressBookActivity extends BaseActivity {
     @Override
     public void onInit() {
         //标题
-        mDataBinding.includeLayout.preferenceActivityTitleText.setText("通讯录");
-        mDataBinding.includeLayout.preferenceActivityTitleImage.setOnClickListener(v -> {
-            finish();
-        });
+        initTitle();
         list = new ArrayList<>();
         viewModel.queryStudentInfoListByClass("1", "10000", "");
-        recyclerView = mDataBinding.rvAddressBook;
+        initRecycleView();
+    }
 
+    private void initRecycleView() {
+        recyclerView = mDataBinding.rvAddressBook;
         LinearLayoutManager manager2 = new LinearLayoutManager(this);//数字为行数或列数
         adapter = new AddressBookAdapter(list, this);
         recyclerView.setLayoutManager(manager2);
         recyclerView.setAdapter(adapter);
+        initRVListeners();
+    }
+
+    /*recycleView点击事件*/
+    private void initRVListeners() {
+        adapter.setOnItemClickListener((adapter, view, position) -> {
+            Bundle bundle =new Bundle();
+            if (null!=list&&list.size()>=0){
+                bundle.putString("studentImg",list.get(position).getStudentImg());
+                bundle.putString("studentName",list.get(position).getStudentName());
+                bundle.putString("studentPhone",list.get(position).getStudentPhone());
+                bundle.putString("studentPost",list.get(position).getStudentPost());
+                bundle.putString("classesName",list.get(position).getClassesName());
+                startActivityByRouter(ARouterPath.AddressBookDetailsActivity, bundle);
+            }
+        });
+    }
+
+    private void initTitle() {
+        mDataBinding.includeLayout.preferenceActivityTitleText.setText("通讯录");
+        mDataBinding.includeLayout.preferenceActivityTitleImage.setOnClickListener(v -> {
+            finish();
+        });
     }
 
     @Override

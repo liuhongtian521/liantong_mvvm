@@ -149,6 +149,10 @@ public class CourseQueryActivity extends BaseActivity {
     public void onSubscribeViewModel() {
         mCourseQueryViewModel.getCalendarListData().observe(this, listResult -> {
             dismissNetDialog();
+            if (!listResult.isSuccess()) {
+                ToastUtils.showLong(listResult.getMessage().toString());
+                return;
+            }
             if (listResult.isSuccess()) {
                 if (null != listResult.getData()) {
                     list.clear();

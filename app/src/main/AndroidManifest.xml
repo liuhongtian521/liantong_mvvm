@@ -111,6 +111,10 @@
             android:launchMode="singleTask"
             android:windowSoftInputMode="stateHidden" />
         <activity
+            android:name=".activitys.AddressBookDetailsActivity"
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
             android:name=".activitys.WebBasedCourseActivity"
             android:launchMode="singleTask"
             android:windowSoftInputMode="stateHidden" />
