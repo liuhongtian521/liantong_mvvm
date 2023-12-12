@@ -5,122 +5,879 @@
 
     </data>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:fillViewport="true"
+        android:scrollbars="none">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="145dp"
-            android:background="@mipmap/ic_main_head_bg">
+            android:layout_height="match_parent"
+            android:background="@color/dash_gray"
+            android:orientation="vertical">
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="15dp">
+                android:layout_height="145dp"
+                android:background="@mipmap/ic_main_head_bg">
 
-                <ImageView
-                    android:id="@+id/im_start"
-                    android:layout_width="70dp"
-                    android:layout_height="30dp"
-                    android:background="@mipmap/ic_main_start" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="15dp">
 
-                <com.zdy.study.fcWidgets.FCImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    <ImageView
+                        android:id="@+id/im_start"
+                        android:layout_width="70dp"
+                        android:layout_height="30dp"
+                        android:background="@mipmap/ic_main_start" />
+
+                    <com.zdy.study.fcWidgets.FCImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="9dp"
+                        android:layout_marginRight="65dp"
+                        android:background="@mipmap/ic_main_search"
+                        android:focusableInTouchMode="true" />
+
+                    <com.zdy.study.fcWidgets.FCImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="9dp"
+                        android:layout_marginRight="15dp"
+                        android:background="@mipmap/ic_main_bell"
+                        android:focusableInTouchMode="true" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="100dp"
+                    android:layout_height="25dp"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginTop="9dp"
-                    android:layout_marginRight="65dp"
-                    android:background="@mipmap/ic_main_search"
-                    android:focusableInTouchMode="true" />
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="1dp"
+                    android:background="@mipmap/ic_main_right"
+                    android:gravity="center">
 
-                <com.zdy.study.fcWidgets.FCImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginTop="9dp"
-                    android:layout_marginRight="15dp"
-                    android:background="@mipmap/ic_main_bell"
-                    android:focusableInTouchMode="true" />
+                    <TextView
+                        android:id="@+id/tv_main_month"
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginLeft="12dp"
+                        android:text="3月"
+                        android:textColor="@color/app_white"
+                        android:textSize="6sp" />
+
+                    <TextView
+                        android:id="@+id/tv_main_day"
+                        android:layout_width="wrap_content"
+                        android:layout_height="12dp"
+                        android:layout_below="@+id/tv_main_month"
+                        android:layout_marginLeft="12.5dp"
+                        android:gravity="center"
+                        android:text="31"
+                        android:textColor="@color/app_white"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:id="@+id/tv_main_week"
+                        android:layout_width="27dp"
+                        android:layout_height="13dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerInParent="true"
+                        android:layout_marginRight="15.5dp"
+                        android:text="星期三"
+                        android:textColor="@color/app_black2"
+                        android:textSize="9sp" />
+                </RelativeLayout>
 
             </RelativeLayout>
-
+            <!--联播速递-->
             <RelativeLayout
-                android:layout_width="100dp"
-                android:layout_height="22dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginBottom="1dp"
-                android:background="@mipmap/ic_main_right">
+                android:background="@color/white"
+                android:paddingBottom="14dp">
+                <!--更多-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:background="@color/white">
 
-                <TextView
-                    android:id="@+id/tv_main_month"
-                    android:layout_width="10dp"
-                    android:layout_height="8dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_marginLeft="12dp"
-                    android:text="3月"
-                    android:textColor="@color/app_white"
-                    android:textSize="6sp" />
+                    <com.zdy.study.fcWidgets.FCTextview
+                        android:layout_width="33dp"
+                        android:layout_height="16dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="15dp"
+                        android:focusableInTouchMode="true"
+                        android:gravity="right"
+                        android:text="更多 >"
+                        android:textColor="#FF4C4E5A"
+                        android:textSize="11sp" />
+                </RelativeLayout>
+                <!--红色图标左侧-->
+                <RelativeLayout
+                    android:id="@+id/rl_red"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp">
 
-                <TextView
-                    android:id="@+id/tv_main_day"
-                    android:layout_width="13dp"
-                    android:layout_height="12dp"
-                    android:layout_below="@+id/tv_main_month"
-                    android:layout_marginLeft="12.5dp"
-                    android:text="31"
-                    android:textColor="@color/app_white"
-                    android:textSize="12sp" />
+                    <TextView
+                        android:layout_width="68dp"
+                        android:layout_height="33dp"
+                        android:layout_marginLeft="9dp"
+                        android:background="@mipmap/ic_course_example" />
 
-                <TextView
-                    android:id="@+id/tv_main_week"
-                    android:layout_width="27dp"
-                    android:layout_height="13dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerInParent="true"
-                    android:layout_marginRight="15.5dp"
-                    android:text="星期三"
-                    android:textColor="@color/app_black2"
-                    android:textSize="9sp" />
+                    <TextView
+                        android:layout_width="50dp"
+                        android:layout_height="15dp"
+                        android:layout_marginLeft="19dp"
+                        android:layout_marginTop="3dp"
+                        android:gravity="center"
+                        android:text="联播速递"
+                        android:textColor="@color/app_white"
+                        android:textSize="11sp" />
+                </RelativeLayout>
+                <!--联播-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_below="@+id/rl_red"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="14dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/gray_round_corner_">
+
+                        <ImageView
+                            android:id="@+id/iv_broadcast_speed"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:layout_marginLeft="12dp"
+                            android:background="@mipmap/ic_lianbo" />
+
+                        <TextView
+                            android:id="@+id/iv_broadcast_speed_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp"
+                            android:layout_centerInParent="true"
+                            android:layout_marginLeft="9dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_toRightOf="@+id/iv_broadcast_speed"
+                            android:textSize="12sp" />
+
+
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="14dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/gray_round_corner_"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="20dp"
+                            android:layout_marginTop="6dp"
+                            android:gravity="center_vertical">
+
+                            <View
+                                android:id="@+id/view_red"
+                                android:layout_width="2dp"
+                                android:layout_height="10dp"
+                                android:background="@color/dash_red" />
+
+                            <TextView
+                                android:id="@+id/iv_broadcast_speed_name_right"
+                                android:layout_width="wrap_content"
+                                android:layout_height="20dp"
+                                android:layout_marginLeft="10dp"
+                                android:layout_toRightOf="@+id/view_red"
+                                android:gravity="center"
+                                android:text="新闻联播"
+                                android:textColor="@color/app_black3"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="20dp"
+                            android:layout_marginTop="6dp"
+                            android:gravity="center_vertical">
+
+                            <View
+                                android:id="@+id/view_red1"
+                                android:layout_width="2dp"
+                                android:layout_height="10dp"
+                                android:background="@color/dash_red" />
+
+                            <TextView
+                                android:id="@+id/iv_broadcast_speed_name_right1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="20dp"
+                                android:layout_marginLeft="10dp"
+                                android:layout_toRightOf="@+id/view_red1"
+                                android:gravity="center"
+                                android:text="新闻联播"
+                                android:textColor="@color/app_black3"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+
             </RelativeLayout>
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="82dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp">
-            <TextView
-                android:background="@mipmap/ic_course_example"
-                android:layout_width="68dp"
-                android:layout_marginLeft="9dp"
-                android:layout_height="33dp"/>
-            <TextView
-                android:gravity="center"
-                android:text="实践案例"
-                android:layout_marginTop="3dp"
-                android:layout_marginLeft="19dp"
-                android:textSize="11sp"
-                android:textColor="@color/app_white"
-                android:layout_width="50dp"
-                android:layout_height="15dp"/>
-            <com.zdy.study.fcWidgets.FCTextview
-                android:focusableInTouchMode="true"
-                android:layout_marginRight="15dp"
+            <!--国际视野-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
-                android:layout_alignParentEnd="true"
-                android:textSize="11sp"
-                android:textColor="#FF4C4E5A"
-                android:text="更多 >"
-                android:gravity="right"
-                android:layout_width="33dp"
-                android:layout_height="16dp"/>
+                android:layout_marginRight="10dp"
+                android:background="@color/dash_gray">
+                <!--更多-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="33dp"
+                    android:layout_marginTop="2dp"
+                    android:background="@color/white">
 
-        </RelativeLayout>
-    </LinearLayout>
+                    <com.zdy.study.fcWidgets.FCTextview
+                        android:layout_width="33dp"
+                        android:layout_height="16dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="15dp"
+                        android:focusableInTouchMode="true"
+                        android:gravity="right"
+                        android:text="更多 >"
+                        android:textColor="#FF4C4E5A"
+                        android:textSize="11sp" />
+                </RelativeLayout>
+                <!--红色图标左侧-->
+                <RelativeLayout
+                    android:id="@+id/rl_red5"
+                    android:layout_width="match_parent"
+                    android:layout_height="33dp">
+
+                    <TextView
+                        android:layout_width="68dp"
+                        android:layout_height="33dp"
+                        android:layout_marginLeft="9dp"
+                        android:background="@mipmap/ic_course_example" />
+
+                    <TextView
+                        android:layout_width="50dp"
+                        android:layout_height="15dp"
+                        android:layout_marginLeft="19dp"
+                        android:layout_marginTop="3dp"
+                        android:gravity="center"
+                        android:text="国际视野"
+                        android:textColor="@color/app_white"
+                        android:textSize="11sp" />
+                </RelativeLayout>
+                <!--联播-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_below="@+id/rl_red5"
+                    android:background="@color/white"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="14dp"
+                        android:layout_weight="1">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <View
+                                android:visibility="gone"
+                                android:id="@+id/view_circle"
+                                android:layout_width="3dp"
+                                android:layout_height="3dp"
+                                android:layout_marginLeft="12dp"
+                                android:layout_marginTop="13dp"
+                                android:background="@drawable/red2_cornner" />
+
+                            <TextView
+                                android:id="@+id/tv_international_perspective"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:layout_marginLeft="9dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_toRightOf="@+id/view_circle"
+                                android:ellipsize="end"
+                                android:maxLines="2" />
+
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="14dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <View
+                                android:visibility="gone"
+                                android:id="@+id/view_circle12"
+                                android:layout_width="3dp"
+                                android:layout_height="3dp"
+                                android:layout_marginLeft="12dp"
+                                android:layout_marginTop="13dp"
+                                android:background="@drawable/red2_cornner" />
+
+                            <TextView
+                                android:id="@+id/tv_international_perspective1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:layout_marginLeft="9dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_toRightOf="@+id/view_circle12"
+                                android:ellipsize="end"
+                                android:maxLines="2" />
+
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+            <!--推荐书单-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/dash_gray">
+                <!--更多-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="33dp"
+                    android:layout_marginTop="2dp"
+                    android:background="@color/white">
+
+                    <com.zdy.study.fcWidgets.FCTextview
+                        android:layout_width="33dp"
+                        android:layout_height="16dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="15dp"
+                        android:focusableInTouchMode="true"
+                        android:gravity="right"
+                        android:text="更多 >"
+                        android:textColor="#FF4C4E5A"
+                        android:textSize="11sp" />
+                </RelativeLayout>
+                <!--红色图标左侧-->
+                <RelativeLayout
+                    android:id="@+id/rl_red3"
+                    android:layout_width="match_parent"
+                    android:layout_height="33dp">
+
+                    <TextView
+                        android:layout_width="68dp"
+                        android:layout_height="33dp"
+                        android:layout_marginLeft="9dp"
+                        android:background="@mipmap/ic_course_example" />
+
+                    <TextView
+                        android:layout_width="50dp"
+                        android:layout_height="15dp"
+                        android:layout_marginLeft="19dp"
+                        android:layout_marginTop="3dp"
+                        android:gravity="center"
+                        android:text="推荐书单"
+                        android:textColor="@color/app_white"
+                        android:textSize="11sp" />
+                </RelativeLayout>
+                <!--热门讨论-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_below="@+id/rl_red3"
+                    android:orientation="horizontal">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_recommended_book_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white" />
+                </LinearLayout>
+
+            </RelativeLayout>
+            <!--热门讨论-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/dash_gray">
+                <!--更多-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="33dp"
+                    android:layout_marginTop="2dp"
+                    android:background="@color/white">
+
+                    <com.zdy.study.fcWidgets.FCTextview
+                        android:layout_width="33dp"
+                        android:layout_height="16dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="15dp"
+                        android:focusableInTouchMode="true"
+                        android:gravity="right"
+                        android:text="更多 >"
+                        android:textColor="#FF4C4E5A"
+                        android:textSize="11sp" />
+                </RelativeLayout>
+                <!--红色图标左侧-->
+                <RelativeLayout
+                    android:id="@+id/rl_red2"
+                    android:layout_width="match_parent"
+                    android:layout_height="33dp">
+
+                    <TextView
+                        android:layout_width="68dp"
+                        android:layout_height="33dp"
+                        android:layout_marginLeft="9dp"
+                        android:background="@mipmap/ic_course_example" />
+
+                    <TextView
+                        android:layout_width="50dp"
+                        android:layout_height="15dp"
+                        android:layout_marginLeft="19dp"
+                        android:layout_marginTop="3dp"
+                        android:gravity="center"
+                        android:text="热门讨论"
+                        android:textColor="@color/app_white"
+                        android:textSize="11sp" />
+                </RelativeLayout>
+                <!--热门讨论-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_below="@+id/rl_red2"
+                    android:orientation="horizontal">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_popular_discussions"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white" />
+                </LinearLayout>
+
+            </RelativeLayout>
+            <!--实践案例-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/dash_gray">
+                <!--更多-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="33dp"
+                    android:layout_marginTop="2dp"
+                    android:background="@color/white">
+
+                    <com.zdy.study.fcWidgets.FCTextview
+                        android:layout_width="33dp"
+                        android:layout_height="16dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="15dp"
+                        android:focusableInTouchMode="true"
+                        android:gravity="right"
+                        android:text="更多 >"
+                        android:textColor="#FF4C4E5A"
+                        android:textSize="11sp" />
+                </RelativeLayout>
+                <!--红色图标左侧-->
+                <RelativeLayout
+                    android:id="@+id/rl_red6"
+                    android:layout_width="match_parent"
+                    android:layout_height="33dp">
+
+                    <TextView
+                        android:layout_width="68dp"
+                        android:layout_height="33dp"
+                        android:layout_marginLeft="9dp"
+                        android:background="@mipmap/ic_course_example" />
+
+                    <TextView
+                        android:layout_width="50dp"
+                        android:layout_height="15dp"
+                        android:layout_marginLeft="19dp"
+                        android:layout_marginTop="3dp"
+                        android:gravity="center"
+                        android:text="实践案例"
+                        android:textColor="@color/app_white"
+                        android:textSize="11sp" />
+                </RelativeLayout>
+                <!--联播-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_below="@+id/rl_red6"
+                    android:background="@color/white"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="14dp"
+                        android:layout_weight="1">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <View
+                                android:visibility="gone"
+                                android:id="@+id/view_circle1"
+                                android:layout_width="3dp"
+                                android:layout_height="3dp"
+                                android:layout_marginLeft="12dp"
+                                android:layout_marginTop="13dp"
+                                android:background="@drawable/red2_cornner" />
+
+                            <TextView
+                                android:id="@+id/tv_practical_cases"
+                                android:layout_width="wrap_content"
+                                android:layout_height="20dp"
+                                android:layout_centerInParent="true"
+                                android:layout_marginLeft="9dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_toRightOf="@+id/view_circle1"
+                                android:ellipsize="end"
+                                android:maxLines="2" />
+
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="14dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <View
+                                android:id="@+id/view_circle3"
+                                android:layout_width="3dp"
+                                android:layout_height="3dp"
+                                android:layout_marginLeft="12dp"
+                                android:layout_marginTop="13dp"
+                                android:background="@drawable/red2_cornner" />
+
+                            <TextView
+                                android:text="asdjaksdjaslkdasdhjalskdjalksdjalksdjklasjdalksdjaklsjdhalksdjlaksdjaljaksdjaklsdj"
+                                android:id="@+id/tv_practical_cases2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:layout_marginLeft="9dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_toRightOf="@+id/view_circle3"
+                                android:ellipsize="end"
+                                android:maxLines="2" />
+
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+            <!--精选理论-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/dash_gray">
+                <!--更多-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="33dp"
+                    android:layout_marginTop="2dp"
+                    android:background="@color/white">
+
+                    <com.zdy.study.fcWidgets.FCTextview
+                        android:layout_width="33dp"
+                        android:layout_height="16dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="15dp"
+                        android:focusableInTouchMode="true"
+                        android:gravity="right"
+                        android:text="更多 >"
+                        android:textColor="#FF4C4E5A"
+                        android:textSize="11sp" />
+                </RelativeLayout>
+                <!--红色图标左侧-->
+                <RelativeLayout
+                    android:id="@+id/rl_red7"
+                    android:layout_width="match_parent"
+                    android:layout_height="33dp">
+
+                    <TextView
+                        android:layout_width="68dp"
+                        android:layout_height="33dp"
+                        android:layout_marginLeft="9dp"
+                        android:background="@mipmap/ic_course_example" />
+
+                    <TextView
+                        android:layout_width="50dp"
+                        android:layout_height="15dp"
+                        android:layout_marginLeft="19dp"
+                        android:layout_marginTop="3dp"
+                        android:gravity="center"
+                        android:text="精选理论"
+                        android:textColor="@color/app_white"
+                        android:textSize="11sp" />
+                </RelativeLayout>
+                <!--联播-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_below="@+id/rl_red7"
+                    android:background="@color/white"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="14dp"
+                        android:layout_weight="1">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <View
+                                android:visibility="gone"
+                                android:id="@+id/view_circle7"
+                                android:layout_width="3dp"
+                                android:layout_height="3dp"
+                                android:layout_marginLeft="12dp"
+                                android:layout_marginTop="13dp"
+                                android:background="@drawable/red2_cornner" />
+
+                            <TextView
+                                android:id="@+id/tv_selected_theory"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:layout_marginLeft="9dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_toRightOf="@+id/view_circle7"
+                                android:ellipsize="end"
+                                android:maxLines="2" />
+
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="14dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <View
+                                android:visibility="gone"
+                                android:id="@+id/view_circle8"
+                                android:layout_width="3dp"
+                                android:layout_height="3dp"
+                                android:layout_marginLeft="12dp"
+                                android:layout_marginTop="13dp"
+                                android:background="@drawable/red2_cornner" />
+
+                            <TextView
+                                android:id="@+id/tv_selected_theory2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:layout_marginLeft="9dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_toRightOf="@+id/view_circle8"
+                                android:ellipsize="end"
+                                android:maxLines="2" />
+
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+            <!--操作技巧-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="30dp"
+                android:background="@color/dash_gray">
+                <!--更多-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="33dp"
+                    android:layout_marginTop="2dp"
+                    android:background="@color/white">
+
+                    <com.zdy.study.fcWidgets.FCTextview
+                        android:layout_width="33dp"
+                        android:layout_height="16dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="15dp"
+                        android:focusableInTouchMode="true"
+                        android:gravity="right"
+                        android:text="更多 >"
+                        android:textColor="#FF4C4E5A"
+                        android:textSize="11sp" />
+                </RelativeLayout>
+                <!--红色图标左侧-->
+                <RelativeLayout
+                    android:id="@+id/rl_red11"
+                    android:layout_width="match_parent"
+                    android:layout_height="33dp">
+
+                    <TextView
+                        android:layout_width="68dp"
+                        android:layout_height="33dp"
+                        android:layout_marginLeft="9dp"
+                        android:background="@mipmap/ic_course_example" />
+
+                    <TextView
+                        android:layout_width="50dp"
+                        android:layout_height="15dp"
+                        android:layout_marginLeft="19dp"
+                        android:layout_marginTop="3dp"
+                        android:gravity="center"
+                        android:text="操作技巧"
+                        android:textColor="@color/app_white"
+                        android:textSize="11sp" />
+                </RelativeLayout>
+                <!--联播-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_below="@+id/rl_red11"
+                    android:background="@color/white"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="14dp"
+                        android:layout_weight="1">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <View
+                                android:visibility="gone"
+                                android:id="@+id/view_circle9"
+                                android:layout_width="3dp"
+                                android:layout_height="3dp"
+                                android:layout_marginLeft="12dp"
+                                android:layout_marginTop="13dp"
+                                android:background="@drawable/red2_cornner" />
+
+                            <TextView
+                                android:id="@+id/tv_operating_skills"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:layout_marginLeft="9dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_toRightOf="@+id/view_circle9"
+                                android:ellipsize="end"
+                                android:maxLines="2" />
+
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="14dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <View
+                                android:id="@+id/view_circle10"
+                                android:layout_width="3dp"
+                                android:layout_height="3dp"
+                                android:layout_marginLeft="12dp"
+                                android:layout_marginTop="13dp"
+                                android:background="@drawable/red2_cornner" />
+
+                            <TextView
+                                android:id="@+id/tv_operating_skills1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="20dp"
+                                android:layout_centerInParent="true"
+                                android:layout_marginLeft="9dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_toRightOf="@+id/view_circle10"
+                                android:ellipsize="end"
+                                android:maxLines="2" />
+
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
 </layout>

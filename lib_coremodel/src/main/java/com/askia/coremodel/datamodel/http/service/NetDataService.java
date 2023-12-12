@@ -3,6 +3,7 @@ package com.askia.coremodel.datamodel.http.service;
 
 import com.askia.coremodel.datamodel.http.entities.consume.AddressBookResponseBean;
 import com.askia.coremodel.datamodel.http.entities.consume.BaseResponseData;
+import com.askia.coremodel.datamodel.http.entities.consume.BooksRespponseBean;
 import com.askia.coremodel.datamodel.http.entities.consume.BroadcastExpressResponBean;
 import com.askia.coremodel.datamodel.http.entities.consume.CBaseResponseData;
 import com.askia.coremodel.datamodel.http.entities.consume.CaptchaResultBean;
@@ -13,6 +14,11 @@ import com.askia.coremodel.datamodel.http.entities.consume.EBookListBean;
 import com.askia.coremodel.datamodel.http.entities.consume.HttpConsumeConfigBean;
 
 import com.askia.coremodel.datamodel.http.entities.consume.HttpLoginResult;
+import com.askia.coremodel.datamodel.http.entities.consume.MainFragmentResponseBean;
+import com.askia.coremodel.datamodel.http.entities.consume.MainFragmentResponseFiveBean;
+import com.askia.coremodel.datamodel.http.entities.consume.MainFragmentResponseFourBean;
+import com.askia.coremodel.datamodel.http.entities.consume.MainFragmentResponseThirdBean;
+import com.askia.coremodel.datamodel.http.entities.consume.MainFragmentResponseTwoBean;
 import com.askia.coremodel.datamodel.http.entities.consume.StudyDictionaryBean;
 import com.askia.coremodel.datamodel.http.entities.consume.StuyManualListBean;
 import com.askia.coremodel.datamodel.http.entities.consume.StuyMaterialsListBean;
@@ -84,6 +90,27 @@ public interface NetDataService {
     // 联播速递列表
     @GET("/cdls-cms/ApisController/queryContListByAudit")
     Observable<BaseResponseData<BroadcastExpressResponBean>> queryContListByAudit( @Query("argPage") String argPage, @Query("argPageSize") String argPageSize,@Query("argStruCode") String argStruCode);
+
+    // 学习助手主页 联播接口1
+    @GET("/cdls-cms/ApisController/queryHotAndTopContListByAudit")
+    Observable<BaseResponseData<MainFragmentResponseBean>> queryHotAndTopContListByAudit(@Query("argPage") String argPage, @Query("argPageSize") String argPageSize, @Query("argStruCode") String argStruCode);
+
+    // 学习助手主页 联播接口2
+    @GET("/cdls-cms/ApisController/queryHotAndTopContListByAudit")
+    Observable<BaseResponseData<MainFragmentResponseTwoBean>> queryHotAndTopContListByAudit2(@Query("argPage") String argPage, @Query("argPageSize") String argPageSize, @Query("argStruCode") String argStruCode);
+
+    // 学习助手主页 实践案例
+    @GET("/cdls-cms/ApisController/queryHotAndTopContListByAudit")
+    Observable<BaseResponseData<MainFragmentResponseThirdBean>> queryHotAndTopContListByAudit3(@Query("argPage") String argPage, @Query("argPageSize") String argPageSize, @Query("argStruCode") String argStruCode);
+
+    @GET("/cdls-cms/ApisController/queryHotAndTopContListByAudit")
+    Observable<BaseResponseData<MainFragmentResponseFourBean>> queryHotAndTopContListByAudit4(@Query("argPage") String argPage, @Query("argPageSize") String argPageSize, @Query("argStruCode") String argStruCode);
+
+    @GET("/cdls-cms/ApisController/queryHotAndTopContListByAudit")
+    Observable<BaseResponseData<MainFragmentResponseFiveBean>> queryHotAndTopContListByAudit5(@Query("argPage") String argPage, @Query("argPageSize") String argPageSize, @Query("argStruCode") String argStruCode);
+
+    @GET("/cdls-cms/BookListController/padList")
+    Observable<BaseResponseData<BooksRespponseBean>> padList(@Query("argPage") String argPage, @Query("argPageSize") String argPageSize);
 
     // 通讯录列表
     @GET("/cdls-bds/App/queryStudentInfoListByClass")

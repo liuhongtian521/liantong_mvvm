@@ -22,6 +22,7 @@
     <color name="black">#ff000000</color>
     <color name="menu_blue">#0789db</color>
     <color name="dash_gray">#dddddd</color>
+    <color name="dash_red">#B90A0A</color>
 
     <!-- common -->
     <color name="app_color_blue">#00A8E1</color>

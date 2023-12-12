@@ -20,6 +20,7 @@ import com.askia.coremodel.datamodel.http.entities.TimeLisData;
 import com.askia.coremodel.datamodel.http.entities.WeekMealsData;
 import com.askia.coremodel.datamodel.http.entities.consume.AddressBookResponseBean;
 import com.askia.coremodel.datamodel.http.entities.consume.BaseResponseData;
+import com.askia.coremodel.datamodel.http.entities.consume.BooksRespponseBean;
 import com.askia.coremodel.datamodel.http.entities.consume.BroadcastExpressResponBean;
 import com.askia.coremodel.datamodel.http.entities.consume.CBaseResponseData;
 import com.askia.coremodel.datamodel.http.entities.consume.CaptchaResultBean;
@@ -44,6 +45,11 @@ import com.askia.coremodel.datamodel.http.entities.consume.HttpStudentGetFoodBea
 import com.askia.coremodel.datamodel.http.entities.consume.HttpSyncShoppingBean;
 import com.askia.coremodel.datamodel.http.entities.consume.HttpSysCodeBean;
 import com.askia.coremodel.datamodel.http.entities.consume.HttpWorkbenchStatisticsBean;
+import com.askia.coremodel.datamodel.http.entities.consume.MainFragmentResponseBean;
+import com.askia.coremodel.datamodel.http.entities.consume.MainFragmentResponseFiveBean;
+import com.askia.coremodel.datamodel.http.entities.consume.MainFragmentResponseFourBean;
+import com.askia.coremodel.datamodel.http.entities.consume.MainFragmentResponseThirdBean;
+import com.askia.coremodel.datamodel.http.entities.consume.MainFragmentResponseTwoBean;
 import com.askia.coremodel.datamodel.http.entities.consume.StudyDictionaryBean;
 import com.askia.coremodel.datamodel.http.entities.consume.StuyManualListBean;
 import com.askia.coremodel.datamodel.http.entities.consume.StuyMaterialsListBean;
@@ -156,6 +162,86 @@ public class NetDataRepository {
             responseObserv = new ResponseObserv();
         responseObserv.responseObserv(responseData, mLoginLiveData, mDisposable);
     }
+
+    //学习助手页面 联播接口
+    public void queryHotAndTopContListByAudit(String argPage,
+                                              String argPageSize, String argStruCode,
+                                              MutableLiveData<BaseResponseData<MainFragmentResponseBean>> mLoginLiveData,
+                                              CompositeDisposable mDisposable) {
+        Observable<BaseResponseData<MainFragmentResponseBean>> responseData = ApiClient.getNetDataService()
+                .queryHotAndTopContListByAudit(argPage,
+                        argPageSize, argStruCode);
+        if (responseObserv == null)
+            responseObserv = new ResponseObserv();
+        responseObserv.responseObserv(responseData, mLoginLiveData, mDisposable);
+    }
+
+    //学习助手页面 国际视野
+    public void queryHotAndTopContListByAudit2(String argPage,
+                                               String argPageSize, String argStruCode,
+                                               MutableLiveData<BaseResponseData<MainFragmentResponseTwoBean>> mLoginLiveData,
+                                               CompositeDisposable mDisposable) {
+        Observable<BaseResponseData<MainFragmentResponseTwoBean>> responseData = ApiClient.getNetDataService()
+                .queryHotAndTopContListByAudit2(argPage,
+                        argPageSize, argStruCode);
+        if (responseObserv == null)
+            responseObserv = new ResponseObserv();
+        responseObserv.responseObserv(responseData, mLoginLiveData, mDisposable);
+    }
+
+    //学习助手页面 实践案例
+    public void queryHotAndTopContListByAudit3(String argPage,
+                                               String argPageSize, String argStruCode,
+                                               MutableLiveData<BaseResponseData<MainFragmentResponseThirdBean>> mLoginLiveData,
+                                               CompositeDisposable mDisposable) {
+        Observable<BaseResponseData<MainFragmentResponseThirdBean>> responseData = ApiClient.getNetDataService()
+                .queryHotAndTopContListByAudit3(argPage,
+                        argPageSize, argStruCode);
+        if (responseObserv == null)
+            responseObserv = new ResponseObserv();
+        responseObserv.responseObserv(responseData, mLoginLiveData, mDisposable);
+    }
+
+    //学习助手页面 精选理论
+    public void queryHotAndTopContListByAudit4(String argPage,
+                                               String argPageSize, String argStruCode,
+                                               MutableLiveData<BaseResponseData<MainFragmentResponseFourBean>> mLoginLiveData,
+                                               CompositeDisposable mDisposable) {
+        Observable<BaseResponseData<MainFragmentResponseFourBean>> responseData = ApiClient.getNetDataService()
+                .queryHotAndTopContListByAudit4(argPage,
+                        argPageSize, argStruCode);
+        if (responseObserv == null)
+            responseObserv = new ResponseObserv();
+        responseObserv.responseObserv(responseData, mLoginLiveData, mDisposable);
+    }
+
+    //学习助手页面 操作技巧
+    public void queryHotAndTopContListByAudit5(String argPage,
+                                               String argPageSize, String argStruCode,
+                                               MutableLiveData<BaseResponseData<MainFragmentResponseFiveBean>> mLoginLiveData,
+                                               CompositeDisposable mDisposable) {
+        Observable<BaseResponseData<MainFragmentResponseFiveBean>> responseData = ApiClient.getNetDataService()
+                .queryHotAndTopContListByAudit5(argPage,
+                        argPageSize, argStruCode);
+        if (responseObserv == null)
+            responseObserv = new ResponseObserv();
+        responseObserv.responseObserv(responseData, mLoginLiveData, mDisposable);
+    }
+
+    //书单
+    public void padList(String argPage,
+                        String argPageSize,
+                        MutableLiveData<BaseResponseData<BooksRespponseBean>> mLoginLiveData,
+                        CompositeDisposable mDisposable) {
+        Observable<BaseResponseData<BooksRespponseBean>> responseData = ApiClient.getNetDataService()
+                .padList(argPage,
+                        argPageSize);
+        if (responseObserv == null)
+            responseObserv = new ResponseObserv();
+        responseObserv.responseObserv(responseData, mLoginLiveData, mDisposable);
+    }
+
+
     //联播速列表
 
     public void queryContListByAudit(String argPage,
