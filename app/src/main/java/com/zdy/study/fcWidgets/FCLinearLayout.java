@@ -56,4 +56,12 @@ public class FCLinearLayout extends LinearLayout {
     public void setScale(float i){
         this.i = i;
     }
+
+    public void setLitScale(){
+        this.i = 1.02f;
+    }
+
+    public void setBigScale(){
+        this.i = 1.25f;
+    }
 }

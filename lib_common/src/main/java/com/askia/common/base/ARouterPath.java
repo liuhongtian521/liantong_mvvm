@@ -28,6 +28,8 @@ public class ARouterPath {
 
     /*联播速递*/
     public static final String BroadcastExpressActivity = "/activity/BroadcastExpressActivity";
+    /*在院服务*/
+    public static final String SHCOOLSERVICE_ACTIVIGY = "/activity/SchoolServiec";
     /*通讯录*/
     public static final String AddressBookActivity = "/activity/AddressBookActivity";
     /*通讯录*/
@@ -38,7 +40,10 @@ public class ARouterPath {
     public static final String WebBasedCourseDetailsActivity = "/activity/WebBasedCourseDetailsActivity";
     /*网络课程详情2*/
     public static final String WebBasedCourseDetailsTwoActivity = "/activity/WebBasedCourseDetailsTwoActivity";
-
     /*视频播放*/
     public static final String VideoActivity = "/activity/VideoActivity";
+    /*操作技巧*/
+    public static final String OpreationActivity = "/activity/OpreationActivity";
+    /*操作详情技巧*/
+    public static final String OpreationDetailActivity = "/activity/OpreationDetailActivity";
 }

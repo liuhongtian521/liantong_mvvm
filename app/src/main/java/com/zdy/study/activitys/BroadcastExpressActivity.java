@@ -27,6 +27,7 @@ import com.zdy.study.adapter.CourseQueryDetailsAdapter;
 import com.zdy.study.cdatamodel.viewmodel.BroadcastExpressViewModel;
 import com.zdy.study.cdatamodel.viewmodel.CourseQueryViewModel;
 import com.zdy.study.databinding.BroadcastExpressActivityBinding;
+import com.zdy.study.tools.Constants;
 import com.zdy.study.widgets.LoadMoreConstraintLayout;
 
 import java.util.ArrayList;
@@ -57,7 +58,7 @@ public class BroadcastExpressActivity extends BaseActivity {
 
     private void initList(){
         list = new ArrayList<>();
-        viewModel.queryContListByAudit(String.valueOf(page), pageSize, "E8\u200C81\u200C94E6\u200C92\u200CAD_parent");
+        viewModel.queryContListByAudit(String.valueOf(page), pageSize, Constants.LBSD);
         recyclerView = mDataBinding.rvBroadcastExpress;
         GridLayoutManager layoutManager = new GridLayoutManager(this, 2);//第二个参数为网格的列数
 //        LinearLayoutManager manager2 = new LinearLayoutManager(this);//数字为行数或列数
@@ -78,14 +79,14 @@ public class BroadcastExpressActivity extends BaseActivity {
             public void nextPage() {
                 page ++;
                 showNetDialog();
-                viewModel.queryContListByAudit(String.valueOf(page), pageSize, "E8\u200C81\u200C94E6\u200C92\u200CAD_parent");
+                viewModel.queryContListByAudit(String.valueOf(page), pageSize, Constants.LBSD);
             }
 
             @Override
             public void previousPage() {
                 page --;
                 showNetDialog();
-                viewModel.queryContListByAudit(String.valueOf(page), pageSize, "E8\u200C81\u200C94E6\u200C92\u200CAD_parent");
+                viewModel.queryContListByAudit(String.valueOf(page), pageSize, Constants.LBSD);
             }
         });
     }
@@ -108,7 +109,7 @@ public class BroadcastExpressActivity extends BaseActivity {
                 ToastUtils.showLong(listResult.getMessage().toString());
                 return;
             }
-            if (listResult.getResult().getPageData().size() == 0) {
+            /*if (listResult.getResult().getPageData().size() == 0) {
                 mDataBinding.lmView.showEmptyView(View.VISIBLE);
                 return;
             }else{
@@ -121,7 +122,8 @@ public class BroadcastExpressActivity extends BaseActivity {
             if (listResult.getResult().getPageData().size() < 10)
                 mDataBinding.lmView.setNextPageVisibility(View.GONE);
             else
-                mDataBinding.lmView.setNextPageVisibility(View.VISIBLE);
+                mDataBinding.lmView.setNextPageVisibility(View.VISIBLE);*/
+            mDataBinding.lmView.setList(listResult.getResult().getPageData(), page);
             list.clear();
             list.addAll(listResult.getResult().getPageData());
             adapter.notifyDataSetChanged();

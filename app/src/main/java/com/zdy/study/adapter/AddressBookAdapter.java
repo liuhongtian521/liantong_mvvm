@@ -32,7 +32,7 @@ public class AddressBookAdapter extends BaseQuickAdapter<AddressBookResponseBean
             Glide.with(mContext).load(item.getStudentImg()).into(imageView);
         }
         FCLinearLayout layout = helper.getView(R.id.fcll);
-        layout.setScale(1.02f);
+        layout.setLitScale();
 
     }
 }

@@ -32,6 +32,6 @@ public class CourseQueryDetailsAdapter extends BaseQuickAdapter<CourseDetailsRes
         helper.setText(R.id.tv_classes_room, item.getCurriculumAddress());
         helper.setText(R.id.tv_name, item.getTeacherName());
         FCLinearLayout layout = helper.getView(R.id.fcll);
-        layout.setScale(1.02f);
+        layout.setLitScale();
     }
 }

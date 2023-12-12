@@ -1,4 +1,4 @@
-package com.zdy.study.fcWidgets;
+package com.zdy.study.newrl;
 
 import androidx.leanback.widget.VerticalGridView;
 import android.content.Context;

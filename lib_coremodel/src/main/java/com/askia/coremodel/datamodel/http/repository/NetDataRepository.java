@@ -45,6 +45,8 @@ import com.askia.coremodel.datamodel.http.entities.consume.HttpStudentGetFoodBea
 import com.askia.coremodel.datamodel.http.entities.consume.HttpSyncShoppingBean;
 import com.askia.coremodel.datamodel.http.entities.consume.HttpSysCodeBean;
 import com.askia.coremodel.datamodel.http.entities.consume.HttpWorkbenchStatisticsBean;
+import com.askia.coremodel.datamodel.http.entities.consume.OperationDetailBean;
+import com.askia.coremodel.datamodel.http.entities.consume.SchoolServiceBean;
 import com.askia.coremodel.datamodel.http.entities.consume.MainFragmentResponseBean;
 import com.askia.coremodel.datamodel.http.entities.consume.MainFragmentResponseFiveBean;
 import com.askia.coremodel.datamodel.http.entities.consume.MainFragmentResponseFourBean;
@@ -152,6 +154,17 @@ public class NetDataRepository {
         responseObserv.responseObserv(responseData, mLoginLiveData, mDisposable);
     }
 
+    //获取在院服务
+    public void queryHospitalService(String argPage, String argPageSize,
+                                          MutableLiveData<BaseResponseData<SchoolServiceBean>> mLoginLiveData,
+                                          CompositeDisposable mDisposable) {
+        Observable<BaseResponseData<SchoolServiceBean>> responseData = ApiClient.getNetDataService()
+                .queryHospitalService(argPage, argPageSize, argPage, argPageSize);
+        if (responseObserv == null)
+            responseObserv = new ResponseObserv();
+        responseObserv.responseObserv(responseData, mLoginLiveData, mDisposable);
+    }
+
     //讨论室列表
     public void pageListPad(String argPage, String argPageSize,
                             MutableLiveData<BaseResponseData<DiscussRoomListBean>> mLoginLiveData,
@@ -244,6 +257,7 @@ public class NetDataRepository {
 
     //联播速列表
 
+    //联播速列表 、操作技巧
     public void queryContListByAudit(String argPage,
                                      String argPageSize, String argStruCode,
                                      MutableLiveData<BaseResponseData<BroadcastExpressResponBean>> mLoginLiveData,
@@ -306,13 +320,14 @@ public class NetDataRepository {
         responseObserv.responseObserv(responseData, mLoginLiveData, mDisposable);
     }
 
-
-    //修改密码
-    public static Observable<CBaseResponseData> changePassword(RequestBody body) {
-        Observable<CBaseResponseData> responseData = ApiClient.getNetDataService()
-                .changePassword(body);
-        return responseData;
+    //操作技巧详情
+    public void queryCont(String argContId,
+                              MutableLiveData<BaseResponseData<OperationDetailBean>> mLoginLiveData,
+                              CompositeDisposable mDisposable) {
+        Observable<BaseResponseData<OperationDetailBean>> responseData = ApiClient.getNetDataService()
+                .queryCont(argContId);
+        if (responseObserv == null)
+            responseObserv = new ResponseObserv();
+        responseObserv.responseObserv(responseData, mLoginLiveData, mDisposable);
     }
-
-
 }

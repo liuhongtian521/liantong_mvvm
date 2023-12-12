@@ -11,8 +11,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.askia.coremodel.datamodel.http.entities.consume.BroadcastExpressResponBean;
 import com.zdy.study.R;
 import com.zdy.study.fcWidgets.FCButton;
+
+import java.util.List;
 
 public class LoadMoreConstraintLayout extends ConstraintLayout {
 
@@ -71,6 +74,23 @@ public class LoadMoreConstraintLayout extends ConstraintLayout {
             ivEmpty.setVisibility(visibility);
             tvEmpty.setVisibility(visibility);
         }
+    }
+
+    public void setList(List<?> list, int page){
+        if (list.size() == 0) {
+            showEmptyView(View.VISIBLE);
+            return;
+        }else{
+            showEmptyView(View.GONE);
+        }
+        if (page == 1)
+            setPreviousPageVisibility(View.GONE);
+        else
+            setPreviousPageVisibility(View.VISIBLE);
+        if (list.size() < 10)
+            setNextPageVisibility(View.GONE);
+        else
+            setNextPageVisibility(View.VISIBLE);
     }
 
     public interface LoadLitetsner{

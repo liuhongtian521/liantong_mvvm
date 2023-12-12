@@ -65,9 +65,13 @@ public class DigitalClassesFragment extends BaseFragment {
                     break;
                 case 4:
                     url = ARouterPath.BroadcastExpressActivity;
+//                    url = ARouterPath.OpreationActivity;
                     break;
                 case 5:
                     url = ARouterPath.WebBasedCourseActivity;
+                    break;
+                case 6:
+                    url = ARouterPath.SHCOOLSERVICE_ACTIVIGY;
                     break;
                 case 7:
                     url = ARouterPath.AddressBookActivity;

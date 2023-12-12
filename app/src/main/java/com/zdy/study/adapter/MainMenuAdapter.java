@@ -26,7 +26,7 @@ public class MainMenuAdapter extends BaseQuickAdapter<String, BaseViewHolder>  {
     protected void convert(BaseViewHolder baseViewHolder, String item) {
         baseViewHolder.setText(R.id.tv_menu, item);
         FCLinearLayout layout = baseViewHolder.getView(R.id.fcll);
-        layout.setScale(1.25f);
+        layout.setBigScale();
         int position = baseViewHolder.getAdapterPosition();
         switch (position){
             case 0:

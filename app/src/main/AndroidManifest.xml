@@ -94,6 +94,10 @@
             android:windowSoftInputMode="stateHidden" />
 
         <activity
+            android:name=".activitys.SchoolServiceActivity"
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
             android:name=".activitys.PdfViewActivity"
             android:launchMode="singleTask"
             android:windowSoftInputMode="stateHidden" />
@@ -124,6 +128,14 @@
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".activitys.WebBasedCourseDetailsTwoActivity"
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".activitys.OperationListActivity"
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".activitys.OperationDetailActivity"
             android:launchMode="singleTask"
             android:windowSoftInputMode="stateHidden" />
         <meta-data
