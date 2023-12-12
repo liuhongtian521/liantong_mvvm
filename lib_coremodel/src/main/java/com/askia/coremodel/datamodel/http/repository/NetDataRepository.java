@@ -189,58 +189,6 @@ public class NetDataRepository {
         responseObserv.responseObserv(responseData, mLoginLiveData, mDisposable);
     }
 
-    //学习助手页面 国际视野
-    public void queryHotAndTopContListByAudit2(String argPage,
-                                               String argPageSize, String argStruCode,
-                                               MutableLiveData<BaseResponseData<MainFragmentResponseTwoBean>> mLoginLiveData,
-                                               CompositeDisposable mDisposable) {
-        Observable<BaseResponseData<MainFragmentResponseTwoBean>> responseData = ApiClient.getNetDataService()
-                .queryHotAndTopContListByAudit2(argPage,
-                        argPageSize, argStruCode);
-        if (responseObserv == null)
-            responseObserv = new ResponseObserv();
-        responseObserv.responseObserv(responseData, mLoginLiveData, mDisposable);
-    }
-
-    //学习助手页面 实践案例
-    public void queryHotAndTopContListByAudit3(String argPage,
-                                               String argPageSize, String argStruCode,
-                                               MutableLiveData<BaseResponseData<MainFragmentResponseThirdBean>> mLoginLiveData,
-                                               CompositeDisposable mDisposable) {
-        Observable<BaseResponseData<MainFragmentResponseThirdBean>> responseData = ApiClient.getNetDataService()
-                .queryHotAndTopContListByAudit3(argPage,
-                        argPageSize, argStruCode);
-        if (responseObserv == null)
-            responseObserv = new ResponseObserv();
-        responseObserv.responseObserv(responseData, mLoginLiveData, mDisposable);
-    }
-
-    //学习助手页面 精选理论
-    public void queryHotAndTopContListByAudit4(String argPage,
-                                               String argPageSize, String argStruCode,
-                                               MutableLiveData<BaseResponseData<MainFragmentResponseFourBean>> mLoginLiveData,
-                                               CompositeDisposable mDisposable) {
-        Observable<BaseResponseData<MainFragmentResponseFourBean>> responseData = ApiClient.getNetDataService()
-                .queryHotAndTopContListByAudit4(argPage,
-                        argPageSize, argStruCode);
-        if (responseObserv == null)
-            responseObserv = new ResponseObserv();
-        responseObserv.responseObserv(responseData, mLoginLiveData, mDisposable);
-    }
-
-    //学习助手页面 操作技巧
-    public void queryHotAndTopContListByAudit5(String argPage,
-                                               String argPageSize, String argStruCode,
-                                               MutableLiveData<BaseResponseData<MainFragmentResponseFiveBean>> mLoginLiveData,
-                                               CompositeDisposable mDisposable) {
-        Observable<BaseResponseData<MainFragmentResponseFiveBean>> responseData = ApiClient.getNetDataService()
-                .queryHotAndTopContListByAudit5(argPage,
-                        argPageSize, argStruCode);
-        if (responseObserv == null)
-            responseObserv = new ResponseObserv();
-        responseObserv.responseObserv(responseData, mLoginLiveData, mDisposable);
-    }
-
     //书单
     public void padList(String argPage,
                         String argPageSize,

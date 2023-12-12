@@ -25,28 +25,28 @@ public class MainFragmentViewModel extends BaseViewModel {
     }
 
     // //获取图片验证码(第2個)
-    private MutableLiveData<BaseResponseData<MainFragmentResponseTwoBean>> mPageListPadData2 = new MutableLiveData<>();
+    private MutableLiveData<BaseResponseData<MainFragmentResponseBean>> mPageListPadData2 = new MutableLiveData<>();
 
-    public MutableLiveData<BaseResponseData<MainFragmentResponseTwoBean>> getPageListPadData2() {
+    public MutableLiveData<BaseResponseData<MainFragmentResponseBean>> getPageListPadData2() {
         return mPageListPadData2;
     }  //获取图片验证码(第3個)
 
-    private MutableLiveData<BaseResponseData<MainFragmentResponseThirdBean>> mPageListPadData3 = new MutableLiveData<>();
+    private MutableLiveData<BaseResponseData<MainFragmentResponseBean>> mPageListPadData3 = new MutableLiveData<>();
 
-    public MutableLiveData<BaseResponseData<MainFragmentResponseThirdBean>> getPageListPadData3() {
+    public MutableLiveData<BaseResponseData<MainFragmentResponseBean>> getPageListPadData3() {
         return mPageListPadData3;
     }
     //获取图片验证码(第4個)
 
-    private MutableLiveData<BaseResponseData<MainFragmentResponseFourBean>> mPageListPadData4 = new MutableLiveData<>();
+    private MutableLiveData<BaseResponseData<MainFragmentResponseBean>> mPageListPadData4 = new MutableLiveData<>();
 
-    public MutableLiveData<BaseResponseData<MainFragmentResponseFourBean>> getPageListPadData4() {
+    public MutableLiveData<BaseResponseData<MainFragmentResponseBean>> getPageListPadData4() {
         return mPageListPadData4;
     }
 
-    private MutableLiveData<BaseResponseData<MainFragmentResponseFiveBean>> mPageListPadData5 = new MutableLiveData<>();
+    private MutableLiveData<BaseResponseData<MainFragmentResponseBean>> mPageListPadData5 = new MutableLiveData<>();
 
-    public MutableLiveData<BaseResponseData<MainFragmentResponseFiveBean>> getPageListPadData5() {
+    public MutableLiveData<BaseResponseData<MainFragmentResponseBean>> getPageListPadData5() {
         return mPageListPadData5;
     }
 
@@ -68,28 +68,28 @@ public class MainFragmentViewModel extends BaseViewModel {
 
         if (netDataRepository == null)
             netDataRepository = new NetDataRepository();
-        netDataRepository.queryHotAndTopContListByAudit2(argPage, argPageSize, argStruCode, mPageListPadData2, mDisposable);
+        netDataRepository.queryHotAndTopContListByAudit(argPage, argPageSize, argStruCode, mPageListPadData2, mDisposable);
     }
 
     public void queryHotAndTopContListByAudit3(String argPage, String argPageSize, String argStruCode) {
 
         if (netDataRepository == null)
             netDataRepository = new NetDataRepository();
-        netDataRepository.queryHotAndTopContListByAudit3(argPage, argPageSize, argStruCode, mPageListPadData3, mDisposable);
+        netDataRepository.queryHotAndTopContListByAudit(argPage, argPageSize, argStruCode, mPageListPadData3, mDisposable);
     }
 /*精选理论*/
     public void queryHotAndTopContListByAudit4(String argPage, String argPageSize, String argStruCode) {
 
         if (netDataRepository == null)
             netDataRepository = new NetDataRepository();
-        netDataRepository.queryHotAndTopContListByAudit4(argPage, argPageSize, argStruCode, mPageListPadData4, mDisposable);
+        netDataRepository.queryHotAndTopContListByAudit(argPage, argPageSize, argStruCode, mPageListPadData4, mDisposable);
     }
 
     public void queryHotAndTopContListByAudit5(String argPage, String argPageSize, String argStruCode) {
 
         if (netDataRepository == null)
             netDataRepository = new NetDataRepository();
-        netDataRepository.queryHotAndTopContListByAudit5(argPage, argPageSize, argStruCode, mPageListPadData5, mDisposable);
+        netDataRepository.queryHotAndTopContListByAudit(argPage, argPageSize, argStruCode, mPageListPadData5, mDisposable);
     }
 
     public void padList(String argPage, String argPageSize) {

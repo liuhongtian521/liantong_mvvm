@@ -34,10 +34,6 @@ public class MainFragment extends BaseFragment {
     FragmentMainBinding mFragmentMainBinding;
     private MainFragmentViewModel mViewModel;
     private List<MainFragmentResponseBean.PageDataBean> list;
-    private List<MainFragmentResponseTwoBean.PageDataBean> list2;
-    private List<MainFragmentResponseThirdBean.PageDataBean> list3;
-    private List<MainFragmentResponseFourBean.PageDataBean> list4;
-    private List<MainFragmentResponseFiveBean.PageDataBean> list5;
     private List<BooksRespponseBean.PageDataBean> list6;
     private RecyclerView recyclerView;
     private BookAdapter adapter;
@@ -46,10 +42,6 @@ public class MainFragment extends BaseFragment {
     public void onInit() {
         //第一个接口
         list = new ArrayList<>();
-        list2 = new ArrayList<>();
-        list3 = new ArrayList<>();
-        list4 = new ArrayList<>();
-        list5 = new ArrayList<>();
         list6 = new ArrayList<>();
         //联播速递
         mViewModel.queryHotAndTopContListByAudit("1", "3", "E8\u200C81\u200C94E6\u200C92\u200CAD_parent");
@@ -118,15 +110,15 @@ public class MainFragment extends BaseFragment {
                 ToastUtils.showLong(listResult.getMessage().toString());
                 return;
             }
-            list2.clear();
+            list.clear();
             if (null != listResult.getResult() && null != listResult.getResult().getPageData() && listResult.getResult().getPageData().size() > 0) {
-                list2.addAll(listResult.getResult().getPageData());
-                if (list2.size() > 0) {
-                    mFragmentMainBinding.tvInternationalPerspective.setText(list2.get(0).getContName());
+                list.addAll(listResult.getResult().getPageData());
+                if (list.size() > 0) {
+                    mFragmentMainBinding.tvInternationalPerspective.setText(list.get(0).getContName());
                     mFragmentMainBinding.viewCircle.setVisibility(View.VISIBLE);
                 }
-                if (list2.size() > 1) {
-                    mFragmentMainBinding.tvInternationalPerspective1.setText(list2.get(1).getContName());
+                if (list.size() > 1) {
+                    mFragmentMainBinding.tvInternationalPerspective1.setText(list.get(1).getContName());
                     mFragmentMainBinding.viewCircle12.setVisibility(View.VISIBLE);
                 }
 
@@ -141,15 +133,15 @@ public class MainFragment extends BaseFragment {
                 ToastUtils.showLong(listResult.getMessage().toString());
                 return;
             }
-            list3.clear();
+            list.clear();
             if (null != listResult.getResult() && null != listResult.getResult().getPageData() && listResult.getResult().getPageData().size() > 0) {
-                list3.addAll(listResult.getResult().getPageData());
-                if (list3.size() > 0) {
-                    mFragmentMainBinding.tvPracticalCases.setText(list3.get(0).getContName());
+                list.addAll(listResult.getResult().getPageData());
+                if (list.size() > 0) {
+                    mFragmentMainBinding.tvPracticalCases.setText(list.get(0).getContName());
                     mFragmentMainBinding.viewCircle1.setVisibility(View.VISIBLE);
                 }
-                if (list3.size() > 1) {
-                    mFragmentMainBinding.tvPracticalCases2.setText(list3.get(1).getContName());
+                if (list.size() > 1) {
+                    mFragmentMainBinding.tvPracticalCases2.setText(list.get(1).getContName());
                     mFragmentMainBinding.viewCircle3.setVisibility(View.VISIBLE);
                 }
 
@@ -164,15 +156,15 @@ public class MainFragment extends BaseFragment {
                 ToastUtils.showLong(listResult.getMessage().toString());
                 return;
             }
-            list4.clear();
+            list.clear();
             if (null != listResult.getResult() && null != listResult.getResult().getPageData() && listResult.getResult().getPageData().size() > 0) {
-                list4.addAll(listResult.getResult().getPageData());
-                if (list4.size() > 0) {
-                    mFragmentMainBinding.tvSelectedTheory.setText(list4.get(0).getContName());
+                list.addAll(listResult.getResult().getPageData());
+                if (list.size() > 0) {
+                    mFragmentMainBinding.tvSelectedTheory.setText(list.get(0).getContName());
                     mFragmentMainBinding.viewCircle7.setVisibility(View.VISIBLE);
                 }
-                if (list4.size() > 1) {
-                    mFragmentMainBinding.tvSelectedTheory2.setText(list4.get(1).getContName());
+                if (list.size() > 1) {
+                    mFragmentMainBinding.tvSelectedTheory2.setText(list.get(1).getContName());
                     mFragmentMainBinding.viewCircle8.setVisibility(View.VISIBLE);
                 }
 
@@ -186,15 +178,15 @@ public class MainFragment extends BaseFragment {
                 ToastUtils.showLong(listResult.getMessage().toString());
                 return;
             }
-            list5.clear();
+            list.clear();
             if (null != listResult.getResult() && null != listResult.getResult().getPageData() && listResult.getResult().getPageData().size() > 0) {
-                list5.addAll(listResult.getResult().getPageData());
-                if (list4.size() > 0) {
-                    mFragmentMainBinding.tvOperatingSkills.setText(list5.get(0).getContName());
+                list.addAll(listResult.getResult().getPageData());
+                if (list.size() > 0) {
+                    mFragmentMainBinding.tvOperatingSkills.setText(list.get(0).getContName());
                     mFragmentMainBinding.viewCircle9.setVisibility(View.VISIBLE);
                 }
-                if (list4.size() > 1) {
-                    mFragmentMainBinding.tvOperatingSkills1.setText(list5.get(1).getContName());
+                if (list.size() > 1) {
+                    mFragmentMainBinding.tvOperatingSkills1.setText(list.get(1).getContName());
                     mFragmentMainBinding.viewCircle10.setVisibility(View.VISIBLE);
                 }
 

@@ -1,46 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.zdy.study.fcWidgets.FCLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/fcll"
-    android:orientation="horizontal"
-    android:layout_width="wrap_content"
-    android:layout_height="80dp"
+    android:layout_width="@dimen/dp_220"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/dp_12"
     android:background="@drawable/gray_round_corner_"
-    android:focusableInTouchMode="true">
+    android:focusableInTouchMode="true"
+    android:orientation="horizontal"
+    android:paddingBottom="@dimen/dp_12">
 
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_marginLeft="20dp"
-        android:layout_marginRight="52dp"
-     >
+        android:layout_marginRight="10dp"
+        android:layout_weight="1"
+
+        >
 
         <TextView
-            android:text="为计算程序拟定“算法”，写作的第一份“程序设计流程图”，被珍视为“第一位给计算机写程序的人”。为了纪念阿达·奥古斯塔对现代电脑与软件工程所产生的重大影响，美国国防部将耗费巨资、历时近20年研制成功的高级程序语言命名为Ada语言，它被公认为是第四代计算机语言的主要代表。"
             android:id="@+id/tv_head_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:ellipsize="end"
             android:gravity="center_vertical"
             android:maxLines="2"
+            android:text="为计算程序拟定“算法”，写作的第一份“程序设计流程图”，被珍视为“第一位给计算机写程序的人”。为了纪念阿达·奥古斯塔对现代电脑与软件工程所产生的重大影响，美国国防部将耗费巨资、历时近20年研制成功的高级程序语言命名为Ada语言，它被公认为是第四代计算机语言的主要代表。"
             android:textSize="13sp" />
 
         <TextView
             android:id="@+id/tv_author"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_head_name"
-            android:layout_marginLeft="10dp"
+            android:layout_alignParentBottom="true"
             android:layout_marginTop="8dp"
             android:gravity="center_vertical"
+            android:text="作者：123"
             android:textColor="#767882"
             android:textSize="10sp" />
     </RelativeLayout>
+
     <ImageView
         android:id="@+id/iv_book"
-        android:layout_marginTop="9dp"
-        android:layout_gravity="right"
         android:layout_width="42dp"
-        android:layout_height="62dp"/>
+        android:layout_height="62dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginRight="@dimen/dp_12" />
 </com.zdy.study.fcWidgets.FCLinearLayout>

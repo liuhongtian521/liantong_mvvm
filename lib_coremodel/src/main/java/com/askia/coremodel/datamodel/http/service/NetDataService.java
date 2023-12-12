@@ -106,20 +106,6 @@ public interface NetDataService {
     @GET("/cdls-cms/ApisController/queryHotAndTopContListByAudit")
     Observable<BaseResponseData<MainFragmentResponseBean>> queryHotAndTopContListByAudit(@Query("argPage") String argPage, @Query("argPageSize") String argPageSize, @Query("argStruCode") String argStruCode);
 
-    // 学习助手主页 联播接口2
-    @GET("/cdls-cms/ApisController/queryHotAndTopContListByAudit")
-    Observable<BaseResponseData<MainFragmentResponseTwoBean>> queryHotAndTopContListByAudit2(@Query("argPage") String argPage, @Query("argPageSize") String argPageSize, @Query("argStruCode") String argStruCode);
-
-    // 学习助手主页 实践案例
-    @GET("/cdls-cms/ApisController/queryHotAndTopContListByAudit")
-    Observable<BaseResponseData<MainFragmentResponseThirdBean>> queryHotAndTopContListByAudit3(@Query("argPage") String argPage, @Query("argPageSize") String argPageSize, @Query("argStruCode") String argStruCode);
-
-    @GET("/cdls-cms/ApisController/queryHotAndTopContListByAudit")
-    Observable<BaseResponseData<MainFragmentResponseFourBean>> queryHotAndTopContListByAudit4(@Query("argPage") String argPage, @Query("argPageSize") String argPageSize, @Query("argStruCode") String argStruCode);
-
-    @GET("/cdls-cms/ApisController/queryHotAndTopContListByAudit")
-    Observable<BaseResponseData<MainFragmentResponseFiveBean>> queryHotAndTopContListByAudit5(@Query("argPage") String argPage, @Query("argPageSize") String argPageSize, @Query("argStruCode") String argStruCode);
-
     @GET("/cdls-cms/BookListController/padList")
     Observable<BaseResponseData<BooksRespponseBean>> padList(@Query("argPage") String argPage, @Query("argPageSize") String argPageSize);
 
