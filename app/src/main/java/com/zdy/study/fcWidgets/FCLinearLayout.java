@@ -1,6 +1,7 @@
 package com.zdy.study.fcWidgets;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.widget.LinearLayout;
@@ -42,7 +43,7 @@ public class FCLinearLayout extends LinearLayout {
                         .scaleY(i==0? 1.10f: i)
                         .translationZ(1)
                         .start();
-
+//                view.setBackgroundColor(Color.LTGRAY);
             } else {
                 // 此处为失去焦点时的处理内容
                 ViewCompat.animate(view)
@@ -50,6 +51,7 @@ public class FCLinearLayout extends LinearLayout {
                         .scaleY(1)
                         .translationZ(1)
                         .start();
+//                view.setBackgroundColor(Color.TRANSPARENT);
             }
         });
     }

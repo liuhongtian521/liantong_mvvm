@@ -2,7 +2,9 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
-
+        <variable
+            name="handlers"
+            type="com.zdy.study.fragments.MainFragment" />
     </data>
 
     <ScrollView
@@ -781,6 +783,7 @@
                         android:layout_marginRight="15dp"
                         android:focusableInTouchMode="true"
                         android:gravity="right"
+                        android:onClick="@{handlers::operationMoreClick}"
                         android:text="更多 >"
                         android:textColor="#FF4C4E5A"
                         android:textSize="11sp" />

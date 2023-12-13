@@ -24,6 +24,7 @@ import com.askia.coremodel.datamodel.http.entities.consume.BooksRespponseBean;
 import com.askia.coremodel.datamodel.http.entities.consume.BroadcastExpressResponBean;
 import com.askia.coremodel.datamodel.http.entities.consume.CBaseResponseData;
 import com.askia.coremodel.datamodel.http.entities.consume.CaptchaResultBean;
+import com.askia.coremodel.datamodel.http.entities.consume.CommentsBean;
 import com.askia.coremodel.datamodel.http.entities.consume.CourseDetailsResponse;
 import com.askia.coremodel.datamodel.http.entities.consume.CourseQueryResponseBean;
 import com.askia.coremodel.datamodel.http.entities.consume.DiscussResponseBean;
@@ -286,6 +287,50 @@ public class NetDataRepository {
                               CompositeDisposable mDisposable) {
         Observable<BaseResponseData<OperationDetailBean>> responseData = ApiClient.getNetDataService()
                 .queryCont(argContId);
+        if (responseObserv == null)
+            responseObserv = new ResponseObserv();
+        responseObserv.responseObserv(responseData, mLoginLiveData, mDisposable);
+    }
+
+    //获取评论
+    public void queryCommentsList(String argContId, String argPage, String argPageSize,
+                          MutableLiveData<BaseResponseData<CommentsBean>> mLoginLiveData,
+                          CompositeDisposable mDisposable) {
+        Observable<BaseResponseData<CommentsBean>> responseData = ApiClient.getNetDataService()
+                .queryCommentsList(argContId, argPage, argPageSize);
+        if (responseObserv == null)
+            responseObserv = new ResponseObserv();
+        responseObserv.responseObserv(responseData, mLoginLiveData, mDisposable);
+    }
+
+    //添加评论
+    public void comments(String argContId, String argCommContent,
+                                  MutableLiveData<BaseResponseData> mLoginLiveData,
+                                  CompositeDisposable mDisposable) {
+        Observable<BaseResponseData> responseData = ApiClient.getNetDataService()
+                .comments(argContId, argCommContent);
+        if (responseObserv == null)
+            responseObserv = new ResponseObserv();
+        responseObserv.responseObserv(responseData, mLoginLiveData, mDisposable);
+    }
+
+    //点赞
+    public void praiseActive(String argContId,
+                         MutableLiveData<BaseResponseData> mLoginLiveData,
+                         CompositeDisposable mDisposable) {
+        Observable<BaseResponseData> responseData = ApiClient.getNetDataService()
+                .praiseActive(argContId);
+        if (responseObserv == null)
+            responseObserv = new ResponseObserv();
+        responseObserv.responseObserv(responseData, mLoginLiveData, mDisposable);
+    }
+
+    //收藏
+    public void addCollectionList(String argContId,
+                             MutableLiveData<BaseResponseData> mLoginLiveData,
+                             CompositeDisposable mDisposable) {
+        Observable<BaseResponseData> responseData = ApiClient.getNetDataService()
+                .addCollectionList(argContId);
         if (responseObserv == null)
             responseObserv = new ResponseObserv();
         responseObserv.responseObserv(responseData, mLoginLiveData, mDisposable);

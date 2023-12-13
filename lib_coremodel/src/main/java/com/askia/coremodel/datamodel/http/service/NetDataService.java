@@ -7,6 +7,7 @@ import com.askia.coremodel.datamodel.http.entities.consume.BooksRespponseBean;
 import com.askia.coremodel.datamodel.http.entities.consume.BroadcastExpressResponBean;
 import com.askia.coremodel.datamodel.http.entities.consume.CBaseResponseData;
 import com.askia.coremodel.datamodel.http.entities.consume.CaptchaResultBean;
+import com.askia.coremodel.datamodel.http.entities.consume.CommentsBean;
 import com.askia.coremodel.datamodel.http.entities.consume.CourseDetailsResponse;
 import com.askia.coremodel.datamodel.http.entities.consume.CourseQueryResponseBean;
 import com.askia.coremodel.datamodel.http.entities.consume.DiscussResponseBean;
@@ -139,5 +140,24 @@ public interface NetDataService {
     // 操作技巧详情
     @GET("/cdls-cms/ApisController/queryCont")
     Observable<BaseResponseData<OperationDetailBean>> queryCont(@Query("argContId") String argContId);
+
+    // 获取评论
+    @GET("/cdls-cms/CommentsController/queryCommentsList")
+    Observable<BaseResponseData<CommentsBean>> queryCommentsList(@Query("argContId") String argContId,
+                                                                 @Query("argPage") String argPage,
+                                                                 @Query("argPageSize") String argPageSize);
+
+    // 添加评论
+    @POST("/cdls-cms/CommentsController/comments")
+    Observable<BaseResponseData> comments(@Query("argContId") String argContId,
+                                                                 @Query("argCommContent") String argCommContent);
+
+    // 点赞
+    @GET("/cdls-cms/InteractiveController/praiseActive")
+    Observable<BaseResponseData> praiseActive(@Query("argContId") String argContId);
+
+    // 收藏
+    @POST("/cdls-cms/CollectionController/addCollectionList")
+    Observable<BaseResponseData> addCollectionList(@Query("argContId") String argContId);
 
 }

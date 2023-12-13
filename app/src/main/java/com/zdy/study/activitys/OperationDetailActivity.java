@@ -8,19 +8,27 @@ import android.webkit.WebSettings;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.askia.common.base.ARouterPath;
 import com.askia.common.base.BaseActivity;
+import com.askia.coremodel.datamodel.http.entities.consume.CommentsBean;
 import com.askia.coremodel.datamodel.http.entities.consume.OperationDetailBean;
 import com.blankj.utilcode.util.ToastUtils;
 import com.zdy.study.R;
+import com.zdy.study.adapter.CommentsAdapter;
 import com.zdy.study.cdatamodel.viewmodel.OperationDetailViewModel;
 import com.zdy.study.databinding.ActOperationDetailBinding;
 import com.zdy.study.tools.URLEncodeing;
+import com.zdy.study.widgets.FavoritesLikesLayout;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Route(path = ARouterPath.OpreationDetailActivity)
 public class OperationDetailActivity extends BaseActivity {
@@ -35,6 +43,28 @@ public class OperationDetailActivity extends BaseActivity {
         argContId = getIntent().getExtras().getString("argContId");
         showNetDialog();
         viewModel.queryContListByAudit(argContId);
+        viewModel.queryCommentsList(argContId, "1", "100");
+
+        binding.flOperation.setFavoritesLikesBack(new FavoritesLikesLayout.FavoritesLikesBack() {
+            @Override
+            public void sentComment(String comment) {
+                showNetDialog();
+                viewModel.comments(argContId, comment);
+            }
+
+            @Override
+            public void praiseActive() {
+                showNetDialog();
+                viewModel.praiseActive(argContId);
+            }
+            @Override
+            public void addCollectionList() {
+                showNetDialog();
+                viewModel.addCollectionList(argContId);
+            }
+        });
+
+
     }
 
     @Override
@@ -49,6 +79,7 @@ public class OperationDetailActivity extends BaseActivity {
 
     @Override
     public void onSubscribeViewModel() {
+        //详情
         viewModel.getPageListPadData().observe(this, listResult -> {
             dismissNetDialog();
             if(!listResult.isSuccess()){
@@ -56,6 +87,46 @@ public class OperationDetailActivity extends BaseActivity {
                 return;
             }
             setDetail(listResult.getResult());
+        });
+        //评论列表
+        viewModel.getmCommentsData().observe(this, listResult -> {
+            dismissNetDialog();
+            if(!listResult.isSuccess()){
+                ToastUtils.showLong(listResult.getMessage().toString());
+                return;
+            }
+            binding.flOperation.setCommentsList(listResult.getResult().getPageData());
+
+        });
+        //添加评论
+        viewModel.getmAddCommentsData().observe(this, listResult -> {
+            dismissNetDialog();
+            if(!listResult.isSuccess()){
+                ToastUtils.showLong(listResult.getMessage().toString());
+                return;
+            }
+            ToastUtils.showLong("评论成功");
+            binding.flOperation.emptyComment();//评论成功清空 评论内容
+            showNetDialog();
+            viewModel.queryCommentsList(argContId, "1", "100");
+        });
+        //点赞
+        viewModel.getmmPraiseActiveDataData().observe(this, listResult -> {
+            dismissNetDialog();
+            if(!listResult.isSuccess()){
+                ToastUtils.showLong(listResult.getMessage().toString());
+                return;
+            }
+            ToastUtils.showLong("点赞成功");
+        });
+        //收藏
+        viewModel.getmAddCollectionListDataData().observe(this, listResult -> {
+            dismissNetDialog();
+            if(!listResult.isSuccess()){
+                ToastUtils.showLong(listResult.getMessage().toString());
+                return;
+            }
+            ToastUtils.showLong("收藏成功");
         });
     }
 
@@ -66,7 +137,14 @@ public class OperationDetailActivity extends BaseActivity {
         binding.tvAuthor.setText(TextUtils.isEmpty(data.getLink())? "": "作者：" + data.getLink());
         setContent(data.getCont());
 
-
+        if("0".equals(data.getPraise()))
+            ToastUtils.showLong("未点赞");
+        else
+            ToastUtils.showLong("已点赞");
+        if("0".equals(data.getCollection()))
+            ToastUtils.showLong("未收藏");
+        else
+            ToastUtils.showLong("已收藏");
     }
 
     private void setContent(String dataCont){

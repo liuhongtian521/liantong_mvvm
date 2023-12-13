@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    
+    <com.zdy.study.fcWidgets.FCLinearLayout
+        android:id="@+id/ll_pinglun"
+        android:layout_width="@dimen/dp_80"
+        android:layout_height="@dimen/dp_26"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:focusableInTouchMode="true"
+        android:background="#F0F0F1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+        
+        <ImageView
+            android:layout_width="@dimen/dp_14"
+            android:layout_height="@dimen/dp_14"
+            android:src="@mipmap/ic_layout_pinglun"
+            android:layout_marginLeft="@dimen/dp_20"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_6"
+            android:textColor="#1E1E1E"
+            android:text="评论"
+            android:textSize="@dimen/sp_10"/>
+
+    </com.zdy.study.fcWidgets.FCLinearLayout>
+
+    <com.zdy.study.fcWidgets.FCLinearLayout
+        android:id="@+id/ll_dianzan"
+        android:layout_width="@dimen/dp_80"
+        android:layout_height="@dimen/dp_26"
+        android:focusableInTouchMode="true"
+        android:background="#F0F0F1"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/ll_pinglun">
+
+        <ImageView
+            android:layout_width="@dimen/dp_14"
+            android:layout_height="@dimen/dp_14"
+            android:src="@mipmap/ic_layout_dianzan"
+            android:layout_marginLeft="@dimen/dp_20"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_6"
+            android:textColor="#1E1E1E"
+            android:text="点赞"
+            android:textSize="@dimen/sp_10"/>
+
+    </com.zdy.study.fcWidgets.FCLinearLayout>
+
+    <com.zdy.study.fcWidgets.FCLinearLayout
+        android:id="@+id/ll_shoucang"
+        android:layout_width="@dimen/dp_80"
+        android:layout_height="@dimen/dp_26"
+        android:focusableInTouchMode="true"
+        android:background="#F0F0F1"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/ll_dianzan">
+
+        <ImageView
+            android:layout_width="@dimen/dp_14"
+            android:layout_height="@dimen/dp_14"
+            android:src="@mipmap/ic_layout_shouchang"
+            android:layout_marginLeft="@dimen/dp_20"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_6"
+            android:textColor="#1E1E1E"
+            android:text="收藏"
+            android:textSize="@dimen/sp_10"/>
+
+    </com.zdy.study.fcWidgets.FCLinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_pinglun_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:nestedScrollingEnabled="true"
+        android:layout_marginTop="@dimen/dp_12"
+        android:paddingTop="@dimen/dp_6"
+        android:paddingBottom="@dimen/dp_6"
+        android:background="#F0F0F1"
+        android:layout_marginBottom="@dimen/dp_45"
+        app:layout_constraintTop_toBottomOf="@+id/ll_pinglun"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+    <EditText
+        android:id="@+id/et_comment"
+        android:layout_width="@dimen/dp_0"
+        android:layout_height="@dimen/dp_40"
+        android:background="#F0F0F1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/fcb_sent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:visibility="gone"
+        android:padding="@dimen/dp_5"
+        android:maxLines="1"
+        android:inputType="text"
+        android:hint="评论"
+        android:textColorHint="@color/game1_under"
+        android:layout_marginRight="@dimen/dp_5"/>
+
+    <com.zdy.study.fcWidgets.FCButton
+        android:id="@+id/fcb_sent"
+        android:layout_width="@dimen/dp_100"
+        android:layout_height="@dimen/dp_40"
+        android:visibility="gone"
+        android:text="发送"
+        android:textColor="@color/white"
+        android:background="@drawable/shape_4_red"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

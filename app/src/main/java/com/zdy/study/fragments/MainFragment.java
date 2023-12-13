@@ -138,6 +138,7 @@ public class MainFragment extends BaseFragment {
     @Override
     public View onInitDataBinding(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {
         mFragmentMainBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_main, container, false);
+        mFragmentMainBinding.setHandlers(this);
         return mFragmentMainBinding.getRoot();
     }
 
@@ -285,5 +286,8 @@ public class MainFragment extends BaseFragment {
 
         });
 
+    }
+    public void operationMoreClick(View view) {
+        startActivityByRouter(ARouterPath.OpreationActivity);
     }
 }
