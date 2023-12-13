@@ -325,12 +325,34 @@ public class NetDataRepository {
         responseObserv.responseObserv(responseData, mLoginLiveData, mDisposable);
     }
 
-    //收藏
-    public void addCollectionList(String argContId,
+    //取消点赞
+    public void cancelPraiseActive(String argContId,
                              MutableLiveData<BaseResponseData> mLoginLiveData,
                              CompositeDisposable mDisposable) {
         Observable<BaseResponseData> responseData = ApiClient.getNetDataService()
-                .addCollectionList(argContId);
+                .cancelPraiseActive(argContId);
+        if (responseObserv == null)
+            responseObserv = new ResponseObserv();
+        responseObserv.responseObserv(responseData, mLoginLiveData, mDisposable);
+    }
+
+    //收藏
+    public void addCollectionList(RequestBody body,
+                             MutableLiveData<BaseResponseData> mLoginLiveData,
+                             CompositeDisposable mDisposable) {
+        Observable<BaseResponseData> responseData = ApiClient.getNetDataService()
+                .addCollectionList(body);
+        if (responseObserv == null)
+            responseObserv = new ResponseObserv();
+        responseObserv.responseObserv(responseData, mLoginLiveData, mDisposable);
+    }
+
+    //取消收藏
+    public void delCollectionList(RequestBody body,
+                                  MutableLiveData<BaseResponseData> mLoginLiveData,
+                                  CompositeDisposable mDisposable) {
+        Observable<BaseResponseData> responseData = ApiClient.getNetDataService()
+                .delCollectionList(body);
         if (responseObserv == null)
             responseObserv = new ResponseObserv();
         responseObserv.responseObserv(responseData, mLoginLiveData, mDisposable);

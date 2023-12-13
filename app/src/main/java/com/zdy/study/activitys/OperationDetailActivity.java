@@ -21,6 +21,7 @@ import com.zdy.study.R;
 import com.zdy.study.adapter.CommentsAdapter;
 import com.zdy.study.cdatamodel.viewmodel.OperationDetailViewModel;
 import com.zdy.study.databinding.ActOperationDetailBinding;
+import com.zdy.study.tools.Constants;
 import com.zdy.study.tools.URLEncodeing;
 import com.zdy.study.widgets.FavoritesLikesLayout;
 
@@ -43,28 +44,7 @@ public class OperationDetailActivity extends BaseActivity {
         argContId = getIntent().getExtras().getString("argContId");
         showNetDialog();
         viewModel.queryContListByAudit(argContId);
-        viewModel.queryCommentsList(argContId, "1", "100");
-
-        binding.flOperation.setFavoritesLikesBack(new FavoritesLikesLayout.FavoritesLikesBack() {
-            @Override
-            public void sentComment(String comment) {
-                showNetDialog();
-                viewModel.comments(argContId, comment);
-            }
-
-            @Override
-            public void praiseActive() {
-                showNetDialog();
-                viewModel.praiseActive(argContId);
-            }
-            @Override
-            public void addCollectionList() {
-                showNetDialog();
-                viewModel.addCollectionList(argContId);
-            }
-        });
-
-
+        binding.flOperation.getComments(argContId, Constants.CZJQ);//获取评论
     }
 
     @Override
@@ -88,46 +68,6 @@ public class OperationDetailActivity extends BaseActivity {
             }
             setDetail(listResult.getResult());
         });
-        //评论列表
-        viewModel.getmCommentsData().observe(this, listResult -> {
-            dismissNetDialog();
-            if(!listResult.isSuccess()){
-                ToastUtils.showLong(listResult.getMessage().toString());
-                return;
-            }
-            binding.flOperation.setCommentsList(listResult.getResult().getPageData());
-
-        });
-        //添加评论
-        viewModel.getmAddCommentsData().observe(this, listResult -> {
-            dismissNetDialog();
-            if(!listResult.isSuccess()){
-                ToastUtils.showLong(listResult.getMessage().toString());
-                return;
-            }
-            ToastUtils.showLong("评论成功");
-            binding.flOperation.emptyComment();//评论成功清空 评论内容
-            showNetDialog();
-            viewModel.queryCommentsList(argContId, "1", "100");
-        });
-        //点赞
-        viewModel.getmmPraiseActiveDataData().observe(this, listResult -> {
-            dismissNetDialog();
-            if(!listResult.isSuccess()){
-                ToastUtils.showLong(listResult.getMessage().toString());
-                return;
-            }
-            ToastUtils.showLong("点赞成功");
-        });
-        //收藏
-        viewModel.getmAddCollectionListDataData().observe(this, listResult -> {
-            dismissNetDialog();
-            if(!listResult.isSuccess()){
-                ToastUtils.showLong(listResult.getMessage().toString());
-                return;
-            }
-            ToastUtils.showLong("收藏成功");
-        });
     }
 
     private void setDetail(OperationDetailBean data){
@@ -137,14 +77,8 @@ public class OperationDetailActivity extends BaseActivity {
         binding.tvAuthor.setText(TextUtils.isEmpty(data.getLink())? "": "作者：" + data.getLink());
         setContent(data.getCont());
 
-        if("0".equals(data.getPraise()))
-            ToastUtils.showLong("未点赞");
-        else
-            ToastUtils.showLong("已点赞");
-        if("0".equals(data.getCollection()))
-            ToastUtils.showLong("未收藏");
-        else
-            ToastUtils.showLong("已收藏");
+        binding.flOperation.setPraiseActive("0".equals(data.getPraise())? false: true);
+        binding.flOperation.setAddcollection("0".equals(data.getCollection())? false: true);
     }
 
     private void setContent(String dataCont){

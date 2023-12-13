@@ -156,8 +156,16 @@ public interface NetDataService {
     @GET("/cdls-cms/InteractiveController/praiseActive")
     Observable<BaseResponseData> praiseActive(@Query("argContId") String argContId);
 
+    // 取消点赞
+    @GET("/cdls-cms/InteractiveController/cancelPraiseActive")
+    Observable<BaseResponseData> cancelPraiseActive(@Query("argContId") String argContId);
+
     // 收藏
     @POST("/cdls-cms/CollectionController/addCollectionList")
-    Observable<BaseResponseData> addCollectionList(@Query("argContId") String argContId);
+    Observable<BaseResponseData> addCollectionList(@Body RequestBody body);
+
+    // 取消收藏
+    @POST("/cdls-cms/CollectionController/delCollectionList")
+    Observable<BaseResponseData> delCollectionList(@Body RequestBody body);
 
 }
