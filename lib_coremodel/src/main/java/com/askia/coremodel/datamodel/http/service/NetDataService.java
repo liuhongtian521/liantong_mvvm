@@ -9,6 +9,7 @@ import com.askia.coremodel.datamodel.http.entities.consume.CBaseResponseData;
 import com.askia.coremodel.datamodel.http.entities.consume.CaptchaResultBean;
 import com.askia.coremodel.datamodel.http.entities.consume.CourseDetailsResponse;
 import com.askia.coremodel.datamodel.http.entities.consume.CourseQueryResponseBean;
+import com.askia.coremodel.datamodel.http.entities.consume.DiscussResponseBean;
 import com.askia.coremodel.datamodel.http.entities.consume.DiscussRoomListBean;
 import com.askia.coremodel.datamodel.http.entities.consume.EBookListBean;
 import com.askia.coremodel.datamodel.http.entities.consume.HttpConsumeConfigBean;
@@ -74,9 +75,9 @@ public interface NetDataService {
     @GET("/cdls-bds/App/queryLearningMaterials")
     Observable<BaseResponseData<StuyMaterialsListBean>> queryLearningMaterials(@Query("dictKey") String dictKey,
                                                                                @Query("current") String current,
-                                                                                  @Query("size") String size,
-                                                                                  @Query("argPage") String argPage,
-                                                                                  @Query("argPageSize") String argPageSize);
+                                                                               @Query("size") String size,
+                                                                               @Query("argPage") String argPage,
+                                                                               @Query("argPageSize") String argPageSize);
 
     // 学习手册
     @GET("/cdls-bds/App/queryStudentHandbook")
@@ -100,7 +101,7 @@ public interface NetDataService {
 
     // 联播速递列表 、操作技巧
     @GET("/cdls-cms/ApisController/queryContListByAudit")
-    Observable<BaseResponseData<BroadcastExpressResponBean>> queryContListByAudit( @Query("argPage") String argPage, @Query("argPageSize") String argPageSize,@Query("argStruCode") String argStruCode);
+    Observable<BaseResponseData<BroadcastExpressResponBean>> queryContListByAudit(@Query("argPage") String argPage, @Query("argPageSize") String argPageSize, @Query("argStruCode") String argStruCode);
 
     // 学习助手主页 联播接口1
     @GET("/cdls-cms/ApisController/queryHotAndTopContListByAudit")
@@ -117,6 +118,10 @@ public interface NetDataService {
     @GET("/cdls-bds/App/pageByApp")
     Observable<BaseResponseData<WebCourseResponseBean>> pageByApp(@Query("argPage") String argPage, @Query("argPageSize") String argPageSize);
 
+    // 网络课程
+    @GET("/cdls-cms/DiscussionRoomController/queryHotRooms")
+    Observable<BaseResponseData<List<DiscussResponseBean>>> queryHotRooms();
+
 
     //修改密码
    /* @Headers({"Content-Type: application/json"})
@@ -126,6 +131,7 @@ public interface NetDataService {
     // 课程查询
     @GET("/cdls-bds/App/queryCalendar")
     Observable<BaseResponseData<List<CourseQueryResponseBean.DataBean>>> queryCalendar(@Query("queryDate") String queryDate);
+
     // 课程详情查询
     @GET("/cdls-bds/CurriculumInfoController/queryCurriculumInfoList")
     Observable<BaseResponseData<CourseDetailsResponse>> queryCurriculumInfoList(@Query("classesId") String classesId, @Query("curriculumDate") String curriculumDate, @Query("size") String size, @Query("current") String current, @Query("argPage") String argPage, @Query("argPageSize") String argPageSize);

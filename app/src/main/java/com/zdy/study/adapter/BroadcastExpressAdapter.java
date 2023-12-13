@@ -19,6 +19,7 @@ public class BroadcastExpressAdapter extends BaseQuickAdapter<BroadcastExpressRe
     @Override
     protected void convert(BaseViewHolder helper, BroadcastExpressResponBean.PageDataBean item) {
        helper.setText(R.id.tv_content, item.getContName());
+       helper.setText(R.id.tv_date, item.getContVideo().getTimeLength());
        FCLinearLayout layout = helper.getView(R.id.fcll);
        layout.setLitScale();
 

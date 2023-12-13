@@ -39,6 +39,14 @@
             android:id="@+id/iv_right_video"
             android:layout_width="80dp"
             android:layout_height="80dp"/>
+
+        <ImageView
+            android:layout_centerInParent="true"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="25dp"
+            android:background="@mipmap/ic_video_play"
+            android:layout_alignParentRight="true" />
     </RelativeLayout>
 </LinearLayout>
     <View

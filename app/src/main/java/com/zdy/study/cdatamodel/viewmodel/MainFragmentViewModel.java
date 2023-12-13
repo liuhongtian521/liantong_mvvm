@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.askia.coremodel.datamodel.http.entities.consume.BaseResponseData;
 import com.askia.coremodel.datamodel.http.entities.consume.BooksRespponseBean;
+import com.askia.coremodel.datamodel.http.entities.consume.DiscussResponseBean;
 import com.askia.coremodel.datamodel.http.entities.consume.MainFragmentResponseBean;
 import com.askia.coremodel.datamodel.http.entities.consume.MainFragmentResponseFiveBean;
 import com.askia.coremodel.datamodel.http.entities.consume.MainFragmentResponseFourBean;
@@ -11,6 +12,8 @@ import com.askia.coremodel.datamodel.http.entities.consume.MainFragmentResponseT
 import com.askia.coremodel.datamodel.http.entities.consume.MainFragmentResponseTwoBean;
 import com.askia.coremodel.datamodel.http.repository.NetDataRepository;
 import com.askia.coremodel.viewmodel.BaseViewModel;
+
+import java.util.List;
 
 public class MainFragmentViewModel extends BaseViewModel {
 
@@ -56,6 +59,12 @@ public class MainFragmentViewModel extends BaseViewModel {
         return mPageListPadData6;
     }
 
+    private MutableLiveData<BaseResponseData<List<DiscussResponseBean>>> mPageListPadData7 = new MutableLiveData<>();
+
+    public MutableLiveData<BaseResponseData<List<DiscussResponseBean>>> getPageListPadData7() {
+        return mPageListPadData7;
+    }
+
     //登录
     public void queryHotAndTopContListByAudit(String argPage, String argPageSize, String argStruCode) {
 
@@ -98,4 +107,13 @@ public class MainFragmentViewModel extends BaseViewModel {
             netDataRepository = new NetDataRepository();
         netDataRepository.padList(argPage, argPageSize, mPageListPadData6, mDisposable);
     }
+
+    //操作技巧详情
+    public void queryHotRooms() {
+
+        if (netDataRepository == null)
+            netDataRepository = new NetDataRepository();
+        netDataRepository.queryHotRooms(mPageListPadData7, mDisposable);
+    }
+
 }

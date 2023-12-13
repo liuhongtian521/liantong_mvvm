@@ -104,20 +104,22 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:background="@color/white"
+                android:background="@color/dash_gray"
                 android:paddingBottom="14dp">
                 <!--更多-->
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
+                    android:layout_height="33dp"
+                    android:layout_marginTop="6dp"
                     android:background="@color/white">
 
                     <com.zdy.study.fcWidgets.FCTextview
+                        android:id="@+id/tv_simulcast_more"
                         android:layout_width="33dp"
                         android:layout_height="16dp"
                         android:layout_alignParentEnd="true"
                         android:layout_marginTop="10dp"
+                        android:layout_marginEnd="15dp"
                         android:layout_marginRight="15dp"
                         android:focusableInTouchMode="true"
                         android:gravity="right"
@@ -129,7 +131,7 @@
                 <RelativeLayout
                     android:id="@+id/rl_red"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="33dp"
                     android:layout_marginTop="5dp">
 
                     <TextView
@@ -152,6 +154,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
+                  android:layout_marginTop="1dp"
                     android:layout_below="@+id/rl_red"
                     android:orientation="horizontal">
 
@@ -258,6 +261,7 @@
                     android:background="@color/white">
 
                     <com.zdy.study.fcWidgets.FCTextview
+                        android:id="@+id/tv_international_perspective_more"
                         android:layout_width="33dp"
                         android:layout_height="16dp"
                         android:layout_alignParentEnd="true"
@@ -486,11 +490,12 @@
                 <!--热门讨论-->
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="wrap_content"
                     android:layout_below="@+id/rl_red2"
                     android:orientation="horizontal">
 
                     <androidx.recyclerview.widget.RecyclerView
+                        android:paddingBottom="15dp"
                         android:id="@+id/rv_popular_discussions"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

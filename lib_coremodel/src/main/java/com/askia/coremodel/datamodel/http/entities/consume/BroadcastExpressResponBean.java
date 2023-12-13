@@ -1,8 +1,9 @@
 package com.askia.coremodel.datamodel.http.entities.consume;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class BroadcastExpressResponBean {
+public class BroadcastExpressResponBean implements Serializable {
 
     /**
      * total : 537
@@ -78,7 +79,7 @@ public class BroadcastExpressResponBean {
         this.pageData = pageData;
     }
 
-    public static class PageDataBean {
+    public static class PageDataBean implements Serializable {
         /**
          * id : 1036931066046185472
          * contName : 《新闻联播》20221031
@@ -313,7 +314,7 @@ public class BroadcastExpressResponBean {
             this.audioListList = audioListList;
         }
 
-        public static class ContVideoBean {
+        public static class ContVideoBean implements Serializable {
             /**
              * contId :
              * taCmFlId :

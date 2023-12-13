@@ -26,6 +26,7 @@ import com.askia.coremodel.datamodel.http.entities.consume.CBaseResponseData;
 import com.askia.coremodel.datamodel.http.entities.consume.CaptchaResultBean;
 import com.askia.coremodel.datamodel.http.entities.consume.CourseDetailsResponse;
 import com.askia.coremodel.datamodel.http.entities.consume.CourseQueryResponseBean;
+import com.askia.coremodel.datamodel.http.entities.consume.DiscussResponseBean;
 import com.askia.coremodel.datamodel.http.entities.consume.DiscussRoomListBean;
 import com.askia.coremodel.datamodel.http.entities.consume.EBookListBean;
 import com.askia.coremodel.datamodel.http.entities.consume.HttpCheckTokenBean;
@@ -239,6 +240,17 @@ public class NetDataRepository {
         Observable<BaseResponseData<WebCourseResponseBean>> responseData = ApiClient.getNetDataService()
                 .pageByApp(argPage,
                         argPageSize);
+        if (responseObserv == null)
+            responseObserv = new ResponseObserv();
+        responseObserv.responseObserv(responseData, mLoginLiveData, mDisposable);
+    }
+
+    //学习助手（讨论）
+    public void queryHotRooms(
+                          MutableLiveData<BaseResponseData<List<DiscussResponseBean>>> mLoginLiveData,
+                          CompositeDisposable mDisposable) {
+        Observable<BaseResponseData<List<DiscussResponseBean>>> responseData = ApiClient.getNetDataService()
+                .queryHotRooms();
         if (responseObserv == null)
             responseObserv = new ResponseObserv();
         responseObserv.responseObserv(responseData, mLoginLiveData, mDisposable);

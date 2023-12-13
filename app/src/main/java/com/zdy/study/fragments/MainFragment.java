@@ -12,8 +12,11 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.askia.common.base.ARouterPath;
 import com.askia.common.base.BaseFragment;
 import com.askia.coremodel.datamodel.http.entities.consume.BooksRespponseBean;
+import com.askia.coremodel.datamodel.http.entities.consume.BroadcastExpressResponBean;
+import com.askia.coremodel.datamodel.http.entities.consume.DiscussResponseBean;
 import com.askia.coremodel.datamodel.http.entities.consume.MainFragmentResponseBean;
 import com.askia.coremodel.datamodel.http.entities.consume.MainFragmentResponseFiveBean;
 import com.askia.coremodel.datamodel.http.entities.consume.MainFragmentResponseFourBean;
@@ -23,10 +26,12 @@ import com.blankj.utilcode.util.ToastUtils;
 import com.zdy.study.R;
 import com.zdy.study.adapter.BookAdapter;
 import com.zdy.study.adapter.CourseQueryAdapter;
+import com.zdy.study.adapter.DiscussAdapter;
 import com.zdy.study.cdatamodel.viewmodel.DiscussRoomViewModel;
 import com.zdy.study.cdatamodel.viewmodel.MainFragmentViewModel;
 import com.zdy.study.databinding.FragmentMainBinding;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,14 +39,22 @@ public class MainFragment extends BaseFragment {
     FragmentMainBinding mFragmentMainBinding;
     private MainFragmentViewModel mViewModel;
     private List<MainFragmentResponseBean.PageDataBean> list;
+    private List<MainFragmentResponseBean.PageDataBean> list1;
+    private List<BroadcastExpressResponBean.PageDataBean> list3;
     private List<BooksRespponseBean.PageDataBean> list6;
+    private List<DiscussResponseBean> discussResponseBeanList;
     private RecyclerView recyclerView;
+    private RecyclerView discussionsRecyclerView;
     private BookAdapter adapter;
+    private DiscussAdapter discussAdapter;
 
     @Override
     public void onInit() {
         //第一个接口
         list = new ArrayList<>();
+        list1 = new ArrayList<>();
+        list3 = new ArrayList<>();
+        discussResponseBeanList = new ArrayList<>();
         list6 = new ArrayList<>();
         //联播速递
         mViewModel.queryHotAndTopContListByAudit("1", "3", "E8\u200C81\u200C94E6\u200C92\u200CAD_parent");
@@ -55,17 +68,58 @@ public class MainFragment extends BaseFragment {
         mViewModel.queryHotAndTopContListByAudit5("1", "2", "1384698467028410369");
         //书单
         mViewModel.padList("1", "10");
+        mViewModel.queryHotRooms();
         initRvListener();
+        initRvListener2();
+        initOnLister();
+
+    }
+
+    private void initOnLister() {
+        //联播点击更多
+        mFragmentMainBinding.tvSimulcastMore.setOnClickListener(v -> {
+            startActivityByRouter(ARouterPath.BroadcastExpressActivity);
+        });
+        //国际视野更多
+        mFragmentMainBinding.tvInternationalPerspectiveMore.setOnClickListener(v -> {
+            startActivityByRouter(ARouterPath.InternationalPerspectiveActivity);
+        });
+        mFragmentMainBinding.ivBroadcastSpeedName.setOnClickListener(v -> {
+            Bundle bundle = new Bundle();
+            bundle.putString("keyId", "0");
+            bundle.putSerializable("MainFragmentList", (Serializable) list3.get(0));
+            startActivityByRouter(ARouterPath.BroadcastExpressActivity, bundle);
+        });
+        mFragmentMainBinding.ivBroadcastSpeedNameRight.setOnClickListener(v -> {
+            Bundle bundle = new Bundle();
+            bundle.putString("keyId", "1");
+            bundle.putSerializable("MainFragmentList", (Serializable) list3.get(1));
+            startActivityByRouter(ARouterPath.BroadcastExpressActivity, bundle);
+        });
+        mFragmentMainBinding.ivBroadcastSpeedNameRight1.setOnClickListener(v -> {
+            Bundle bundle = new Bundle();
+            bundle.putString("keyId", "2");
+            bundle.putSerializable("MainFragmentList", (Serializable) list3.get(2));
+            startActivityByRouter(ARouterPath.BroadcastExpressActivity, bundle);
+        });
     }
 
     private void initRvListener() {
         recyclerView = mFragmentMainBinding.rvRecommendedBookList;
-        //上方recycleView
         LinearLayoutManager manager = new LinearLayoutManager(getActivity());//数字为行数或列数
         manager.setOrientation(LinearLayoutManager.HORIZONTAL);//设置为横向滑动
         adapter = new BookAdapter(list6, getActivity());
         recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(adapter);
+    }
+
+    private void initRvListener2() {
+        discussionsRecyclerView = mFragmentMainBinding.rvPopularDiscussions;
+        LinearLayoutManager manager = new LinearLayoutManager(getActivity());//数字为行数或列数
+        manager.setOrientation(LinearLayoutManager.HORIZONTAL);//设置为横向滑动
+        discussAdapter = new DiscussAdapter(discussResponseBeanList, getActivity());
+        discussionsRecyclerView.setLayoutManager(manager);
+        discussionsRecyclerView.setAdapter(discussAdapter);
     }
 
     @Override
@@ -94,12 +148,21 @@ public class MainFragment extends BaseFragment {
                 ToastUtils.showLong(listResult.getMessage().toString());
                 return;
             }
-            list.clear();
+            list1.clear();
             if (null != listResult.getResult() && null != listResult.getResult().getPageData() && listResult.getResult().getPageData().size() > 0) {
-                list.addAll(listResult.getResult().getPageData());
-                mFragmentMainBinding.ivBroadcastSpeedName.setText(list.get(0).getContName());
-                mFragmentMainBinding.ivBroadcastSpeedNameRight.setText(list.get(1).getContName());
-                mFragmentMainBinding.ivBroadcastSpeedNameRight1.setText(list.get(2).getContName());
+                list1.addAll(listResult.getResult().getPageData());
+                mFragmentMainBinding.ivBroadcastSpeedName.setText(list1.get(0).getContName());
+                mFragmentMainBinding.ivBroadcastSpeedNameRight.setText(list1.get(1).getContName());
+                mFragmentMainBinding.ivBroadcastSpeedNameRight1.setText(list1.get(2).getContName());
+            }
+            list3.clear();
+            for (MainFragmentResponseBean.PageDataBean pageDataBean : list1) {
+                BroadcastExpressResponBean.PageDataBean bean = new BroadcastExpressResponBean.PageDataBean();
+                BroadcastExpressResponBean.PageDataBean.ContVideoBean contVideoBean = new BroadcastExpressResponBean.PageDataBean.ContVideoBean();
+                bean.setContName(pageDataBean.getContName());
+                contVideoBean.setTimeLength(pageDataBean.getContVideo().getTimeLength());
+                bean.setContVideo(contVideoBean);
+                list3.add(bean);
             }
 
 
@@ -204,6 +267,19 @@ public class MainFragment extends BaseFragment {
             if (null != listResult.getResult() && null != listResult.getResult().getPageData() && listResult.getResult().getPageData().size() > 0) {
                 list6.addAll(listResult.getResult().getPageData());
                 adapter.notifyDataSetChanged();
+            }
+
+
+        });
+        mViewModel.getPageListPadData7().observe(this, listResult -> {
+            if (!listResult.isSuccess()) {
+                ToastUtils.showLong(listResult.getMessage().toString());
+                return;
+            }
+            discussResponseBeanList.clear();
+            if (null != listResult.getResult() && listResult.getResult().size() > 0) {
+                discussResponseBeanList.addAll(listResult.getResult());
+                discussAdapter.notifyDataSetChanged();
             }
 
 

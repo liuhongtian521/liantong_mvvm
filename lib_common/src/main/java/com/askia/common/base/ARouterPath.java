@@ -46,4 +46,8 @@ public class ARouterPath {
     public static final String OpreationActivity = "/activity/OpreationActivity";
     /*操作详情技巧*/
     public static final String OpreationDetailActivity = "/activity/OpreationDetailActivity";
+    /*国际视野*/
+    public static final String InternationalPerspectiveActivity = "/activity/InternationalPerspectiveActivity";
+    /*国际视野详情*/
+    public static final String InternationalPerspectiveDetailsActivity = "/activity/InternationalPerspectiveDetailsActivity";
 }

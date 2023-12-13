@@ -19,6 +19,7 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.askia.common.base.ARouterPath;
 import com.askia.common.base.BaseActivity;
 import com.askia.coremodel.datamodel.http.entities.consume.BroadcastExpressResponBean;
+import com.blankj.utilcode.util.EmptyUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.zdy.study.R;
@@ -42,54 +43,71 @@ public class BroadcastExpressActivity extends BaseActivity {
     private BroadcastExpressAdapter adapter;
     private int page = 1;
     private String pageSize = "10";
+    private String keyId;
+    private Bundle bundle;
 
 
     @Override
     public void onInit() {
-
+        bundle = getIntent().getExtras();
+        keyId = bundle.getString("keyId");
+        mDataBinding.lmView.setNextPageVisibility(View.GONE);
         //标题
         mDataBinding.includeLayout.preferenceActivityTitleText.setText("联播速递");
         mDataBinding.includeLayout.preferenceActivityTitleImage.setOnClickListener(v -> {
             finish();
         });
         initList();
-        initLoad();
+        if (EmptyUtils.isEmpty(keyId)) {
+            initLoad();
+            mDataBinding.lmView.setNextPageVisibility(View.VISIBLE);
+        }
     }
 
-    private void initList(){
+    @SuppressLint("LongLogTag")
+    private void initList() {
         list = new ArrayList<>();
-        viewModel.queryContListByAudit(String.valueOf(page), pageSize, Constants.LBSD);
+        if (EmptyUtils.isEmpty(keyId)) {
+            Log.e("BroadcastExpressActivity", "keyId" + keyId);
+            viewModel.queryContListByAudit(String.valueOf(page), pageSize, Constants.LBSD);
+        } else {
+            list.clear();
+            BroadcastExpressResponBean.PageDataBean pageDataBean = (BroadcastExpressResponBean.PageDataBean) bundle.getSerializable("MainFragmentList");
+            list.add(pageDataBean);
+        }
         recyclerView = mDataBinding.rvBroadcastExpress;
-        GridLayoutManager layoutManager = new GridLayoutManager(this, 2);//第二个参数为网格的列数
-//        LinearLayoutManager manager2 = new LinearLayoutManager(this);//数字为行数或列数
+        // GridLayoutManager layoutManager = new GridLayoutManager(this, 2);//第二个参数为网格的列数
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);//数字为行数或列数
         adapter = new BroadcastExpressAdapter(list);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
 
         adapter.setOnItemClickListener((adapter, view, position) -> {
-            Bundle bundle = new Bundle();
-            bundle.putString("url", list.get(position).getContVideo().getVideoUrl());
-            startActivityByRouter(ARouterPath.VideoActivity, bundle);
+            Bundle bundle1 = new Bundle();
+            bundle1.putString("url", list.get(position).getContVideo().getVideoUrl());
+            startActivityByRouter(ARouterPath.VideoActivity, bundle1);
         });
         recyclerView.requestFocus();
     }
-    private void initLoad(){
+
+    private void initLoad() {
         mDataBinding.lmView.setLoadLitetsner(new LoadMoreConstraintLayout.LoadLitetsner() {
             @Override
             public void nextPage() {
-                page ++;
+                page++;
                 showNetDialog();
                 viewModel.queryContListByAudit(String.valueOf(page), pageSize, Constants.LBSD);
             }
 
             @Override
             public void previousPage() {
-                page --;
+                page--;
                 showNetDialog();
                 viewModel.queryContListByAudit(String.valueOf(page), pageSize, Constants.LBSD);
             }
         });
     }
+
     @Override
     public void onInitViewModel() {
         viewModel = ViewModelProviders.of(this).get(BroadcastExpressViewModel.class);
@@ -105,7 +123,7 @@ public class BroadcastExpressActivity extends BaseActivity {
     public void onSubscribeViewModel() {
         viewModel.getPageListPadData().observe(this, listResult -> {
             dismissNetDialog();
-            if(!listResult.isSuccess()){
+            if (!listResult.isSuccess()) {
                 ToastUtils.showLong(listResult.getMessage().toString());
                 return;
             }

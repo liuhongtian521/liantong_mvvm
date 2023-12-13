@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zdy.study.fcWidgets.FCLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fcll"
+    android:layout_width="wrap_content"
+    android:layout_height="40dp"
+    android:layout_marginLeft="@dimen/dp_15"
+    android:layout_marginRight="@dimen/dp_15"
+    android:background="@drawable/white_round_corner_leftdown_rightup"
+    android:focusableInTouchMode="true"
+    android:orientation="horizontal"
+    android:paddingBottom="@dimen/dp_12">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/iv_quotation_mark"
+            android:layout_width="10dp"
+            android:layout_height="@dimen/dp_10"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:background="@mipmap/ic_quotation_mark"
+            android:baselineAligned="false" />
+
+        <TextView
+            android:gravity="bottom"
+            android:textSize="12sp"
+            android:textColor="#714A22"
+            android:layout_marginLeft="5dp"
+            android:id="@+id/tv_quotation_mark"
+            android:text="1231232133132131"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@+id/iv_quotation_mark" />
+
+        <ImageView
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@+id/tv_quotation_mark"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_gravity="right"
+            android:background="@mipmap/ic_quotation_mark_one"
+            android:baselineAligned="false" />
+
+    </RelativeLayout>
+</com.zdy.study.fcWidgets.FCLinearLayout>
