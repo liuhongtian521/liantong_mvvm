@@ -295,4 +295,18 @@ public class MainFragment extends BaseFragment {
     public void operationMoreClick(View view) {
         startActivityByRouter(ARouterPath.OpreationActivity);
     }
+
+    public void operationFirstClick(View view) {
+        MainFragmentResponseBean.PageDataBean pageDataBean = mViewModel.getPageListPadData5().getValue().getResult().getPageData().get(0);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("operationData",pageDataBean);
+        startActivityByRouter(ARouterPath.OpreationActivity, bundle);
+    }
+
+    public void operationSecondClick(View view) {
+        MainFragmentResponseBean.PageDataBean pageDataBean = mViewModel.getPageListPadData5().getValue().getResult().getPageData().get(1);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("operationData",pageDataBean);
+        startActivityByRouter(ARouterPath.OpreationActivity, bundle);
+    }
 }

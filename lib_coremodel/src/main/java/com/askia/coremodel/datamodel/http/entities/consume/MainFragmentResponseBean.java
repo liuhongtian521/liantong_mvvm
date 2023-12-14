@@ -370,7 +370,7 @@ public class MainFragmentResponseBean implements  Serializable{
             }
         }
 
-        public static class AudioListListBean {
+        public static class AudioListListBean implements Serializable{
             /**
              * id : 1036931066071351296
              * contId : 1036931066046185472

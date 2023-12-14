@@ -88,6 +88,7 @@ public class FavoritesLikesLayout extends ConstraintLayout {
         this.argContId = argContId;
         this.struId = struId;
         viewModel.queryCommentsList(argContId, "1", "100");
+        viewModel.addReadNotes(argContId, struId);//添加阅读记录
     }
 
     private void initList(Context context){

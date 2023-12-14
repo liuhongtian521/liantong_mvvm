@@ -156,20 +156,7 @@ public class StudyMaterialsActivity extends BaseActivity {
                 ToastUtils.showLong(listResult.getMessage().toString());
                 return;
             }
-            if (listResult.getData().getRecords().size() == 0) {
-                mDataBinding.lmMaterialsView.showEmptyView(View.VISIBLE);
-                return;
-            }else{
-                mDataBinding.lmMaterialsView.showEmptyView(View.GONE);
-            }
-            if (pageNo == 1)
-                mDataBinding.lmMaterialsView.setPreviousPageVisibility(View.GONE);
-            else
-                mDataBinding.lmMaterialsView.setPreviousPageVisibility(View.VISIBLE);
-            if (listResult.getData().getRecords().size() < 10)
-                mDataBinding.lmMaterialsView.setNextPageVisibility(View.GONE);
-            else
-                mDataBinding.lmMaterialsView.setNextPageVisibility(View.VISIBLE);
+            mDataBinding.lmMaterialsView.setList(listResult.getData().getRecords(), pageNo);
             dataList.clear();
             dataList.addAll(listResult.getData().getRecords());
             adapter.notifyDataSetChanged();

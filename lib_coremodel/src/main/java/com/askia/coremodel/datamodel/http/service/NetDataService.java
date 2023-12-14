@@ -174,4 +174,8 @@ public interface NetDataService {
     @POST("/cdls-cms/CollectionController/delCollectionList")
     Observable<BaseResponseData> delCollectionList(@Body RequestBody body);
 
+    // 阅读记录
+    @POST("/cdls-cms/ReadNotesController/addReadNotes")
+    Observable<BaseResponseData> addReadNotes(@Body RequestBody body);
+
 }

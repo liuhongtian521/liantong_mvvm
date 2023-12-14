@@ -56,6 +56,15 @@ public class FavoritesLikesLayoutViewModel extends BaseViewModel {
         return mDelCollectionListData;
     }
 
+    //添加阅读记录
+    public void addReadNotes( String argContId, String struId) {
+        AddCollectionParams params = new AddCollectionParams();
+        params.setContentParentId(argContId);
+        params.setStruId(struId);
+        if (netDataRepository == null)
+            netDataRepository = new NetDataRepository();
+        netDataRepository.addReadNotes(convertPostBody(params), mDelCollectionListData, mDisposable);
+    }
     //获取评论
     public void queryCommentsList( String argContId, String argPage, String argPageSize) {
         if (netDataRepository == null)
@@ -103,4 +112,6 @@ public class FavoritesLikesLayoutViewModel extends BaseViewModel {
             netDataRepository = new NetDataRepository();
         netDataRepository.delCollectionList(convertPostBody(params), mDelCollectionListData, mDisposable);
     }
+
+
 }

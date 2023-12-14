@@ -1,8 +1,11 @@
 package com.zdy.study.adapter;
 
+import android.widget.ImageView;
+
 import androidx.annotation.Nullable;
 
 import com.askia.coremodel.datamodel.http.entities.consume.BroadcastExpressResponBean;
+import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.zdy.study.R;
@@ -22,6 +25,8 @@ public class BroadcastExpressAdapter extends BaseQuickAdapter<BroadcastExpressRe
        helper.setText(R.id.tv_date, item.getContVideo().getTimeLength());
        FCLinearLayout layout = helper.getView(R.id.fcll);
        layout.setLitScale();
+       ImageView imageView = helper.getView(R.id.iv_broadcast_video);
+        Glide.with(mContext).load("http://cdls-cms-image.oss-cn-huhehaote-nebula-1.aliyuncs.com/xinwen_video.jpeg").into(imageView);
 
         /*VideoViewConstraintLayout layout = helper.getView(R.id.vcl_video);
         layout.setUrl(item.getContVideo().getVideoUrl());*/

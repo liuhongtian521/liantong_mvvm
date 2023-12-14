@@ -369,4 +369,15 @@ public class NetDataRepository {
             responseObserv = new ResponseObserv();
         responseObserv.responseObserv(responseData, mLoginLiveData, mDisposable);
     }
+
+    //阅读记录
+    public void addReadNotes(RequestBody body,
+                                  MutableLiveData<BaseResponseData> mLoginLiveData,
+                                  CompositeDisposable mDisposable) {
+        Observable<BaseResponseData> responseData = ApiClient.getNetDataService()
+                .addReadNotes(body);
+        if (responseObserv == null)
+            responseObserv = new ResponseObserv();
+        responseObserv.responseObserv(responseData, mLoginLiveData, mDisposable);
+    }
 }

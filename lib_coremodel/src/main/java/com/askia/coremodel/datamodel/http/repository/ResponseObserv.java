@@ -3,6 +3,7 @@ package com.askia.coremodel.datamodel.http.repository;
 
 import androidx.lifecycle.MutableLiveData;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.askia.coremodel.datamodel.http.entities.consume.BaseResponseData;
 import com.blankj.utilcode.util.ToastUtils;
 
@@ -36,6 +37,10 @@ public class ResponseObserv<T extends BaseResponseData> {
 
                     @Override
                     public void onError(@NonNull Throwable e) {
+                        if(e.toString().contains("401")){
+                            ARouter.getInstance().build("/activity/login").navigation();
+                            return;
+                        }
                         BaseResponseData b = new BaseResponseData();
                         b.setSuccess(false);
                         b.setMessage(e.toString());

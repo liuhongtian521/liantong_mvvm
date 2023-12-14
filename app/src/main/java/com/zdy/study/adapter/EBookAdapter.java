@@ -7,6 +7,7 @@ import com.askia.coremodel.datamodel.http.entities.consume.StuyMaterialsListBean
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.zdy.study.R;
+import com.zdy.study.fcWidgets.FCLinearLayout;
 
 import java.util.List;
 
@@ -33,7 +34,8 @@ public class EBookAdapter extends BaseQuickAdapter<EBookListBean.RecordsBean, Ba
             baseViewHolder.setImageResource(R.id.iv_type, R.mipmap.ic_stuy_exe);
         else
             baseViewHolder.setImageResource(R.id.iv_type, R.mipmap.ic_stuy_txt);
-
+        /*FCLinearLayout layout = baseViewHolder.getView(R.id.ll_smbg);
+        layout.setLitScale();*/
 
         /*baseViewHolder.getView(R.id.ll_smbg).setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override

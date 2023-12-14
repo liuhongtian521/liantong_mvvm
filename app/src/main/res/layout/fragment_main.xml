@@ -813,7 +813,7 @@
                         android:textColor="@color/app_white"
                         android:textSize="11sp" />
                 </RelativeLayout>
-                <!--联播-->
+                <!--操作技巧-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
@@ -824,6 +824,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:onClick="@{handlers::operationFirstClick}"
                         android:layout_marginRight="14dp"
                         android:layout_weight="1">
 
@@ -857,6 +858,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:onClick="@{handlers::operationSecondClick}"
                         android:layout_marginRight="14dp"
                         android:layout_weight="1"
                         android:orientation="vertical">

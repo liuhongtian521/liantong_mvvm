@@ -127,20 +127,6 @@ public class BroadcastExpressActivity extends BaseActivity {
                 ToastUtils.showLong(listResult.getMessage().toString());
                 return;
             }
-            /*if (listResult.getResult().getPageData().size() == 0) {
-                mDataBinding.lmView.showEmptyView(View.VISIBLE);
-                return;
-            }else{
-                mDataBinding.lmView.showEmptyView(View.GONE);
-            }
-            if (page == 1)
-                mDataBinding.lmView.setPreviousPageVisibility(View.GONE);
-            else
-                mDataBinding.lmView.setPreviousPageVisibility(View.VISIBLE);
-            if (listResult.getResult().getPageData().size() < 10)
-                mDataBinding.lmView.setNextPageVisibility(View.GONE);
-            else
-                mDataBinding.lmView.setNextPageVisibility(View.VISIBLE);*/
             mDataBinding.lmView.setList(listResult.getResult().getPageData(), page);
             list.clear();
             list.addAll(listResult.getResult().getPageData());

@@ -5,6 +5,7 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -19,9 +20,10 @@ import java.util.List;
 
 public class LoadMoreConstraintLayout extends ConstraintLayout {
 
-    private FCButton fcbNextPage, fcbPreviousPage;
+    private TextView fcbNextPage, fcbPreviousPage;
     private ImageView ivEmpty;
     private TextView tvEmpty;
+    private View viewLeft;
     private LoadLitetsner loadLitetsner;
 
     public LoadMoreConstraintLayout(@NonNull Context context) {
@@ -42,6 +44,7 @@ public class LoadMoreConstraintLayout extends ConstraintLayout {
         LayoutInflater.from(context).inflate(R.layout.layout_load_more, this);
         fcbNextPage = findViewById(R.id.fcb_next_page);
         fcbPreviousPage = findViewById(R.id.fcb_previous_page);
+        viewLeft = findViewById(R.id.view_left);
         ivEmpty = findViewById(R.id.iv_empty);
         tvEmpty = findViewById(R.id.tv_empty);
         fcbNextPage.setOnClickListener(view -> {
@@ -78,19 +81,22 @@ public class LoadMoreConstraintLayout extends ConstraintLayout {
 
     public void setList(List<?> list, int page){
         if (list.size() == 0) {
-            showEmptyView(View.VISIBLE);
+            showEmptyView(View.VISIBLE);//显示缺省页
             return;
         }else{
-            showEmptyView(View.GONE);
+            showEmptyView(View.GONE);// 隐藏缺省页
         }
         if (page == 1)
-            setPreviousPageVisibility(View.GONE);
+            setPreviousPageVisibility(View.GONE);// 第一页隐藏上一页
         else
-            setPreviousPageVisibility(View.VISIBLE);
+            setPreviousPageVisibility(View.VISIBLE);// 其它显示上一页
         if (list.size() < 10)
-            setNextPageVisibility(View.GONE);
+            setNextPageVisibility(View.GONE);// 数据小于10条隐藏下一页
         else
-            setNextPageVisibility(View.VISIBLE);
+            setNextPageVisibility(View.VISIBLE);// 显示下一页
+
+        if (fcbNextPage.getVisibility() == GONE && fcbPreviousPage.getVisibility() == GONE)
+            viewLeft.setVisibility(GONE); //设置左侧上下按键背景 隐藏
     }
 
     public interface LoadLitetsner{

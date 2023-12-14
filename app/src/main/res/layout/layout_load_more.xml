@@ -24,32 +24,56 @@
         app:layout_constraintTop_toBottomOf="@+id/iv_empty"
         app:layout_constraintLeft_toLeftOf="@+id/iv_empty"
         app:layout_constraintRight_toRightOf="@+id/iv_empty"/>
+    
+    <View
+        android:id="@+id/view_left"
+        android:layout_width="@dimen/dp_44"
+        android:layout_height="match_parent"
+        android:background="#F0F0F1"
+        app:layout_constraintLeft_toLeftOf="parent"/>
 
-    <com.zdy.study.fcWidgets.FCButton
+    <TextView
         android:id="@+id/fcb_next_page"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/dp_32"
+        android:layout_height="@dimen/dp_140"
+        android:focusableInTouchMode="true"
         android:text="下一页"
         android:textColor="@drawable/text_tab_selector"
-        android:focusableInTouchMode="true"
-        android:background="@drawable/ic_tab_selector_bg"
+        android:ems="1"
+        android:background="@drawable/ic_tab_selector_bg_f0f0f1"
+        android:drawableBottom="@drawable/selector_dwon"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginRight="@dimen/dp_8"
-        android:layout_marginBottom="@dimen/dp_12"/>
+        app:layout_constraintLeft_toLeftOf="@+id/view_left"
+        app:layout_constraintRight_toRightOf="@+id/view_left"
+        android:gravity="center"
+        android:paddingLeft="@dimen/dp_8"
+        android:paddingRight="@dimen/dp_8"
+        android:paddingTop="@dimen/dp_28"
+        android:paddingBottom="@dimen/dp_28"
+        android:layout_marginBottom="@dimen/dp_20"/>
 
-    <com.zdy.study.fcWidgets.FCButton
+
+
+    <TextView
         android:id="@+id/fcb_previous_page"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="上一页"
+        android:layout_width="@dimen/dp_32"
+        android:layout_height="@dimen/dp_140"
         android:visibility="gone"
+        android:text="上一页"
         android:textColor="@drawable/text_tab_selector"
+        android:ems="1"
         android:focusableInTouchMode="true"
-        android:background="@drawable/ic_tab_selector_bg"
+        android:background="@drawable/ic_tab_selector_bg_f0f0f1"
+        android:drawableTop="@drawable/selector_up"
         app:layout_constraintBottom_toTopOf="@+id/fcb_next_page"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginRight="@dimen/dp_8"
-        android:layout_marginBottom="@dimen/dp_12"/>
+        app:layout_constraintLeft_toLeftOf="@+id/view_left"
+        app:layout_constraintRight_toRightOf="@+id/view_left"
+        android:gravity="center"
+        android:paddingLeft="@dimen/dp_8"
+        android:paddingRight="@dimen/dp_8"
+        android:paddingTop="@dimen/dp_28"
+        android:paddingBottom="@dimen/dp_28"
+        android:layout_marginBottom="@dimen/dp_20"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

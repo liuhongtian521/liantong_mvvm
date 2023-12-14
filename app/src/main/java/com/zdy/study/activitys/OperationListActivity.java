@@ -10,6 +10,7 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.askia.common.base.ARouterPath;
 import com.askia.common.base.BaseActivity;
 import com.askia.coremodel.datamodel.http.entities.consume.BroadcastExpressResponBean;
+import com.askia.coremodel.datamodel.http.entities.consume.MainFragmentResponseBean;
 import com.blankj.utilcode.util.ToastUtils;
 import com.zdy.study.R;
 import com.zdy.study.adapter.OperationAdapter;
@@ -35,10 +36,28 @@ public class OperationListActivity extends BaseActivity {
     public void onInit() {
         //标题
         binding.includeLayout.preferenceActivityTitleText.setText("操作技巧");
-        showNetDialog();
-        viewModel.queryContListByAudit(String.valueOf(page), pageSize, Constants.CZJQ);
+        MainFragmentResponseBean.PageDataBean pageDataBean =
+                (MainFragmentResponseBean.PageDataBean) getIntent().getSerializableExtra("operationData");
+
         initList();
-        initLoad();
+        if (pageDataBean != null){
+            //显示上一页传过来的数据
+            showData(pageDataBean);
+        }else{
+            showNetDialog();
+            viewModel.queryContListByAudit(String.valueOf(page), pageSize, Constants.CZJQ);
+            initLoad();
+        }
+    }
+
+    //显示上一页传过来的数据
+    private void showData(MainFragmentResponseBean.PageDataBean pageDataBean){
+        BroadcastExpressResponBean.PageDataBean data = new BroadcastExpressResponBean.PageDataBean();
+        data.setContName(pageDataBean.getContName());
+        data.setCreateTime(pageDataBean.getCreateTime());
+        data.setImgUrl(pageDataBean.getImgUrl());
+        list.add(data);
+        adapter.notifyDataSetChanged();
     }
 
     @Override

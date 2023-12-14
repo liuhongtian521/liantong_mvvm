@@ -81,20 +81,7 @@ public class StudyManualActivity extends BaseActivity {
                 ToastUtils.showLong(listResult.getMessage().toString());
                 return;
             }
-            if (listResult.getData().getRecords().size() == 0) {
-                mDataBinding.lmView.showEmptyView(View.VISIBLE);
-                return;
-            }else{
-                mDataBinding.lmView.showEmptyView(View.GONE);
-            }
-            if (pageNo == 1)
-                mDataBinding.lmView.setPreviousPageVisibility(View.GONE);
-            else
-                mDataBinding.lmView.setPreviousPageVisibility(View.VISIBLE);
-            if (listResult.getData().getRecords().size() < 10)
-                mDataBinding.lmView.setNextPageVisibility(View.GONE);
-            else
-                mDataBinding.lmView.setNextPageVisibility(View.VISIBLE);
+            mDataBinding.lmView.setList(listResult.getData().getRecords(), pageNo);
             dataList.clear();
             dataList.addAll(listResult.getData().getRecords());
             adapter.notifyDataSetChanged();
