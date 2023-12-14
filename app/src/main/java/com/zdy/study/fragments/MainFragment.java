@@ -30,6 +30,7 @@ import com.zdy.study.adapter.DiscussAdapter;
 import com.zdy.study.cdatamodel.viewmodel.DiscussRoomViewModel;
 import com.zdy.study.cdatamodel.viewmodel.MainFragmentViewModel;
 import com.zdy.study.databinding.FragmentMainBinding;
+import com.zdy.study.tools.Constants;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -57,17 +58,17 @@ public class MainFragment extends BaseFragment {
         discussResponseBeanList = new ArrayList<>();
         list6 = new ArrayList<>();
         //联播速递
-        mViewModel.queryHotAndTopContListByAudit("1", "3", "E8\u200C81\u200C94E6\u200C92\u200CAD_parent");
+        mViewModel.queryHotAndTopContListByAudit("1", "3", Constants.LBSD);
         //国际视野
-        mViewModel.queryHotAndTopContListByAudit2("1", "2", "INTERNATIONAL_VIEW");
+        mViewModel.queryHotAndTopContListByAudit2("1", "2", Constants.GJSY);
         //实践案列
-        mViewModel.queryHotAndTopContListByAudit3("1", "2", "1384703677503217665");
+        mViewModel.queryHotAndTopContListByAudit3("1", "2", Constants.SJAL);
         //精选理论
-        mViewModel.queryHotAndTopContListByAudit4("1", "2", "1384060802717294593");
+        mViewModel.queryHotAndTopContListByAudit4("1", "2", Constants.JXLL);
         //1384698467028410369  //操作技巧
-        mViewModel.queryHotAndTopContListByAudit5("1", "2", "1384698467028410369");
+        mViewModel.queryHotAndTopContListByAudit5("1", "2", Constants.CZJQ);
         //书单
-        mViewModel.padList("1", "10");
+        mViewModel.padList("1", "10","");
         mViewModel.queryHotRooms();
         initRvListener();
         initRvListener2();
@@ -83,6 +84,10 @@ public class MainFragment extends BaseFragment {
         //国际视野更多
         mFragmentMainBinding.tvInternationalPerspectiveMore.setOnClickListener(v -> {
             startActivityByRouter(ARouterPath.InternationalPerspectiveActivity);
+        });
+        //书单更多
+        mFragmentMainBinding.tvBookList.setOnClickListener(v -> {
+            startActivityByRouter(ARouterPath.BookListActivity);
         });
         mFragmentMainBinding.ivBroadcastSpeedName.setOnClickListener(v -> {
             Bundle bundle = new Bundle();

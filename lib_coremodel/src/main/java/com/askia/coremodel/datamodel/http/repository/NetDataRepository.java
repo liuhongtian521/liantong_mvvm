@@ -20,6 +20,7 @@ import com.askia.coremodel.datamodel.http.entities.TimeLisData;
 import com.askia.coremodel.datamodel.http.entities.WeekMealsData;
 import com.askia.coremodel.datamodel.http.entities.consume.AddressBookResponseBean;
 import com.askia.coremodel.datamodel.http.entities.consume.BaseResponseData;
+import com.askia.coremodel.datamodel.http.entities.consume.BookListResponseBean;
 import com.askia.coremodel.datamodel.http.entities.consume.BooksRespponseBean;
 import com.askia.coremodel.datamodel.http.entities.consume.BroadcastExpressResponBean;
 import com.askia.coremodel.datamodel.http.entities.consume.CBaseResponseData;
@@ -158,8 +159,8 @@ public class NetDataRepository {
 
     //获取在院服务
     public void queryHospitalService(String argPage, String argPageSize,
-                                          MutableLiveData<BaseResponseData<SchoolServiceBean>> mLoginLiveData,
-                                          CompositeDisposable mDisposable) {
+                                     MutableLiveData<BaseResponseData<SchoolServiceBean>> mLoginLiveData,
+                                     CompositeDisposable mDisposable) {
         Observable<BaseResponseData<SchoolServiceBean>> responseData = ApiClient.getNetDataService()
                 .queryHospitalService(argPage, argPageSize, argPage, argPageSize);
         if (responseObserv == null)
@@ -173,6 +174,17 @@ public class NetDataRepository {
                             CompositeDisposable mDisposable) {
         Observable<BaseResponseData<DiscussRoomListBean>> responseData = ApiClient.getNetDataService()
                 .pageListPad(argPage, argPageSize);
+        if (responseObserv == null)
+            responseObserv = new ResponseObserv();
+        responseObserv.responseObserv(responseData, mLoginLiveData, mDisposable);
+    }
+
+    //book字典
+    public void bookClass(String code,
+                          MutableLiveData<BaseResponseData<List<BookListResponseBean>>> mLoginLiveData,
+                          CompositeDisposable mDisposable) {
+        Observable<BaseResponseData<List<BookListResponseBean>>> responseData = ApiClient.getNetDataService()
+                .bookClass(code);
         if (responseObserv == null)
             responseObserv = new ResponseObserv();
         responseObserv.responseObserv(responseData, mLoginLiveData, mDisposable);
@@ -193,12 +205,12 @@ public class NetDataRepository {
 
     //书单
     public void padList(String argPage,
-                        String argPageSize,
+                        String argPageSize, String classification,
                         MutableLiveData<BaseResponseData<BooksRespponseBean>> mLoginLiveData,
                         CompositeDisposable mDisposable) {
         Observable<BaseResponseData<BooksRespponseBean>> responseData = ApiClient.getNetDataService()
                 .padList(argPage,
-                        argPageSize);
+                        argPageSize, classification);
         if (responseObserv == null)
             responseObserv = new ResponseObserv();
         responseObserv.responseObserv(responseData, mLoginLiveData, mDisposable);
@@ -248,8 +260,8 @@ public class NetDataRepository {
 
     //学习助手（讨论）
     public void queryHotRooms(
-                          MutableLiveData<BaseResponseData<List<DiscussResponseBean>>> mLoginLiveData,
-                          CompositeDisposable mDisposable) {
+            MutableLiveData<BaseResponseData<List<DiscussResponseBean>>> mLoginLiveData,
+            CompositeDisposable mDisposable) {
         Observable<BaseResponseData<List<DiscussResponseBean>>> responseData = ApiClient.getNetDataService()
                 .queryHotRooms();
         if (responseObserv == null)
@@ -283,8 +295,8 @@ public class NetDataRepository {
 
     //操作技巧详情
     public void queryCont(String argContId,
-                              MutableLiveData<BaseResponseData<OperationDetailBean>> mLoginLiveData,
-                              CompositeDisposable mDisposable) {
+                          MutableLiveData<BaseResponseData<OperationDetailBean>> mLoginLiveData,
+                          CompositeDisposable mDisposable) {
         Observable<BaseResponseData<OperationDetailBean>> responseData = ApiClient.getNetDataService()
                 .queryCont(argContId);
         if (responseObserv == null)
@@ -294,8 +306,8 @@ public class NetDataRepository {
 
     //获取评论
     public void queryCommentsList(String argContId, String argPage, String argPageSize,
-                          MutableLiveData<BaseResponseData<CommentsBean>> mLoginLiveData,
-                          CompositeDisposable mDisposable) {
+                                  MutableLiveData<BaseResponseData<CommentsBean>> mLoginLiveData,
+                                  CompositeDisposable mDisposable) {
         Observable<BaseResponseData<CommentsBean>> responseData = ApiClient.getNetDataService()
                 .queryCommentsList(argContId, argPage, argPageSize);
         if (responseObserv == null)
@@ -305,8 +317,8 @@ public class NetDataRepository {
 
     //添加评论
     public void comments(String argContId, String argCommContent,
-                                  MutableLiveData<BaseResponseData> mLoginLiveData,
-                                  CompositeDisposable mDisposable) {
+                         MutableLiveData<BaseResponseData> mLoginLiveData,
+                         CompositeDisposable mDisposable) {
         Observable<BaseResponseData> responseData = ApiClient.getNetDataService()
                 .comments(argContId, argCommContent);
         if (responseObserv == null)
@@ -316,8 +328,8 @@ public class NetDataRepository {
 
     //点赞
     public void praiseActive(String argContId,
-                         MutableLiveData<BaseResponseData> mLoginLiveData,
-                         CompositeDisposable mDisposable) {
+                             MutableLiveData<BaseResponseData> mLoginLiveData,
+                             CompositeDisposable mDisposable) {
         Observable<BaseResponseData> responseData = ApiClient.getNetDataService()
                 .praiseActive(argContId);
         if (responseObserv == null)
@@ -327,8 +339,8 @@ public class NetDataRepository {
 
     //取消点赞
     public void cancelPraiseActive(String argContId,
-                             MutableLiveData<BaseResponseData> mLoginLiveData,
-                             CompositeDisposable mDisposable) {
+                                   MutableLiveData<BaseResponseData> mLoginLiveData,
+                                   CompositeDisposable mDisposable) {
         Observable<BaseResponseData> responseData = ApiClient.getNetDataService()
                 .cancelPraiseActive(argContId);
         if (responseObserv == null)
@@ -338,8 +350,8 @@ public class NetDataRepository {
 
     //收藏
     public void addCollectionList(RequestBody body,
-                             MutableLiveData<BaseResponseData> mLoginLiveData,
-                             CompositeDisposable mDisposable) {
+                                  MutableLiveData<BaseResponseData> mLoginLiveData,
+                                  CompositeDisposable mDisposable) {
         Observable<BaseResponseData> responseData = ApiClient.getNetDataService()
                 .addCollectionList(body);
         if (responseObserv == null)

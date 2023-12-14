@@ -22,6 +22,7 @@ import com.zdy.study.cdatamodel.viewmodel.InternationalPerspectiveViewModel;
 import com.zdy.study.cdatamodel.viewmodel.WebBasedCourseViewModel;
 import com.zdy.study.databinding.InternationalPerspectiveActivityBinding;
 import com.zdy.study.databinding.WebBasedCourseActivityBinding;
+import com.zdy.study.tools.Constants;
 import com.zdy.study.widgets.LoadMoreConstraintLayout;
 
 import java.io.Serializable;
@@ -57,7 +58,7 @@ public class InternationalPerspectiveActivity extends BaseActivity {
     private void initList() {
 
         list = new ArrayList<>();
-        viewModel.queryContListByAudit("1", "10", "INTERNATIONAL_VIEW");
+        viewModel.queryContListByAudit("1", "10", Constants.GJSY);
         recyclerView = mDataBinding.rvWeb;
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);//数字为行数或列数
         adapter = new InternationalPerspectiveAdapter(list, this);
@@ -77,6 +78,7 @@ public class InternationalPerspectiveActivity extends BaseActivity {
         adapter.setOnItemClickListener((adapter, view, position) -> {
             Bundle bundle = new Bundle();
             bundle.putString("INTERNATIONAL_VIEW", list.get(position).getId());
+            startActivityByRouter(ARouterPath.InternationalPerspectiveDetailsActivity, bundle);
         });
     }
 
@@ -86,14 +88,14 @@ public class InternationalPerspectiveActivity extends BaseActivity {
             public void nextPage() {
                 page++;
                 showNetDialog();
-                viewModel.queryContListByAudit(String.valueOf(page), pageSize, "INTERNATIONAL_VIEW");
+                viewModel.queryContListByAudit(String.valueOf(page), pageSize, Constants.GJSY);
             }
 
             @Override
             public void previousPage() {
                 page--;
                 showNetDialog();
-                viewModel.queryContListByAudit(String.valueOf(page), pageSize, "INTERNATIONAL_VIEW");
+                viewModel.queryContListByAudit(String.valueOf(page), pageSize, Constants.GJSY);
             }
         });
     }

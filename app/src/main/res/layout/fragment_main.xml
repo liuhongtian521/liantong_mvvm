@@ -2,6 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
+
         <variable
             name="handlers"
             type="com.zdy.study.fragments.MainFragment" />
@@ -107,7 +108,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:background="@color/dash_gray"
-                android:paddingBottom="14dp">
+                android:paddingBottom="10dp">
                 <!--更多-->
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -155,14 +156,17 @@
                 <!--联播-->
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                  android:layout_marginTop="1dp"
+                    android:layout_height="wrap_content"
                     android:layout_below="@+id/rl_red"
-                    android:orientation="horizontal">
+                    android:layout_marginTop="1dp"
+                    android:background="@color/white"
+                    android:orientation="horizontal"
+                    android:paddingBottom="12dp">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_marginLeft="12dp"
                         android:layout_marginRight="14dp"
                         android:layout_weight="1"
                         android:background="@drawable/gray_round_corner_">
@@ -171,7 +175,6 @@
                             android:id="@+id/iv_broadcast_speed"
                             android:layout_width="60dp"
                             android:layout_height="60dp"
-                            android:layout_marginLeft="12dp"
                             android:background="@mipmap/ic_lianbo" />
 
                         <TextView
@@ -252,7 +255,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
                 android:background="@color/dash_gray">
                 <!--更多-->
@@ -316,13 +318,13 @@
                             android:layout_height="wrap_content">
 
                             <View
-                                android:visibility="gone"
                                 android:id="@+id/view_circle"
                                 android:layout_width="3dp"
                                 android:layout_height="3dp"
                                 android:layout_marginLeft="12dp"
                                 android:layout_marginTop="13dp"
-                                android:background="@drawable/red2_cornner" />
+                                android:background="@drawable/red2_cornner"
+                                android:visibility="gone" />
 
                             <TextView
                                 android:id="@+id/tv_international_perspective"
@@ -350,13 +352,13 @@
                             android:layout_height="wrap_content">
 
                             <View
-                                android:visibility="gone"
                                 android:id="@+id/view_circle12"
                                 android:layout_width="3dp"
                                 android:layout_height="3dp"
                                 android:layout_marginLeft="12dp"
                                 android:layout_marginTop="13dp"
-                                android:background="@drawable/red2_cornner" />
+                                android:background="@drawable/red2_cornner"
+                                android:visibility="gone" />
 
                             <TextView
                                 android:id="@+id/tv_international_perspective1"
@@ -391,6 +393,7 @@
                     android:background="@color/white">
 
                     <com.zdy.study.fcWidgets.FCTextview
+                        android:id="@+id/tv_book_list"
                         android:layout_width="33dp"
                         android:layout_height="16dp"
                         android:layout_alignParentEnd="true"
@@ -435,8 +438,8 @@
                         android:id="@+id/rv_recommended_book_list"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingBottom="14dp"
-                        android:background="@color/white" />
+                        android:background="@color/white"
+                        android:paddingBottom="14dp" />
                 </LinearLayout>
 
             </RelativeLayout>
@@ -497,11 +500,11 @@
                     android:orientation="horizontal">
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:paddingBottom="15dp"
                         android:id="@+id/rv_popular_discussions"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/white" />
+                        android:background="@color/white"
+                        android:paddingBottom="15dp" />
                 </LinearLayout>
 
             </RelativeLayout>
@@ -573,13 +576,13 @@
                             android:layout_height="wrap_content">
 
                             <View
-                                android:visibility="gone"
                                 android:id="@+id/view_circle1"
                                 android:layout_width="3dp"
                                 android:layout_height="3dp"
                                 android:layout_marginLeft="12dp"
                                 android:layout_marginTop="13dp"
-                                android:background="@drawable/red2_cornner" />
+                                android:background="@drawable/red2_cornner"
+                                android:visibility="gone" />
 
                             <TextView
                                 android:id="@+id/tv_practical_cases"
@@ -615,7 +618,6 @@
                                 android:background="@drawable/red2_cornner" />
 
                             <TextView
-                                android:text="asdjaksdjaslkdasdhjalskdjalksdjalksdjklasjdalksdjaklsjdhalksdjlaksdjaljaksdjaklsdj"
                                 android:id="@+id/tv_practical_cases2"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -624,7 +626,8 @@
                                 android:layout_marginTop="10dp"
                                 android:layout_toRightOf="@+id/view_circle3"
                                 android:ellipsize="end"
-                                android:maxLines="2" />
+                                android:maxLines="2"
+                                android:text="asdjaksdjaslkdasdhjalskdjalksdjalksdjklasjdalksdjaklsjdhalksdjlaksdjaljaksdjaklsdj" />
 
                         </RelativeLayout>
                     </LinearLayout>
@@ -700,13 +703,13 @@
                             android:layout_height="wrap_content">
 
                             <View
-                                android:visibility="gone"
                                 android:id="@+id/view_circle7"
                                 android:layout_width="3dp"
                                 android:layout_height="3dp"
                                 android:layout_marginLeft="12dp"
                                 android:layout_marginTop="13dp"
-                                android:background="@drawable/red2_cornner" />
+                                android:background="@drawable/red2_cornner"
+                                android:visibility="gone" />
 
                             <TextView
                                 android:id="@+id/tv_selected_theory"
@@ -734,13 +737,13 @@
                             android:layout_height="wrap_content">
 
                             <View
-                                android:visibility="gone"
                                 android:id="@+id/view_circle8"
                                 android:layout_width="3dp"
                                 android:layout_height="3dp"
                                 android:layout_marginLeft="12dp"
                                 android:layout_marginTop="13dp"
-                                android:background="@drawable/red2_cornner" />
+                                android:background="@drawable/red2_cornner"
+                                android:visibility="gone" />
 
                             <TextView
                                 android:id="@+id/tv_selected_theory2"
@@ -829,13 +832,13 @@
                             android:layout_height="wrap_content">
 
                             <View
-                                android:visibility="gone"
                                 android:id="@+id/view_circle9"
                                 android:layout_width="3dp"
                                 android:layout_height="3dp"
                                 android:layout_marginLeft="12dp"
                                 android:layout_marginTop="13dp"
-                                android:background="@drawable/red2_cornner" />
+                                android:background="@drawable/red2_cornner"
+                                android:visibility="gone" />
 
                             <TextView
                                 android:id="@+id/tv_operating_skills"

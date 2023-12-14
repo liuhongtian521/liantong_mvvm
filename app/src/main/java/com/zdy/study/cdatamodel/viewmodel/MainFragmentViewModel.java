@@ -101,11 +101,11 @@ public class MainFragmentViewModel extends BaseViewModel {
         netDataRepository.queryHotAndTopContListByAudit(argPage, argPageSize, argStruCode, mPageListPadData5, mDisposable);
     }
 
-    public void padList(String argPage, String argPageSize) {
+    public void padList(String argPage, String argPageSize,String classification) {
 
         if (netDataRepository == null)
             netDataRepository = new NetDataRepository();
-        netDataRepository.padList(argPage, argPageSize, mPageListPadData6, mDisposable);
+        netDataRepository.padList(argPage, argPageSize, classification,mPageListPadData6, mDisposable);
     }
 
     //操作技巧详情

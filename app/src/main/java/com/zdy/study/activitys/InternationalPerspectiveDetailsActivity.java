@@ -1,7 +1,10 @@
 package com.zdy.study.activitys;
 
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
@@ -19,6 +22,7 @@ import com.zdy.study.cdatamodel.viewmodel.InternationalPerspectiveDetailsViewMod
 import com.zdy.study.cdatamodel.viewmodel.InternationalPerspectiveViewModel;
 import com.zdy.study.databinding.InternationalPerspectiveDetailsBinding;
 import com.zdy.study.databinding.WebBasedCourseDetailsTwoActivityBinding;
+import com.zdy.study.tools.URLEncodeing;
 
 import java.util.List;
 
@@ -72,9 +76,36 @@ public class InternationalPerspectiveDetailsActivity extends BaseActivity {
             mDataBinding.tvIntroduction.setText(getIntent().getExtras().getString("ENTITY_LIST_introduction_two"));
             mDataBinding.tvAuthor.setText("作者：" + listResult.getResult().getLink());
             Glide.with(this).load(listResult.getResult().getImgUrl()).into(mDataBinding.ivVideo);
-            mDataBinding.tvTitleCourse.setText("课程介绍");
+            setContent(listResult.getResult().getAudioListList().get(0).getContText(), mDataBinding.webContent);
         });
-        
+
+    }
+
+    private void setContent(String dataCont, WebView webView) {
+        StringBuffer sb = new StringBuffer();
+        //添加html
+        sb.append("<html><head><meta http-equiv='content-type' content='text/html; charset=utf-8'>");
+        sb.append("<meta charset='utf-8'  content='1'></head><body style='color: black'><p></p>");
+        //< meta http-equiv="refresh"content="time" url="url" >
+        //添加文件的内容
+//        sb.append("<h5>一.在线支付</h5><p>1.支付宝：支付宝即时到账，方便快捷。</p ><p>2.网上银行：通过网上银行，用户可以享受到方便、快捷、高效和可靠的全方位服务。</p >");
+        String html = URLEncodeing.toURLDecoder(dataCont);
+        sb.append(html.replace("<img", "<img height=\"250px\"; width=\"100%\""));
+        //加载本地文件
+        sb.append("</body></html>");
+        // webView.loadData(data, mimeType, encoding);
+        //设置字符编码，避免乱码
+        webView.getSettings().setDefaultTextEncodingName("utf-8");
+        webView.loadDataWithBaseURL(null, sb.toString(), "text/html", "utf-8", null);
+        //禁止上下左右滚动(不显示滚动条)
+        webView.setVerticalScrollBarEnabled(false);
+        webView.setHorizontalScrollBarEnabled(false);
+
+        //Only disabled the horizontal scrolling:
+        webView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+
+        //To disabled the horizontal and vertical scrolling:
+        webView.setOnTouchListener((v, event) -> (event.getAction() == MotionEvent.ACTION_MOVE));
     }
 
     @Override

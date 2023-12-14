@@ -145,6 +145,16 @@
             android:name=".activitys.OperationDetailActivity"
             android:launchMode="singleTask"
             android:windowSoftInputMode="stateHidden" />
+        <!--书单-->
+        <activity
+            android:name=".activitys.BookListActivity"
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="stateHidden" />
+        <!--国际视野详情-->
+        <activity
+            android:name=".activitys.InternationalPerspectiveDetailsActivity"
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="stateHidden" />
 
         <meta-data
             android:name="design_width_in_dp"

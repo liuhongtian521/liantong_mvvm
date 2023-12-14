@@ -6,6 +6,7 @@
     </data>
 
     <LinearLayout
+        android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginLeft="15dp"
@@ -62,14 +63,12 @@
                 android:background="@mipmap/ic_video_play" />
         </RelativeLayout>
 
-        <TextView
-            android:id="@+id/tv_title_course"
+        <WebView
+            android:id="@+id/web_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:text="123123123"
-            android:textColor="@color/app_black3"
-            android:textSize="16sp" />
+            android:textColor="#1E1E1E"
+            android:textSize="@dimen/sp_12" />
 
         <View
             android:layout_width="match_parent"

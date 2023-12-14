@@ -3,6 +3,7 @@ package com.askia.coremodel.datamodel.http.service;
 
 import com.askia.coremodel.datamodel.http.entities.consume.AddressBookResponseBean;
 import com.askia.coremodel.datamodel.http.entities.consume.BaseResponseData;
+import com.askia.coremodel.datamodel.http.entities.consume.BookListResponseBean;
 import com.askia.coremodel.datamodel.http.entities.consume.BooksRespponseBean;
 import com.askia.coremodel.datamodel.http.entities.consume.BroadcastExpressResponBean;
 import com.askia.coremodel.datamodel.http.entities.consume.CBaseResponseData;
@@ -100,6 +101,11 @@ public interface NetDataService {
     Observable<BaseResponseData<DiscussRoomListBean>> pageListPad(@Query("argPage") String argPage,
                                                                   @Query("argPageSize") String argPageSize);
 
+    // book字典
+    @GET("/cdls-cms/BookListController/bookClass")
+    Observable<BaseResponseData<List<BookListResponseBean>>> bookClass(@Query("code") String code
+    );
+
     // 联播速递列表 、操作技巧
     @GET("/cdls-cms/ApisController/queryContListByAudit")
     Observable<BaseResponseData<BroadcastExpressResponBean>> queryContListByAudit(@Query("argPage") String argPage, @Query("argPageSize") String argPageSize, @Query("argStruCode") String argStruCode);
@@ -108,8 +114,8 @@ public interface NetDataService {
     @GET("/cdls-cms/ApisController/queryHotAndTopContListByAudit")
     Observable<BaseResponseData<MainFragmentResponseBean>> queryHotAndTopContListByAudit(@Query("argPage") String argPage, @Query("argPageSize") String argPageSize, @Query("argStruCode") String argStruCode);
 
-    @GET("/cdls-cms/BookListController/padList")
-    Observable<BaseResponseData<BooksRespponseBean>> padList(@Query("argPage") String argPage, @Query("argPageSize") String argPageSize);
+        @GET("/cdls-cms/BookListController/padList")
+        Observable<BaseResponseData<BooksRespponseBean>> padList(@Query("argPage") String argPage, @Query("argPageSize") String argPageSize, @Query("classification") String classification);
 
     // 通讯录列表
     @GET("/cdls-bds/App/queryStudentInfoListByClass")
@@ -150,7 +156,7 @@ public interface NetDataService {
     // 添加评论
     @POST("/cdls-cms/CommentsController/comments")
     Observable<BaseResponseData> comments(@Query("argContId") String argContId,
-                                                                 @Query("argCommContent") String argCommContent);
+                                          @Query("argCommContent") String argCommContent);
 
     // 点赞
     @GET("/cdls-cms/InteractiveController/praiseActive")
