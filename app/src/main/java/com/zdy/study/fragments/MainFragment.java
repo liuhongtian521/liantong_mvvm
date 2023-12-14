@@ -299,21 +299,41 @@ public class MainFragment extends BaseFragment {
 
     }
 
+    //精选理论更多
+    public void theoryMoreClick(View view){
+        startActivityByRouter(ARouterPath.BookListActivity);
+    }
+    //精选理论第一条
+    public void theoryFirstClick(View view) {
+        MainFragmentResponseBean.PageDataBean pageDataBean = mViewModel.getPageListPadData4().getValue().getResult().getPageData().get(0);
+        Bundle bundle = new Bundle();
+        bundle.putString("argContId", pageDataBean.getId());
+        startActivityByRouter(ARouterPath.OpreationDetailActivity, bundle);
+    }
+    //精选理论第二条
+    public void theorySecondClick(View view) {
+        MainFragmentResponseBean.PageDataBean pageDataBean = mViewModel.getPageListPadData4().getValue().getResult().getPageData().get(1);
+        Bundle bundle = new Bundle();
+        bundle.putString("argContId", pageDataBean.getId());
+        startActivityByRouter(ARouterPath.OpreationDetailActivity, bundle);
+    }
+
+    //操作技巧更多
     public void operationMoreClick(View view) {
         startActivityByRouter(ARouterPath.OpreationActivity);
     }
-
+    //操作技巧第一条
     public void operationFirstClick(View view) {
         MainFragmentResponseBean.PageDataBean pageDataBean = mViewModel.getPageListPadData5().getValue().getResult().getPageData().get(0);
         Bundle bundle = new Bundle();
-        bundle.putSerializable("operationData", pageDataBean);
-        startActivityByRouter(ARouterPath.OpreationActivity, bundle);
+        bundle.putString("argContId", pageDataBean.getId());
+        startActivityByRouter(ARouterPath.OpreationDetailActivity, bundle);
     }
-
+    //操作技巧第二条
     public void operationSecondClick(View view) {
         MainFragmentResponseBean.PageDataBean pageDataBean = mViewModel.getPageListPadData5().getValue().getResult().getPageData().get(1);
         Bundle bundle = new Bundle();
-        bundle.putSerializable("operationData", pageDataBean);
-        startActivityByRouter(ARouterPath.OpreationActivity, bundle);
+        bundle.putString("argContId", pageDataBean.getId());
+        startActivityByRouter(ARouterPath.OpreationDetailActivity, bundle);
     }
 }

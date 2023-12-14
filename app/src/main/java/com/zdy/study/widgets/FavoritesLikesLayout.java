@@ -127,11 +127,6 @@ public class FavoritesLikesLayout extends ConstraintLayout {
         });
     }
 
-    public void setCommentsList(List<CommentsBean.PageDataBean> list){
-        commentsList.addAll(list);
-        adapter.notifyDataSetChanged();
-    }
-
 
     public void onSubscribeViewModel() {
         //评论列表
@@ -140,7 +135,8 @@ public class FavoritesLikesLayout extends ConstraintLayout {
                 ToastUtils.showLong(listResult.getMessage().toString());
                 return;
             }
-            setCommentsList(listResult.getResult().getPageData());
+            commentsList.addAll(listResult.getResult().getPageData());
+            adapter.notifyDataSetChanged();
         });
         //添加评论
         viewModel.getmAddCommentsData().observe((LifecycleOwner) context, listResult -> {
@@ -169,7 +165,7 @@ public class FavoritesLikesLayout extends ConstraintLayout {
                 ToastUtils.showLong(listResult.getMessage().toString());
                 return;
             }
-            ToastUtils.showLong("取消点赞成功");
+            ToastUtils.showLong("取消点赞");
             ivPraiseactive.setImageResource(R.mipmap.ic_layout_dianzan);
             tvPraiseactive.setTextColor(context.getResources().getColor(R.color.txt_nomal));
             isPraiseActive = false;
@@ -191,7 +187,7 @@ public class FavoritesLikesLayout extends ConstraintLayout {
                 ToastUtils.showLong(listResult.getMessage().toString());
                 return;
             }
-            ToastUtils.showLong("取消收藏成功");
+            ToastUtils.showLong("取消收藏");
             ivAddcollection.setImageResource(R.mipmap.ic_layout_shouchang);
             tvAddCollection.setTextColor(context.getResources().getColor(R.color.txt_nomal));
             isAddcollection = false;

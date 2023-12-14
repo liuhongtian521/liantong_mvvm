@@ -35,8 +35,8 @@ public class FCTextview extends androidx.appcompat.widget.AppCompatTextView {
             if (b) {
                 // 此处为得到焦点时的处理内容
                 ViewCompat.animate(view)
-                        .scaleX(i==0? 1.10f: i)
-                        .scaleY(i==0? 1.10f: i)
+                        .scaleX(i==0? 1.30f: i)
+                        .scaleY(i==0? 1.30f: i)
                         .translationZ(1)
                         .start();
 

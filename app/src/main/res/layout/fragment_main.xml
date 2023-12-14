@@ -124,6 +124,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginEnd="15dp"
                         android:layout_marginRight="15dp"
+                        android:focusable="true"
                         android:focusableInTouchMode="true"
                         android:gravity="right"
                         android:text="更多 >"
@@ -271,6 +272,7 @@
                         android:layout_alignParentEnd="true"
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="15dp"
+                        android:focusable="true"
                         android:focusableInTouchMode="true"
                         android:gravity="right"
                         android:text="更多 >"
@@ -399,6 +401,7 @@
                         android:layout_alignParentEnd="true"
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="15dp"
+                        android:focusable="true"
                         android:focusableInTouchMode="true"
                         android:gravity="right"
                         android:text="更多 >"
@@ -464,6 +467,7 @@
                         android:layout_alignParentEnd="true"
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="15dp"
+                        android:focusable="true"
                         android:focusableInTouchMode="true"
                         android:gravity="right"
                         android:text="更多 >"
@@ -529,6 +533,7 @@
                         android:layout_alignParentEnd="true"
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="15dp"
+                        android:focusable="true"
                         android:focusableInTouchMode="true"
                         android:gravity="right"
                         android:text="更多 >"
@@ -656,6 +661,8 @@
                         android:layout_alignParentEnd="true"
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="15dp"
+                        android:onClick="@{handlers::theoryMoreClick}"
+                        android:focusable="true"
                         android:focusableInTouchMode="true"
                         android:gravity="right"
                         android:text="更多 >"
@@ -684,7 +691,7 @@
                         android:textColor="@color/app_white"
                         android:textSize="11sp" />
                 </RelativeLayout>
-                <!--联播-->
+                <!--精选理论-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
@@ -692,9 +699,11 @@
                     android:background="@color/white"
                     android:orientation="horizontal">
 
-                    <LinearLayout
+                    <com.zdy.study.fcWidgets.FCLinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:focusableInTouchMode="true"
+                        android:onClick="@{handlers::theoryFirstClick}"
                         android:layout_marginRight="14dp"
                         android:layout_weight="1">
 
@@ -723,11 +732,13 @@
                                 android:maxLines="2" />
 
                         </RelativeLayout>
-                    </LinearLayout>
+                    </com.zdy.study.fcWidgets.FCLinearLayout>
 
-                    <LinearLayout
+                    <com.zdy.study.fcWidgets.FCLinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:focusableInTouchMode="true"
+                        android:onClick="@{handlers::theorySecondClick}"
                         android:layout_marginRight="14dp"
                         android:layout_weight="1"
                         android:orientation="vertical">
@@ -757,7 +768,7 @@
                                 android:maxLines="2" />
 
                         </RelativeLayout>
-                    </LinearLayout>
+                    </com.zdy.study.fcWidgets.FCLinearLayout>
 
                 </LinearLayout>
 
@@ -784,6 +795,7 @@
                         android:layout_alignParentEnd="true"
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="15dp"
+                        android:focusable="true"
                         android:focusableInTouchMode="true"
                         android:gravity="right"
                         android:onClick="@{handlers::operationMoreClick}"
@@ -821,9 +833,10 @@
                     android:background="@color/white"
                     android:orientation="horizontal">
 
-                    <LinearLayout
+                    <com.zdy.study.fcWidgets.FCLinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:focusableInTouchMode="true"
                         android:onClick="@{handlers::operationFirstClick}"
                         android:layout_marginRight="14dp"
                         android:layout_weight="1">
@@ -853,11 +866,12 @@
                                 android:maxLines="2" />
 
                         </RelativeLayout>
-                    </LinearLayout>
+                    </com.zdy.study.fcWidgets.FCLinearLayout>
 
-                    <LinearLayout
+                    <com.zdy.study.fcWidgets.FCLinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:focusableInTouchMode="true"
                         android:onClick="@{handlers::operationSecondClick}"
                         android:layout_marginRight="14dp"
                         android:layout_weight="1"
@@ -887,7 +901,7 @@
                                 android:maxLines="2" />
 
                         </RelativeLayout>
-                    </LinearLayout>
+                    </com.zdy.study.fcWidgets.FCLinearLayout>
 
                 </LinearLayout>
 

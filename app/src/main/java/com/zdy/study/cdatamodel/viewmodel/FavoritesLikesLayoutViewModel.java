@@ -63,7 +63,7 @@ public class FavoritesLikesLayoutViewModel extends BaseViewModel {
         params.setStruId(struId);
         if (netDataRepository == null)
             netDataRepository = new NetDataRepository();
-        netDataRepository.addReadNotes(convertPostBody(params), mDelCollectionListData, mDisposable);
+        netDataRepository.addReadNotes(convertPostBody(params), new MutableLiveData<>(), mDisposable);
     }
     //获取评论
     public void queryCommentsList( String argContId, String argPage, String argPageSize) {

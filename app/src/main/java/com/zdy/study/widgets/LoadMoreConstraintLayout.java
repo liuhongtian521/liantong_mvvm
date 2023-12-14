@@ -82,6 +82,7 @@ public class LoadMoreConstraintLayout extends ConstraintLayout {
     public void setList(List<?> list, int page){
         if (list.size() == 0) {
             showEmptyView(View.VISIBLE);//显示缺省页
+            setNextPageVisibility(View.GONE);
             return;
         }else{
             showEmptyView(View.GONE);// 隐藏缺省页
@@ -95,8 +96,8 @@ public class LoadMoreConstraintLayout extends ConstraintLayout {
         else
             setNextPageVisibility(View.VISIBLE);// 显示下一页
 
-        if (fcbNextPage.getVisibility() == GONE && fcbPreviousPage.getVisibility() == GONE)
-            viewLeft.setVisibility(GONE); //设置左侧上下按键背景 隐藏
+//        if (fcbNextPage.getVisibility() == GONE && fcbPreviousPage.getVisibility() == GONE)
+//            viewLeft.setVisibility(GONE); //设置左侧上下按键背景 隐藏
     }
 
     public interface LoadLitetsner{

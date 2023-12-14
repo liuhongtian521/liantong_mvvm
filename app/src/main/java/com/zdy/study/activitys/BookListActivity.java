@@ -43,48 +43,29 @@ public class BookListActivity extends BaseActivity {
         mDataBinding.tvLeft.setOnFocusChangeListener((view, b) -> {
             if (b) {
                 // 此处为得到焦点时的处理内容
-                ViewCompat.animate(view)
-                        .scaleX(1.2f)
-                        .scaleY(1.2f)
-                        .translationZ(1)
-                        .start();
+                mDataBinding.viewPager.setCurrentItem(0, true);
+                mDataBinding.tvLeft.setTextColor(getResources().getColor(R.color.app_black3));
+                mDataBinding.viewRedLeft.setVisibility(View.VISIBLE);
+
 
             } else {
                 // 此处为失去焦点时的处理内容
-                ViewCompat.animate(view)
-                        .scaleX(1)
-                        .scaleY(1)
-                        .translationZ(1)
-                        .start();
+                mDataBinding.tvLeft.setTextColor(getResources().getColor(R.color.gray_select));
+                mDataBinding.viewRedLeft.setVisibility(View.GONE);
             }
-            mDataBinding.viewPager.setCurrentItem(0, true);
-            mDataBinding.tvLeft.setTextColor(getResources().getColor(R.color.app_black3));
-            mDataBinding.tvRight.setTextColor(getResources().getColor(R.color.gray_select));
-            mDataBinding.viewRedLeft.setVisibility(View.VISIBLE);
-            mDataBinding.viewRedRight.setVisibility(View.GONE);
+
         });
         mDataBinding.tvRight.setOnFocusChangeListener((view, b) -> {
             if (b) {
                 // 此处为得到焦点时的处理内容
-                ViewCompat.animate(view)
-                        .scaleX(1.2f)
-                        .scaleY(1.2f)
-                        .translationZ(1)
-                        .start();
-
+                mDataBinding.tvRight.setTextColor(getResources().getColor(R.color.app_black3));
+                mDataBinding.viewRedRight.setVisibility(View.VISIBLE);
+                mDataBinding.viewPager.setCurrentItem(1, true);
             } else {
                 // 此处为失去焦点时的处理内容
-                ViewCompat.animate(view)
-                        .scaleX(1)
-                        .scaleY(1)
-                        .translationZ(1)
-                        .start();
+                mDataBinding.tvRight.setTextColor(getResources().getColor(R.color.gray_select));
+                mDataBinding.viewRedRight.setVisibility(View.GONE);
             }
-            mDataBinding.tvLeft.setTextColor(getResources().getColor(R.color.gray_select));
-            mDataBinding.tvRight.setTextColor(getResources().getColor(R.color.app_black3));
-            mDataBinding.viewRedLeft.setVisibility(View.GONE);
-            mDataBinding.viewRedRight.setVisibility(View.VISIBLE);
-            mDataBinding.viewPager.setCurrentItem(1, true);
         });
     }
 

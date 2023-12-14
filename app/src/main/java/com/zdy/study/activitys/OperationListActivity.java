@@ -36,28 +36,11 @@ public class OperationListActivity extends BaseActivity {
     public void onInit() {
         //标题
         binding.includeLayout.preferenceActivityTitleText.setText("操作技巧");
-        MainFragmentResponseBean.PageDataBean pageDataBean =
-                (MainFragmentResponseBean.PageDataBean) getIntent().getSerializableExtra("operationData");
 
         initList();
-        if (pageDataBean != null){
-            //显示上一页传过来的数据
-            showData(pageDataBean);
-        }else{
-            showNetDialog();
-            viewModel.queryContListByAudit(String.valueOf(page), pageSize, Constants.CZJQ);
-            initLoad();
-        }
-    }
-
-    //显示上一页传过来的数据
-    private void showData(MainFragmentResponseBean.PageDataBean pageDataBean){
-        BroadcastExpressResponBean.PageDataBean data = new BroadcastExpressResponBean.PageDataBean();
-        data.setContName(pageDataBean.getContName());
-        data.setCreateTime(pageDataBean.getCreateTime());
-        data.setImgUrl(pageDataBean.getImgUrl());
-        list.add(data);
-        adapter.notifyDataSetChanged();
+        initLoad();
+        showNetDialog();
+        viewModel.queryContListByAudit(String.valueOf(page), pageSize, Constants.CZJQ);
     }
 
     @Override
@@ -113,6 +96,7 @@ public class OperationListActivity extends BaseActivity {
                 return;
             }
             binding.lmViewOperation.setList(listResult.getResult().getPageData(), page);
+            list.clear();
             list.addAll(listResult.getResult().getPageData());
             adapter.notifyDataSetChanged();
         });
