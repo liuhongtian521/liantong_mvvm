@@ -1,8 +1,9 @@
 package com.askia.coremodel.datamodel.http.entities.consume;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class BooksRespponseBean {
+public class BooksRespponseBean implements Serializable{
 
     /**
      * total : 23
@@ -78,7 +79,7 @@ public class BooksRespponseBean {
         this.pageData = pageData;
     }
 
-    public static class PageDataBean {
+    public static class PageDataBean implements Serializable {
         /**
          * id : 842417061178114048
          * bookName : 大国战略

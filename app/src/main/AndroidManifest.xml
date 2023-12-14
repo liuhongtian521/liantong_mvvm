@@ -112,6 +112,11 @@
             android:name=".activitys.AddressBookActivity"
             android:launchMode="singleTask"
             android:windowSoftInputMode="stateHidden" />
+        <!--图书详情-->
+        <activity
+            android:name=".activitys.BookDetailsActivity"
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="stateHidden" />
 
         <activity
             android:name=".activitys.VideoActivity"

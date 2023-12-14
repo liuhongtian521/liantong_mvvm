@@ -32,6 +32,8 @@ public class ARouterPath {
     public static final String BroadcastExpressActivity = "/activity/BroadcastExpressActivity";
     /*在院服务*/
     public static final String SHCOOLSERVICE_ACTIVIGY = "/activity/SchoolServiec";
+    /*图书详情*/
+    public static final String BookDetailsActivity = "/activity/BookDetailsActivity";
     /*通讯录*/
     public static final String AddressBookActivity = "/activity/AddressBookActivity";
     /*通讯录*/

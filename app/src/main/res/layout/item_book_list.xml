@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.zdy.study.fcWidgets.FCLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/fcll"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginLeft="@dimen/dp_12"
-    android:background="@drawable/gray_round_corner_"
+    android:background="@color/white"
     android:focusableInTouchMode="true"
     android:orientation="horizontal"
-    android:paddingBottom="@dimen/dp_12">
+    android:paddingTop="5dp"
+    android:paddingBottom="@dimen/dp_5">
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -34,12 +35,11 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="22dp"
             android:layout_toRightOf="@+id/tv_book_name"
-            android:textColor="#FAFAFA"
+            android:textColor="@color/text_908f94"
             android:textSize="12sp" />
 
         <TextView
-            android:maxLines="3"
-            android:ellipsize="end"
+            android:id="@+id/tv_content_book"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_book_author"
@@ -47,7 +47,9 @@
             android:layout_marginTop="7dp"
             android:layout_marginRight="22dp"
             android:layout_toRightOf="@+id/iv_book_name"
-            android:textColor="#FAFAFA"
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:textColor="@color/text_908f94"
             android:textSize="10sp" />
 
     </RelativeLayout>

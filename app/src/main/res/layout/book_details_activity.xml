@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/include_layout"
+            layout="@layout/title_style_white" />
+
+        <ScrollView
+            android:layout_below="@+id/include_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/dp_70"
+            android:fillViewport="true"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp">
+
+                    <ImageView
+                        android:id="@+id/iv_book_name"
+                        android:layout_width="62dp"
+                        android:layout_height="90dp"
+                        android:layout_marginLeft="15dp" />
+
+                    <TextView
+                        android:id="@+id/tv_book_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="13dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_toRightOf="@+id/iv_book_name"
+                        android:text="123"
+                        android:textColor="@color/app_black3"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/tv_content_book"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_book_name"
+                        android:layout_marginLeft="13dp"
+                        android:layout_marginTop="7dp"
+                        android:layout_marginRight="22dp"
+                        android:layout_toRightOf="@+id/iv_book_name"
+                        android:ellipsize="end"
+                        android:maxLines="3"
+                        android:text="123"
+                        android:textColor="@color/text_908f94"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:id="@+id/tv_content_book1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_content_book"
+                        android:layout_marginLeft="13dp"
+                        android:layout_marginTop="7dp"
+                        android:layout_marginRight="22dp"
+                        android:layout_toRightOf="@+id/iv_book_name"
+                        android:ellipsize="end"
+                        android:maxLines="3"
+                        android:text="123"
+                        android:textColor="@color/text_908f94"
+                        android:textSize="10sp" />
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp">
+
+                        <ImageView
+                            android:id="@+id/iv_rec"
+                            android:layout_width="8dp"
+                            android:layout_height="10dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="15dp"
+                            android:background="@mipmap/ic_recgle" />
+
+                        <TextView
+                            android:id="@+id/tv_introduction"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_centerInParent="true"
+                            android:layout_marginLeft="@dimen/dp_8"
+                            android:layout_toRightOf="@+id/iv_rec"
+                            android:gravity="center_vertical"
+                            android:text="简介"
+                            android:textColor="@color/app_black3"
+                            android:textSize="13sp" />
+                    </RelativeLayout>
+
+                    <TextView
+                        android:id="@+id/tv_content_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_15"
+                        android:layout_marginTop="@dimen/dp_6"
+                        android:text="" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp">
+
+                        <ImageView
+                            android:id="@+id/iv_rec1"
+                            android:layout_width="8dp"
+                            android:layout_height="10dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="15dp"
+                            android:background="@mipmap/ic_recgle" />
+
+                        <TextView
+                            android:id="@+id/tv_introduction1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginLeft="@dimen/dp_8"
+                            android:layout_toRightOf="@+id/iv_rec1"
+                            android:gravity="center_vertical"
+                            android:text="章节目录"
+                            android:textColor="@color/app_black3"
+                            android:textSize="13sp" />
+                    </RelativeLayout>
+
+                    <TextView
+                        android:id="@+id/tv_content_3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_15"
+                        android:layout_marginTop="@dimen/dp_6"
+                        android:text="" />
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="推荐书籍已放置房间书架，尽享带回阅读使用。"
+            android:textColor="#767882" />
+    </RelativeLayout>
+</layout>

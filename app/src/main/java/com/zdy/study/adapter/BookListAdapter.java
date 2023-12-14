@@ -26,6 +26,7 @@ public class BookListAdapter extends BaseQuickAdapter<BooksRespponseBean.PageDat
     protected void convert(BaseViewHolder helper, BooksRespponseBean.PageDataBean item) {
         helper.setText(R.id.tv_book_name, item.getBookName());
         helper.setText(R.id.tv_book_author, "(作者" + item.getAuthorName() + ")");
+        helper.setText(R.id.tv_content_book, item.getBriefIntroduction());
         ImageView imageView = helper.getView(R.id.iv_book_name);
         if (!"".equals(item.getCoverUrl())) {
             Glide.with(mContext).load(item.getCoverUrl()).into(imageView);

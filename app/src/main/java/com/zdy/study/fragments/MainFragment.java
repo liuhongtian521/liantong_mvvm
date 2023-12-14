@@ -23,6 +23,7 @@ import com.askia.coremodel.datamodel.http.entities.consume.MainFragmentResponseF
 import com.askia.coremodel.datamodel.http.entities.consume.MainFragmentResponseThirdBean;
 import com.askia.coremodel.datamodel.http.entities.consume.MainFragmentResponseTwoBean;
 import com.blankj.utilcode.util.ToastUtils;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.zdy.study.R;
 import com.zdy.study.adapter.BookAdapter;
 import com.zdy.study.adapter.CourseQueryAdapter;
@@ -68,7 +69,7 @@ public class MainFragment extends BaseFragment {
         //1384698467028410369  //操作技巧
         mViewModel.queryHotAndTopContListByAudit5("1", "2", Constants.CZJQ);
         //书单
-        mViewModel.padList("1", "10","");
+        mViewModel.padList("1", "10", "");
         mViewModel.queryHotRooms();
         initRvListener();
         initRvListener2();
@@ -116,6 +117,11 @@ public class MainFragment extends BaseFragment {
         adapter = new BookAdapter(list6, getActivity());
         recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(adapter);
+        adapter.setOnItemClickListener((adapter, view, position) -> {
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("BookListDetails", list6.get(position));
+            startActivityByRouter(ARouterPath.BookDetailsActivity, bundle);
+        });
     }
 
     private void initRvListener2() {
@@ -292,6 +298,7 @@ public class MainFragment extends BaseFragment {
         });
 
     }
+
     public void operationMoreClick(View view) {
         startActivityByRouter(ARouterPath.OpreationActivity);
     }
@@ -299,14 +306,14 @@ public class MainFragment extends BaseFragment {
     public void operationFirstClick(View view) {
         MainFragmentResponseBean.PageDataBean pageDataBean = mViewModel.getPageListPadData5().getValue().getResult().getPageData().get(0);
         Bundle bundle = new Bundle();
-        bundle.putSerializable("operationData",pageDataBean);
+        bundle.putSerializable("operationData", pageDataBean);
         startActivityByRouter(ARouterPath.OpreationActivity, bundle);
     }
 
     public void operationSecondClick(View view) {
         MainFragmentResponseBean.PageDataBean pageDataBean = mViewModel.getPageListPadData5().getValue().getResult().getPageData().get(1);
         Bundle bundle = new Bundle();
-        bundle.putSerializable("operationData",pageDataBean);
+        bundle.putSerializable("operationData", pageDataBean);
         startActivityByRouter(ARouterPath.OpreationActivity, bundle);
     }
 }
