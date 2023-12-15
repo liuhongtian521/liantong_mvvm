@@ -348,7 +348,9 @@ public class MainFragment extends BaseFragment {
 
     //精选理论更多
     public void theoryMoreClick(View view) {
-        startActivityByRouter(ARouterPath.BookListActivity);
+        Bundle bundle = new Bundle();
+        bundle.putInt("tab", 1);
+        startActivityByRouter(ARouterPath.BookListActivity, bundle);
     }
 
     //精选理论第一条

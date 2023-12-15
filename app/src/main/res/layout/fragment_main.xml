@@ -794,7 +794,7 @@
                     android:layout_marginTop="2dp"
                     android:background="@color/white">
 
-                    <com.zdy.study.fcWidgets.FCTextview
+                    <Button
                         android:layout_width="33dp"
                         android:layout_height="16dp"
                         android:layout_alignParentEnd="true"
@@ -802,6 +802,7 @@
                         android:layout_marginRight="15dp"
                         android:focusable="true"
                         android:focusableInTouchMode="true"
+                        android:background="@color/transparent"
                         android:gravity="right"
                         android:onClick="@{handlers::operationMoreClick}"
                         android:text="更多 >"

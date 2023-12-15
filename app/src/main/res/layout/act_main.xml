@@ -18,13 +18,19 @@
         android:background="@color/white">
 
 
-        <androidx.viewpager2.widget.ViewPager2
+        <!--<androidx.viewpager2.widget.ViewPager2
             android:id="@+id/view_pager"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_0"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/rg_bottom"/>
+            app:layout_constraintBottom_toTopOf="@+id/rg_bottom"/>-->
 
+        <FrameLayout
+            android:id="@+id/main_layout_content"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_0"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/rg_bottom"/>
 
 
         <!--<com.google.android.material.tabs.TabLayout

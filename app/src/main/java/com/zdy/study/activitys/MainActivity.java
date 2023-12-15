@@ -28,11 +28,18 @@ public class MainActivity extends BaseActivity {
 
     private List<Fragment> mFragments;
 
+    private DigitalClassesFragment digitalClassesFragment = new DigitalClassesFragment();
+    private MainFragment mainFragment = new MainFragment();
+    private DiscussRoomFragment discussRoomFragment = new DiscussRoomFragment();
+    private CurrentClassFragment currentClassFragment = new CurrentClassFragment();
 
+    private FragmentManager manager;
+    private FragmentTransaction transaction;
+    private Fragment currentFragment;
     @Override
     public void onInit() {
         initFragment();
-        initPagerTab();
+//        initPagerTab();
         initBottom();
     }
 
@@ -46,22 +53,42 @@ public class MainActivity extends BaseActivity {
         mDataBinding = DataBindingUtil.setContentView(this, R.layout.act_main);
     }
 
-    private void initFragment(){
+    /*private void initFragment(){
         mFragments = new ArrayList<>();
         mFragments.add(DigitalClassesFragment.newInstance(tabTitle[0]));
         mFragments.add(MainFragment.newInstance(tabTitle[1]));
         mFragments.add(DiscussRoomFragment.newInstance(tabTitle[2]));
         mFragments.add(CurrentClassFragment.newInstance(tabTitle[3]));
 //        mFragments.add(CurrentClassFragment.newInstance(tabTitle[4]));
+    }*/
+
+    //设置默认fragment
+    private void initFragment(){
+//        mDataBinding.rbGoods.setChecked(true);//设置商品总览tab选中
+        manager=getSupportFragmentManager();
+        transaction=manager.beginTransaction();
+//        transaction.show(digitalClassesFragment);
+        transaction.replace(R.id.main_layout_content,digitalClassesFragment);
+//        transaction.hide(shoppingCartFragment);
+//        transaction.hide(telephoneFragment);
+        transaction.commit();
+//        currentFragment = digitalClassesFragment;
     }
 
+    private void FragmentHideShwo(Fragment fg){
+        // show or hide fragments to improve the stablility and reduce costs
+        manager=getSupportFragmentManager();
+        transaction=manager.beginTransaction();
+        transaction.replace(R.id.main_layout_content, fg);
+        transaction.commit();
+    }
     private void initPagerTab(){
         //实例化 FragmentPagerAdapter 并将 Fragment 列表传入
-        ViewPager2Adapter adapter = new ViewPager2Adapter(this, mFragments);
+        /*ViewPager2Adapter adapter = new ViewPager2Adapter(this, mFragments);
         mDataBinding.viewPager.setAdapter(adapter);
         mDataBinding.viewPager.setOffscreenPageLimit(2);
         mDataBinding.viewPager.setUserInputEnabled(false); //true:滑动，false：禁止滑动
-        mDataBinding.viewPager.setCurrentItem(0,false);
+        mDataBinding.viewPager.setCurrentItem(0,false);*/
         //TabLayout 和 Viewpager2 关联
         /*TabLayoutMediator tabm = new TabLayoutMediator(mDataBinding.tabLayout, mDataBinding.viewPager, new TabLayoutMediator.TabConfigurationStrategy() {
             @Override
@@ -81,22 +108,22 @@ public class MainActivity extends BaseActivity {
 
 
     private void initBottom(){
-        mDataBinding.rbSzbj.requestFocus();
+//        mDataBinding.rbSzbj.requestFocus();
         mDataBinding.rbSzbj.setOnFocusChangeListener((view, b) -> {
-//            FragmentHideShwo(fragment);
-            mDataBinding.viewPager.setCurrentItem(0, true);
+            FragmentHideShwo(digitalClassesFragment);
+//            mDataBinding.viewPager.setCurrentItem(0, true);
         });
         mDataBinding.rbXxzs.setOnFocusChangeListener((view, b) -> {
-//            FragmentHideShwo(fragment1);
-            mDataBinding.viewPager.setCurrentItem(1, true);
+            FragmentHideShwo(mainFragment);
+//            mDataBinding.viewPager.setCurrentItem(1, true);
         });
         mDataBinding.rbTl.setOnFocusChangeListener((view, b) -> {
-//            FragmentHideShwo(fragment2);
-            mDataBinding.viewPager.setCurrentItem(2, true);
+            FragmentHideShwo(discussRoomFragment);
+//            mDataBinding.viewPager.setCurrentItem(2, true);
         });
         mDataBinding.rbGr.setOnFocusChangeListener((view, b) -> {
-//            FragmentHideShwo(fragment3);
-            mDataBinding.viewPager.setCurrentItem(3, true);
+            FragmentHideShwo(currentClassFragment);
+//            mDataBinding.viewPager.setCurrentItem(3, true);
         });
 
     }

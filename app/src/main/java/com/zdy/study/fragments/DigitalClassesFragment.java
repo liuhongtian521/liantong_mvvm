@@ -42,7 +42,7 @@ public class DigitalClassesFragment extends BaseFragment {
         list.add("通讯录");
         MainMenuAdapter adapter = new MainMenuAdapter(list);
 
-        GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 4);//第二个参数为网格的列数
+        GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 3);//第二个参数为网格的列数
         mDataBinding.rvMainMenu.setLayoutManager(layoutManager);
         mDataBinding.rvMainMenu.setAdapter(adapter);
         mDataBinding.rvMainMenu.setItemAnimator(null);
