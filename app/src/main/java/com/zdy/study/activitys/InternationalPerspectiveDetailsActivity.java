@@ -78,7 +78,8 @@ public class InternationalPerspectiveDetailsActivity extends BaseActivity {
                 ToastUtils.showLong(listResult.getMessage().toString());
                 return;
             }
-
+            mDataBinding.flOperation.setPraiseActive("0".equals(listResult.getResult().getPraise())? false: true);
+            mDataBinding.flOperation.setAddcollection("0".equals(listResult.getResult().getCollection())? false: true);
             // 在目标活动（TargetActivity）中获取Bundle
             mDataBinding.tvTitle.setText(listResult.getResult().getContName());
             mDataBinding.tvDate.setText(listResult.getResult().getDisplayTime());

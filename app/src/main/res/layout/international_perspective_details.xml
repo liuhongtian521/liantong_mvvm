@@ -6,87 +6,99 @@
     </data>
 
     <LinearLayout
-        android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
+        android:background="@color/white"
         android:orientation="vertical">
 
         <include
             android:id="@+id/include_layout"
             layout="@layout/title_style_white" />
 
-        <TextView
-            android:id="@+id/tv_title"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:text="123123123"
-            android:textColor="@color/app_black3"
-            android:textSize="16sp" />
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:scrollbars="none">
 
-        <TextView
-            android:id="@+id/tv_date"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:gravity="center_vertical"
-            android:text="123123123"
-            android:textColor="#95989E"
-            android:textSize="10sp" />
-
-        <TextView
-            android:id="@+id/tv_author"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:gravity="center_vertical"
-            android:text="123123123"
-            android:textColor="#95989E"
-            android:textSize="10sp" />
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:id="@+id/iv_video"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:layout_marginTop="6dp" />
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_centerInParent="true"
-                android:background="@mipmap/ic_video_play" />
-        </RelativeLayout>
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="123123123"
+                    android:textColor="@color/app_black3"
+                    android:textSize="16sp" />
 
-        <WebView
-            android:id="@+id/web_content"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="#1E1E1E"
-            android:textSize="@dimen/sp_12" />
+                <TextView
+                    android:id="@+id/tv_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:gravity="center_vertical"
+                    android:text="123123123"
+                    android:textColor="#95989E"
+                    android:textSize="10sp" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:layout_marginTop="15dp"
-            android:background="#E2E4E8" />
+                <TextView
+                    android:id="@+id/tv_author"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:gravity="center_vertical"
+                    android:text="123123123"
+                    android:textColor="#95989E"
+                    android:textSize="10sp" />
 
-        <TextView
-            android:id="@+id/tv_introduction"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:textSize="16sp" />
-        <com.zdy.study.widgets.FavoritesLikesLayout
-            android:id="@+id/fl_operation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-           />
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
 
+                    <ImageView
+                        android:id="@+id/iv_video"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:layout_marginTop="6dp" />
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_centerInParent="true"
+                        android:background="@mipmap/ic_video_play" />
+                </RelativeLayout>
+
+                <WebView
+                    android:id="@+id/web_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#1E1E1E"
+                    android:textSize="@dimen/sp_12" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginTop="15dp"
+                    android:background="#E2E4E8" />
+
+                <TextView
+                    android:id="@+id/tv_introduction"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:textSize="16sp" />
+
+                <com.zdy.study.widgets.FavoritesLikesLayout
+                    android:id="@+id/fl_operation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </ScrollView>
     </LinearLayout>
 </layout>

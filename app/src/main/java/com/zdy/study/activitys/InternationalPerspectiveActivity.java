@@ -85,7 +85,6 @@ public class InternationalPerspectiveActivity extends BaseActivity {
         adapter.setOnItemClickListener((adapter, view, position) -> {
             Bundle bundle = new Bundle();
             bundle.putString("key", KeyWord);
-            /*TODO*/
             bundle.putInt("PraiseCount", list.get(position).getPraiseCount());
             bundle.putString("Collection", list.get(position).getCollection());
             bundle.putString("INTERNATIONAL_VIEW", list.get(position).getId());

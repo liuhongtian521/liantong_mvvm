@@ -37,6 +37,7 @@
                         android:background="@mipmap/ic_main_start" />
 
                     <com.zdy.study.fcWidgets.FCImageView
+                        android:visibility="gone"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:layout_alignParentEnd="true"
@@ -46,6 +47,7 @@
                         android:focusableInTouchMode="true" />
 
                     <com.zdy.study.fcWidgets.FCImageView
+                        android:visibility="gone"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:layout_alignParentEnd="true"
@@ -69,20 +71,20 @@
 
                     <TextView
                         android:id="@+id/tv_main_month"
-                        android:layout_width="10dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="10dp"
                         android:layout_alignParentStart="true"
-                        android:layout_marginLeft="12dp"
+                        android:layout_marginLeft="11dp"
                         android:text="3月"
                         android:textColor="@color/app_white"
-                        android:textSize="6sp" />
+                        android:textSize="8sp" />
 
                     <TextView
                         android:id="@+id/tv_main_day"
                         android:layout_width="wrap_content"
                         android:layout_height="12dp"
                         android:layout_below="@+id/tv_main_month"
-                        android:layout_marginLeft="12.5dp"
+                        android:layout_marginLeft="12dp"
                         android:gravity="center"
                         android:text="31"
                         android:textColor="@color/app_white"

@@ -20,7 +20,7 @@ public class CurrentClassFragment extends BaseFragment {
     private FragmentCurrentClassBinding mDataBinding;
     @Override
     public void onInit() {
-        mDataBinding.currentText.setText(getArguments().getString("TITLE"));
+//        mDataBinding.currentText.setText(getArguments().getString("TITLE"));
     }
 
     @Override
@@ -45,7 +45,8 @@ public class CurrentClassFragment extends BaseFragment {
         fragment.setArguments(arguments);
         return fragment;
     }
- 
+
+
     /*private TextView mTextView;
  
     public static CurrentClassFragment newInstance(String title){

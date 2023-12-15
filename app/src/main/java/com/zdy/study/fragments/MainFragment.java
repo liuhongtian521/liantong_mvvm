@@ -35,6 +35,7 @@ import com.zdy.study.tools.Constants;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class MainFragment extends BaseFragment {
@@ -51,17 +52,22 @@ public class MainFragment extends BaseFragment {
     private RecyclerView discussionsRecyclerView;
     private BookAdapter adapter;
     private DiscussAdapter discussAdapter;
+    private String mWeekDay;
 
     @Override
     public void onInit() {
+
         //第一个接口
-        list = new ArrayList<>();
-        list1 = new ArrayList<>();
-        list3 = new ArrayList<>();
-        listPractical = new ArrayList<>();
-        listExample = new ArrayList<>();
-        discussResponseBeanList = new ArrayList<>();
-        list6 = new ArrayList<>();
+        inItList();
+        inItInterface();
+        inInSetDate();
+        initRvListener();
+        initRvListener2();
+        initOnLister();
+
+    }
+
+    private void inItInterface() {
         //联播速递
         mViewModel.queryHotAndTopContListByAudit("1", "3", Constants.LBSD);
         //国际视野
@@ -75,9 +81,51 @@ public class MainFragment extends BaseFragment {
         //书单
         mViewModel.padList("1", "10", "");
         mViewModel.queryHotRooms();
-        initRvListener();
-        initRvListener2();
-        initOnLister();
+    }
+
+    private void inItList() {
+        list = new ArrayList<>();
+        list1 = new ArrayList<>();
+        list3 = new ArrayList<>();
+        listPractical = new ArrayList<>();
+        listExample = new ArrayList<>();
+        discussResponseBeanList = new ArrayList<>();
+        list6 = new ArrayList<>();
+    }
+
+    public void inInSetDate() {
+        // 使用Calendar获取当前日期的年、月、日
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH) + 1; // Calendar类的月份是从0开始计算的，所以需要加1
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        int weekDay = calendar.get(Calendar.DAY_OF_WEEK);
+        switch (weekDay) {
+            case Calendar.SUNDAY:
+                mWeekDay="星期日";
+                break;
+            case Calendar.MONDAY:
+                mWeekDay="星期一";
+                break;
+            case Calendar.TUESDAY:
+                mWeekDay="星期二";
+                break;
+            case Calendar.WEDNESDAY:
+                mWeekDay="星期三";
+                break;
+            case Calendar.THURSDAY:
+                mWeekDay="星期四";
+                break;
+            case Calendar.FRIDAY:
+                mWeekDay="星期五";
+                break;
+            case Calendar.SATURDAY:
+                mWeekDay="星期六";
+                break;
+        }
+        mFragmentMainBinding.tvMainMonth.setText(month + "月");
+        mFragmentMainBinding.tvMainDay.setText(day + "");
+        mFragmentMainBinding.tvMainWeek.setText(mWeekDay);
 
     }
 
@@ -314,7 +362,7 @@ public class MainFragment extends BaseFragment {
     public void coursExampleClickLeft(View view) {
         if (listPractical.size() > 0) {
             Bundle bundle = new Bundle();
-            bundle.putString("key",Constants.SJAL);
+            bundle.putString("key", Constants.SJAL);
             bundle.putString("INTERNATIONAL_VIEW", listPractical.get(0).getId());
             startActivityByRouter(ARouterPath.InternationalPerspectiveDetailsActivity, bundle);
         }
@@ -323,25 +371,26 @@ public class MainFragment extends BaseFragment {
     public void coursExampleClickRight(View view) {
         if (listPractical.size() > 1) {
             Bundle bundle = new Bundle();
-            bundle.putString("key",Constants.SJAL);
+            bundle.putString("key", Constants.SJAL);
             bundle.putString("INTERNATIONAL_VIEW", listPractical.get(1).getId());
             startActivityByRouter(ARouterPath.InternationalPerspectiveDetailsActivity, bundle);
         }
     }
-  public void internationalPerspectiveClickRight(View view) {
-      if (listExample.size() > 1) {
-          Bundle bundle = new Bundle();
-          bundle.putString("INTERNATIONAL_VIEW", listExample.get(1).getId());
-          bundle.putString("key",Constants.GJSY);
-          startActivityByRouter(ARouterPath.InternationalPerspectiveDetailsActivity, bundle);
-      }
+
+    public void internationalPerspectiveClickRight(View view) {
+        if (listExample.size() > 1) {
+            Bundle bundle = new Bundle();
+            bundle.putString("INTERNATIONAL_VIEW", listExample.get(1).getId());
+            bundle.putString("key", Constants.GJSY);
+            startActivityByRouter(ARouterPath.InternationalPerspectiveDetailsActivity, bundle);
+        }
     }
 
     public void internationalPerspectiveClickLeft(View view) {
         if (listExample.size() > 0) {
             Bundle bundle = new Bundle();
             bundle.putString("INTERNATIONAL_VIEW", listExample.get(0).getId());
-            bundle.putString("key",Constants.GJSY);
+            bundle.putString("key", Constants.GJSY);
             startActivityByRouter(ARouterPath.InternationalPerspectiveDetailsActivity, bundle);
         }
     }

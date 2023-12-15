@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.zdy.study.fcWidgets.FCLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:focusableInTouchMode="true"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 <LinearLayout
@@ -53,4 +54,4 @@
         android:background="#E2E4E8"
         android:layout_width="match_parent"
         android:layout_height="0.5dp"/>
-</LinearLayout>
+</com.zdy.study.fcWidgets.FCLinearLayout>
