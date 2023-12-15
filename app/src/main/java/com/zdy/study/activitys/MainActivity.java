@@ -108,7 +108,7 @@ public class MainActivity extends BaseActivity {
 
 
     private void initBottom(){
-//        mDataBinding.rbSzbj.requestFocus();
+        mDataBinding.rbSzbj.requestFocus();
         mDataBinding.rbSzbj.setOnFocusChangeListener((view, b) -> {
             FragmentHideShwo(digitalClassesFragment);
 //            mDataBinding.viewPager.setCurrentItem(0, true);

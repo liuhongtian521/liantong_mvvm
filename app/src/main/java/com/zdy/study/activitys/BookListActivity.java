@@ -39,11 +39,6 @@ public class BookListActivity extends BaseActivity {
     }
 
     private void initTop() {
-        int tab = getIntent().getExtras().getInt("tab");
-        if (tab == 1)
-            mDataBinding.tvRight.requestFocus();
-        else
-            mDataBinding.tvLeft.requestFocus();
         mDataBinding.tvLeft.setOnFocusChangeListener((view, b) -> {
             if (b) {
                 // 此处为得到焦点时的处理内容
@@ -69,6 +64,11 @@ public class BookListActivity extends BaseActivity {
                 mDataBinding.viewRedRight.setVisibility(View.GONE);
             }
         });
+        int tab = getIntent().getExtras().getInt("tab");
+        if (tab == 1)
+            mDataBinding.tvRight.requestFocus();
+        else
+            mDataBinding.tvLeft.requestFocus();
     }
 
     public void initFragment() {
