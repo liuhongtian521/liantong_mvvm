@@ -110,18 +110,22 @@ public class MainActivity extends BaseActivity {
     private void initBottom(){
         mDataBinding.rbSzbj.requestFocus();
         mDataBinding.rbSzbj.setOnFocusChangeListener((view, b) -> {
+            if (b)
             FragmentHideShwo(digitalClassesFragment);
 //            mDataBinding.viewPager.setCurrentItem(0, true);
         });
         mDataBinding.rbXxzs.setOnFocusChangeListener((view, b) -> {
+            if (b)
             FragmentHideShwo(mainFragment);
 //            mDataBinding.viewPager.setCurrentItem(1, true);
         });
         mDataBinding.rbTl.setOnFocusChangeListener((view, b) -> {
+            if (b)
             FragmentHideShwo(discussRoomFragment);
 //            mDataBinding.viewPager.setCurrentItem(2, true);
         });
         mDataBinding.rbGr.setOnFocusChangeListener((view, b) -> {
+            if (b)
             FragmentHideShwo(currentClassFragment);
 //            mDataBinding.viewPager.setCurrentItem(3, true);
         });

@@ -53,6 +53,9 @@ public class MainMenuAdapter extends BaseQuickAdapter<String, BaseViewHolder>  {
             case 7:
                 baseViewHolder.setImageResource(R.id.iv_menu, R.mipmap.ic_item_txl);
                 break;
+            case 8:
+                baseViewHolder.setImageResource(R.id.iv_menu, R.mipmap.ic_item_txl);
+                break;
         }
     }
 

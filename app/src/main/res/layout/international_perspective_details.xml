@@ -57,9 +57,13 @@
                     android:textColor="#95989E"
                     android:textSize="10sp" />
 
-                <RelativeLayout
+                <com.zdy.study.fcWidgets.FCRelativeLayout
+                    android:focusableInTouchMode="true"
+                    android:id="@+id/fcr_video"
+                    android:onClick="listClick"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:background="@color/black">
 
                     <ImageView
                         android:id="@+id/iv_video"
@@ -72,12 +76,14 @@
                         android:layout_height="40dp"
                         android:layout_centerInParent="true"
                         android:background="@mipmap/ic_video_play" />
-                </RelativeLayout>
+                </com.zdy.study.fcWidgets.FCRelativeLayout>
 
                 <WebView
                     android:id="@+id/web_content"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
                     android:textColor="#1E1E1E"
                     android:textSize="@dimen/sp_12" />
 

@@ -42,7 +42,7 @@
                 android:focusableInTouchMode="true"
                 android:gravity="center"
                 android:text="精选理论"
-                android:textColor="#95989E"
+                android:textColor="@drawable/text_tab_selector_gray"
                 android:textSize="12sp"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -79,7 +79,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
            />
-     <!--   <androidx.viewpager2.widget.ViewPager2
+       <!--<androidx.viewpager2.widget.ViewPager2
             android:id="@+id/view_pager"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />-->
