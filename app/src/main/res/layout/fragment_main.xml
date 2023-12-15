@@ -310,6 +310,7 @@
                     android:orientation="horizontal">
 
                     <LinearLayout
+                        android:onClick="@{handlers::internationalPerspectiveClickLeft}"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginRight="14dp"
@@ -343,6 +344,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:onClick="@{handlers::internationalPerspectiveClickRight}"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginRight="14dp"
@@ -528,6 +530,7 @@
                     android:background="@color/white">
 
                     <com.zdy.study.fcWidgets.FCTextview
+                        android:id="@+id/course_example_more"
                         android:layout_width="33dp"
                         android:layout_height="16dp"
                         android:layout_alignParentEnd="true"
@@ -571,6 +574,7 @@
                     android:orientation="horizontal">
 
                     <LinearLayout
+                        android:onClick="@{handlers::coursExampleClickLeft}"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginRight="14dp"
@@ -604,6 +608,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:onClick="@{handlers::coursExampleClickRight}"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginRight="14dp"
@@ -632,7 +637,7 @@
                                 android:layout_toRightOf="@+id/view_circle3"
                                 android:ellipsize="end"
                                 android:maxLines="2"
-                                android:text="asdjaksdjaslkdasdhjalskdjalksdjalksdjklasjdalksdjaklsjdhalksdjlaksdjaljaksdjaklsdj" />
+                              />
 
                         </RelativeLayout>
                     </LinearLayout>

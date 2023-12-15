@@ -13,6 +13,7 @@
             android:id="@+id/include_layout"
             layout="@layout/title_style_white" />
         <RelativeLayout
+            android:background="@color/app_black3"
             android:layout_width="match_parent"
             android:layout_height="150dp">
 
@@ -53,7 +54,7 @@
             android:layout_height="match_parent">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:paddingRight="100dp"
+                android:layout_marginLeft="@dimen/dp_44"
                 android:id="@+id/rv_web"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />

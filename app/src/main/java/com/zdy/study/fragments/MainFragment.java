@@ -41,6 +41,8 @@ public class MainFragment extends BaseFragment {
     FragmentMainBinding mFragmentMainBinding;
     private MainFragmentViewModel mViewModel;
     private List<MainFragmentResponseBean.PageDataBean> list;
+    private List<MainFragmentResponseBean.PageDataBean> listExample;
+    private List<MainFragmentResponseBean.PageDataBean> listPractical;
     private List<MainFragmentResponseBean.PageDataBean> list1;
     private List<BroadcastExpressResponBean.PageDataBean> list3;
     private List<BooksRespponseBean.PageDataBean> list6;
@@ -56,6 +58,8 @@ public class MainFragment extends BaseFragment {
         list = new ArrayList<>();
         list1 = new ArrayList<>();
         list3 = new ArrayList<>();
+        listPractical = new ArrayList<>();
+        listExample = new ArrayList<>();
         discussResponseBeanList = new ArrayList<>();
         list6 = new ArrayList<>();
         //联播速递
@@ -84,7 +88,15 @@ public class MainFragment extends BaseFragment {
         });
         //国际视野更多
         mFragmentMainBinding.tvInternationalPerspectiveMore.setOnClickListener(v -> {
-            startActivityByRouter(ARouterPath.InternationalPerspectiveActivity);
+            Bundle bundle = new Bundle();
+            bundle.putString("KeyWord", Constants.GJSY);
+            startActivityByRouter(ARouterPath.InternationalPerspectiveActivity, bundle);
+        });
+        //实践案列更多
+        mFragmentMainBinding.courseExampleMore.setOnClickListener(v -> {
+            Bundle bundle = new Bundle();
+            bundle.putString("KeyWord", Constants.SJAL);
+            startActivityByRouter(ARouterPath.InternationalPerspectiveActivity, bundle);
         });
         //书单更多
         mFragmentMainBinding.tvBookList.setOnClickListener(v -> {
@@ -185,15 +197,15 @@ public class MainFragment extends BaseFragment {
                 ToastUtils.showLong(listResult.getMessage().toString());
                 return;
             }
-            list.clear();
+            listExample.clear();
             if (null != listResult.getResult() && null != listResult.getResult().getPageData() && listResult.getResult().getPageData().size() > 0) {
-                list.addAll(listResult.getResult().getPageData());
-                if (list.size() > 0) {
-                    mFragmentMainBinding.tvInternationalPerspective.setText(list.get(0).getContName());
+                listExample.addAll(listResult.getResult().getPageData());
+                if (listExample.size() > 0) {
+                    mFragmentMainBinding.tvInternationalPerspective.setText(listExample.get(0).getContName());
                     mFragmentMainBinding.viewCircle.setVisibility(View.VISIBLE);
                 }
-                if (list.size() > 1) {
-                    mFragmentMainBinding.tvInternationalPerspective1.setText(list.get(1).getContName());
+                if (listExample.size() > 1) {
+                    mFragmentMainBinding.tvInternationalPerspective1.setText(listExample.get(1).getContName());
                     mFragmentMainBinding.viewCircle12.setVisibility(View.VISIBLE);
                 }
 
@@ -208,15 +220,15 @@ public class MainFragment extends BaseFragment {
                 ToastUtils.showLong(listResult.getMessage().toString());
                 return;
             }
-            list.clear();
+            listPractical.clear();
             if (null != listResult.getResult() && null != listResult.getResult().getPageData() && listResult.getResult().getPageData().size() > 0) {
-                list.addAll(listResult.getResult().getPageData());
-                if (list.size() > 0) {
-                    mFragmentMainBinding.tvPracticalCases.setText(list.get(0).getContName());
+                listPractical.addAll(listResult.getResult().getPageData());
+                if (listPractical.size() > 0) {
+                    mFragmentMainBinding.tvPracticalCases.setText(listPractical.get(0).getContName());
                     mFragmentMainBinding.viewCircle1.setVisibility(View.VISIBLE);
                 }
-                if (list.size() > 1) {
-                    mFragmentMainBinding.tvPracticalCases2.setText(list.get(1).getContName());
+                if (listPractical.size() > 1) {
+                    mFragmentMainBinding.tvPracticalCases2.setText(listPractical.get(1).getContName());
                     mFragmentMainBinding.viewCircle3.setVisibility(View.VISIBLE);
                 }
 
@@ -299,10 +311,46 @@ public class MainFragment extends BaseFragment {
 
     }
 
+    public void coursExampleClickLeft(View view) {
+        if (listPractical.size() > 0) {
+            Bundle bundle = new Bundle();
+            bundle.putString("key",Constants.SJAL);
+            bundle.putString("INTERNATIONAL_VIEW", listPractical.get(0).getId());
+            startActivityByRouter(ARouterPath.InternationalPerspectiveDetailsActivity, bundle);
+        }
+    }
+
+    public void coursExampleClickRight(View view) {
+        if (listPractical.size() > 1) {
+            Bundle bundle = new Bundle();
+            bundle.putString("key",Constants.SJAL);
+            bundle.putString("INTERNATIONAL_VIEW", listPractical.get(1).getId());
+            startActivityByRouter(ARouterPath.InternationalPerspectiveDetailsActivity, bundle);
+        }
+    }
+  public void internationalPerspectiveClickRight(View view) {
+      if (listExample.size() > 1) {
+          Bundle bundle = new Bundle();
+          bundle.putString("INTERNATIONAL_VIEW", listExample.get(1).getId());
+          bundle.putString("key",Constants.GJSY);
+          startActivityByRouter(ARouterPath.InternationalPerspectiveDetailsActivity, bundle);
+      }
+    }
+
+    public void internationalPerspectiveClickLeft(View view) {
+        if (listExample.size() > 0) {
+            Bundle bundle = new Bundle();
+            bundle.putString("INTERNATIONAL_VIEW", listExample.get(0).getId());
+            bundle.putString("key",Constants.GJSY);
+            startActivityByRouter(ARouterPath.InternationalPerspectiveDetailsActivity, bundle);
+        }
+    }
+
     //精选理论更多
-    public void theoryMoreClick(View view){
+    public void theoryMoreClick(View view) {
         startActivityByRouter(ARouterPath.BookListActivity);
     }
+
     //精选理论第一条
     public void theoryFirstClick(View view) {
         MainFragmentResponseBean.PageDataBean pageDataBean = mViewModel.getPageListPadData4().getValue().getResult().getPageData().get(0);
@@ -310,6 +358,7 @@ public class MainFragment extends BaseFragment {
         bundle.putString("argContId", pageDataBean.getId());
         startActivityByRouter(ARouterPath.OpreationDetailActivity, bundle);
     }
+
     //精选理论第二条
     public void theorySecondClick(View view) {
         MainFragmentResponseBean.PageDataBean pageDataBean = mViewModel.getPageListPadData4().getValue().getResult().getPageData().get(1);
@@ -322,6 +371,7 @@ public class MainFragment extends BaseFragment {
     public void operationMoreClick(View view) {
         startActivityByRouter(ARouterPath.OpreationActivity);
     }
+
     //操作技巧第一条
     public void operationFirstClick(View view) {
         MainFragmentResponseBean.PageDataBean pageDataBean = mViewModel.getPageListPadData5().getValue().getResult().getPageData().get(0);
@@ -329,6 +379,7 @@ public class MainFragment extends BaseFragment {
         bundle.putString("argContId", pageDataBean.getId());
         startActivityByRouter(ARouterPath.OpreationDetailActivity, bundle);
     }
+
     //操作技巧第二条
     public void operationSecondClick(View view) {
         MainFragmentResponseBean.PageDataBean pageDataBean = mViewModel.getPageListPadData5().getValue().getResult().getPageData().get(1);

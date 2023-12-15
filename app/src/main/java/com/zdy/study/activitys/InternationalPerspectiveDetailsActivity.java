@@ -22,6 +22,7 @@ import com.zdy.study.cdatamodel.viewmodel.InternationalPerspectiveDetailsViewMod
 import com.zdy.study.cdatamodel.viewmodel.InternationalPerspectiveViewModel;
 import com.zdy.study.databinding.InternationalPerspectiveDetailsBinding;
 import com.zdy.study.databinding.WebBasedCourseDetailsTwoActivityBinding;
+import com.zdy.study.tools.Constants;
 import com.zdy.study.tools.URLEncodeing;
 
 import java.util.List;
@@ -36,15 +37,23 @@ public class InternationalPerspectiveDetailsActivity extends BaseActivity {
     private int page = 1;
     private String pageSize = "10";
     private InternationalPerspectiveDetailsViewModel viewModel;
+    private String key;
 
     @Override
     public void onInit() {
-        onInTitle();
+
+        key=getIntent().getExtras().getString("key");
+        if (Constants.GJSY.equals(key)){
+            onInTitle("国际视野详情");
+        }else {
+            onInTitle("实践案列详情");
+        }
+        mDataBinding.flOperation.getComments(getIntent().getExtras().getString("INTERNATIONAL_VIEW"), key);//获取评论
         viewModel.queryCont(getIntent().getExtras().getString("INTERNATIONAL_VIEW"));
     }
 
-    private void onInTitle() {
-        mDataBinding.includeLayout.preferenceActivityTitleText.setText("国际视野详情");
+    private void onInTitle(String title) {
+        mDataBinding.includeLayout.preferenceActivityTitleText.setText(title);
         mDataBinding.includeLayout.preferenceActivityTitleImage.setOnClickListener(v -> {
             finish();
         });

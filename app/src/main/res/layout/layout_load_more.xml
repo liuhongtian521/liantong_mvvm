@@ -35,7 +35,7 @@
     <View
         android:layout_width="@dimen/dp_1"
         android:layout_height="@dimen/dp_0"
-        android:background="@color/dark2"
+        android:background="#E2E4E8"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@+id/view_left"/>
