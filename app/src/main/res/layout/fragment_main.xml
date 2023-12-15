@@ -331,7 +331,8 @@
                                 android:background="@drawable/red2_cornner"
                                 android:visibility="gone" />
 
-                            <TextView
+                            <com.zdy.study.fcWidgets.FCTextview
+                                android:focusableInTouchMode="true"
                                 android:id="@+id/tv_international_perspective"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -366,7 +367,8 @@
                                 android:background="@drawable/red2_cornner"
                                 android:visibility="gone" />
 
-                            <TextView
+                            <com.zdy.study.fcWidgets.FCTextview
+                                android:focusableInTouchMode="true"
                                 android:id="@+id/tv_international_perspective1"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"

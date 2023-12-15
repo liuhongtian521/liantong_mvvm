@@ -1,21 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
     </data>
 
-    <LinearLayout
-        android:orientation="vertical"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_200"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="15dp"
         android:background="@color/white">
 
+        <ImageView
+            android:id="@+id/im_start"
+            android:layout_width="70dp"
+            android:layout_height="32dp"
+            android:background="@mipmap/ic_main_start"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_discuss"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginTop="25dp"
+            android:background="@mipmap/ic_discuss"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/im_start" />
+
         <TextView
-            android:id="@+id/current_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="fsdfsd"/>
+            android:layout_marginLeft="6dp"
+            android:text="讨论室"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_discuss"
+            app:layout_constraintStart_toEndOf="@+id/iv_discuss"
+            app:layout_constraintTop_toTopOf="@+id/iv_discuss" />
 
-    </LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_discuss"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_13"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_discuss" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -9,16 +9,24 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.askia.common.base.BaseFragment;
 import com.askia.common.util.ImageUtil;
 import com.askia.coremodel.datamodel.database.repository.SharedPreUtil;
+import com.askia.coremodel.datamodel.http.entities.consume.DiscussRoomListBean;
 import com.blankj.utilcode.util.ToastUtils;
 import com.zdy.study.R;
+import com.zdy.study.adapter.AddressBookAdapter;
+import com.zdy.study.adapter.DiscussRoomAdapter;
 import com.zdy.study.cdatamodel.viewmodel.DiscussRoomViewModel;
 import com.zdy.study.cdatamodel.viewmodel.LoginViewModel;
 import com.zdy.study.databinding.FragmentCurrentClassBinding;
 import com.zdy.study.databinding.FragmentDiscussRoomBinding;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 //CurrentClassFragment.java
@@ -26,15 +34,30 @@ public class DiscussRoomFragment extends BaseFragment {
 
     private FragmentDiscussRoomBinding mDataBinding;
     private DiscussRoomViewModel mViewModel;
+    private DiscussRoomAdapter adapter;
+    private RecyclerView recyclerView;
+    private List<DiscussRoomListBean.PageDataBean> list;
+
     @Override
     public void onInit() {
+        list = new ArrayList<>();
 //        mDataBinding.currentText.setText(getArguments().getString("TITLE"));
-        mViewModel.getPageListPad("1","10");
+        mViewModel.getPageListPad("1", "10");
+        initRecycleView();
     }
 
     @Override
     public void onInitViewModel() {
         mViewModel = ViewModelProviders.of(getActivity()).get(DiscussRoomViewModel.class);
+    }
+
+    private void initRecycleView() {
+        recyclerView = mDataBinding.rvDiscuss;
+        LinearLayoutManager manager2 = new LinearLayoutManager(getActivity());//数字为行数或列数
+        adapter = new DiscussRoomAdapter(list, getActivity());
+        recyclerView.setLayoutManager(manager2);
+        recyclerView.setAdapter(adapter);
+        // initRVListeners();
     }
 
     @Override
@@ -46,22 +69,27 @@ public class DiscussRoomFragment extends BaseFragment {
     @Override
     public void onSubscribeViewModel() {
         mViewModel.getPageListPadData().observe(this, listResult -> {
-            /*if(!listResult.isSuccess()){
+            if (!listResult.isSuccess()) {
                 ToastUtils.showLong(listResult.getMessage().toString());
                 return;
             }
-            ToastUtils.showLong(listResult.getMessage().toString());*/
+            if (null != listResult.getResult().getPageData() && listResult.getResult().getPageData().size() > 0) {
+                list.clear();
+                list.addAll(listResult.getResult().getPageData());
+                adapter.notifyDataSetChanged();
+            }
+
 
         });
     }
 
-    public static DiscussRoomFragment newInstance(String title){
+    public static DiscussRoomFragment newInstance(String title) {
         Bundle arguments = new Bundle();
         arguments.putString("TITLE", title);
         DiscussRoomFragment fragment = new DiscussRoomFragment();
         fragment.setArguments(arguments);
         return fragment;
     }
- 
+
 
 }

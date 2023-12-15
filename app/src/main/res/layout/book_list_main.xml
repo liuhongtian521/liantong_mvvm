@@ -74,10 +74,14 @@
                 app:layout_constraintRight_toRightOf="@+id/tv_right"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.viewpager2.widget.ViewPager2
+        <FrameLayout
+            android:id="@+id/main_layout_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+           />
+     <!--   <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/view_pager"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent" />-->
     </LinearLayout>
 </layout>
