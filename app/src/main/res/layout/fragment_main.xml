@@ -119,7 +119,7 @@
                     android:layout_marginTop="6dp"
                     android:background="@color/white">
 
-                    <com.zdy.study.fcWidgets.FCTextview
+                    <com.zdy.study.fcWidgets.FCButton
                         android:id="@+id/tv_simulcast_more"
                         android:layout_width="33dp"
                         android:layout_height="16dp"
@@ -127,6 +127,8 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginEnd="15dp"
                         android:layout_marginRight="15dp"
+                        android:background="@color/transparent"
+                        app:scale="1.3"
                         android:focusable="true"
                         android:focusableInTouchMode="true"
                         android:gravity="right"
@@ -167,12 +169,16 @@
                     android:orientation="horizontal"
                     android:paddingBottom="12dp">
 
-                    <RelativeLayout
+                    <com.zdy.study.fcWidgets.FCRelativeLayout
+                        android:id="@+id/fcr_broadcast_speed"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="12dp"
                         android:layout_marginRight="14dp"
                         android:layout_weight="1"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        app:scale="1.02"
                         android:background="@drawable/gray_round_corner_">
 
                         <ImageView
@@ -192,7 +198,7 @@
                             android:textSize="12sp" />
 
 
-                    </RelativeLayout>
+                    </com.zdy.study.fcWidgets.FCRelativeLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -202,10 +208,12 @@
                         android:background="@drawable/gray_round_corner_"
                         android:orientation="vertical">
 
-                        <LinearLayout
+                        <com.zdy.study.fcWidgets.FCLinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="20dp"
                             android:layout_marginTop="6dp"
+                            android:focusableInTouchMode="true"
+                            app:scale="1.02"
                             android:gravity="center_vertical">
 
                             <View
@@ -224,12 +232,14 @@
                                 android:text="新闻联播"
                                 android:textColor="@color/app_black3"
                                 android:textSize="12sp" />
-                        </LinearLayout>
+                        </com.zdy.study.fcWidgets.FCLinearLayout>
 
-                        <LinearLayout
+                        <com.zdy.study.fcWidgets.FCLinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="20dp"
                             android:layout_marginTop="6dp"
+                            android:focusableInTouchMode="true"
+                            app:scale="1.02"
                             android:gravity="center_vertical">
 
                             <View
@@ -248,7 +258,7 @@
                                 android:text="新闻联播"
                                 android:textColor="@color/app_black3"
                                 android:textSize="12sp" />
-                        </LinearLayout>
+                        </com.zdy.study.fcWidgets.FCLinearLayout>
                     </LinearLayout>
 
                 </LinearLayout>
@@ -268,7 +278,7 @@
                     android:layout_marginTop="2dp"
                     android:background="@color/white">
 
-                    <com.zdy.study.fcWidgets.FCTextview
+                    <com.zdy.study.fcWidgets.FCButton
                         android:id="@+id/tv_international_perspective_more"
                         android:layout_width="33dp"
                         android:layout_height="16dp"
@@ -278,6 +288,8 @@
                         android:focusable="true"
                         android:focusableInTouchMode="true"
                         android:gravity="right"
+                        android:background="@color/transparent"
+                        app:scale="1.3"
                         android:text="更多 >"
                         android:textColor="#FF4C4E5A"
                         android:textSize="11sp" />
@@ -312,11 +324,13 @@
                     android:background="@color/white"
                     android:orientation="horizontal">
 
-                    <LinearLayout
+                    <com.zdy.study.fcWidgets.FCLinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginRight="14dp"
                         android:layout_weight="1"
+                        app:scale="1.02"
+                        android:focusableInTouchMode="true"
                         android:onClick="@{handlers::internationalPerspectiveClickLeft}">
 
                         <RelativeLayout
@@ -332,8 +346,7 @@
                                 android:background="@drawable/red2_cornner"
                                 android:visibility="gone" />
 
-                            <com.zdy.study.fcWidgets.FCTextview
-                                android:focusableInTouchMode="true"
+                            <TextView
                                 android:id="@+id/tv_international_perspective"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -345,13 +358,17 @@
                                 android:maxLines="2" />
 
                         </RelativeLayout>
-                    </LinearLayout>
+                    </com.zdy.study.fcWidgets.FCLinearLayout>
 
-                    <LinearLayout
+                    <com.zdy.study.fcWidgets.FCLinearLayout
+                        android:id="@+id/fcl_international_perspective1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:visibility="gone"
                         android:layout_marginRight="14dp"
                         android:layout_weight="1"
+                        android:focusableInTouchMode="true"
+                        app:scale="1.02"
                         android:onClick="@{handlers::internationalPerspectiveClickRight}"
                         android:orientation="vertical">
 
@@ -368,8 +385,7 @@
                                 android:background="@drawable/red2_cornner"
                                 android:visibility="gone" />
 
-                            <com.zdy.study.fcWidgets.FCTextview
-                                android:focusableInTouchMode="true"
+                            <TextView
                                 android:id="@+id/tv_international_perspective1"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -381,7 +397,7 @@
                                 android:maxLines="2" />
 
                         </RelativeLayout>
-                    </LinearLayout>
+                    </com.zdy.study.fcWidgets.FCLinearLayout>
 
                 </LinearLayout>
 
@@ -401,7 +417,7 @@
                     android:layout_marginTop="2dp"
                     android:background="@color/white">
 
-                    <com.zdy.study.fcWidgets.FCTextview
+                    <com.zdy.study.fcWidgets.FCButton
                         android:id="@+id/tv_book_list"
                         android:layout_width="33dp"
                         android:layout_height="16dp"
@@ -411,6 +427,8 @@
                         android:focusable="true"
                         android:focusableInTouchMode="true"
                         android:gravity="right"
+                        android:background="@color/transparent"
+                        app:scale="1.3"
                         android:text="更多 >"
                         android:textColor="#FF4C4E5A"
                         android:textSize="11sp" />
@@ -468,7 +486,7 @@
                     android:layout_marginTop="2dp"
                     android:background="@color/white">
 
-                    <com.zdy.study.fcWidgets.FCTextview
+                    <com.zdy.study.fcWidgets.FCButton
                         android:layout_width="33dp"
                         android:layout_height="16dp"
                         android:layout_alignParentEnd="true"
@@ -477,6 +495,8 @@
                         android:focusable="true"
                         android:focusableInTouchMode="true"
                         android:gravity="right"
+                        android:background="@color/transparent"
+                        app:scale="1.3"
                         android:text="更多 >"
                         android:textColor="#FF4C4E5A"
                         android:textSize="11sp" />

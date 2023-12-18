@@ -17,7 +17,7 @@
             android:layout_height="@dimen/dp_50"
             android:src="@mipmap/ic_mine_header"
             android:layout_marginLeft="@dimen/dp_20"
-            android:layout_marginTop="@dimen/dp_69"
+            android:layout_marginTop="@dimen/dp_55"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"/>
 
@@ -27,24 +27,42 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/sp_17"
             android:textColor="#1E1E1E"
-            android:text="wangjianguo"
+            android:text=""
             app:layout_constraintTop_toTopOf="@+id/iv_mine_header"
             app:layout_constraintLeft_toRightOf="@+id/iv_mine_header"
             android:layout_marginLeft="@dimen/dp_12"/>
 
         <TextView
+            android:id="@+id/tv_class_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="dfdsf"
+            android:text=""
             android:textColor="#644A1F"
             android:textSize="@dimen/sp_11"
             android:background="#F5F2ED"
             android:paddingLeft="@dimen/dp_11"
             android:paddingRight="@dimen/dp_11"
+            android:paddingTop="@dimen/dp_2"
+            android:paddingBottom="@dimen/dp_2"
             android:layout_marginTop="@dimen/dp_9"
             app:layout_constraintTop_toBottomOf="@+id/tv_mine_name"
             app:layout_constraintLeft_toLeftOf="@+id/tv_mine_name"/>
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_mine_menu"
+            android:layout_marginTop="@dimen/dp_33"
+            app:layout_constraintTop_toBottomOf="@+id/tv_class_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_100"
+            android:src="@mipmap/ic_mine_bottom"
+            android:layout_marginLeft="@dimen/dp_15"
+            android:layout_marginRight="@dimen/dp_15"
+            app:layout_constraintTop_toBottomOf="@+id/rv_mine_menu"
+            android:layout_marginTop="@dimen/dp_50"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

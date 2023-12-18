@@ -150,7 +150,7 @@ public class MainFragment extends BaseFragment {
         mFragmentMainBinding.tvBookList.setOnClickListener(v -> {
             startActivityByRouter(ARouterPath.BookListActivity);
         });
-        mFragmentMainBinding.ivBroadcastSpeedName.setOnClickListener(v -> {
+        mFragmentMainBinding.fcrBroadcastSpeed.setOnClickListener(v -> {
             Bundle bundle = new Bundle();
             bundle.putString("keyId", "0");
             bundle.putSerializable("MainFragmentList", (Serializable) list3.get(0));
@@ -255,6 +255,7 @@ public class MainFragment extends BaseFragment {
                 if (listExample.size() > 1) {
                     mFragmentMainBinding.tvInternationalPerspective1.setText(listExample.get(1).getContName());
                     mFragmentMainBinding.viewCircle12.setVisibility(View.VISIBLE);
+                    mFragmentMainBinding.fclInternationalPerspective1.setVisibility(View.VISIBLE);//有数据显示 没有数据时隐藏 否则还会获取焦点
                 }
 
 

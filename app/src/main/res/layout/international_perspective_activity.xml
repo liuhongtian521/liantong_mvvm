@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -12,8 +13,12 @@
         <include
             android:id="@+id/include_layout"
             layout="@layout/title_style_white" />
-        <RelativeLayout
+        <com.zdy.study.fcWidgets.FCRelativeLayout
+            android:id="@+id/fcr_video"
             android:background="@color/app_black3"
+            app:scale="1.02"
+            android:focusableInTouchMode="true"
+            android:focusable="true"
             android:layout_width="match_parent"
             android:layout_height="150dp">
 
@@ -46,7 +51,7 @@
                 android:text="123123123"
                 android:textColor="@color/dash_gray"
                 android:textSize="10sp" />
-        </RelativeLayout>
+        </com.zdy.study.fcWidgets.FCRelativeLayout>
 
         <com.zdy.study.widgets.LoadMoreConstraintLayout
             android:id="@+id/lm_view"

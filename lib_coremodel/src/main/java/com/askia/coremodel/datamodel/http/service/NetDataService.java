@@ -182,7 +182,7 @@ public interface NetDataService {
     Observable<BaseResponseData> addReadNotes(@Body RequestBody body);
 
     // 用户信息
-    @POST("/cdls-bds/App/queryClassesByPhone")
+    @GET("/cdls-bds/App/queryClassesByPhone")
     Observable<BaseResponseData<UserInfoBean>> queryClassesByPhone(@Query("phone") String phone);
     // 我的收藏标题头
     @GET("/cdls-cms/CollectionController/queryStruList")

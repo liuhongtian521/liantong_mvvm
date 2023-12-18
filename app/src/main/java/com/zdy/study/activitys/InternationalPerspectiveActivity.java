@@ -72,7 +72,7 @@ public class InternationalPerspectiveActivity extends BaseActivity {
         adapter = new InternationalPerspectiveAdapter(list, this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
-        mDataBinding.ivHeadVideo.setOnClickListener(new View.OnClickListener() {
+        mDataBinding.fcrVideo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (null != list && list.size() > 0) {
