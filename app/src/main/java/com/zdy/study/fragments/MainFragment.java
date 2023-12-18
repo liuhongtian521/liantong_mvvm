@@ -239,7 +239,7 @@ public class MainFragment extends BaseFragment {
 
 
         });
-        //INTERNATIONAL_VIEW   //国际视野吴冬
+        //INTERNATIONAL_VIEW   //国际视野
         mViewModel.getPageListPadData2().observe(this, listResult -> {
             if (!listResult.isSuccess()) {
                 ToastUtils.showLong(listResult.getMessage().toString());

@@ -30,7 +30,7 @@ public class MineFragment extends BaseFragment {
     public void onInit() {
         HttpLoginResult httpLoginResult = DBRepository.QueryTVUserLoginData();
 
-        showLogadingDialog();
+//        showLogadingDialog();
         viewModel.queryClassesByPhone(httpLoginResult.getUser_name());
     }
 
