@@ -50,7 +50,6 @@ public class InternationalPerspectiveDetailsActivity extends BaseActivity {
         }
         mDataBinding.flOperation.getComments(getIntent().getExtras().getString("INTERNATIONAL_VIEW"), key);//获取评论
         viewModel.queryCont(getIntent().getExtras().getString("INTERNATIONAL_VIEW"));
-        mDataBinding.fcrVideo.setLitScale();
     }
 
     private void onInTitle(String title) {
@@ -71,7 +70,6 @@ public class InternationalPerspectiveDetailsActivity extends BaseActivity {
         mDataBinding = DataBindingUtil.setContentView(this, R.layout.international_perspective_details);
     }
 
-    String url = "";
     @Override
     public void onSubscribeViewModel() {
 
@@ -80,7 +78,6 @@ public class InternationalPerspectiveDetailsActivity extends BaseActivity {
                 ToastUtils.showLong(listResult.getMessage().toString());
                 return;
             }
-            url = listResult.getResult().getContVideo().getVideoUrl();
             mDataBinding.flOperation.setPraiseActive("0".equals(listResult.getResult().getPraise())? false: true);
             mDataBinding.flOperation.setAddcollection("0".equals(listResult.getResult().getCollection())? false: true);
             // 在目标活动（TargetActivity）中获取Bundle
@@ -121,11 +118,6 @@ public class InternationalPerspectiveDetailsActivity extends BaseActivity {
         webView.setOnTouchListener((v, event) -> (event.getAction() == MotionEvent.ACTION_MOVE));
     }
 
-    public void listClick(View v){
-        Bundle bundle = new Bundle();
-        bundle.putString("url", url);
-        startActivityByRouter(ARouterPath.VideoActivity, bundle);
-    }
     @Override
     public void onMResume() {
 

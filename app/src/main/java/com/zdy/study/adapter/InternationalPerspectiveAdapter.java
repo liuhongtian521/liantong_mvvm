@@ -25,12 +25,12 @@ public class InternationalPerspectiveAdapter extends BaseQuickAdapter<BroadcastE
 
     @Override
     protected void convert(BaseViewHolder helper, BroadcastExpressResponBean.PageDataBean item) {
+        FCLinearLayout fcLinearLayout = helper.getView(R.id.fc_linearLayout);
+        fcLinearLayout.setLitScale();
         helper.setText(R.id.tv_content_web, item.getContName());
         if (!"".equals(item.getCreateTime())) {
             helper.setText(R.id.tv_date, item.getCreateTime().substring(0, 10));
         }
-        FCLinearLayout fcLinearLayout = helper.getView(R.id.fc_linearLayout);
-        fcLinearLayout.setLitScale();
         ImageView imageView = helper.getView(R.id.iv_right_video);
         if (!"".equals(item.getImgUrl())) {
             Glide.with(mContext).load(item.getImgUrl()).into(imageView);

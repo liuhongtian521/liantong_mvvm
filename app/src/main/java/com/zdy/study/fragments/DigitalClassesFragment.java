@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import com.askia.common.base.ARouterPath;
 import com.askia.common.base.BaseFragment;
 import com.askia.coremodel.datamodel.database.repository.DBRepository;
-import com.blankj.utilcode.util.ToastUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.zdy.study.R;
 import com.zdy.study.adapter.MainMenuAdapter;
@@ -40,7 +39,6 @@ public class DigitalClassesFragment extends BaseFragment {
         list.add("联播快速");
         list.add("网络课程");
         list.add("在院服务");
-        list.add("语音记事");
         list.add("通讯录");
         MainMenuAdapter adapter = new MainMenuAdapter(list);
 
@@ -76,9 +74,6 @@ public class DigitalClassesFragment extends BaseFragment {
                     url = ARouterPath.SHCOOLSERVICE_ACTIVIGY;
                     break;
                 case 7:
-                    ToastUtils.showLong("暂未开放");
-                    return;
-                case 8:
                     url = ARouterPath.AddressBookActivity;
                     break;
 

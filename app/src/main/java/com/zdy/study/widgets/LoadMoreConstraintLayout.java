@@ -83,8 +83,6 @@ public class LoadMoreConstraintLayout extends ConstraintLayout {
         if (list.size() == 0) {
             showEmptyView(View.VISIBLE);//显示缺省页
             setNextPageVisibility(View.GONE);
-            if (page != 1)
-                setPreviousPageVisibility(View.VISIBLE);// 其它显示上一页
             return;
         }else{
             showEmptyView(View.GONE);// 隐藏缺省页

@@ -73,7 +73,7 @@ public class SelectedTheoryFragment extends BaseFragment {
             bundle.putString("argContId", list.get(position).getId());
             startActivityByRouter(ARouterPath.OpreationDetailActivity, bundle);
         });
-//        binding.rlOperation.requestFocus();
+        binding.rlOperation.requestFocus();
     }
 
     private void initLoad(){

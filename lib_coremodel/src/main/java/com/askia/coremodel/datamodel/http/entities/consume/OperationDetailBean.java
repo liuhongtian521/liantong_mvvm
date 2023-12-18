@@ -480,16 +480,6 @@ public class OperationDetailBean {
     }
 
     public static class ContVideoBean {
-
-        private String videoUrl;
-
-        public String getVideoUrl() {
-            return videoUrl == null ? "" : videoUrl;
-        }
-
-        public void setVideoUrl(String videoUrl) {
-            this.videoUrl = videoUrl;
-        }
     }
 
     public static class TaCmAuditBean {

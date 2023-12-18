@@ -32,7 +32,7 @@ public class BookAdapter extends BaseQuickAdapter<BooksRespponseBean.PageDataBea
             Glide.with(mContext).load(item.getCoverUrl()).into(imageView);
         }
         FCLinearLayout layout = helper.getView(R.id.fcll);
-        layout.setScale(1.04f);
+        layout.setScale(1.02f);
 
     }
 }

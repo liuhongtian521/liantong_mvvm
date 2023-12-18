@@ -1,6 +1,5 @@
 package com.zdy.study.activitys;
 
-import android.text.TextUtils;
 import android.view.KeyEvent;
 
 import androidx.databinding.DataBindingUtil;
@@ -8,7 +7,6 @@ import androidx.databinding.DataBindingUtil;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.askia.common.base.ARouterPath;
 import com.askia.common.base.BaseActivity;
-import com.blankj.utilcode.util.ToastUtils;
 import com.zdy.study.R;
 import com.zdy.study.databinding.ActVideoBinding;
 
@@ -21,10 +19,7 @@ public class VideoActivity extends BaseActivity {
     @Override
     public void onInit() {
         url = getIntent().getExtras().getString("url");
-        if (TextUtils.isEmpty(url)){
-            ToastUtils.showLong("播放地址不能为空！");
-        }else
-            mDataBinding.vvcl.setUrl(url);
+        mDataBinding.vvcl.setUrl(url);
     }
 
     @Override
@@ -62,7 +57,6 @@ public class VideoActivity extends BaseActivity {
 
             case KeyEvent.KEYCODE_DPAD_DOWN:
                 return true;
-            case KeyEvent.KEYCODE_ENTER:
             case KeyEvent.KEYCODE_DPAD_CENTER:
                 mDataBinding.vvcl.play();
                 return true;
