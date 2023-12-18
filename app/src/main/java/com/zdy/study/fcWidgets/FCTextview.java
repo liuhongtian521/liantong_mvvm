@@ -1,6 +1,7 @@
 package com.zdy.study.fcWidgets;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.widget.TextView;
@@ -8,6 +9,8 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.core.view.ViewCompat;
+
+import com.zdy.study.R;
 
 public class FCTextview extends androidx.appcompat.widget.AppCompatTextView {
     private float i = 0;
@@ -18,6 +21,8 @@ public class FCTextview extends androidx.appcompat.widget.AppCompatTextView {
 
     public FCTextview(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
+        TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.FCTextview);
+        i = ta.getFloat(R.styleable.FCTextview_scale, 1.10f);
         setFocusChange();
     }
 

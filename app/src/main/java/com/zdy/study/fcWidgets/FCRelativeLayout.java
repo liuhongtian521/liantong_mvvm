@@ -1,6 +1,7 @@
 package com.zdy.study.fcWidgets;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.widget.LinearLayout;
@@ -9,6 +10,8 @@ import android.widget.RelativeLayout;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.core.view.ViewCompat;
+
+import com.zdy.study.R;
 
 public class FCRelativeLayout extends RelativeLayout {
 
@@ -20,6 +23,8 @@ public class FCRelativeLayout extends RelativeLayout {
 
     public FCRelativeLayout(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
+        TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.FCRelativeLayout);
+        i = ta.getFloat(R.styleable.FCRelativeLayout_scale, 1.10f);
         setFocusChange();
     }
 

@@ -27,6 +27,7 @@ import com.askia.coremodel.datamodel.http.entities.consume.MainFragmentResponseT
 import com.askia.coremodel.datamodel.http.entities.consume.StudyDictionaryBean;
 import com.askia.coremodel.datamodel.http.entities.consume.StuyManualListBean;
 import com.askia.coremodel.datamodel.http.entities.consume.StuyMaterialsListBean;
+import com.askia.coremodel.datamodel.http.entities.consume.UserInfoBean;
 import com.askia.coremodel.datamodel.http.entities.consume.WebCourseResponseBean;
 
 
@@ -177,5 +178,9 @@ public interface NetDataService {
     // 阅读记录
     @POST("/cdls-cms/ReadNotesController/addReadNotes")
     Observable<BaseResponseData> addReadNotes(@Body RequestBody body);
+
+    // 用户信息
+    @POST("/cdls-bds/App/queryClassesByPhone")
+    Observable<BaseResponseData<UserInfoBean>> queryClassesByPhone(@Query("phone") String phone);
 
 }

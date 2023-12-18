@@ -1,6 +1,7 @@
 package com.zdy.study.fcWidgets;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.os.Build;
 import android.util.AttributeSet;
@@ -9,6 +10,8 @@ import android.widget.LinearLayout;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.core.view.ViewCompat;
+
+import com.zdy.study.R;
 
 public class FCLinearLayout extends LinearLayout {
 
@@ -20,6 +23,8 @@ public class FCLinearLayout extends LinearLayout {
 
     public FCLinearLayout(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
+        TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.FCLinearLayout);
+        i = ta.getFloat(R.styleable.FCLinearLayout_scale, 1.10f);
         setFocusChange();
     }
 

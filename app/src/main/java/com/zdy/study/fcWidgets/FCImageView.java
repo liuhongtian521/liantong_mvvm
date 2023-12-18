@@ -2,6 +2,7 @@ package com.zdy.study.fcWidgets;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.widget.Button;
@@ -9,6 +10,8 @@ import android.widget.ImageView;
 
 import androidx.annotation.RequiresApi;
 import androidx.core.view.ViewCompat;
+
+import com.zdy.study.R;
 
 
 @SuppressLint("AppCompatCustomView")
@@ -22,6 +25,8 @@ public class FCImageView extends ImageView {
 
     public FCImageView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.FCImageView);
+        i = ta.getFloat(R.styleable.FCImageView_scale, 1.10f);
         setFocusChange();
     }
 

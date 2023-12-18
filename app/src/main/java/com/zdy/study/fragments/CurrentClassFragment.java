@@ -47,24 +47,5 @@ public class CurrentClassFragment extends BaseFragment {
     }
 
 
-    /*private TextView mTextView;
- 
-    public static CurrentClassFragment newInstance(String title){
-        Bundle arguments = new Bundle();
-        arguments.putString("TITLE", title);
-        CurrentClassFragment fragment = new CurrentClassFragment();
-        fragment.setArguments(arguments);
-        return fragment;
-    }
- 
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_current_class, container, false);
- 
-        mTextView = (TextView) root.findViewById(R.id.current_text);
-        mTextView.setText(getArguments().getString("TITLE"));
- 
-        return root;
-    }*/
+
 }

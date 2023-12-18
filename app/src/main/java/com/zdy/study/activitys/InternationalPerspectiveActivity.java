@@ -35,6 +35,7 @@ public class InternationalPerspectiveActivity extends BaseActivity {
     private InternationalPerspectiveActivityBinding mDataBinding;
     private InternationalPerspectiveViewModel viewModel;
     private List<BroadcastExpressResponBean.PageDataBean> list;
+    private BroadcastExpressResponBean.PageDataBean pageDataBean;
     private InternationalPerspectiveAdapter adapter;
     private RecyclerView recyclerView;
     private int page = 1;
@@ -77,7 +78,7 @@ public class InternationalPerspectiveActivity extends BaseActivity {
             public void onClick(View v) {
                 if (null != list && list.size() > 0) {
                     Bundle bundle = new Bundle();
-                          bundle.putString("url", list.get(0).getContVideo().getVideoUrl());
+                    bundle.putString("url", pageDataBean.getContVideo().getVideoUrl());
                     startActivityByRouter(ARouterPath.VideoActivity, bundle);
                 }
 
@@ -133,6 +134,7 @@ public class InternationalPerspectiveActivity extends BaseActivity {
             list.clear();
             list.addAll(listResult.getResult().getPageData());
             if (list.size() > 0) {
+                pageDataBean = list.get(0);
                 mDataBinding.tvVideoName.setText(list.get(0).getContName());
                 mDataBinding.tvVideoDate.setText(list.get(0).getCreateTime().substring(0, 10));
                 if (null != list && list.size() > 0 && !"".equals(list.get(0).getImgUrl())) {

@@ -13,10 +13,10 @@ import com.askia.common.base.BaseActivity;
 import com.zdy.study.R;
 import com.zdy.study.adapter.ViewPager2Adapter;
 import com.zdy.study.databinding.ActMainBinding;
-import com.zdy.study.fragments.CurrentClassFragment;
 import com.zdy.study.fragments.DigitalClassesFragment;
 import com.zdy.study.fragments.DiscussRoomFragment;
 import com.zdy.study.fragments.MainFragment;
+import com.zdy.study.fragments.MineFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +31,7 @@ public class MainActivity extends BaseActivity {
     private DigitalClassesFragment digitalClassesFragment = new DigitalClassesFragment();
     private MainFragment mainFragment = new MainFragment();
     private DiscussRoomFragment discussRoomFragment = new DiscussRoomFragment();
-    private CurrentClassFragment currentClassFragment = new CurrentClassFragment();
+    private MineFragment mineFragment = new MineFragment();
 
     private FragmentManager manager;
     private FragmentTransaction transaction;
@@ -126,7 +126,7 @@ public class MainActivity extends BaseActivity {
         });
         mDataBinding.rbGr.setOnFocusChangeListener((view, b) -> {
             if (b)
-            FragmentHideShwo(currentClassFragment);
+            FragmentHideShwo(mineFragment);
 //            mDataBinding.viewPager.setCurrentItem(3, true);
         });
 

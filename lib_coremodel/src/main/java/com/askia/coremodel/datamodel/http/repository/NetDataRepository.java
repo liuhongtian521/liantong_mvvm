@@ -58,6 +58,7 @@ import com.askia.coremodel.datamodel.http.entities.consume.MainFragmentResponseT
 import com.askia.coremodel.datamodel.http.entities.consume.StudyDictionaryBean;
 import com.askia.coremodel.datamodel.http.entities.consume.StuyManualListBean;
 import com.askia.coremodel.datamodel.http.entities.consume.StuyMaterialsListBean;
+import com.askia.coremodel.datamodel.http.entities.consume.UserInfoBean;
 import com.askia.coremodel.datamodel.http.entities.consume.WebCourseResponseBean;
 import com.askia.coremodel.datamodel.http.entities.query.AdListData;
 import com.askia.coremodel.datamodel.http.entities.query.PeopleMoneyData;
@@ -376,6 +377,17 @@ public class NetDataRepository {
                                   CompositeDisposable mDisposable) {
         Observable<BaseResponseData> responseData = ApiClient.getNetDataService()
                 .addReadNotes(body);
+        if (responseObserv == null)
+            responseObserv = new ResponseObserv();
+        responseObserv.responseObserv(responseData, mLiveData, mDisposable);
+    }
+
+    //用户信息
+    public void queryClassesByPhone(String phone,
+                             MutableLiveData<BaseResponseData<UserInfoBean>> mLiveData,
+                             CompositeDisposable mDisposable) {
+        Observable<BaseResponseData<UserInfoBean>> responseData = ApiClient.getNetDataService()
+                .queryClassesByPhone(phone);
         if (responseObserv == null)
             responseObserv = new ResponseObserv();
         responseObserv.responseObserv(responseData, mLiveData, mDisposable);

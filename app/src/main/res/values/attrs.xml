@@ -14,4 +14,26 @@
 
     </declare-styleable>
 
+    <attr name="scale" format="float"/>
+
+    <declare-styleable name="FCButton">
+        <attr name="scale"/>
+    </declare-styleable>
+
+    <declare-styleable name="FCImageView" >
+        <attr name="scale"/>
+    </declare-styleable>
+
+    <declare-styleable name="FCLinearLayout">
+        <attr name="scale"/>
+    </declare-styleable>
+
+    <declare-styleable name="FCRelativeLayout">
+        <attr name="scale"/>
+    </declare-styleable>
+
+    <declare-styleable name="FCTextview">
+        <attr name="scale"/>
+    </declare-styleable>
+
 </resources>
