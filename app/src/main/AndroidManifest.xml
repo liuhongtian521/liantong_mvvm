@@ -150,6 +150,11 @@
             android:name=".activitys.OperationDetailActivity"
             android:launchMode="singleTask"
             android:windowSoftInputMode="stateHidden" />
+        <!--我的收藏列表-->
+        <activity
+            android:name=".activitys.MyCollectionActivity"
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="stateHidden" />
         <!--书单-->
         <activity
             android:name=".activitys.BookListActivity"

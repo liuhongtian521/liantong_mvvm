@@ -48,6 +48,8 @@ import com.askia.coremodel.datamodel.http.entities.consume.HttpStudentGetFoodBea
 import com.askia.coremodel.datamodel.http.entities.consume.HttpSyncShoppingBean;
 import com.askia.coremodel.datamodel.http.entities.consume.HttpSysCodeBean;
 import com.askia.coremodel.datamodel.http.entities.consume.HttpWorkbenchStatisticsBean;
+import com.askia.coremodel.datamodel.http.entities.consume.MyCollectionResponse;
+import com.askia.coremodel.datamodel.http.entities.consume.MyCollectionTitleResponse;
 import com.askia.coremodel.datamodel.http.entities.consume.OperationDetailBean;
 import com.askia.coremodel.datamodel.http.entities.consume.SchoolServiceBean;
 import com.askia.coremodel.datamodel.http.entities.consume.MainFragmentResponseBean;
@@ -373,8 +375,8 @@ public class NetDataRepository {
 
     //阅读记录
     public void addReadNotes(RequestBody body,
-                                  MutableLiveData<BaseResponseData> mLiveData,
-                                  CompositeDisposable mDisposable) {
+                             MutableLiveData<BaseResponseData> mLiveData,
+                             CompositeDisposable mDisposable) {
         Observable<BaseResponseData> responseData = ApiClient.getNetDataService()
                 .addReadNotes(body);
         if (responseObserv == null)
@@ -384,12 +386,39 @@ public class NetDataRepository {
 
     //用户信息
     public void queryClassesByPhone(String phone,
-                             MutableLiveData<BaseResponseData<UserInfoBean>> mLiveData,
-                             CompositeDisposable mDisposable) {
+                                    MutableLiveData<BaseResponseData<UserInfoBean>> mLiveData,
+                                    CompositeDisposable mDisposable) {
         Observable<BaseResponseData<UserInfoBean>> responseData = ApiClient.getNetDataService()
                 .queryClassesByPhone(phone);
         if (responseObserv == null)
             responseObserv = new ResponseObserv();
         responseObserv.responseObserv(responseData, mLiveData, mDisposable);
     }
+
+    //我的收藏标题头
+    public void queryStruList(MutableLiveData<BaseResponseData<MyCollectionTitleResponse>> mLiveData,
+                              CompositeDisposable mDisposable) {
+        Observable<BaseResponseData<MyCollectionTitleResponse>> responseData = ApiClient.getNetDataService()
+                .queryStruList();
+        if (responseObserv == null)
+            responseObserv = new ResponseObserv();
+        responseObserv.responseObserv(responseData, mLiveData, mDisposable);
+    }
+
+    //我的收藏列表
+    public void queryCollectionList(String argStruCode, String contentParentId, String
+            struId, String argPage, String argPageSize,
+                                    MutableLiveData<BaseResponseData<MyCollectionResponse>> mLiveData,
+                                    CompositeDisposable mDisposable) {
+        Observable<BaseResponseData<MyCollectionResponse>> responseData = ApiClient.getNetDataService()
+                .queryCollectionList(argStruCode,
+                        contentParentId,
+                        struId,
+                        argPage,
+                        argPageSize);
+        if (responseObserv == null)
+            responseObserv = new ResponseObserv();
+        responseObserv.responseObserv(responseData, mLiveData, mDisposable);
+    }
+
 }

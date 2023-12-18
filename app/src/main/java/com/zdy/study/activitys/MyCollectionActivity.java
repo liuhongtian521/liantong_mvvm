@@ -1,0 +1,158 @@
+package com.zdy.study.activitys;
+
+import static com.askia.common.util.Utils.getActivity;
+import static com.askia.common.util.Utils.listToString;
+
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.TextView;
+
+import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.alibaba.android.arouter.facade.annotation.Route;
+import com.askia.common.base.ARouterPath;
+import com.askia.common.base.BaseActivity;
+import com.askia.coremodel.datamodel.http.entities.consume.BookListResponseBean;
+import com.askia.coremodel.datamodel.http.entities.consume.MyCollectionResponse;
+import com.askia.coremodel.datamodel.http.entities.consume.MyCollectionTitleResponse;
+import com.blankj.utilcode.util.ToastUtils;
+import com.google.android.material.tabs.TabLayout;
+import com.zdy.study.R;
+import com.zdy.study.adapter.InternationalPerspectiveAdapter;
+import com.zdy.study.adapter.MyCollectionAdapter;
+import com.zdy.study.cdatamodel.viewmodel.MyCollectionViewModel;
+import com.zdy.study.cdatamodel.viewmodel.OperationDetailViewModel;
+import com.zdy.study.databinding.CollectionMainBinding;
+import com.zdy.study.tools.Constants;
+import com.zdy.study.widgets.LoadMoreConstraintLayout;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Route(path = ARouterPath.MyCollectionActivity)
+public class MyCollectionActivity extends BaseActivity {
+    private CollectionMainBinding mMainBinding;
+    private MyCollectionViewModel viewModel;
+    private List<MyCollectionResponse.PageDataBean> list;
+    private List<MyCollectionTitleResponse.DataBean> mListTitle;
+    private int pageTab = 0;
+    private RecyclerView recyclerView;
+    private MyCollectionAdapter adapter;
+    private int page = 1;
+
+    @Override
+    public void onInit() {
+        list = new ArrayList<>();
+        mListTitle = new ArrayList<>();
+        viewModel.queryStruList();
+        inItRecycleView();
+        initLoad();
+    }
+
+    private void inItRecycleView() {
+        recyclerView = mMainBinding.rvBook;
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);//数字为行数或列数
+        adapter = new MyCollectionAdapter(list, this);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter);
+    }
+
+    private void inInTab() {
+        TabLayout.Tab tab2;
+        View view;
+        for (MyCollectionTitleResponse.DataBean dataBean : mListTitle) {
+            tab2 = mMainBinding.tabLayout.newTab();
+            //  tab2.setText(studyDictionaryBean.getDictValue());
+            view = LayoutInflater.from(this).inflate(R.layout.tablayout_bg_two, null);
+            TextView tv = (TextView) view.findViewById(R.id.tv_tablayout_name);
+            tv.setText(dataBean.getStruName());
+            tab2.setCustomView(view);
+            mMainBinding.tabLayout.addTab(tab2);
+        }
+
+        mMainBinding.tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                pageTab = tab.getPosition();
+                viewModel.queryCollectionList(mListTitle.get(pageTab).getStruCode(), mListTitle.get(pageTab).getId(), mListTitle.get(pageTab).getStruCode(), "1", "10");
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+    }
+
+    @Override
+    public void onInitViewModel() {
+        viewModel = ViewModelProviders.of(this).get(MyCollectionViewModel.class);
+    }
+
+    @Override
+    public void onInitDataBinding() {
+        mMainBinding = DataBindingUtil.setContentView(this, R.layout.collection_main);
+    }
+
+    private void initLoad() {
+        mMainBinding.lmMaterialsView.setLoadLitetsner(new LoadMoreConstraintLayout.LoadLitetsner() {
+            @Override
+            public void nextPage() {
+                page++;
+                showNetDialog();
+                viewModel.queryCollectionList(mListTitle.get(pageTab).getStruCode(), mListTitle.get(pageTab).getId(), mListTitle.get(pageTab).getStruCode(), String.valueOf(page), "10");
+            }
+
+            @Override
+            public void previousPage() {
+                page--;
+                showNetDialog();
+                viewModel.queryCollectionList(mListTitle.get(pageTab).getStruCode(), mListTitle.get(pageTab).getId(), mListTitle.get(pageTab).getStruCode(), String.valueOf(page), "10");
+            }
+        });
+    }
+    @Override
+    public void onSubscribeViewModel() {
+        viewModel.getPageListPadData().observe(this, listResult -> {
+            if (!listResult.isSuccess()) {
+                ToastUtils.showLong(listResult.getMessage().toString());
+                return;
+            }
+            if (listResult.isSuccess()) {
+                if (null != listResult.getResult().getPageData()) {
+                    list.clear();
+                    list.addAll(listResult.getResult().getPageData());
+                    mMainBinding.lmMaterialsView.setList(listResult.getResult().getPageData(), page);
+                }
+            }
+            adapter.notifyDataSetChanged();
+        });
+        viewModel.getPageListPadData1().observe(this, listResult -> {
+            if (!listResult.isSuccess()) {
+                ToastUtils.showLong(listResult.getMessage().toString());
+                return;
+            }
+            if (listResult.isSuccess()) {
+                if (null != listResult.getResult()) {
+                    mListTitle.clear();
+                    mListTitle.addAll(listResult.getResult().getData());
+                    inInTab();
+                    viewModel.queryCollectionList(mListTitle.get(0).getStruCode(), mListTitle.get(0).getId(), mListTitle.get(0).getStruCode(), "1", "10");
+                }
+            }
+        });
+    }
+
+    @Override
+    public void onMResume() {
+
+    }
+}

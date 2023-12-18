@@ -17,6 +17,8 @@ import com.askia.coremodel.datamodel.http.entities.consume.EBookListBean;
 import com.askia.coremodel.datamodel.http.entities.consume.HttpConsumeConfigBean;
 
 import com.askia.coremodel.datamodel.http.entities.consume.HttpLoginResult;
+import com.askia.coremodel.datamodel.http.entities.consume.MyCollectionResponse;
+import com.askia.coremodel.datamodel.http.entities.consume.MyCollectionTitleResponse;
 import com.askia.coremodel.datamodel.http.entities.consume.OperationDetailBean;
 import com.askia.coremodel.datamodel.http.entities.consume.SchoolServiceBean;
 import com.askia.coremodel.datamodel.http.entities.consume.MainFragmentResponseBean;
@@ -182,5 +184,15 @@ public interface NetDataService {
     // 用户信息
     @POST("/cdls-bds/App/queryClassesByPhone")
     Observable<BaseResponseData<UserInfoBean>> queryClassesByPhone(@Query("phone") String phone);
+    // 我的收藏标题头
+    @GET("/cdls-cms/CollectionController/queryStruList")
+    Observable<BaseResponseData<MyCollectionTitleResponse>> queryStruList();
+    // 我的收藏列表
+    @GET("/cdls-cms/CollectionController/queryCollectionList")
+    Observable<BaseResponseData<MyCollectionResponse>> queryCollectionList(@Query("argStruCode") String argStruCode,
+                                                                           @Query("contentParentId") String contentParentId,
+                                                                           @Query("struId") String struId,
+                                                                           @Query("argPage") String argPage,
+                                                                           @Query("argPageSize") String argPageSize);
 
 }

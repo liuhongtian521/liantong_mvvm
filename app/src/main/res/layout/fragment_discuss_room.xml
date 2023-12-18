@@ -5,9 +5,13 @@
     <data>
 
     </data>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
         android:background="@color/white">
 
@@ -37,7 +41,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/iv_discuss"
             app:layout_constraintStart_toEndOf="@+id/iv_discuss"
             app:layout_constraintTop_toTopOf="@+id/iv_discuss" />
-
+    </androidx.constraintlayout.widget.ConstraintLayout>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_discuss"
             android:layout_width="match_parent"
@@ -45,6 +49,5 @@
             android:layout_marginTop="@dimen/dp_13"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/iv_discuss" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 </layout>
