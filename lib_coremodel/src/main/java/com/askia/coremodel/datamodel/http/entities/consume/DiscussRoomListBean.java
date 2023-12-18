@@ -131,8 +131,252 @@ public class DiscussRoomListBean {
         private String isFollow;
         private String titiles;
         private String userCount;
-        private List<?> topicList;
+        private List<TopicListBean> topicList;
+        public static class TopicListBean {
+            /**
+             * id : 842837520583491584
+             * cmTenantId :
+             * roomId : 842837033847095296
+             * publishingEnd : PC
+             * topicTitle : 针对当前“卡脖子”问题，企业加快突破关键
+             * topicContent : 在当前国内外环境发生深刻变化的大背景下，提高企业创新能力既是改善企业生产经营、增强企业市场竞争力的重要手段。欢迎各位基于自身管理经验，分享一些观点和看法
+             * topicImg : http://cdlscms.oss-cn-huhehaote-nebula-1.aliyuncs.com/be89f349f47540d3a8311e4146b950cd.png?Expires=1620993242&amp;OSSAccessKeyId=LTAI5tE8k22tASfQeMbdKwo6&amp;Signature=5rzb%2Fjenp8rxfvO5qwaCax8NrhQ%3D
+             * topicVideo :
+             * createBy :
+             * createTime : 2021-05-15 07:55:24
+             * updateBy :
+             * updateTime :
+             * publishTime :
+             * createName : 运营者
+             * updateName :
+             * createUserImg :
+             * status : 1
+             * followCount :
+             * roomName : 增强企业创新能力
+             * createTimeStr :
+             * roomStatus :
+             * isFollow :
+             * roomCreateBy :
+             * roomAdminUserId :
+             */
 
+            private String id;
+            private String cmTenantId;
+            private String roomId;
+            private String publishingEnd;
+            private String topicTitle;
+            private String topicContent;
+            private String topicImg;
+            private String topicVideo;
+            private String createBy;
+            private String createTime;
+            private String updateBy;
+            private String updateTime;
+            private String publishTime;
+            private String createName;
+            private String updateName;
+            private String createUserImg;
+            private int status;
+            private String followCount;
+            private String roomName;
+            private String createTimeStr;
+            private String roomStatus;
+            private String isFollow;
+            private String roomCreateBy;
+            private String roomAdminUserId;
+
+            public String getId() {
+                return id;
+            }
+
+            public void setId(String id) {
+                this.id = id;
+            }
+
+            public String getCmTenantId() {
+                return cmTenantId;
+            }
+
+            public void setCmTenantId(String cmTenantId) {
+                this.cmTenantId = cmTenantId;
+            }
+
+            public String getRoomId() {
+                return roomId;
+            }
+
+            public void setRoomId(String roomId) {
+                this.roomId = roomId;
+            }
+
+            public String getPublishingEnd() {
+                return publishingEnd;
+            }
+
+            public void setPublishingEnd(String publishingEnd) {
+                this.publishingEnd = publishingEnd;
+            }
+
+            public String getTopicTitle() {
+                return topicTitle;
+            }
+
+            public void setTopicTitle(String topicTitle) {
+                this.topicTitle = topicTitle;
+            }
+
+            public String getTopicContent() {
+                return topicContent;
+            }
+
+            public void setTopicContent(String topicContent) {
+                this.topicContent = topicContent;
+            }
+
+            public String getTopicImg() {
+                return topicImg;
+            }
+
+            public void setTopicImg(String topicImg) {
+                this.topicImg = topicImg;
+            }
+
+            public String getTopicVideo() {
+                return topicVideo;
+            }
+
+            public void setTopicVideo(String topicVideo) {
+                this.topicVideo = topicVideo;
+            }
+
+            public String getCreateBy() {
+                return createBy;
+            }
+
+            public void setCreateBy(String createBy) {
+                this.createBy = createBy;
+            }
+
+            public String getCreateTime() {
+                return createTime;
+            }
+
+            public void setCreateTime(String createTime) {
+                this.createTime = createTime;
+            }
+
+            public String getUpdateBy() {
+                return updateBy;
+            }
+
+            public void setUpdateBy(String updateBy) {
+                this.updateBy = updateBy;
+            }
+
+            public String getUpdateTime() {
+                return updateTime;
+            }
+
+            public void setUpdateTime(String updateTime) {
+                this.updateTime = updateTime;
+            }
+
+            public String getPublishTime() {
+                return publishTime;
+            }
+
+            public void setPublishTime(String publishTime) {
+                this.publishTime = publishTime;
+            }
+
+            public String getCreateName() {
+                return createName;
+            }
+
+            public void setCreateName(String createName) {
+                this.createName = createName;
+            }
+
+            public String getUpdateName() {
+                return updateName;
+            }
+
+            public void setUpdateName(String updateName) {
+                this.updateName = updateName;
+            }
+
+            public String getCreateUserImg() {
+                return createUserImg;
+            }
+
+            public void setCreateUserImg(String createUserImg) {
+                this.createUserImg = createUserImg;
+            }
+
+            public int getStatus() {
+                return status;
+            }
+
+            public void setStatus(int status) {
+                this.status = status;
+            }
+
+            public String getFollowCount() {
+                return followCount;
+            }
+
+            public void setFollowCount(String followCount) {
+                this.followCount = followCount;
+            }
+
+            public String getRoomName() {
+                return roomName;
+            }
+
+            public void setRoomName(String roomName) {
+                this.roomName = roomName;
+            }
+
+            public String getCreateTimeStr() {
+                return createTimeStr;
+            }
+
+            public void setCreateTimeStr(String createTimeStr) {
+                this.createTimeStr = createTimeStr;
+            }
+
+            public String getRoomStatus() {
+                return roomStatus;
+            }
+
+            public void setRoomStatus(String roomStatus) {
+                this.roomStatus = roomStatus;
+            }
+
+            public String getIsFollow() {
+                return isFollow;
+            }
+
+            public void setIsFollow(String isFollow) {
+                this.isFollow = isFollow;
+            }
+
+            public String getRoomCreateBy() {
+                return roomCreateBy;
+            }
+
+            public void setRoomCreateBy(String roomCreateBy) {
+                this.roomCreateBy = roomCreateBy;
+            }
+
+            public String getRoomAdminUserId() {
+                return roomAdminUserId;
+            }
+
+            public void setRoomAdminUserId(String roomAdminUserId) {
+                this.roomAdminUserId = roomAdminUserId;
+            }
+        }
         public String getId() {
             return id;
         }
@@ -317,11 +561,11 @@ public class DiscussRoomListBean {
             this.userCount = userCount;
         }
 
-        public List<?> getTopicList() {
+        public List<TopicListBean> getTopicList() {
             return topicList;
         }
 
-        public void setTopicList(List<?> topicList) {
+        public void setTopicList(List<TopicListBean> topicList) {
             this.topicList = topicList;
         }
     }

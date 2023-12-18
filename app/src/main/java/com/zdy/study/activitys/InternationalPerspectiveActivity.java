@@ -71,13 +71,12 @@ public class InternationalPerspectiveActivity extends BaseActivity {
         adapter = new InternationalPerspectiveAdapter(list, this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
-        mDataBinding.fcrVideo.setLitScale();
-        mDataBinding.fcrVideo.setOnClickListener(new View.OnClickListener() {
+        mDataBinding.ivHeadVideo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (null != list && list.size() > 0) {
                     Bundle bundle = new Bundle();
-                          bundle.putString("url", list.get(0).getContVideo().getVideoUrl());
+                    //      bundle.putString("url", list.get(0).getVideoUrl());
                     startActivityByRouter(ARouterPath.VideoActivity, bundle);
                 }
 
