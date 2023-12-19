@@ -1,58 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.zdy.study.fcWidgets.FCLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/fc_linearLayout"
-    android:focusableInTouchMode="true"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
-<LinearLayout
-    android:paddingLeft="15dp"
-    android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    <RelativeLayout
+    android:layout_height="wrap_content"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
+    app:scale="1.02">
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_75"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="15dp">
 
-        <TextView
-            android:id="@+id/tv_content_web"
-            android:paddingTop="5dp"
-            android:paddingRight="95dp"
-            android:gravity="center_vertical"
-            android:lines="2"
-            android:ellipsize="end"
-            android:textColor="@color/app_black3"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/dp_42"
-            android:textSize="14sp" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_75"
+            android:orientation="vertical">
 
-        <TextView
-            android:layout_below="@+id/tv_content_web"
-            android:layout_marginTop="9dp"
-            android:id="@+id/tv_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="2020-10-12"
-            android:textColor="#B0B2B4"
-            android:textSize="12sp" />
-        <ImageView
-            android:layout_alignParentRight="true"
-            android:id="@+id/iv_right_video"
-            android:layout_width="80dp"
-            android:layout_height="80dp"/>
+            <TextView
+                android:id="@+id/tv_content_web"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dp_42"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:lines="2"
+                android:paddingTop="5dp"
+                android:paddingRight="95dp"
+                android:textColor="@color/app_black3"
+                android:textSize="14sp" />
 
-        <ImageView
-            android:layout_centerInParent="true"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginRight="25dp"
-            android:background="@mipmap/ic_video_play"
-            android:layout_alignParentRight="true" />
-    </RelativeLayout>
-</LinearLayout>
+            <TextView
+                android:id="@+id/tv_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_content_web"
+                android:layout_marginTop="9dp"
+                android:text="2020-10-12"
+                android:textColor="#B0B2B4"
+                android:textSize="12sp" />
+
+            <ImageView
+                android:id="@+id/iv_right_video"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_alignParentRight="true" />
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
+                android:layout_marginRight="25dp"
+                android:background="@mipmap/ic_video_play" />
+        </RelativeLayout>
+    </LinearLayout>
+
     <View
-        android:background="#E2E4E8"
         android:layout_width="match_parent"
-        android:layout_height="0.5dp"/>
+        android:layout_height="0.5dp"
+        android:background="#E2E4E8" />
 </com.zdy.study.fcWidgets.FCLinearLayout>

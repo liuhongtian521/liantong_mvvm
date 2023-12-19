@@ -83,6 +83,7 @@ public class BroadcastExpressActivity extends BaseActivity {
         recyclerView.setAdapter(adapter);
 
         adapter.setOnItemClickListener((adapter, view, position) -> {
+            viewModel.addReadNotes(list.get(position).getId(), Constants.LBSD);//添加阅读记录
             Bundle bundle1 = new Bundle();
             bundle1.putString("url", list.get(position).getContVideo().getVideoUrl());
             startActivityByRouter(ARouterPath.VideoActivity, bundle1);

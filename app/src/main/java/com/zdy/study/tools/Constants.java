@@ -12,6 +12,10 @@ public class Constants {
     public static final String SJAL ="1384703677503217665";
     //精选理论
     public static final String JXLL ="1384060802717294593";
+    //推荐书单
+    public static final String TJSD ="111111";
     //书籍字典
     public static final String SJZD ="CLASS_MATERIAL_TAG";
+    //要闻速览
+    public static final String YWSL ="1384031159788347394";
 }

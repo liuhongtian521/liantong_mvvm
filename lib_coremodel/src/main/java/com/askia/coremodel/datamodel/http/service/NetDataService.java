@@ -14,6 +14,7 @@ import com.askia.coremodel.datamodel.http.entities.consume.CourseQueryResponseBe
 import com.askia.coremodel.datamodel.http.entities.consume.DiscussResponseBean;
 import com.askia.coremodel.datamodel.http.entities.consume.DiscussRoomListBean;
 import com.askia.coremodel.datamodel.http.entities.consume.EBookListBean;
+import com.askia.coremodel.datamodel.http.entities.consume.HistoryResponse;
 import com.askia.coremodel.datamodel.http.entities.consume.HttpConsumeConfigBean;
 
 import com.askia.coremodel.datamodel.http.entities.consume.HttpLoginResult;
@@ -195,5 +196,18 @@ public interface NetDataService {
                                                                            @Query("content") String content,
                                                                            @Query("argPage") String argPage,
                                                                            @Query("argPageSize") String argPageSize);
+
+    // 阅读记录标题头
+    @GET("/cdls-cms/ReadNotesController/queryStruList")
+    Observable<BaseResponseData<MyCollectionTitleResponse>> historyQueryStruList();
+
+    // 阅读记录列表
+    @GET("/cdls-cms/ReadNotesController/queryReadNotes")
+    Observable<BaseResponseData<HistoryResponse>> queryReadNotes(@Query("argStruCode") String argStruCode,
+                                                                 @Query("contentParentId") String contentParentId,
+                                                                 @Query("struId") String struId,
+                                                                 @Query("content") String content,
+                                                                 @Query("argPage") String argPage,
+                                                                 @Query("argPageSize") String argPageSize);
 
 }

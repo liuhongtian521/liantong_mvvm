@@ -93,7 +93,7 @@ public class MineFragment extends BaseFragment {
 
                     break;
                 case 4:
-
+                    url = ARouterPath.HistoryActivityActivity;
                     break;
                 case 5:
 

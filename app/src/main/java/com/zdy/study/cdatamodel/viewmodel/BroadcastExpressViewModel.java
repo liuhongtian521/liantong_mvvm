@@ -6,6 +6,7 @@ import com.askia.coremodel.datamodel.http.entities.consume.BaseResponseData;
 import com.askia.coremodel.datamodel.http.entities.consume.BroadcastExpressResponBean;
 import com.askia.coremodel.datamodel.http.entities.consume.DiscussRoomListBean;
 import com.askia.coremodel.datamodel.http.entities.consume.MainFragmentResponseBean;
+import com.askia.coremodel.datamodel.http.params.consume.AddCollectionParams;
 import com.askia.coremodel.datamodel.http.repository.NetDataRepository;
 import com.askia.coremodel.viewmodel.BaseViewModel;
 
@@ -26,5 +27,15 @@ public class BroadcastExpressViewModel extends BaseViewModel {
         if (netDataRepository == null)
             netDataRepository = new NetDataRepository();
         netDataRepository.queryContListByAudit(argPage, argPageSize,argStruCode, mPageListPadData, mDisposable);
+    }
+
+    //添加阅读记录
+    public void addReadNotes( String argContId, String struId) {
+        AddCollectionParams params = new AddCollectionParams();
+        params.setContentParentId(argContId);
+        params.setStruId(struId);
+        if (netDataRepository == null)
+            netDataRepository = new NetDataRepository();
+        netDataRepository.addReadNotes(convertPostBody(params), new MutableLiveData<>(), mDisposable);
     }
 }

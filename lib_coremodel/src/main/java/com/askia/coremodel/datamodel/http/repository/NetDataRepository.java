@@ -31,6 +31,7 @@ import com.askia.coremodel.datamodel.http.entities.consume.CourseQueryResponseBe
 import com.askia.coremodel.datamodel.http.entities.consume.DiscussResponseBean;
 import com.askia.coremodel.datamodel.http.entities.consume.DiscussRoomListBean;
 import com.askia.coremodel.datamodel.http.entities.consume.EBookListBean;
+import com.askia.coremodel.datamodel.http.entities.consume.HistoryResponse;
 import com.askia.coremodel.datamodel.http.entities.consume.HttpCheckTokenBean;
 import com.askia.coremodel.datamodel.http.entities.consume.HttpCommentRankBean;
 import com.askia.coremodel.datamodel.http.entities.consume.HttpConsumeBannerBean;
@@ -418,6 +419,29 @@ public class NetDataRepository {
                         content,
                         argPage,
                         argPageSize);
+        if (responseObserv == null)
+            responseObserv = new ResponseObserv();
+        responseObserv.responseObserv(responseData, mLiveData, mDisposable);
+    }
+
+    //阅读记录标题头
+    public void historyQueryStruList(MutableLiveData<BaseResponseData<MyCollectionTitleResponse>> mLiveData,
+                              CompositeDisposable mDisposable) {
+        Observable<BaseResponseData<MyCollectionTitleResponse>> responseData = ApiClient.getNetDataService()
+                .historyQueryStruList();
+        if (responseObserv == null)
+            responseObserv = new ResponseObserv();
+        responseObserv.responseObserv(responseData, mLiveData, mDisposable);
+    }
+
+    //阅读记录列表
+    public void queryReadNotes(String argStruCode, String contentParentId, String struId,
+                               String content, String argPage, String argPageSize,
+                                    MutableLiveData<BaseResponseData<HistoryResponse>> mLiveData,
+                                    CompositeDisposable mDisposable) {
+        Observable<BaseResponseData<HistoryResponse>> responseData = ApiClient.getNetDataService()
+                .queryReadNotes(argStruCode, contentParentId, struId, content,
+                        argPage, argPageSize);
         if (responseObserv == null)
             responseObserv = new ResponseObserv();
         responseObserv.responseObserv(responseData, mLiveData, mDisposable);
