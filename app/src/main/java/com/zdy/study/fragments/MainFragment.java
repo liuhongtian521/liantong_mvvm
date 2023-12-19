@@ -408,6 +408,7 @@ public class MainFragment extends BaseFragment {
         MainFragmentResponseBean.PageDataBean pageDataBean = mViewModel.getPageListPadData4().getValue().getResult().getPageData().get(0);
         Bundle bundle = new Bundle();
         bundle.putString("argContId", pageDataBean.getId());
+        bundle.putString("struId", Constants.JXLL);
         startActivityByRouter(ARouterPath.OpreationDetailActivity, bundle);
     }
 
@@ -416,6 +417,7 @@ public class MainFragment extends BaseFragment {
         MainFragmentResponseBean.PageDataBean pageDataBean = mViewModel.getPageListPadData4().getValue().getResult().getPageData().get(1);
         Bundle bundle = new Bundle();
         bundle.putString("argContId", pageDataBean.getId());
+        bundle.putString("struId", Constants.JXLL);
         startActivityByRouter(ARouterPath.OpreationDetailActivity, bundle);
     }
 
@@ -429,6 +431,7 @@ public class MainFragment extends BaseFragment {
         MainFragmentResponseBean.PageDataBean pageDataBean = mViewModel.getPageListPadData5().getValue().getResult().getPageData().get(0);
         Bundle bundle = new Bundle();
         bundle.putString("argContId", pageDataBean.getId());
+        bundle.putString("struId", Constants.CZJQ);
         startActivityByRouter(ARouterPath.OpreationDetailActivity, bundle);
     }
 
@@ -437,6 +440,7 @@ public class MainFragment extends BaseFragment {
         MainFragmentResponseBean.PageDataBean pageDataBean = mViewModel.getPageListPadData5().getValue().getResult().getPageData().get(1);
         Bundle bundle = new Bundle();
         bundle.putString("argContId", pageDataBean.getId());
+        bundle.putString("struId", Constants.CZJQ);
         startActivityByRouter(ARouterPath.OpreationDetailActivity, bundle);
     }
 }

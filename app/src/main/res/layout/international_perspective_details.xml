@@ -58,6 +58,7 @@
                     android:textSize="10sp" />
 
                 <RelativeLayout
+                    android:id="@+id/rl_video"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
 

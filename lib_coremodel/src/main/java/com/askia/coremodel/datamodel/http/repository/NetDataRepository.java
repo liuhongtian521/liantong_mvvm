@@ -407,13 +407,15 @@ public class NetDataRepository {
 
     //我的收藏列表
     public void queryCollectionList(String argStruCode, String contentParentId, String
-            struId, String argPage, String argPageSize,
+            struId, String
+                                            content, String argPage, String argPageSize,
                                     MutableLiveData<BaseResponseData<MyCollectionResponse>> mLiveData,
                                     CompositeDisposable mDisposable) {
         Observable<BaseResponseData<MyCollectionResponse>> responseData = ApiClient.getNetDataService()
                 .queryCollectionList(argStruCode,
                         contentParentId,
                         struId,
+                        content,
                         argPage,
                         argPageSize);
         if (responseObserv == null)

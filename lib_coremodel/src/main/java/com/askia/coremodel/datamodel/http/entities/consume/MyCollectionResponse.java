@@ -79,6 +79,14 @@ public class MyCollectionResponse {
     }
 
     public static class PageDataBean {
+        public boolean isTrueOrFalse() {
+            return isTrueOrFalse;
+        }
+
+        public void setTrueOrFalse(boolean trueOrFalse) {
+            isTrueOrFalse = trueOrFalse;
+        }
+
         /**
          * id : 879676418244476928
          * cmStruId : 833740323652894720
@@ -99,7 +107,7 @@ public class MyCollectionResponse {
          * audioListList : [{"id":"879676418273837056","contId":"879676418244476928","sort":1,"audioUrl":"http://cdlscmsaudio.oss-cn-huhehaote-nebula-1.aliyuncs.com/ea0c43f0fb1a46639244799c542e9839.mp3?Expires=1702884930&OSSAccessKeyId=LTAI5tE8k22tASfQeMbdKwo6&Signature=%2B7CrMhk3XU%2BVPLSo9CbcU%2B2BQic%3D","contTitle":"朴素归因理论","audioTimeLength":"77.80","contText":"朴素归因理论<p>1958年，海德在他的著作《人际关系心理学》中，从通俗心理学的角度提出了归因理论，该理论主要解决的是日常生活中人们如何找出事件的原因。海德认为人有二种强烈的动机：一是形成对周围环境一贯性理解的需要；二是控制环境的需要。为了满足这两种需要，普通人必须要对他人的行为进行归因，并且经过归因来预测他人的行为，唯有如此才有可能满足&ldquo;理解环境和控制环境&rdquo;的需要。<\/p>\n<p>海德还指出，在归因的时候，人们经常使用两个原则：<\/p>\n<p>一是共变原则（Principle of covariation），它是指某个特定的原因在许多不同的情境下和某个特定结果相联系，该原因不存在时，结果也不出现，我们就可以把结果归于该原因，这就是共变原则。<\/p>\n<p>二是排除原则，它是指如果内外因某一方面的原因足以解释事件，我们就可以排除另一方面的归因。<\/p>\n<p>&nbsp;<\/p>\n<p>&nbsp;<\/p>\n<p>&nbsp;<\/p>"}]
          * remark : []
          */
-
+        private  boolean isTrueOrFalse;
         private String id;
         private String cmStruId;
         private int cmContType;

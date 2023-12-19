@@ -71,6 +71,7 @@ public class SelectedTheoryFragment extends BaseFragment {
         adapter.setOnItemClickListener((adapter, view, position) -> {
             Bundle bundle = new Bundle();
             bundle.putString("argContId", list.get(position).getId());
+            bundle.putString("struId", Constants.JXLL);
             startActivityByRouter(ARouterPath.OpreationDetailActivity, bundle);
         });
         binding.rlOperation.requestFocus();

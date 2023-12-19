@@ -75,9 +75,7 @@ public class DigitalClassesFragment extends BaseFragment {
                     url = ARouterPath.SHCOOLSERVICE_ACTIVIGY;
                     break;
                 case 7:
-                 //   ToastUtils.showLong("暂未开放");
-                    //测试我的收藏列表可以删
-                    url = ARouterPath.MyCollectionActivity;
+                    ToastUtils.showLong("暂未开放");
                     break;
                 case 8:
                     url = ARouterPath.AddressBookActivity;

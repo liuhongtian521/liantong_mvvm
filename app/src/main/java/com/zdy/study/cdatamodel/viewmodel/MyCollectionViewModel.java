@@ -6,6 +6,7 @@ import com.askia.coremodel.datamodel.http.entities.consume.BaseResponseData;
 import com.askia.coremodel.datamodel.http.entities.consume.MyCollectionResponse;
 import com.askia.coremodel.datamodel.http.entities.consume.MyCollectionTitleResponse;
 import com.askia.coremodel.datamodel.http.entities.consume.OperationDetailBean;
+import com.askia.coremodel.datamodel.http.params.consume.AddCollectionParams;
 import com.askia.coremodel.datamodel.http.repository.NetDataRepository;
 import com.askia.coremodel.viewmodel.BaseViewModel;
 
@@ -23,25 +24,41 @@ public class MyCollectionViewModel extends BaseViewModel {
     public MutableLiveData<BaseResponseData<MyCollectionTitleResponse>> getPageListPadData1() {
         return mPageListPadData1;
     }
+    //取消收藏
+    private MutableLiveData<BaseResponseData> mDelCollectionListData = new MutableLiveData<>();
 
+    public MutableLiveData<BaseResponseData> getmDelCollectionListData() {
+        return mDelCollectionListData;
+    }
     //我的收藏列表
     public void queryCollectionList(String argStruCode, String contentParentId, String
-            struId, String argPage, String argPageSize) {
+            struId, String content, String argPage, String argPageSize) {
 
         if (netDataRepository == null)
             netDataRepository = new NetDataRepository();
         netDataRepository.queryCollectionList(argStruCode,
                 contentParentId,
-                struId,
+                struId, content,
                 argPage,
                 argPageSize, mPageListPadData, mDisposable);
     }
+
     //我的收藏标题头
     public void queryStruList() {
 
         if (netDataRepository == null)
             netDataRepository = new NetDataRepository();
         netDataRepository.queryStruList(mPageListPadData1, mDisposable);
+    } //删除
+
+    //取消收藏
+    public void delCollectionList( String argContId, String struId) {
+        AddCollectionParams params = new AddCollectionParams();
+        params.setContentParentId(argContId);
+        params.setStruId(struId);
+        if (netDataRepository == null)
+            netDataRepository = new NetDataRepository();
+        netDataRepository.delCollectionList(convertPostBody(params), mDelCollectionListData, mDisposable);
     }
 
 }

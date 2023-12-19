@@ -38,18 +38,37 @@ public class InternationalPerspectiveDetailsActivity extends BaseActivity {
     private String pageSize = "10";
     private InternationalPerspectiveDetailsViewModel viewModel;
     private String key;
+    private String mUrl;
 
     @Override
     public void onInit() {
+        key = getIntent().getExtras().getString("key");
+        switch (key) {
+            case Constants.GJSY:
+                onInTitle("国际视野详情");
+                break;
+            case Constants.SJAL:
+                onInTitle("实践案列详情");
+                break;
+            case Constants.JXLL:
+                onInTitle("精选理论详情");
+                mDataBinding.rlVideo.setVisibility(View.GONE);
+                mDataBinding.tvAuthor.setVisibility(View.GONE);
+                break;
+            case Constants.CZJQ:
+                onInTitle("操作技巧详情");
+                mDataBinding.rlVideo.setVisibility(View.GONE);
+                mDataBinding.tvAuthor.setVisibility(View.GONE);
+                break;
 
-        key=getIntent().getExtras().getString("key");
-        if (Constants.GJSY.equals(key)){
-            onInTitle("国际视野详情");
-        }else {
-            onInTitle("实践案列详情");
         }
         mDataBinding.flOperation.getComments(getIntent().getExtras().getString("INTERNATIONAL_VIEW"), key);//获取评论
         viewModel.queryCont(getIntent().getExtras().getString("INTERNATIONAL_VIEW"));
+        mDataBinding.rlVideo.setOnClickListener(v -> {
+                Bundle bundle = new Bundle();
+                bundle.putString("url", mUrl);
+                startActivityByRouter(ARouterPath.VideoActivity, bundle);
+        });
     }
 
     private void onInTitle(String title) {
@@ -78,14 +97,19 @@ public class InternationalPerspectiveDetailsActivity extends BaseActivity {
                 ToastUtils.showLong(listResult.getMessage().toString());
                 return;
             }
-            mDataBinding.flOperation.setPraiseActive("0".equals(listResult.getResult().getPraise())? false: true);
-            mDataBinding.flOperation.setAddcollection("0".equals(listResult.getResult().getCollection())? false: true);
+            mDataBinding.flOperation.setPraiseActive("0".equals(listResult.getResult().getPraise()) ? false : true);
+            mDataBinding.flOperation.setAddcollection("0".equals(listResult.getResult().getCollection()) ? false : true);
             // 在目标活动（TargetActivity）中获取Bundle
             mDataBinding.tvTitle.setText(listResult.getResult().getContName());
             mDataBinding.tvDate.setText(listResult.getResult().getDisplayTime());
             mDataBinding.tvIntroduction.setText(getIntent().getExtras().getString("ENTITY_LIST_introduction_two"));
             mDataBinding.tvAuthor.setText("作者：" + listResult.getResult().getLink());
-            Glide.with(this).load(listResult.getResult().getImgUrl()).into(mDataBinding.ivVideo);
+            if (null == listResult.getResult().getImgUrl() || "".equals(listResult.getResult().getImgUrl())) {
+                mDataBinding.rlVideo.setVisibility(View.GONE);
+            } else {
+                Glide.with(this).load(listResult.getResult().getImgUrl()).into(mDataBinding.ivVideo);
+            }
+            mUrl = listResult.getResult().getContVideo().getVideoUrl();
             setContent(listResult.getResult().getAudioListList().get(0).getContText(), mDataBinding.webContent);
         });
 

@@ -192,6 +192,7 @@ public interface NetDataService {
     Observable<BaseResponseData<MyCollectionResponse>> queryCollectionList(@Query("argStruCode") String argStruCode,
                                                                            @Query("contentParentId") String contentParentId,
                                                                            @Query("struId") String struId,
+                                                                           @Query("content") String content,
                                                                            @Query("argPage") String argPage,
                                                                            @Query("argPageSize") String argPageSize);
 

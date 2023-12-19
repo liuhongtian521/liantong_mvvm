@@ -3,6 +3,8 @@ package com.zdy.study.activitys;
 import static com.askia.common.util.Utils.getActivity;
 import static com.askia.common.util.Utils.listToString;
 
+import android.annotation.SuppressLint;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -19,6 +21,7 @@ import com.askia.coremodel.datamodel.http.entities.consume.BookListResponseBean;
 import com.askia.coremodel.datamodel.http.entities.consume.MyCollectionResponse;
 import com.askia.coremodel.datamodel.http.entities.consume.MyCollectionTitleResponse;
 import com.blankj.utilcode.util.ToastUtils;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.google.android.material.tabs.TabLayout;
 import com.zdy.study.R;
 import com.zdy.study.adapter.InternationalPerspectiveAdapter;
@@ -42,6 +45,7 @@ public class MyCollectionActivity extends BaseActivity {
     private RecyclerView recyclerView;
     private MyCollectionAdapter adapter;
     private int page = 1;
+    private boolean clickTrueOrFalse = false;
 
     @Override
     public void onInit() {
@@ -50,12 +54,52 @@ public class MyCollectionActivity extends BaseActivity {
         viewModel.queryStruList();
         inItRecycleView();
         initLoad();
+        inInRVOnListen();
+    }
+
+    @SuppressLint("NonConstantResourceId")
+    private void inInRVOnListen() {
+        adapter.setOnItemChildClickListener((adapter, view, position) -> {
+            switch (view.getId()) {
+                case R.id.fc_linearLayout:
+                        Bundle bundle = new Bundle();
+                        bundle.putString("key", mListTitle.get(pageTab).getStruCode());
+                        bundle.putString("INTERNATIONAL_VIEW", list.get(position).getId());
+                        startActivityByRouter(ARouterPath.InternationalPerspectiveDetailsActivity, bundle);
+                    break;
+                case R.id.iv_delete:
+                    //删除一条
+                    viewModel.delCollectionList(list.get(position).getId(), mListTitle.get(pageTab).getStruCode());
+                    break;
+            }
+        });
+        adapter.setOnItemClickListener((adapter, view, position) -> {
+            //跳转详情
+            if (Constants.CZJQ.equals(mListTitle.get(pageTab))) {
+                Bundle bundle = new Bundle();
+                bundle.putString("argContId", list.get(position).getId());
+                bundle.putString("struId", Constants.CZJQ);
+                startActivityByRouter(ARouterPath.OpreationDetailActivity, bundle);
+            } else if (Constants.JXLL.equals(mListTitle.get(pageTab))) {
+                //跳转详情
+                Bundle bundle = new Bundle();
+                bundle.putString("argContId", list.get(position).getId());
+                bundle.putString("struId", Constants.JXLL);
+                startActivityByRouter(ARouterPath.OpreationDetailActivity, bundle);
+            } else {
+                Bundle bundle = new Bundle();
+                bundle.putString("key", mListTitle.get(pageTab).getStruCode());
+                bundle.putString("INTERNATIONAL_VIEW", list.get(position).getId());
+                startActivityByRouter(ARouterPath.InternationalPerspectiveDetailsActivity, bundle);
+            }
+        });
+
     }
 
     private void inItRecycleView() {
         recyclerView = mMainBinding.rvBook;
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);//数字为行数或列数
-        adapter = new MyCollectionAdapter(list, this);
+        adapter = new MyCollectionAdapter(list, this, clickTrueOrFalse);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
     }
@@ -77,7 +121,8 @@ public class MyCollectionActivity extends BaseActivity {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 pageTab = tab.getPosition();
-                viewModel.queryCollectionList(mListTitle.get(pageTab).getStruCode(), mListTitle.get(pageTab).getId(), mListTitle.get(pageTab).getStruCode(), "1", "10");
+                mMainBinding.etSearch.setText("");
+                viewModel.queryCollectionList(mListTitle.get(pageTab).getStruCode(), mListTitle.get(pageTab).getId(), mListTitle.get(pageTab).getStruCode(), mMainBinding.etSearch.getText() + "", "1", "10");
             }
 
             @Override
@@ -92,6 +137,29 @@ public class MyCollectionActivity extends BaseActivity {
         });
     }
 
+    public void onClickSearch(View view) {
+        viewModel.queryCollectionList(mListTitle.get(pageTab).getStruCode(), mListTitle.get(pageTab).getId(), mListTitle.get(pageTab).getStruCode(), mMainBinding.etSearch.getText() + "", "1", "10");
+    }
+
+    public void onClickDelete(View view) {
+        if (clickTrueOrFalse) {
+            mMainBinding.tvDelete.setBackgroundResource(R.mipmap.ic_delect);
+            clickTrueOrFalse = false;
+            for (MyCollectionResponse.PageDataBean pageDataBean : list) {
+                pageDataBean.setTrueOrFalse(clickTrueOrFalse);
+            }
+            adapter.notifyDataSetChanged();
+        } else {
+            mMainBinding.tvDelete.setBackgroundResource(R.mipmap.ic_true);
+            clickTrueOrFalse = true;
+            for (MyCollectionResponse.PageDataBean pageDataBean : list) {
+                pageDataBean.setTrueOrFalse(clickTrueOrFalse);
+            }
+            adapter.notifyDataSetChanged();
+        }
+    }
+
+
     @Override
     public void onInitViewModel() {
         viewModel = ViewModelProviders.of(this).get(MyCollectionViewModel.class);
@@ -100,6 +168,7 @@ public class MyCollectionActivity extends BaseActivity {
     @Override
     public void onInitDataBinding() {
         mMainBinding = DataBindingUtil.setContentView(this, R.layout.collection_main);
+        mMainBinding.setHandlers(this);
     }
 
     private void initLoad() {
@@ -108,17 +177,18 @@ public class MyCollectionActivity extends BaseActivity {
             public void nextPage() {
                 page++;
                 showNetDialog();
-                viewModel.queryCollectionList(mListTitle.get(pageTab).getStruCode(), mListTitle.get(pageTab).getId(), mListTitle.get(pageTab).getStruCode(), String.valueOf(page), "10");
+                viewModel.queryCollectionList(mListTitle.get(pageTab).getStruCode(), mListTitle.get(pageTab).getId(), mListTitle.get(pageTab).getStruCode(), mMainBinding.etSearch.getText() + "", "1", "10");
             }
 
             @Override
             public void previousPage() {
                 page--;
                 showNetDialog();
-                viewModel.queryCollectionList(mListTitle.get(pageTab).getStruCode(), mListTitle.get(pageTab).getId(), mListTitle.get(pageTab).getStruCode(), String.valueOf(page), "10");
+                viewModel.queryCollectionList(mListTitle.get(pageTab).getStruCode(), mListTitle.get(pageTab).getId(), mListTitle.get(pageTab).getStruCode(), mMainBinding.etSearch.getText() + "", "1", "10");
             }
         });
     }
+
     @Override
     public void onSubscribeViewModel() {
         viewModel.getPageListPadData().observe(this, listResult -> {
@@ -145,7 +215,7 @@ public class MyCollectionActivity extends BaseActivity {
                     mListTitle.clear();
                     mListTitle.addAll(listResult.getResult().getData());
                     inInTab();
-                    viewModel.queryCollectionList(mListTitle.get(0).getStruCode(), mListTitle.get(0).getId(), mListTitle.get(0).getStruCode(), "1", "10");
+                    viewModel.queryCollectionList(mListTitle.get(0).getStruCode(), mListTitle.get(0).getId(), mListTitle.get(0).getStruCode(), mMainBinding.etSearch.getText() + "", "1", "10");
                 }
             }
         });

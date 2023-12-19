@@ -38,13 +38,27 @@ public class OperationDetailActivity extends BaseActivity {
     private OperationDetailViewModel viewModel;
 
     private String argContId = "";
+    private String struId = "";
 
     @Override
     public void onInit() {
+        struId = getIntent().getExtras().getString("struId");
         argContId = getIntent().getExtras().getString("argContId");
+        if (Constants.CZJQ.equals(struId)){
+            onInTitle("操作技巧详情");
+        }else {
+            onInTitle("精选理论详情");
+        }
         showNetDialog();
         viewModel.queryContListByAudit(argContId);
-        binding.flOperation.getComments(argContId, Constants.CZJQ);//获取评论
+        binding.flOperation.getComments(argContId, struId);//获取评论
+    }
+
+    private void onInTitle(String title) {
+        binding.includeLayout.preferenceActivityTitleText.setText(title);
+        binding.includeLayout.preferenceActivityTitleImage.setOnClickListener(v -> {
+            finish();
+        });
     }
 
     @Override
