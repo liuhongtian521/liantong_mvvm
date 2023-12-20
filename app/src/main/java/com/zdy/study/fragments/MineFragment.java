@@ -96,7 +96,7 @@ public class MineFragment extends BaseFragment {
                     url = ARouterPath.HistoryActivityActivity;
                     break;
                 case 5:
-
+                    url = ARouterPath.SettingActivity;
                     break;
             }
             if (TextUtils.isEmpty(DBRepository.QueryTVUserLoginData().getAccess_token())) {

@@ -48,13 +48,14 @@
     <application
         android:name="com.askia.common.base.APP"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_zdy_study_app"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_zdy_study_app_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activitys.SplashActivity">
+        <activity android:name=".activitys.SplashActivity"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -179,6 +180,11 @@
         <!--阅读记录-->
         <activity
             android:name=".activitys.HistoryActivity"
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="stateHidden" />
+        <!--设置-->
+        <activity
+            android:name=".activitys.SettingActivity"
             android:launchMode="singleTask"
             android:windowSoftInputMode="stateHidden" />
 

@@ -8,7 +8,15 @@
         <item name="colorPrimary">@color/white</item>
         <item name="colorPrimaryDark">@color/white</item>
 
+
     </style>
+    <style name="SplashTheme" parent="AppTheme">
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimaryDark">@color/white</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@mipmap/bg_app</item>
+    </style>
+
     <!-- Dialog样式-->
     <style name="DialogTheme" parent="@android:style/Theme.Dialog">
         <!-- 边框 -->

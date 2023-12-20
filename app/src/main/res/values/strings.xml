@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">app</string>
+    <string name="app_name">国企高管学习</string>
 
    <string name="logining">正在登陆</string>
     <string name="emptyView_mode_desc_fail_title">加载失败</string>

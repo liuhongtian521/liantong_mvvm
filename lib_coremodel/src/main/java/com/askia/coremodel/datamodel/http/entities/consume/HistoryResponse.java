@@ -2,6 +2,7 @@ package com.askia.coremodel.datamodel.http.entities.consume;
 
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -85,7 +86,7 @@ public class HistoryResponse {
         this.pageData = pageData;
     }
 
-    public static class PageDataBean implements MultiItemEntity {
+    public static class PageDataBean implements MultiItemEntity , Serializable {
         /**
          * id : 1036561358004420608
          * cmStruId : 833060905079013376
@@ -333,7 +334,7 @@ public class HistoryResponse {
             this.audioListList = audioListList;
         }
 
-        public static class ContVideoBean {
+        public static class ContVideoBean implements Serializable{
             /**
              * contId : 1036561358004420608
              * taCmFlId : 1036561348768563200
@@ -389,7 +390,7 @@ public class HistoryResponse {
             }
         }
 
-        public static class AudioListListBean {
+        public static class AudioListListBean implements Serializable{
             /**
              * id : 1036561358033780736
              * contId : 1036561358004420608

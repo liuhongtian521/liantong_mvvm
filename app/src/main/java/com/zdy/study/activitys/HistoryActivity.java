@@ -1,5 +1,6 @@
 package com.zdy.study.activitys;
 
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -15,6 +16,7 @@ import com.askia.common.base.BaseActivity;
 import com.askia.coremodel.datamodel.http.entities.consume.HistoryResponse;
 import com.askia.coremodel.datamodel.http.entities.consume.MyCollectionTitleResponse;
 import com.blankj.utilcode.util.ToastUtils;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.google.android.material.tabs.TabLayout;
 import com.zdy.study.R;
 import com.zdy.study.adapter.HistoryAdapter;
@@ -56,12 +58,33 @@ public class HistoryActivity extends BaseActivity {
     @Override
     public void onInitDataBinding() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_history);
+        binding.setHandlers(this);
     }
     private void inItRecycleView() {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);//数字为行数或列数
         adapter = new HistoryAdapter(histotyList);
         binding.rvHistory.setLayoutManager(layoutManager);
         binding.rvHistory.setAdapter(adapter);
+
+        adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                if (itemType == HistoryAdapter.LBSD){
+                    Bundle bundle1 = new Bundle();
+                    bundle1.putString("url", histotyList.get(position).getContVideo().getVideoUrl());
+                    startActivityByRouter(ARouterPath.VideoActivity, bundle1);
+                }else if(itemType == HistoryAdapter.TJSD){
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("BookListDetails", histotyList.get(position));
+                    startActivityByRouter(ARouterPath.BookDetailsActivity, bundle);
+                }else{
+                    Bundle bundle = new Bundle();
+                    bundle.putString("key", mListTitle.get(pageTab).getStruCode());
+                    bundle.putString("INTERNATIONAL_VIEW", histotyList.get(position).getId());
+                    startActivityByRouter(ARouterPath.InternationalPerspectiveDetailsActivity, bundle);
+                }
+            }
+        });
     }
 
     private void initLoad() {
@@ -70,7 +93,8 @@ public class HistoryActivity extends BaseActivity {
             public void nextPage() {
                 page++;
                 showNetDialog();
-                viewModel.queryReadNotes(mListTitle.get(pageTab).getStruCode(), mListTitle.get(pageTab).getId(), mListTitle.get(pageTab).getStruCode(),"",
+                viewModel.queryReadNotes(mListTitle.get(pageTab).getStruCode(), mListTitle.get(pageTab).getId(),
+                        mListTitle.get(pageTab).getStruCode(), binding.etSearch.getText().toString(),
                         String.valueOf(page), "10");
             }
 
@@ -78,7 +102,8 @@ public class HistoryActivity extends BaseActivity {
             public void previousPage() {
                 page--;
                 showNetDialog();
-                viewModel.queryReadNotes(mListTitle.get(pageTab).getStruCode(), mListTitle.get(pageTab).getId(), mListTitle.get(pageTab).getStruCode(),"",
+                viewModel.queryReadNotes(mListTitle.get(pageTab).getStruCode(), mListTitle.get(pageTab).getId(),
+                        mListTitle.get(pageTab).getStruCode(),binding.etSearch.getText().toString(),
                         String.valueOf(page), "10");
             }
         });
@@ -196,9 +221,12 @@ public class HistoryActivity extends BaseActivity {
         setItemType(title.getStruCode());
         showNetDialog();
         viewModel.queryReadNotes(title.getStruCode(), title.getId(), title.getStruCode(),
-                "","1", "10");
+                binding.etSearch.getText().toString(),"1", "10");
     }
 
+    public void onClickSearch(View view) {
+        getListData(mListTitle.get(pageTab));//根据选择tab 获取第一页列表数据
+    }
     @Override
     public void onMResume() {
 

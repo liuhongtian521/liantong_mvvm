@@ -62,4 +62,6 @@ public class ARouterPath {
     public static final String HistoryActivityActivity = "/activity/HistoryActivity";
     /*我的讨论室*/
     public static final String MyDiscussRoomActivity = "/activity/MyDiscussRoomActivity";
+    /*设置*/
+    public static final String SettingActivity = "/activity/SettingActivity";
 }
