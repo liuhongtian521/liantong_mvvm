@@ -34,15 +34,15 @@ public class MyDiscussRoomActivity extends BaseActivity {
     private List<DiscussRoomListBean.PageDataBean> list;
     private int page = 1;
     private String pageSize = "10";
-    private String MyId;
+    private String mMyId;
 
     @Override
     public void onInit() {
         list = new ArrayList<>();
         onInTitle("我的讨论室");
 //        mDataBinding.currentText.setText(getArguments().getString("TITLE"));
-        mViewModel.pageListMyPad("1", "10");
         onInitInformation();
+        mViewModel.pageListMyPad("1", "10");
         initRecycleView();
         initLoad();
     }
@@ -106,6 +106,10 @@ public class MyDiscussRoomActivity extends BaseActivity {
             if (null != listResult.getResult().getPageData() && listResult.getResult().getPageData().size() > 0) {
                 list.clear();
                 list.addAll(listResult.getResult().getPageData());
+                for (DiscussRoomListBean.PageDataBean pageDataBean : list) {
+                    pageDataBean.setMyId(mMyId);
+                }
+                adapter.notifyDataSetChanged();
                 mDataBinding.lmView.setList(listResult.getResult().getPageData(), page);
             }
 
@@ -116,10 +120,7 @@ public class MyDiscussRoomActivity extends BaseActivity {
                 ToastUtils.showLong(listResult.getMessage().toString());
                 return;
             }
-            for (DiscussRoomListBean.PageDataBean pageDataBean : list) {
-                pageDataBean.setMyId(listResult.getData().getId());
-            }
-            adapter.notifyDataSetChanged();
+            mMyId=listResult.getData().getId();
         });
     }
 

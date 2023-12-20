@@ -32,7 +32,7 @@ public class DiscussRoomAdapter extends BaseQuickAdapter<DiscussRoomListBean.Pag
         helper.setText(R.id.subject, item.getTopicCount() + "个话题");
         helper.setText(R.id.tv_dfdsf, item.getRoomName());
         TextView textView = helper.getView(R.id.tv_my_create);
-        if (item.getCreateBy().equals(item.getId())) {
+        if (item.getCreateBy().equals(item.getMyId())) {
             textView.setVisibility(View.VISIBLE);
         } else {
             textView.setVisibility(View.GONE);

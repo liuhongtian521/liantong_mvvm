@@ -39,13 +39,14 @@ public class DiscussRoomFragment extends BaseFragment {
     private DiscussRoomAdapter adapter;
     private RecyclerView recyclerView;
     private List<DiscussRoomListBean.PageDataBean> list;
+    private String mMyId;
 
     @Override
     public void onInit() {
         list = new ArrayList<>();
 //        mDataBinding.currentText.setText(getArguments().getString("TITLE"));
-        mViewModel.getPageListPad("1", "10");
         onInitInformation();
+        mViewModel.getPageListPad("1", "10");
         initRecycleView();
     }
     private void onInitInformation() {
@@ -82,6 +83,10 @@ public class DiscussRoomFragment extends BaseFragment {
             if (null != listResult.getResult().getPageData() && listResult.getResult().getPageData().size() > 0) {
                 list.clear();
                 list.addAll(listResult.getResult().getPageData());
+                for (DiscussRoomListBean.PageDataBean pageDataBean : list) {
+                    pageDataBean.setMyId(mMyId);
+                }
+                adapter.notifyDataSetChanged();
             }
 
 
@@ -91,10 +96,7 @@ public class DiscussRoomFragment extends BaseFragment {
                 ToastUtils.showLong(listResult.getMessage().toString());
                 return;
             }
-            for (DiscussRoomListBean.PageDataBean pageDataBean : list) {
-                pageDataBean.setMyId(listResult.getData().getId());
-            }
-            adapter.notifyDataSetChanged();
+            mMyId=listResult.getData().getId();
         });
     }
 
