@@ -14,8 +14,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.askia.common.base.BaseFragment;
 import com.askia.common.util.ImageUtil;
+import com.askia.coremodel.datamodel.database.repository.DBRepository;
 import com.askia.coremodel.datamodel.database.repository.SharedPreUtil;
 import com.askia.coremodel.datamodel.http.entities.consume.DiscussRoomListBean;
+import com.askia.coremodel.datamodel.http.entities.consume.HttpLoginResult;
 import com.blankj.utilcode.util.ToastUtils;
 import com.zdy.study.R;
 import com.zdy.study.adapter.AddressBookAdapter;
@@ -43,9 +45,13 @@ public class DiscussRoomFragment extends BaseFragment {
         list = new ArrayList<>();
 //        mDataBinding.currentText.setText(getArguments().getString("TITLE"));
         mViewModel.getPageListPad("1", "10");
+        onInitInformation();
         initRecycleView();
     }
-
+    private void onInitInformation() {
+        HttpLoginResult httpLoginResult = DBRepository.QueryTVUserLoginData();
+        mViewModel.queryClassesByPhone(httpLoginResult.getUser_name());//获取用户信息
+    }
     @Override
     public void onInitViewModel() {
         mViewModel = ViewModelProviders.of(getActivity()).get(DiscussRoomViewModel.class);
@@ -76,10 +82,19 @@ public class DiscussRoomFragment extends BaseFragment {
             if (null != listResult.getResult().getPageData() && listResult.getResult().getPageData().size() > 0) {
                 list.clear();
                 list.addAll(listResult.getResult().getPageData());
-                adapter.notifyDataSetChanged();
             }
 
 
+        });
+        mViewModel.getmUserInfoLiveDataLiveData().observe(this, listResult -> {
+            if (!listResult.isSuccess()) {
+                ToastUtils.showLong(listResult.getMessage().toString());
+                return;
+            }
+            for (DiscussRoomListBean.PageDataBean pageDataBean : list) {
+                pageDataBean.setMyId(listResult.getData().getId());
+            }
+            adapter.notifyDataSetChanged();
         });
     }
 
