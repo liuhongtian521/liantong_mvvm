@@ -192,6 +192,24 @@
             android:name=".activitys.SettingActivity"
             android:launchMode="singleTask"
             android:windowSoftInputMode="stateHidden" />
+        <!--关于我们-->
+        <activity
+            android:name=".activitys.AboutUsActivity"
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="stateHidden" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.lncucc.zhdy.LeaderLearning.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true"
+            tools:replace="android:authorities"
+            >
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                tools:replace="android:resource"
+                android:resource="@xml/file_path" />
+        </provider>
 
         <meta-data
             android:name="design_width_in_dp"

@@ -30,12 +30,11 @@
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
-            <com.zdy.study.fcWidgets.FCImageView
+            <ImageView
                 android:id="@+id/fiv_onoff"
                 android:layout_width="@dimen/dp_20"
                 android:layout_height="@dimen/dp_20"
                 android:src="@mipmap/ic_video_paly2"
-                android:focusableInTouchMode="true"
                 android:layout_marginBottom="@dimen/dp_10"
                 android:layout_marginTop="@dimen/dp_10"
                 android:layout_marginLeft="@dimen/dp_20"/>
@@ -48,11 +47,13 @@
                 android:layout_marginLeft="@dimen/dp_20"
                 android:text="00:00" />
 
-            <SeekBar
+            <com.zdy.study.widgets.TVSeekBar
                 android:id="@+id/seekBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:focusableInTouchMode="true"
+                android:focusable="true"
                 android:progressTint="@color/white"
                 android:thumbTint="@color/white"/>
 

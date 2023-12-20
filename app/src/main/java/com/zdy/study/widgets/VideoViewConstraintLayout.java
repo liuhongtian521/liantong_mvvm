@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -27,16 +28,18 @@ import java.util.Calendar;
 
 public class VideoViewConstraintLayout extends ConstraintLayout {
     private VideoView videoView;
-    private SeekBar seekBar;
-    private FCImageView fiv_onoff;
+    private TVSeekBar seekBar;
+    private ImageView fiv_onoff;
     private TextView textViewTime ,textViewCurrentPosition;
     private boolean isPlaying = false;
     private String url;
 
+    private boolean isDragging = false;
+
     private Handler handler = new Handler();
     private Runnable runnable = new Runnable() {
         public void run() {
-            if (videoView.isPlaying()) {
+            if (!isDragging && videoView.isPlaying()) {
                 int current = videoView.getCurrentPosition();
                 seekBar.setProgress(current);
                 textViewCurrentPosition.setText(time(videoView.getCurrentPosition()));
@@ -54,13 +57,31 @@ public class VideoViewConstraintLayout extends ConstraintLayout {
         textViewTime =  findViewById(R.id.textViewTime);
         textViewCurrentPosition =  findViewById(R.id.textViewCurrentPosition);
         fiv_onoff =  findViewById(R.id.fiv_onoff);
-        seekBar = (SeekBar) findViewById(R.id.seekBar);
-        // 为进度条添加进度更改事件
-        seekBar.setOnSeekBarChangeListener(onSeekBarChangeListener);
+        seekBar = (TVSeekBar) findViewById(R.id.seekBar);
         fiv_onoff.setOnClickListener(view -> play());
         fiv_onoff.setEnabled(false);
 
-        fiv_onoff.setScale(1.4f);
+        seekBar.requestFocus();
+        // 为进度条添加进度更改事件
+        seekBar.setOnSeekBarChangeListener(onSeekBarChangeListener); //拖到监听好用
+        //按键监听重写
+        seekBar.setChangeListener(new TVSeekBar.ChangeListener() {
+            @Override
+            public void dwonListener() {
+                isDragging = true;
+            }
+
+            @Override
+            public void upListener() {
+                isDragging = false;
+                int progress = seekBar.getProgress();
+                if (videoView.isPlaying()) {
+                    // 设置当前播放的位置
+                    videoView.seekTo(progress);
+                }
+            }
+        });
+
     }
 
     public VideoViewConstraintLayout(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
@@ -75,6 +96,7 @@ public class VideoViewConstraintLayout extends ConstraintLayout {
         super(context);
 
     }
+
 
     public void setUrl(String url){
         this.url = url;
@@ -111,7 +133,6 @@ public class VideoViewConstraintLayout extends ConstraintLayout {
         @Override
         public void onProgressChanged(SeekBar seekBar, int progress,
                                       boolean fromUser) {
-
         }
     };
 

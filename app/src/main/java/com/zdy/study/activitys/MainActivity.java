@@ -4,6 +4,8 @@ package com.zdy.study.activitys;
 import android.annotation.SuppressLint;
 import android.view.View;
 
+import android.util.Log;
+
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -13,6 +15,7 @@ import androidx.leanback.transition.LeanbackTransitionHelper;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.askia.common.base.ARouterPath;
 import com.askia.common.base.BaseActivity;
+import com.zdy.study.BuildConfig;
 import com.zdy.study.R;
 import com.zdy.study.adapter.ViewPager2Adapter;
 import com.zdy.study.databinding.ActMainBinding;
@@ -20,6 +23,7 @@ import com.zdy.study.fragments.DigitalClassesFragment;
 import com.zdy.study.fragments.DiscussRoomFragment;
 import com.zdy.study.fragments.MainFragment;
 import com.zdy.study.fragments.MineFragment;
+import com.zdy.study.uitls.UpdateChecker;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +49,29 @@ public class MainActivity extends BaseActivity {
         initFragment();
 //        initPagerTab();
         initBottom();
+//        checkUpdate();
+    }
+
+    private void checkUpdate(){
+        new UpdateChecker("c2cad66e174bff947b8e2067c57d4eec",this)
+                .check("bc7efbffa17e035b23efe34cd4114f85",
+                        BuildConfig.VERSION_CODE+"",
+                        null,
+                        "",
+                        new UpdateChecker.Callback() {
+                            @Override
+                            public void result(UpdateChecker.UpdateInfo updateInfo) {
+
+//                                Toast.makeText(reactContext,updateInfo.buildBuildVersion,Toast.LENGTH_LONG).show();
+                                Log.i("DOWNLOAD",updateInfo.buildBuildVersion.toString());
+                            }
+
+                            @Override
+                            public void error(String message) {
+                                Log.i("DOWNLOAD",message);
+                            }
+                        }
+                );
     }
 
     @Override

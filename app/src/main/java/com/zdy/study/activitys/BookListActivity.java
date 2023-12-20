@@ -55,16 +55,16 @@ public class BookListActivity extends BaseActivity {
         });
         mDataBinding.tvLeft.setOnFocusChangeListener((view, b) -> {
             FragmentHideShow(recommendedBookListFragment);
-//            if (b) {
-//                // 此处为得到焦点时的处理内容
-////                mDataBinding.viewPager.setCurrentItem(0, true);
-//                mDataBinding.tvLeft.setTextColor(getResources().getColor(R.color.app_black3));
-//                mDataBinding.viewRedLeft.setVisibility(View.VISIBLE);
-//            } else {
-//                // 此处为失去焦点时的处理内容
-//                mDataBinding.tvLeft.setTextColor(getResources().getColor(R.color.gray_select));
-//                mDataBinding.viewRedLeft.setVisibility(View.GONE);
-//            }
+            if (b) {
+                // 此处为得到焦点时的处理内容
+//                mDataBinding.viewPager.setCurrentItem(0, true);
+                mDataBinding.tvLeft.setTextColor(getResources().getColor(R.color.app_black3));
+                mDataBinding.viewRedLeft.setVisibility(View.VISIBLE);
+            } else {
+                // 此处为失去焦点时的处理内容
+                mDataBinding.tvLeft.setTextColor(getResources().getColor(R.color.gray_select));
+                mDataBinding.viewRedLeft.setVisibility(View.GONE);
+            }
 
         });
         mDataBinding.tvRight.setOnClickListener(new View.OnClickListener() {
@@ -75,16 +75,16 @@ public class BookListActivity extends BaseActivity {
         });
         mDataBinding.tvRight.setOnFocusChangeListener((view, b) -> {
             FragmentHideShow(selectedTheoryFragment);
-//            if (b) {
-//                // 此处为得到焦点时的处理内容
-//                mDataBinding.tvRight.setTextColor(getResources().getColor(R.color.app_black3));
-//                mDataBinding.viewRedRight.setVisibility(View.VISIBLE);
-//     //           mDataBinding.viewPager.setCurrentItem(1, true);
-//            } else {
-//                // 此处为失去焦点时的处理内容
-//                mDataBinding.tvRight.setTextColor(getResources().getColor(R.color.gray_select));
-//                mDataBinding.viewRedRight.setVisibility(View.GONE);
-//            }
+            if (b) {
+                // 此处为得到焦点时的处理内容
+                mDataBinding.tvRight.setTextColor(getResources().getColor(R.color.app_black3));
+                mDataBinding.viewRedRight.setVisibility(View.VISIBLE);
+     //           mDataBinding.viewPager.setCurrentItem(1, true);
+            } else {
+                // 此处为失去焦点时的处理内容
+                mDataBinding.tvRight.setTextColor(getResources().getColor(R.color.gray_select));
+                mDataBinding.viewRedRight.setVisibility(View.GONE);
+            }
         });
         int tab = getIntent().getExtras().getInt("tab");
         if (tab == 1)

@@ -40,7 +40,13 @@ public class MineFragment extends BaseFragment {
     public void onInit() {
         HttpLoginResult httpLoginResult = DBRepository.QueryTVUserLoginData();
         setHeardImg(httpLoginResult.getAvatar());//设置头像
-        viewModel.queryClassesByPhone(httpLoginResult.getUser_name());//获取用户信息
+        if (TextUtils.isEmpty(DBRepository.QueryTVUserLoginData().getAccess_token())) {
+            mDataBinding.tvMineName.setText("未登录");
+            mDataBinding.tvClassName.setVisibility(View.GONE);
+        }else {
+            mDataBinding.tvClassName.setVisibility(View.VISIBLE);
+            viewModel.queryClassesByPhone(httpLoginResult.getUser_name());//获取用户信息
+        }
         initList();
     }
 
@@ -97,8 +103,8 @@ public class MineFragment extends BaseFragment {
                     url = ARouterPath.HistoryActivityActivity;
                     break;
                 case 5:
-                    url = ARouterPath.SettingActivity;
-                    break;
+                    startActivityByRouter(ARouterPath.SettingActivity);
+                    return;
             }
             if (TextUtils.isEmpty(DBRepository.QueryTVUserLoginData().getAccess_token())) {
                 Bundle bundle = new Bundle();

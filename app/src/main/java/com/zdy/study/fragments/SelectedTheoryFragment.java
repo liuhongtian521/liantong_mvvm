@@ -74,7 +74,7 @@ public class SelectedTheoryFragment extends BaseFragment {
             bundle.putString("struId", Constants.JXLL);
             startActivityByRouter(ARouterPath.OpreationDetailActivity, bundle);
         });
-        binding.rlOperation.requestFocus();
+//        binding.rlOperation.requestFocus();
     }
 
     private void initLoad(){

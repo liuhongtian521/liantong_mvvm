@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+
+    <!--存储卡的apk目录放安装包文件-->
+    <external-path
+        name="download"
+        path="Android/data/com.zdy.study/cache"/>
+</paths>

@@ -66,8 +66,8 @@ public class DigitalClassesFragment extends BaseFragment {
                     url = ARouterPath.STUDY_MANUAL;
                     break;
                 case 4:
-                    url = ARouterPath.BroadcastExpressActivity;
-                    break;
+                    startActivityByRouter(ARouterPath.BroadcastExpressActivity);
+                    return;
                 case 5:
                     url = ARouterPath.WebBasedCourseActivity;
                     break;
@@ -76,7 +76,7 @@ public class DigitalClassesFragment extends BaseFragment {
                     break;
                 case 7:
                     ToastUtils.showLong("暂未开放");
-                    break;
+                    return;
                 case 8:
                     url = ARouterPath.AddressBookActivity;
                     break;

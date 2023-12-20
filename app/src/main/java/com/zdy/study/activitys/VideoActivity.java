@@ -2,6 +2,7 @@ package com.zdy.study.activitys;
 
 import android.text.TextUtils;
 import android.view.KeyEvent;
+import android.view.View;
 
 import androidx.databinding.DataBindingUtil;
 
@@ -58,9 +59,13 @@ public class VideoActivity extends BaseActivity {
                 return true;
 
             case KeyEvent.KEYCODE_DPAD_RIGHT:
+
+
                 return true;
 
             case KeyEvent.KEYCODE_DPAD_DOWN:
+
+
                 return true;
             case KeyEvent.KEYCODE_ENTER:
             case KeyEvent.KEYCODE_DPAD_CENTER:
