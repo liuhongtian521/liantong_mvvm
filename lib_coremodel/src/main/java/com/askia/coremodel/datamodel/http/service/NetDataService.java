@@ -30,6 +30,7 @@ import com.askia.coremodel.datamodel.http.entities.consume.MainFragmentResponseT
 import com.askia.coremodel.datamodel.http.entities.consume.StudyDictionaryBean;
 import com.askia.coremodel.datamodel.http.entities.consume.StuyManualListBean;
 import com.askia.coremodel.datamodel.http.entities.consume.StuyMaterialsListBean;
+import com.askia.coremodel.datamodel.http.entities.consume.TopicResponseBean;
 import com.askia.coremodel.datamodel.http.entities.consume.UserInfoBean;
 import com.askia.coremodel.datamodel.http.entities.consume.WebCourseResponseBean;
 
@@ -158,6 +159,11 @@ public interface NetDataService {
     // 获取评论
     @GET("/cdls-cms/CommentsController/queryCommentsList")
     Observable<BaseResponseData<CommentsBean>> queryCommentsList(@Query("argContId") String argContId,
+                                                                 @Query("argPage") String argPage,
+                                                                 @Query("argPageSize") String argPageSize);
+    // 话题与讨论
+    @GET("/cdls-cms/DiscussionRoomController/pageMyTopicListPAD")
+    Observable<BaseResponseData<TopicResponseBean>> pageMyTopicListPAD(
                                                                  @Query("argPage") String argPage,
                                                                  @Query("argPageSize") String argPageSize);
 

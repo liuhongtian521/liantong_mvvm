@@ -105,7 +105,7 @@ public class BookListActivity extends BaseActivity {
         manager = getSupportFragmentManager();
         transaction = manager.beginTransaction();
         transaction.replace(R.id.main_layout_content, fg);
-        transaction.commit();
+        transaction.commitAllowingStateLoss();
     }
 //    public void initFragment() {
 //        mFragments = new ArrayList<>();

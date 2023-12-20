@@ -35,5 +35,8 @@
     <declare-styleable name="FCTextview">
         <attr name="scale"/>
     </declare-styleable>
+    <declare-styleable name="FCConstraintLayout">
+        <attr name="scale" />
+    </declare-styleable>
 
 </resources>

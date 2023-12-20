@@ -8,6 +8,9 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,9 +25,11 @@ import com.askia.coremodel.datamodel.http.entities.consume.MainFragmentResponseF
 import com.askia.coremodel.datamodel.http.entities.consume.MainFragmentResponseFourBean;
 import com.askia.coremodel.datamodel.http.entities.consume.MainFragmentResponseThirdBean;
 import com.askia.coremodel.datamodel.http.entities.consume.MainFragmentResponseTwoBean;
+import com.blankj.utilcode.util.FragmentUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.zdy.study.R;
+import com.zdy.study.activitys.MainActivity;
 import com.zdy.study.adapter.BookAdapter;
 import com.zdy.study.adapter.CourseQueryAdapter;
 import com.zdy.study.adapter.DiscussAdapter;
@@ -53,10 +58,12 @@ public class MainFragment extends BaseFragment {
     private BookAdapter adapter;
     private DiscussAdapter discussAdapter;
     private String mWeekDay;
+    // Fragment管理对象
+    private FragmentManager manager;
 
     @Override
     public void onInit() {
-
+        manager = getFragmentManager();
         //第一个接口
         inItList();
         inItInterface();
@@ -64,6 +71,7 @@ public class MainFragment extends BaseFragment {
         initRvListener();
         initRvListener2();
         initOnLister();
+
 
     }
 
@@ -156,17 +164,24 @@ public class MainFragment extends BaseFragment {
             bundle.putSerializable("MainFragmentList", (Serializable) list3.get(0));
             startActivityByRouter(ARouterPath.BroadcastExpressActivity, bundle);
         });
-        mFragmentMainBinding.ivBroadcastSpeedNameRight.setOnClickListener(v -> {
+        mFragmentMainBinding.fcllRight.setOnClickListener(v -> {
             Bundle bundle = new Bundle();
             bundle.putString("keyId", "1");
             bundle.putSerializable("MainFragmentList", (Serializable) list3.get(1));
             startActivityByRouter(ARouterPath.BroadcastExpressActivity, bundle);
         });
-        mFragmentMainBinding.ivBroadcastSpeedNameRight1.setOnClickListener(v -> {
+        mFragmentMainBinding.fcllRight1.setOnClickListener(v -> {
             Bundle bundle = new Bundle();
             bundle.putString("keyId", "2");
             bundle.putSerializable("MainFragmentList", (Serializable) list3.get(2));
             startActivityByRouter(ARouterPath.BroadcastExpressActivity, bundle);
+        });
+        mFragmentMainBinding.fnButtonDiscussionMore.setOnClickListener(v -> {
+//            MainActivity activity = (MainActivity) getActivity();
+//            activity.showdiscussRoom();
+            getActivity().getSupportFragmentManager().
+                    beginTransaction().replace(R.id.main_layout_content,new DiscussRoomFragment(),null).
+                    addToBackStack(null).commit();
         });
     }
 
@@ -231,8 +246,10 @@ public class MainFragment extends BaseFragment {
             for (MainFragmentResponseBean.PageDataBean pageDataBean : list1) {
                 BroadcastExpressResponBean.PageDataBean bean = new BroadcastExpressResponBean.PageDataBean();
                 BroadcastExpressResponBean.PageDataBean.ContVideoBean contVideoBean = new BroadcastExpressResponBean.PageDataBean.ContVideoBean();
+                bean.setId(pageDataBean.getId());
                 bean.setContName(pageDataBean.getContName());
                 contVideoBean.setTimeLength(pageDataBean.getContVideo().getTimeLength());
+                contVideoBean.setVideoUrl(pageDataBean.getContVideo().getVideoUrl());
                 bean.setContVideo(contVideoBean);
                 list3.add(bean);
             }

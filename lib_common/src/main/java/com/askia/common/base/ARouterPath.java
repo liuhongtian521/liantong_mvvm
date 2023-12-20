@@ -24,6 +24,8 @@ public class ARouterPath {
     public static final String EBOOK_ACTIVIGY = "/activity/ebook";
     /*学习资料*/
     public static final String STUDY_mATERIALS = "/activity/stuyMaterials";
+    /*我发表的话题*/
+    public static final String TopicPostedActivity = "/activity/TopicPostedActivity";
     /*学习手册*/
     public static final String STUDY_MANUAL = "/activity/stuyManual";
 

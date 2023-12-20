@@ -38,7 +38,7 @@ public class SelectedTheoryFragment extends BaseFragment {
 
         initList();
         initLoad();
-        showLogadingDialog();
+   //     showLogadingDialog();
         viewModel.queryContListByAudit(String.valueOf(page), pageSize, Constants.JXLL);
     }
 

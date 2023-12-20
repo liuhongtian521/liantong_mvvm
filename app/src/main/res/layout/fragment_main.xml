@@ -209,6 +209,7 @@
                         android:orientation="vertical">
 
                         <com.zdy.study.fcWidgets.FCLinearLayout
+                            android:id="@+id/fcll_right"
                             android:layout_width="match_parent"
                             android:layout_height="20dp"
                             android:layout_marginTop="6dp"
@@ -235,6 +236,7 @@
                         </com.zdy.study.fcWidgets.FCLinearLayout>
 
                         <com.zdy.study.fcWidgets.FCLinearLayout
+                            android:id="@+id/fcll_right1"
                             android:layout_width="match_parent"
                             android:layout_height="20dp"
                             android:layout_marginTop="6dp"
@@ -487,6 +489,7 @@
                     android:background="@color/white">
 
                     <com.zdy.study.fcWidgets.FCButton
+                        android:id="@+id/fn_button_discussion_more"
                         android:layout_width="33dp"
                         android:layout_height="16dp"
                         android:layout_alignParentEnd="true"

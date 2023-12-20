@@ -61,6 +61,7 @@ import com.askia.coremodel.datamodel.http.entities.consume.MainFragmentResponseT
 import com.askia.coremodel.datamodel.http.entities.consume.StudyDictionaryBean;
 import com.askia.coremodel.datamodel.http.entities.consume.StuyManualListBean;
 import com.askia.coremodel.datamodel.http.entities.consume.StuyMaterialsListBean;
+import com.askia.coremodel.datamodel.http.entities.consume.TopicResponseBean;
 import com.askia.coremodel.datamodel.http.entities.consume.UserInfoBean;
 import com.askia.coremodel.datamodel.http.entities.consume.WebCourseResponseBean;
 import com.askia.coremodel.datamodel.http.entities.query.AdListData;
@@ -325,6 +326,16 @@ public class NetDataRepository {
                                   CompositeDisposable mDisposable) {
         Observable<BaseResponseData<CommentsBean>> responseData = ApiClient.getNetDataService()
                 .queryCommentsList(argContId, argPage, argPageSize);
+        if (responseObserv == null)
+            responseObserv = new ResponseObserv();
+        responseObserv.responseObserv(responseData, mLiveData, mDisposable);
+    }
+    //话题与讨论列表
+    public void pageMyTopicListPAD( String argPage, String argPageSize,
+                                  MutableLiveData<BaseResponseData<TopicResponseBean>> mLiveData,
+                                  CompositeDisposable mDisposable) {
+        Observable<BaseResponseData<TopicResponseBean>> responseData = ApiClient.getNetDataService()
+                .pageMyTopicListPAD( argPage, argPageSize);
         if (responseObserv == null)
             responseObserv = new ResponseObserv();
         responseObserv.responseObserv(responseData, mLiveData, mDisposable);

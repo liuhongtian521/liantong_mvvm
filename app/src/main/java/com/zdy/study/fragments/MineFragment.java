@@ -35,6 +35,7 @@ public class MineFragment extends BaseFragment {
 
     private FragmentMineBinding mDataBinding;
     private UserInfoViewModel viewModel;
+
     @Override
     public void onInit() {
         HttpLoginResult httpLoginResult = DBRepository.QueryTVUserLoginData();
@@ -43,10 +44,10 @@ public class MineFragment extends BaseFragment {
         initList();
     }
 
-    private void setHeardImg(String url){
+    private void setHeardImg(String url) {
         RequestOptions options = new RequestOptions()
                 .placeholder(R.mipmap.ic_mine_header)//图片加载出来前，显示的图片
-                .fallback( R.mipmap.ic_mine_header) //url为空的时候,显示的图片
+                .fallback(R.mipmap.ic_mine_header) //url为空的时候,显示的图片
                 .error(R.mipmap.ic_mine_header);//图片加载失败后，显示的图片
         Glide.with(getActivity()).load(url).apply(options).
                 into(mDataBinding.ivMineHeader);
@@ -63,7 +64,7 @@ public class MineFragment extends BaseFragment {
         return mDataBinding.getRoot();
     }
 
-    private void initList(){
+    private void initList() {
         ArrayList<String> list = new ArrayList<>();
         list.add("个人信息");
         list.add("我的收藏");
@@ -90,7 +91,7 @@ public class MineFragment extends BaseFragment {
                     url = ARouterPath.MyDiscussRoomActivity;
                     break;
                 case 3:
-
+                    url = ARouterPath.TopicPostedActivity;
                     break;
                 case 4:
                     url = ARouterPath.HistoryActivityActivity;
@@ -112,7 +113,7 @@ public class MineFragment extends BaseFragment {
     @Override
     public void onSubscribeViewModel() {
         viewModel.getmUserInfoLiveDataLiveData().observe(this, listResult -> {
-            if(!listResult.isSuccess()){
+            if (!listResult.isSuccess()) {
                 ToastUtils.showLong(listResult.getMessage().toString());
                 return;
             }
@@ -121,7 +122,7 @@ public class MineFragment extends BaseFragment {
         });
     }
 
-    public static MineFragment newInstance(String title){
+    public static MineFragment newInstance(String title) {
         Bundle arguments = new Bundle();
         arguments.putString("TITLE", title);
         MineFragment fragment = new MineFragment();

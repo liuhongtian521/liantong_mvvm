@@ -85,6 +85,11 @@
             android:name=".activitys.MyDiscussRoomActivity"
             android:launchMode="singleTask"
             android:windowSoftInputMode="stateHidden" />
+        <!--话题与讨论-->
+        <activity
+            android:name=".activitys.TopicPostedActivity"
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="stateHidden" />
 
         <activity
             android:name=".activitys.StudyMaterialsActivity"

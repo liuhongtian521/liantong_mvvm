@@ -1,6 +1,9 @@
 package com.zdy.study.activitys;
 
 
+import android.annotation.SuppressLint;
+import android.view.View;
+
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -36,6 +39,7 @@ public class MainActivity extends BaseActivity {
     private FragmentManager manager;
     private FragmentTransaction transaction;
     private Fragment currentFragment;
+
     @Override
     public void onInit() {
         initFragment();
@@ -63,26 +67,27 @@ public class MainActivity extends BaseActivity {
     }*/
 
     //设置默认fragment
-    private void initFragment(){
+    private void initFragment() {
 //        mDataBinding.rbGoods.setChecked(true);//设置商品总览tab选中
-        manager=getSupportFragmentManager();
-        transaction=manager.beginTransaction();
+        manager = getSupportFragmentManager();
+        transaction = manager.beginTransaction();
 //        transaction.show(digitalClassesFragment);
-        transaction.replace(R.id.main_layout_content,digitalClassesFragment);
+        transaction.replace(R.id.main_layout_content, digitalClassesFragment);
 //        transaction.hide(shoppingCartFragment);
 //        transaction.hide(telephoneFragment);
         transaction.commit();
 //        currentFragment = digitalClassesFragment;
     }
 
-    private void FragmentHideShwo(Fragment fg){
+    private void FragmentHideShwo(Fragment fg) {
         // show or hide fragments to improve the stablility and reduce costs
-        manager=getSupportFragmentManager();
-        transaction=manager.beginTransaction();
+        manager = getSupportFragmentManager();
+        transaction = manager.beginTransaction();
         transaction.replace(R.id.main_layout_content, fg);
         transaction.commit();
     }
-    private void initPagerTab(){
+
+    private void initPagerTab() {
         //实例化 FragmentPagerAdapter 并将 Fragment 列表传入
         /*ViewPager2Adapter adapter = new ViewPager2Adapter(this, mFragments);
         mDataBinding.viewPager.setAdapter(adapter);
@@ -107,26 +112,33 @@ public class MainActivity extends BaseActivity {
     }
 
 
-    private void initBottom(){
+    @SuppressLint("SuspiciousIndentation")
+    private void initBottom() {
         mDataBinding.rbSzbj.requestFocus();
         mDataBinding.rbSzbj.setOnFocusChangeListener((view, b) -> {
-            FragmentHideShwo(digitalClassesFragment);
+            if (b) FragmentHideShwo(digitalClassesFragment);
 //            mDataBinding.viewPager.setCurrentItem(0, true);
         });
         mDataBinding.rbXxzs.setOnFocusChangeListener((view, b) -> {
-            FragmentHideShwo(mainFragment);
+            if (b) FragmentHideShwo(mainFragment);
 //            mDataBinding.viewPager.setCurrentItem(1, true);
         });
         mDataBinding.rbTl.setOnFocusChangeListener((view, b) -> {
-            FragmentHideShwo(discussRoomFragment);
+            if (b) FragmentHideShwo(discussRoomFragment);
 //            mDataBinding.viewPager.setCurrentItem(2, true);
         });
         mDataBinding.rbGr.setOnFocusChangeListener((view, b) -> {
             if (b)
-            FragmentHideShwo(mineFragment);
+                FragmentHideShwo(mineFragment);
 //            mDataBinding.viewPager.setCurrentItem(3, true);
         });
 
+    }
+
+    public void showdiscussRoom(){
+      //  mDataBinding.rbTl.
+
+      //  FragmentHideShwo(digitalClassesFragment);
     }
 
     /*private void FragmentHideShwo(Fragment fg){
