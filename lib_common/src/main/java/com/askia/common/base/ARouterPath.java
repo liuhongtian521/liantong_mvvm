@@ -60,4 +60,6 @@ public class ARouterPath {
     public static final String USERINFO_ACTIVIGY = "/activity/UserInfo";
     /*阅读记录*/
     public static final String HistoryActivityActivity = "/activity/HistoryActivity";
+    /*我的讨论室*/
+    public static final String MyDiscussRoomActivity = "/activity/MyDiscussRoomActivity";
 }

@@ -182,6 +182,17 @@ public class NetDataRepository {
             responseObserv = new ResponseObserv();
         responseObserv.responseObserv(responseData, mLiveData, mDisposable);
     }
+    //我的讨论室列表
+
+    public void pageListMyPad(String argPage, String argPageSize,
+                            MutableLiveData<BaseResponseData<DiscussRoomListBean>> mLiveData,
+                            CompositeDisposable mDisposable) {
+        Observable<BaseResponseData<DiscussRoomListBean>> responseData = ApiClient.getNetDataService()
+                .pageListMyPad(argPage, argPageSize);
+        if (responseObserv == null)
+            responseObserv = new ResponseObserv();
+        responseObserv.responseObserv(responseData, mLiveData, mDisposable);
+    }
 
     //book字典
     public void bookClass(String code,

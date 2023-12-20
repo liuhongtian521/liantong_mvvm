@@ -103,6 +103,10 @@ public interface NetDataService {
     // 讨论室列表
     @GET("/cdls-cms/DiscussionRoomController/pageListPad")
     Observable<BaseResponseData<DiscussRoomListBean>> pageListPad(@Query("argPage") String argPage,
+                                                                  @Query("argPageSize") String argPageSize); // 讨论室列表
+    // 我的讨论室列表
+    @GET("/cdls-cms/DiscussionRoomController/pageListMyPad")
+    Observable<BaseResponseData<DiscussRoomListBean>> pageListMyPad(@Query("argPage") String argPage,
                                                                   @Query("argPageSize") String argPageSize);
 
     // book字典

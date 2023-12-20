@@ -87,7 +87,7 @@ public class MineFragment extends BaseFragment {
                     url = ARouterPath.MyCollectionActivity;
                     break;
                 case 2:
-
+                    url = ARouterPath.MyDiscussRoomActivity;
                     break;
                 case 3:
 

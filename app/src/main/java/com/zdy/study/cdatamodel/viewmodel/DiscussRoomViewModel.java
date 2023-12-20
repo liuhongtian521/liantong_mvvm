@@ -20,11 +20,23 @@ public class DiscussRoomViewModel extends BaseViewModel {
     public MutableLiveData<BaseResponseData<DiscussRoomListBean>> getPageListPadData() {
         return mPageListPadData;
     }
-    //登录
+
+    private MutableLiveData<BaseResponseData<DiscussRoomListBean>> mPageListPadData1 = new MutableLiveData<>();
+
+    public MutableLiveData<BaseResponseData<DiscussRoomListBean>> getPageListPadMyData() {
+        return mPageListPadData1;
+    }
     public void getPageListPad(String argPage, String argPageSize) {
 
         if (netDataRepository == null)
             netDataRepository = new NetDataRepository();
         netDataRepository.pageListPad(argPage, argPageSize, mPageListPadData, mDisposable);
+    }
+
+    public void pageListMyPad(String argPage, String argPageSize) {
+
+        if (netDataRepository == null)
+            netDataRepository = new NetDataRepository();
+        netDataRepository.pageListMyPad(argPage, argPageSize, mPageListPadData1, mDisposable);
     }
 }
