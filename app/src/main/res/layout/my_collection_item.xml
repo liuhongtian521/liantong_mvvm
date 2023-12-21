@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
+    android:layout_marginLeft="@dimen/dp_25"
     android:layout_height="wrap_content"
     android:layout_marginRight="12dp">
 
@@ -11,7 +12,6 @@
         android:focusable="true"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/dp_75"
-        android:layout_marginRight="@dimen/dp_25"
         android:layout_toLeftOf="@+id/iv_delete"
         android:orientation="vertical"
         app:layout_constraintEnd_toStartOf="@+id/iv_delete"
@@ -40,6 +40,7 @@
             android:textSize="12sp" />
 
         <ImageView
+            android:layout_marginRight="25dp"
             android:id="@+id/iv_right_video"
             android:layout_width="80dp"
             android:layout_height="80dp"
@@ -50,7 +51,7 @@
             android:layout_height="30dp"
             android:layout_alignParentRight="true"
             android:layout_centerInParent="true"
-            android:layout_marginRight="25dp"
+            android:layout_marginRight="50dp"
             android:background="@mipmap/ic_video_play" />
     </com.zdy.study.fcWidgets.FCRelativeLayout>
 
@@ -62,7 +63,7 @@
         android:layout_centerVertical="true"
         android:layout_marginRight="@dimen/dp_15"
         android:background="@mipmap/item_delete"
-        android:visibility="visible"
+        android:visibility="gone"
         android:focusable="true"
         android:focusableInTouchMode="true"
         app:layout_constraintBottom_toBottomOf="parent"
