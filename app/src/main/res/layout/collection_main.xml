@@ -32,7 +32,7 @@
                 app:tabIndicatorHeight="0dp"
                 app:tabMinWidth="0dp"
                 app:tabMode="auto" />
-            <Button
+            <com.zdy.study.fcWidgets.FCButton
                 android:onClick="@{handlers::onClickDelete}"
                 android:id="@+id/tv_delete"
                 android:layout_width="20dp"
