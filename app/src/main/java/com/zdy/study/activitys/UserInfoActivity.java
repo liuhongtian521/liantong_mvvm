@@ -1,5 +1,9 @@
 package com.zdy.study.activitys;
 
+import android.content.Context;
+import android.graphics.drawable.Drawable;
+
+import androidx.annotation.DrawableRes;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -11,6 +15,8 @@ import com.askia.coremodel.datamodel.http.entities.consume.HttpLoginResult;
 import com.askia.coremodel.datamodel.http.entities.consume.UserInfoBean;
 import com.blankj.utilcode.util.ToastUtils;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.RequestBuilder;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.zdy.study.cdatamodel.viewmodel.UserInfoViewModel;
 import com.zdy.study.databinding.ActivityUserInfoBinding;
@@ -39,10 +45,12 @@ public class UserInfoActivity extends BaseActivity {
         RequestOptions options = new RequestOptions()
                 .placeholder(R.mipmap.ic_mine_header)//图片加载出来前，显示的图片
                 .fallback( R.mipmap.ic_mine_header) //url为空的时候,显示的图片
-                .error(R.mipmap.ic_mine_header);//图片加载失败后，显示的图片
-        Glide.with(this).load(url).apply(options).
-                into(binding.ivInfoHeader);
+                .error(R.mipmap.ic_mine_header)//图片加载失败后，显示的图片
+                .circleCropTransform();
+        Glide.with(this).asBitmap().load(url).apply(options)
+                .into(binding.ivInfoHeader);
     }
+
     @Override
     public void onInitViewModel() {
 //        viewModel = ViewModelProviders.of(this).get(UserInfoViewModel.class);

@@ -48,7 +48,8 @@ public class MineFragment extends BaseFragment {
         RequestOptions options = new RequestOptions()
                 .placeholder(R.mipmap.ic_mine_header)//图片加载出来前，显示的图片
                 .fallback(R.mipmap.ic_mine_header) //url为空的时候,显示的图片
-                .error(R.mipmap.ic_mine_header);//图片加载失败后，显示的图片
+                .error(R.mipmap.ic_mine_header)//图片加载失败后，显示的图片
+                .circleCropTransform();
         Glide.with(getActivity()).load(url).apply(options).
                 into(mDataBinding.ivMineHeader);
     }

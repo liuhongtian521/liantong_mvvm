@@ -38,6 +38,12 @@ public class LoginViewModel extends BaseViewModel {
         return mLoginLiveData;
     }
 
+    //短信验证码
+    private MutableLiveData<CaptchaResultBean> mCaptchaLiveData = new MutableLiveData<>();
+
+    public MutableLiveData<CaptchaResultBean> getmCaptchaLiveData() {
+        return mCaptchaLiveData;
+    }
 
     //用户信息
     private MutableLiveData<BaseResponseData<UserInfoBean>> mUserInfoLiveData = new MutableLiveData<>();
@@ -74,6 +80,41 @@ public class LoginViewModel extends BaseViewModel {
                             responseData.setError(e.getMessage());//"服务器无响应，请重试");
                         }
                         mCaptchaResultData.setValue(responseData);
+                    }
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+
+    //短信验证码
+    public void message(String phone) {
+        NetDataRepository.message(phone)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .safeSubscribe(new Observer<CaptchaResultBean>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+                        mDisposable.add(d);
+                    }
+
+
+                    @Override
+                    public void onNext(@NonNull CaptchaResultBean noticeStudentData) {
+                        mCaptchaLiveData.setValue(noticeStudentData);
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        Log.e("TagSnake back", Log.getStackTraceString(e));
+                        CaptchaResultBean responseData = new CaptchaResultBean();
+                        if (e instanceof SocketTimeoutException) {
+                            responseData.setError("连接超时，请重试");
+                        } else {
+                            responseData.setError(e.getMessage());//"服务器无响应，请重试");
+                        }
+                        mCaptchaLiveData.setValue(responseData);
                     }
                     @Override
                     public void onComplete() {

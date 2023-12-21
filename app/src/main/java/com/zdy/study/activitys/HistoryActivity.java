@@ -150,7 +150,10 @@ public class HistoryActivity extends BaseActivity {
         for (String id : ids) {
             for (MyCollectionTitleResponse.DataBean dataBean : data) {
                 if (id.equals(dataBean.getStruCode())) {
+                    if (id.equals(Constants.LBSD))
+                        dataBean.setStruName("联播速递");
                     titles.add(dataBean);
+
                 }
             }
         }

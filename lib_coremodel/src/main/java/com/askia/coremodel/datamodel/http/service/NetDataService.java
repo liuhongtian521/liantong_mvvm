@@ -55,6 +55,10 @@ public interface NetDataService {
     @GET("/cdls-bds/App/oauth/captcha")
     Observable<CaptchaResultBean> captcha();
 
+    // 获取短信验证码
+    @GET("/cdls-auth/oauth/message")
+    Observable<CaptchaResultBean> message(@Query("phone") String phone);
+
     //登录
    /* @POST("/cdls-auth/oauth/token")
     Observable<HttpLoginResult> login(@Query("username") String username,

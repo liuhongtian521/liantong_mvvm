@@ -97,6 +97,13 @@ public class NetDataRepository {
         return responseData;
     }
 
+    //获取短信验证码
+    public static Observable<CaptchaResultBean> message(String phone) {
+        Observable<CaptchaResultBean> responseData = ApiClient.getNetDataService()
+                .message(phone);
+        return responseData;
+    }
+
     /*public void captcha(MutableLiveData<CaptchaResultBean> mLiveData,
                       CompositeDisposable mDisposable) {
         Observable<CaptchaResultBean> responseData = ApiClient.getNetDataService()

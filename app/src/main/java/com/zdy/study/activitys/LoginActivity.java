@@ -3,9 +3,11 @@ package com.zdy.study.activitys;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.core.view.ViewCompat;
@@ -32,6 +34,8 @@ import com.zdy.study.widgets.AesEncryptUtil;
 
 import java.io.IOException;
 import java.net.URLEncoder;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
@@ -95,6 +99,14 @@ public class LoginActivity extends BaseActivity {
 //            SharedPreUtil.getInstance().putCaptchaKey(imCodeResult.getKey());
             key = imCodeResult.getKey();
         });
+        //获取短信验证码
+        mViewModel.getmCaptchaLiveData().observe(this, listResult -> {
+            if(!"".equals(listResult.getError())){
+                ToastUtils.showLong(listResult.getError().toString());
+                return;
+            }
+            key = listResult.getKey();
+        });
         //获取用户信息
         mViewModel.getmUserInfoLiveDataLiveData().observe(this, listResult -> {
             if(!listResult.isSuccess()){
@@ -149,6 +161,42 @@ public class LoginActivity extends BaseActivity {
 
     }
 
+    //获取短信验证码
+    public void countDownTimer(View view) {
+        if (TextUtils.isEmpty(mDataBinding.etLoginPhone.getText())){
+            ToastUtils.showLong("请输入手机号！");
+            return;
+        }
+        mDataBinding.tvLoginPhonecode.setEnabled(false);
+        countDownTimer.start();
+        mViewModel.message(mDataBinding.etLoginPhone.getText().toString());
+    }
+
+    /**
+     * 第一个参数表示总时间，第二个参数表示间隔时间。意思就是每隔一秒会回调一次方法onTick，然后10秒之后会回调onFinish方法
+     */
+    private CountDownTimer countDownTimer = new CountDownTimer(1000 * 120, 1000) {
+        @Override
+        public void onTick(long millisUntilFinished) {
+            //秒转化成 00:00形式一
+//            timeView2.setText(formatTime1(millisUntilFinished) + "");
+
+            //秒转化成 00:00形式二
+            mDataBinding.tvLoginPhonecode.setText(formatTime2(millisUntilFinished / 1000)+ "秒");
+            Log.e("hehehe ", millisUntilFinished + " ");
+        }
+
+        @Override
+        public void onFinish() {
+            mDataBinding.tvLoginPhonecode.setText("获取验证码");
+            mDataBinding.tvLoginPhonecode.setEnabled(true);
+        }
+    };
+
+    private String formatTime2(long seconds) {
+        return String.format("%02d", seconds % 60);
+    }
+
 
     public void getImgCode(View v){
         //获取图片验证码
@@ -160,7 +208,7 @@ public class LoginActivity extends BaseActivity {
             ToastUtils.showLong("请输入手机号！");
             return;
         }
-        if (TextUtils.isEmpty(mDataBinding.etLoginPassword.getText())){
+        if (TextUtils.isEmpty(mDataBinding.etLoginPassword.getText())&& pageTab == 0){
             ToastUtils.showLong("请输入密码！");
             return;
         }
@@ -254,8 +302,11 @@ public class LoginActivity extends BaseActivity {
             e.printStackTrace();
 
         }
-        String code = mDataBinding.etLoginImcode.getText().toString();
-
+        String code = "";
+        if (pageTab == 0)
+            code = mDataBinding.etLoginImcode.getText().toString();
+        else if(pageTab == 1)
+            code = mDataBinding.etLoginPhonecode.getText().toString();
         Request request = new Request.Builder().url(url).post(requestBody)
                 .addHeader("Authorization","Basic cGFkOnBhZF9zZWNyZXQ=")
                 .addHeader("Captcha-Code",code)

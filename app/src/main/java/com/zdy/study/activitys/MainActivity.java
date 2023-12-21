@@ -57,7 +57,7 @@ public class MainActivity extends BaseActivity {
                 .check("bc7efbffa17e035b23efe34cd4114f85",
                         BuildConfig.VERSION_CODE+"",
                         null,
-                        "",
+                        "13045503e2bd7dacbbba370db0393dd3",
                         new UpdateChecker.Callback() {
                             @Override
                             public void result(UpdateChecker.UpdateInfo updateInfo) {
@@ -111,7 +111,7 @@ public class MainActivity extends BaseActivity {
         manager = getSupportFragmentManager();
         transaction = manager.beginTransaction();
         transaction.replace(R.id.main_layout_content, fg);
-        transaction.commit();
+        transaction.commitAllowingStateLoss();
     }
 
     private void initPagerTab() {

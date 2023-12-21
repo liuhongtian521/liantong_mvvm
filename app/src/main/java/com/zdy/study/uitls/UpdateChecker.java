@@ -332,7 +332,7 @@ public final class UpdateChecker {
                     Intent intent = new Intent(Intent.ACTION_VIEW);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                    Uri uri = FileProvider.getUriForFile(context, "com.lncucc.zhdy.LeaderLearning.fileprovider", apk);
+                    Uri uri = FileProvider.getUriForFile(context, "com.zdy.study.fileprovider", apk);
                     intent.setDataAndType(uri, "application/vnd.android.package-archive");
                     context.startActivity(intent);
                     break;
