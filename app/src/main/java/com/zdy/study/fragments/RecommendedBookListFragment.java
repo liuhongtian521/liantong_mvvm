@@ -103,6 +103,7 @@ public class RecommendedBookListFragment extends BaseFragment {
         bean.setClassificName("全部");
         bean.setClassification("");
         mBookList.add(0, bean);
+        mDataBinding.tabLayout.removeAllTabs();
         for (BookListResponseBean bookListResponseBean : mBookList) {
             tab2 = mDataBinding.tabLayout.newTab();
             //  tab2.setText(studyDictionaryBean.getDictValue());

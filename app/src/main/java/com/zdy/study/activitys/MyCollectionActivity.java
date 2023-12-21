@@ -70,6 +70,7 @@ public class MyCollectionActivity extends BaseActivity {
                 case R.id.iv_delete:
                     //删除一条
                     viewModel.delCollectionList(list.get(position).getId(), mListTitle.get(pageTab).getStruCode());
+                    viewModel.queryCollectionList(mListTitle.get(pageTab).getStruCode(), mListTitle.get(pageTab).getId(), mListTitle.get(pageTab).getStruCode(), mMainBinding.etSearch.getText() + "", "1", "10");
                     break;
             }
         });
@@ -107,6 +108,7 @@ public class MyCollectionActivity extends BaseActivity {
     private void inInTab() {
         TabLayout.Tab tab2;
         View view;
+        mMainBinding.tabLayout.removeAllTabs();
         for (MyCollectionTitleResponse.DataBean dataBean : mListTitle) {
             tab2 = mMainBinding.tabLayout.newTab();
             //  tab2.setText(studyDictionaryBean.getDictValue());

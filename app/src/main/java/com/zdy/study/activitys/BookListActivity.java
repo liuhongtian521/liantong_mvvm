@@ -46,7 +46,6 @@ public class BookListActivity extends BaseActivity {
     }
 
     private void initTop() {
-        mDataBinding.tvLeft.requestFocus();
         mDataBinding.tvLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,6 +66,7 @@ public class BookListActivity extends BaseActivity {
             }
 
         });
+        mDataBinding.tvLeft.requestFocus();
         mDataBinding.tvRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
