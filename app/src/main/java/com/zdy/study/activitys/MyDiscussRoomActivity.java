@@ -11,6 +11,7 @@ import com.askia.common.base.BaseActivity;
 import com.askia.coremodel.datamodel.database.repository.DBRepository;
 import com.askia.coremodel.datamodel.http.entities.consume.DiscussRoomListBean;
 import com.askia.coremodel.datamodel.http.entities.consume.HttpLoginResult;
+import com.askia.coremodel.datamodel.http.entities.consume.UserInfoBean;
 import com.blankj.utilcode.util.ToastUtils;
 import com.zdy.study.R;
 import com.zdy.study.adapter.DiscussRoomAdapter;
@@ -41,10 +42,17 @@ public class MyDiscussRoomActivity extends BaseActivity {
         list = new ArrayList<>();
         onInTitle("我的讨论室");
 //        mDataBinding.currentText.setText(getArguments().getString("TITLE"));
-        onInitInformation();
+      //  onInitInformation();
         mViewModel.pageListMyPad("1", "10");
         initRecycleView();
         initLoad();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        UserInfoBean infoResult = DBRepository.QueryTVUserInfoData();
+        mMyId = infoResult.getId();
     }
 
     private void onInitInformation() {
@@ -115,13 +123,13 @@ public class MyDiscussRoomActivity extends BaseActivity {
 
 
         });
-        mViewModel.getmUserInfoLiveDataLiveData().observe(this, listResult -> {
-            if (!listResult.isSuccess()) {
-                ToastUtils.showLong(listResult.getMessage().toString());
-                return;
-            }
-            mMyId=listResult.getData().getId();
-        });
+//        mViewModel.getmUserInfoLiveDataLiveData().observe(this, listResult -> {
+//            if (!listResult.isSuccess()) {
+//                ToastUtils.showLong(listResult.getMessage().toString());
+//                return;
+//            }
+//            mMyId=listResult.getData().getId();
+//        });
     }
 
     @Override

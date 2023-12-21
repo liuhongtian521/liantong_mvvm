@@ -1,6 +1,7 @@
 package com.zdy.study.fragments;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import com.askia.coremodel.datamodel.database.repository.DBRepository;
 import com.askia.coremodel.datamodel.database.repository.SharedPreUtil;
 import com.askia.coremodel.datamodel.http.entities.consume.DiscussRoomListBean;
 import com.askia.coremodel.datamodel.http.entities.consume.HttpLoginResult;
+import com.askia.coremodel.datamodel.http.entities.consume.UserInfoBean;
 import com.blankj.utilcode.util.ToastUtils;
 import com.zdy.study.R;
 import com.zdy.study.adapter.AddressBookAdapter;
@@ -45,14 +47,16 @@ public class DiscussRoomFragment extends BaseFragment {
     public void onInit() {
         list = new ArrayList<>();
 //        mDataBinding.currentText.setText(getArguments().getString("TITLE"));
-        onInitInformation();
+        // onInitInformation();
         mViewModel.getPageListPad("1", "10");
         initRecycleView();
     }
+
     private void onInitInformation() {
         HttpLoginResult httpLoginResult = DBRepository.QueryTVUserLoginData();
         mViewModel.queryClassesByPhone(httpLoginResult.getUser_name());//获取用户信息
     }
+
     @Override
     public void onInitViewModel() {
         mViewModel = ViewModelProviders.of(getActivity()).get(DiscussRoomViewModel.class);
@@ -74,6 +78,13 @@ public class DiscussRoomFragment extends BaseFragment {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        UserInfoBean infoResult = DBRepository.QueryTVUserInfoData();
+        mMyId = infoResult.getId();
+    }
+
+    @Override
     public void onSubscribeViewModel() {
         mViewModel.getPageListPadData().observe(this, listResult -> {
             if (!listResult.isSuccess()) {
@@ -91,13 +102,13 @@ public class DiscussRoomFragment extends BaseFragment {
 
 
         });
-        mViewModel.getmUserInfoLiveDataLiveData().observe(this, listResult -> {
-            if (!listResult.isSuccess()) {
-                ToastUtils.showLong(listResult.getMessage().toString());
-                return;
-            }
-            mMyId=listResult.getData().getId();
-        });
+//        mViewModel.getmUserInfoLiveDataLiveData().observe(this, listResult -> {
+//            if (!listResult.isSuccess()) {
+//                ToastUtils.showLong(listResult.getMessage().toString());
+//                return;
+//            }
+//            mMyId=listResult.getData().getId();
+//        });
     }
 
     public static DiscussRoomFragment newInstance(String title) {
