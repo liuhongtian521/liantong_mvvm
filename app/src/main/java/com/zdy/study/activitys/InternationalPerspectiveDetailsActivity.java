@@ -104,9 +104,10 @@ public class InternationalPerspectiveDetailsActivity extends BaseActivity {
             mDataBinding.tvDate.setText(listResult.getResult().getDisplayTime());
             mDataBinding.tvIntroduction.setText(getIntent().getExtras().getString("ENTITY_LIST_introduction_two"));
             mDataBinding.tvAuthor.setText("作者：" + listResult.getResult().getLink());
-            if (null == listResult.getResult().getImgUrl() || "".equals(listResult.getResult().getImgUrl())) {
+            if (null == listResult.getResult().getContVideo() || "".equals(listResult.getResult().getContVideo().getVideoUrl())||null==listResult.getResult().getContVideo().getVideoUrl()) {
                 mDataBinding.rlVideo.setVisibility(View.GONE);
             } else {
+                mDataBinding.rlVideo.setVisibility(View.VISIBLE);
                 Glide.with(this).load(listResult.getResult().getImgUrl()).into(mDataBinding.ivVideo);
             }
             mUrl = listResult.getResult().getContVideo().getVideoUrl();

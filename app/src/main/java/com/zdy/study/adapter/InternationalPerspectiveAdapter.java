@@ -1,6 +1,7 @@
 package com.zdy.study.adapter;
 
 import android.content.Context;
+import android.view.View;
 import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
@@ -33,7 +34,10 @@ public class InternationalPerspectiveAdapter extends BaseQuickAdapter<BroadcastE
         }
         ImageView imageView = helper.getView(R.id.iv_right_video);
         if (!"".equals(item.getImgUrl())) {
+            helper.getView(R.id.iv_play).setVisibility(View.VISIBLE);
             Glide.with(mContext).load(item.getImgUrl()).into(imageView);
+        } else {
+            helper.getView(R.id.iv_play).setVisibility(View.GONE);
         }
 
 
