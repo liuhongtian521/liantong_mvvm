@@ -81,6 +81,7 @@
                 </com.zdy.study.fcWidgets.FCRelativeLayout>
 
                 <WebView
+                    android:visibility="visible"
                     android:id="@+id/web_content"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

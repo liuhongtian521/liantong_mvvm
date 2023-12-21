@@ -19,20 +19,10 @@ import java.util.List;
 
 public class MyCollectionAdapter extends BaseQuickAdapter<MyCollectionResponse.PageDataBean, BaseViewHolder> {
     private Context mContext;
-    private boolean mIsClick;
 
     public MyCollectionAdapter(@Nullable List<MyCollectionResponse.PageDataBean> data, Context context, boolean isClick) {
         super(R.layout.my_collection_item, data);
         mContext = context;
-        mIsClick = isClick;
-    }
-
-    public boolean ismIsClick() {
-        return mIsClick;
-    }
-
-    public void setmIsClick(boolean mIsClick) {
-        this.mIsClick = mIsClick;
     }
 
     @Override

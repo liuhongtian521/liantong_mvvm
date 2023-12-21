@@ -117,6 +117,11 @@ public class InternationalPerspectiveDetailsActivity extends BaseActivity {
     }
 
     private void setContent(String dataCont, WebView webView) {
+        if ("".equals(dataCont)){
+            mDataBinding.webContent.setVisibility(View.GONE);
+        }else {
+            mDataBinding.webContent.setVisibility(View.VISIBLE);
+        }
         StringBuffer sb = new StringBuffer();
         //添加html
         sb.append("<html><head><meta http-equiv='content-type' content='text/html; charset=utf-8'>");
