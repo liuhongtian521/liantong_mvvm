@@ -177,11 +177,11 @@ public class MainFragment extends BaseFragment {
             startActivityByRouter(ARouterPath.BroadcastExpressActivity, bundle);
         });
         mFragmentMainBinding.fnButtonDiscussionMore.setOnClickListener(v -> {
-//            MainActivity activity = (MainActivity) getActivity();
-//            activity.showdiscussRoom();
-            getActivity().getSupportFragmentManager().
+            MainActivity activity = (MainActivity) getActivity();
+            activity.showdiscussRoom();
+            /*getActivity().getSupportFragmentManager().
                     beginTransaction().replace(R.id.main_layout_content,new DiscussRoomFragment(),null).
-                    addToBackStack(null).commit();
+                    addToBackStack(null).commit()*/;
         });
     }
 

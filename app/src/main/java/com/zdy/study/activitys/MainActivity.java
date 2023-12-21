@@ -163,9 +163,7 @@ public class MainActivity extends BaseActivity {
     }
 
     public void showdiscussRoom(){
-      //  mDataBinding.rbTl.
-
-      //  FragmentHideShwo(digitalClassesFragment);
+        mDataBinding.rbTl.requestFocus();
     }
 
     /*private void FragmentHideShwo(Fragment fg){
