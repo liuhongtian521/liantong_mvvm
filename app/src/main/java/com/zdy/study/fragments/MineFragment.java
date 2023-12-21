@@ -17,6 +17,7 @@ import com.askia.common.base.ARouterPath;
 import com.askia.common.base.BaseFragment;
 import com.askia.coremodel.datamodel.database.repository.DBRepository;
 import com.askia.coremodel.datamodel.http.entities.consume.HttpLoginResult;
+import com.askia.coremodel.datamodel.http.entities.consume.UserInfoBean;
 import com.blankj.utilcode.util.ToastUtils;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
@@ -34,19 +35,12 @@ import java.util.ArrayList;
 public class MineFragment extends BaseFragment {
 
     private FragmentMineBinding mDataBinding;
-    private UserInfoViewModel viewModel;
+//    private UserInfoViewModel viewModel;
 
     @Override
     public void onInit() {
-        HttpLoginResult httpLoginResult = DBRepository.QueryTVUserLoginData();
-        setHeardImg(httpLoginResult.getAvatar());//设置头像
-        if (TextUtils.isEmpty(DBRepository.QueryTVUserLoginData().getAccess_token())) {
-            mDataBinding.tvMineName.setText("未登录");
-            mDataBinding.tvClassName.setVisibility(View.GONE);
-        }else {
-            mDataBinding.tvClassName.setVisibility(View.VISIBLE);
-            viewModel.queryClassesByPhone(httpLoginResult.getUser_name());//获取用户信息
-        }
+
+
         initList();
     }
 
@@ -61,7 +55,7 @@ public class MineFragment extends BaseFragment {
 
     @Override
     public void onInitViewModel() {
-        viewModel = ViewModelProviders.of(getActivity()).get(UserInfoViewModel.class);
+//        viewModel = ViewModelProviders.of(getActivity()).get(UserInfoViewModel.class);
     }
 
     @Override
@@ -117,15 +111,32 @@ public class MineFragment extends BaseFragment {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        HttpLoginResult httpLoginResult = DBRepository.QueryTVUserLoginData();
+        if (TextUtils.isEmpty(httpLoginResult.getAccess_token())) {
+            mDataBinding.tvMineName.setText("未登录");
+            mDataBinding.tvClassName.setVisibility(View.GONE);
+        }else {
+            UserInfoBean infoResult = DBRepository.QueryTVUserInfoData();
+            mDataBinding.tvClassName.setVisibility(View.VISIBLE);
+            setHeardImg(httpLoginResult.getAvatar());//设置头像
+//            viewModel.queryClassesByPhone(httpLoginResult.getUser_name());//获取用户信息
+            mDataBinding.tvMineName.setText(infoResult.getStudentName());//设置昵称
+            mDataBinding.tvClassName.setText(infoResult.getClassesName());//设置班级名
+        }
+    }
+
+    @Override
     public void onSubscribeViewModel() {
-        viewModel.getmUserInfoLiveDataLiveData().observe(this, listResult -> {
+        /*viewModel.getmUserInfoLiveDataLiveData().observe(this, listResult -> {
             if (!listResult.isSuccess()) {
                 ToastUtils.showLong(listResult.getMessage().toString());
                 return;
             }
             mDataBinding.tvMineName.setText(listResult.getData().getStudentName());//设置昵称
             mDataBinding.tvClassName.setText(listResult.getData().getClassesName());//设置班级名
-        });
+        });*/
     }
 
     public static MineFragment newInstance(String title) {

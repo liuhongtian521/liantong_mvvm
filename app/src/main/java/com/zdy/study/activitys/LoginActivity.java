@@ -81,6 +81,7 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     public void onSubscribeViewModel() {
+        //验证码图片
         mViewModel.getCaptchaResultLiveData().observe(this, imCodeResult -> {
             /*if(!imCodeResult.isSuccess()){
                 ToastUtils.showLong(imCodeResult.getMessage().toString());
@@ -94,7 +95,20 @@ public class LoginActivity extends BaseActivity {
 //            SharedPreUtil.getInstance().putCaptchaKey(imCodeResult.getKey());
             key = imCodeResult.getKey();
         });
+        //获取用户信息
+        mViewModel.getmUserInfoLiveDataLiveData().observe(this, listResult -> {
+            if(!listResult.isSuccess()){
+                ToastUtils.showLong(listResult.getMessage().toString());
+                return;
+            }
+            DBRepository.StoreTVUserInfoData(listResult.getData());
 
+            ToastUtils.showLong("登录成功");
+                    Bundle bundle = getIntent().getExtras();
+                    if (!TextUtils.isEmpty(bundle.getString("url")))
+                        startActivityByRouter(bundle.getString("url"));
+                    finish();
+        });
     }
 
     private void initTab(){
@@ -185,11 +199,9 @@ public class LoginActivity extends BaseActivity {
                     mViewModel.getCaptcha();
                 }else{
                     DBRepository.StoreTVUserLoginData(httpLoginResult);
-                    ToastUtils.showLong("登录成功");
-                    Bundle bundle = getIntent().getExtras();
-                    if (!TextUtils.isEmpty(bundle.getString("url")))
-                        startActivityByRouter(bundle.getString("url"));
-                    finish();
+
+                    mViewModel.queryClassesByPhone(httpLoginResult.getUser_name());//获取用户信息
+
                 }
             }
         });

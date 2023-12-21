@@ -14,13 +14,16 @@ import com.askia.coremodel.datamodel.http.entities.ConsumeRecordData;
 import com.askia.coremodel.datamodel.http.entities.consume.HttpConsumeBannerBean;
 import com.askia.coremodel.datamodel.http.entities.consume.HttpConsumeConfigBean;
 import com.askia.coremodel.datamodel.http.entities.consume.HttpLoginResult;
+import com.askia.coremodel.datamodel.http.entities.consume.UserInfoBean;
 import com.blankj.utilcode.util.LogUtils;
 
 public class SharedPreUtil {
 
     // 用户名key
     public final static String KEY_NAME = "KEY_NAME";
+
     public final static String KEY_NAME_TV = "KEY_NAME_TV";
+    public final static String KEY_INFO_TV = "KEY_INFO_TV";
 
     public final static String KEY_LEVEL = "KEY_LEVEL";
 
@@ -50,7 +53,10 @@ public class SharedPreUtil {
     private static SharedPreUtil s_SharedPreUtil;
 
     private static UserLoginData s_User = null;
+    //登录信息
     private static HttpLoginResult s_TVUser = null;
+    //用户信息
+    private static UserInfoBean userInfo = null;
 
     private static HttpConsumeConfigBean.ResultBean sConsumeConfig = null;
     private static HttpConsumeBannerBean sConsumeBannerBean = null;
@@ -156,7 +162,43 @@ public class SharedPreUtil {
         s_User = user;
     }
 
+    public synchronized void putTVUserInfo(UserInfoBean userinfo) {
 
+        Editor editor = msp.edit();
+
+        String str = "";
+        try {
+            str = SerializableUtil.obj2Str(userinfo);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        editor.putString(KEY_INFO_TV, str);
+        editor.commit();
+
+        userInfo = userinfo;
+    }
+
+    public synchronized UserInfoBean getTVUserInfo() {
+
+        if (userInfo == null) {
+            //获取序列化的数据
+            String str = msp.getString(SharedPreUtil.KEY_INFO_TV, "");
+
+            try {
+                Object obj = SerializableUtil.str2Obj(str);
+                if (obj != null) {
+                    userInfo = (UserInfoBean) obj;
+                }
+
+            } catch (StreamCorruptedException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return userInfo;
+    }
     public synchronized void putTVUser(HttpLoginResult user) {
 
         Editor editor = msp.edit();

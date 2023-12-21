@@ -60,6 +60,7 @@ public class SettingActivity extends BaseActivity {
                 .setConfirm("确认", dialog1 -> {
                     DBRepository.QueryTVUserLoginData().setAccess_token("");
                     DBRepository.StoreTVUserLoginData(null);
+//                    DBRepository.StoreTVUserInfoData(null);
                     startActivityByRouter(ARouterPath.MAIN_ACTIVITY);
                     finish();
                 });

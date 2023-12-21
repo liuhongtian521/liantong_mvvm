@@ -1,6 +1,8 @@
 package com.askia.coremodel.datamodel.http.entities.consume;
 
-public class UserInfoBean {
+import java.io.Serializable;
+
+public class UserInfoBean implements Serializable {
 
 
     /**
@@ -110,7 +112,7 @@ public class UserInfoBean {
     private String studentImg;
 
     public String getId() {
-        return id;
+        return id == null ? "" : id;
     }
 
     public void setId(String id) {
@@ -190,7 +192,7 @@ public class UserInfoBean {
     }
 
     public String getStudentName() {
-        return studentName;
+        return studentName == null ? "" : studentName;
     }
 
     public void setStudentName(String studentName) {
@@ -294,7 +296,7 @@ public class UserInfoBean {
     }
 
     public String getStudentPost() {
-        return studentPost;
+        return studentPost == null ? "" : studentPost;
     }
 
     public void setStudentPost(String studentPost) {
@@ -478,7 +480,7 @@ public class UserInfoBean {
     }
 
     public String getClassesName() {
-        return classesName;
+        return classesName == null ? "" : classesName;
     }
 
     public void setClassesName(String classesName) {
