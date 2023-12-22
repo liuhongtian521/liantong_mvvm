@@ -1,36 +1,60 @@
 package com.zdy.study.adapter;
 
+import android.text.TextUtils;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
 import com.askia.coremodel.datamodel.http.entities.consume.BroadcastExpressResponBean;
+import com.askia.coremodel.datamodel.http.entities.consume.Remark;
 import com.bumptech.glide.Glide;
+import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.zdy.study.R;
 import com.zdy.study.fcWidgets.FCLinearLayout;
 import com.zdy.study.widgets.VideoViewConstraintLayout;
 
+import java.lang.reflect.Type;
 import java.util.List;
 
-public class BroadcastExpressAdapter extends BaseQuickAdapter<BroadcastExpressResponBean.PageDataBean, BaseViewHolder> {
+public class BroadcastExpressAdapter extends BaseMultiItemQuickAdapter<BroadcastExpressResponBean.PageDataBean, BaseViewHolder> {
+
+    //默认
+    public static final int MN = 0;
+    //分段
+    public static final int FD = 1;
     public BroadcastExpressAdapter(@Nullable List<BroadcastExpressResponBean.PageDataBean> data) {
-        super(R.layout.broadcast_item, data);
+        super(data);
+        addItemType(MN, R.layout.broadcast_item);
+        addItemType(FD, R.layout.layout_fdyd);
     }
 
     @Override
     protected void convert(BaseViewHolder helper, BroadcastExpressResponBean.PageDataBean item) {
-       helper.setText(R.id.tv_content, item.getContName());
-       helper.setText(R.id.tv_date, item.getContVideo().getTimeLength());
-       FCLinearLayout layout = helper.getView(R.id.fcll);
-       layout.setLitScale();
-       ImageView imageView = helper.getView(R.id.iv_broadcast_video);
-        Glide.with(mContext).load("http://cdls-cms-image.oss-cn-huhehaote-nebula-1.aliyuncs.com/xinwen_video.jpeg").into(imageView);
+        switch (helper.getItemViewType()) {
+            case MN:
+                helper.setText(R.id.tv_content, item.getContName());
+                helper.setText(R.id.tv_date, item.getContVideo().getTimeLength());
+                FCLinearLayout layout = helper.getView(R.id.fcll);
+                layout.setLitScale();
+                ImageView imageView = helper.getView(R.id.iv_broadcast_video);
+                Glide.with(mContext).load("http://cdls-cms-image.oss-cn-huhehaote-nebula-1.aliyuncs.com/xinwen_video.jpeg").into(imageView);
+                break;
+            case FD:
+                helper.setText(R.id.tv_content_fdyd, item.getMyRemark().getContName())
+                    .setText(R.id.tv_fd_time, item.getMyRemark().getCreateTime());
+                break;
+        }
 
-        /*VideoViewConstraintLayout layout = helper.getView(R.id.vcl_video);
-        layout.setUrl(item.getContVideo().getVideoUrl());*/
-
-        //截取天数
     }
+
+
+
 }

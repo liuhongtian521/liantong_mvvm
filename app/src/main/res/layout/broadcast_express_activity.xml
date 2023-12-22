@@ -15,7 +15,8 @@
         <com.zdy.study.widgets.LoadMoreConstraintLayout
             android:id="@+id/lm_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@color/gray_bg">
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_broadcast_express"
                 android:layout_width="match_parent"

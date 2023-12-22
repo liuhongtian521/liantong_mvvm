@@ -54,7 +54,7 @@ public class EBookActivity extends BaseActivity {
         initDataList();
         initLoad();
         //标题
-        mDataBinding.includeLayout.preferenceActivityTitleText.setText("电子课程");
+        mDataBinding.includeLayout.preferenceActivityTitleText.setText("电子课件");
         mDataBinding.includeLayout.preferenceActivityTitleImage.setOnClickListener(v -> {
             finish();
         });
@@ -131,7 +131,7 @@ public class EBookActivity extends BaseActivity {
                 } catch (UnsupportedEncodingException e) {
                     throw new RuntimeException(e);
                 }
-                fileName = "zdy."+dataList.get(position).getCoursewareType();
+                fileName = "/zdy."+dataList.get(position).getCoursewareType();
                 /*WpsUtil wpsUtil = new WpsUtil(new WpsUtil.WpsInterface() {
                     @Override
                     public void doRequest(String filePath) {

@@ -62,6 +62,7 @@ public class MineFragment extends BaseFragment {
     @Override
     public View onInitDataBinding(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {
         mDataBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_mine, container, false);
+        mDataBinding.setHandlers(this);
         return mDataBinding.getRoot();
     }
 
@@ -125,6 +126,13 @@ public class MineFragment extends BaseFragment {
 //            viewModel.queryClassesByPhone(httpLoginResult.getUser_name());//获取用户信息
             mDataBinding.tvMineName.setText(infoResult.getStudentName());//设置昵称
             mDataBinding.tvClassName.setText(infoResult.getClassesName());//设置班级名
+        }
+    }
+
+    public void goToLogin(View view){
+        HttpLoginResult httpLoginResult = DBRepository.QueryTVUserLoginData();
+        if (TextUtils.isEmpty(httpLoginResult.getAccess_token())) {
+            startActivityByRouter(ARouterPath.LOGIN_ACTIVITY);
         }
     }
 

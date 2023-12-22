@@ -222,7 +222,7 @@ public class StudyMaterialsActivity extends BaseActivity {
                 } catch (UnsupportedEncodingException e) {
                     throw new RuntimeException(e);
                 }
-                fileName = "zdy." + dataList.get(position).getLearningMaterialsType();
+                fileName = "/zdy." + dataList.get(position).getLearningMaterialsType();
 
                 /*WpsUtil wpsUtil = new WpsUtil(new WpsUtil.WpsInterface() {
                     @Override

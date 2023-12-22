@@ -133,7 +133,7 @@ public class SchoolServiceActivity extends BaseActivity {
             } catch (UnsupportedEncodingException e) {
                 throw new RuntimeException(e);
             }
-            fileName = "zdy."+dataList.get(position).getHospitalServiceType();
+            fileName = "/zdy."+dataList.get(position).getHospitalServiceType();
             /*WpsUtil wpsUtil = new WpsUtil(new WpsUtil.WpsInterface() {
                 @Override
                 public void doRequest(String filePath) {

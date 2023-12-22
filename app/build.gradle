@@ -9,7 +9,7 @@ android {
         applicationId "com.zdy.study"
         minSdkVersion parent.ext.minSdkVersion
         targetSdkVersion parent.ext.targetSdkVersion
-        versionCode 100
+        versionCode 101
         versionName "1.0.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         // 设置支持multidex

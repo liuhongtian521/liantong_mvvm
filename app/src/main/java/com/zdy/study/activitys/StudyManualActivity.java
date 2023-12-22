@@ -49,13 +49,13 @@ public class StudyManualActivity extends BaseActivity {
 
     private int pageNo = 1;
     private String pageSize = "10";
-    private String fileName = "zdy.pdf";
+    private String fileName = "/zdy.pdf";
     @Override
     public void onInit() {
         initDataList();
         initLoad();
         //标题
-        mDataBinding.includeLayout.preferenceActivityTitleText.setText("学习手册");
+        mDataBinding.includeLayout.preferenceActivityTitleText.setText("学员手册");
         mDataBinding.includeLayout.preferenceActivityTitleImage.setOnClickListener(v -> {
             finish();
         });
@@ -179,6 +179,7 @@ public class StudyManualActivity extends BaseActivity {
             if(!file1.exists()){
                 file1.mkdirs();
             }
+            setFileName(url);
             //把数据存入路径+文件名
             FileOutputStream fos = new FileOutputStream(file1 + fileName);
             byte buf[] = new byte[1024];
@@ -216,6 +217,25 @@ public class StudyManualActivity extends BaseActivity {
 //            downLoadBack.complete(false);
             Log.e("DOWNLOAD", "error: " + ex.getMessage(), ex);
         }
+    }
+
+    private void setFileName(String url){
+        if (url.contains(".xlsx?"))
+            fileName = "/zdy.xlsx";
+        if (url.contains(".xls?"))
+            fileName = "/zdy.xls";
+        if (url.contains(".doc?"))
+            fileName = "/zdy.doc";
+        if (url.contains(".docx?"))
+            fileName = "/zdy.docx";
+        if (url.contains(".ppt?"))
+            fileName = "/zdy.ppt";
+        if (url.contains(".pptx?"))
+            fileName = "/zdy.pptx";
+        if (url.contains(".pdf?"))
+            fileName = "/zdy.pdf";
+        if (url.contains(".txt?"))
+            fileName = "/zdy.txt";
     }
 
 

@@ -85,7 +85,7 @@ public interface NetDataService {
 
     // 学习资料
     @GET("/cdls-bds/App/queryLearningMaterials")
-    Observable<BaseResponseData<StuyMaterialsListBean>> queryLearningMaterials(@Query("dictKey") String dictKey,
+    Observable<BaseResponseData<StuyMaterialsListBean>> queryLearningMaterials(@Query("tag") String tag,
                                                                                @Query("current") String current,
                                                                                @Query("size") String size,
                                                                                @Query("argPage") String argPage,

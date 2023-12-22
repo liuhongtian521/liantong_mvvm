@@ -1,5 +1,7 @@
 package com.askia.coremodel.datamodel.http.entities.consume;
 
+import com.chad.library.adapter.base.entity.MultiItemEntity;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -79,7 +81,7 @@ public class BroadcastExpressResponBean implements Serializable {
         this.pageData = pageData;
     }
 
-    public static class PageDataBean implements Serializable {
+    public static class PageDataBean implements Serializable, MultiItemEntity {
         /**
          * id : 1036931066046185472
          * contName : 《新闻联播》20221031
@@ -106,6 +108,17 @@ public class BroadcastExpressResponBean implements Serializable {
          * contDesc3 :
          */
 
+        //item类型
+        private int fieldType;
+
+        public void setFieldType(int fieldType) {
+            this.fieldType = fieldType;
+        }
+
+        @Override
+        public int getItemType() {
+            return fieldType;
+        }
         private String id;
         private String contName;
         private int isDisplay;
@@ -128,6 +141,18 @@ public class BroadcastExpressResponBean implements Serializable {
         private String contDesc;
         private String contDesc2;
         private String contDesc3;
+        private Remark myRemark;
+
+        public Remark getMyRemark() {
+            if (myRemark == null)
+                myRemark = new Remark();
+            return myRemark;
+        }
+
+        public void setMyRemark(Remark myRemark) {
+            this.myRemark = myRemark;
+        }
+
         private List<AudioListListBean> audioListList;
 
         public String getId() {

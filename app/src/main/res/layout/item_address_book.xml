@@ -20,8 +20,8 @@
 
         <TextView
             android:id="@+id/tv_head_name"
-            android:layout_width="42dp"
-            android:layout_height="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="6dp"
             android:layout_toRightOf="@+id/iv_head"

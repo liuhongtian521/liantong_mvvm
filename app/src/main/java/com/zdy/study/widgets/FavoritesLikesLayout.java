@@ -19,7 +19,9 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.askia.coremodel.datamodel.database.repository.DBRepository;
 import com.askia.coremodel.datamodel.http.entities.consume.CommentsBean;
+import com.askia.coremodel.datamodel.http.entities.consume.HttpLoginResult;
 import com.blankj.utilcode.util.ToastUtils;
 import com.zdy.study.R;
 import com.zdy.study.adapter.CommentsAdapter;
@@ -88,7 +90,9 @@ public class FavoritesLikesLayout extends ConstraintLayout {
         this.argContId = argContId;
         this.struId = struId;
         viewModel.queryCommentsList(argContId, "1", "100");
-        viewModel.addReadNotes(argContId, struId);//添加阅读记录
+        HttpLoginResult httpLoginResult = DBRepository.QueryTVUserLoginData();
+        if (!TextUtils.isEmpty(httpLoginResult.getAccess_token()))
+            viewModel.addReadNotes(argContId, struId);//添加阅读记录
     }
 
     private void initList(Context context){
@@ -135,6 +139,7 @@ public class FavoritesLikesLayout extends ConstraintLayout {
                 ToastUtils.showLong(listResult.getMessage().toString());
                 return;
             }
+            commentsList.clear();
             commentsList.addAll(listResult.getResult().getPageData());
             adapter.notifyDataSetChanged();
         });
@@ -156,6 +161,7 @@ public class FavoritesLikesLayout extends ConstraintLayout {
             }
             ToastUtils.showLong("点赞成功");
             ivPraiseactive.setImageResource(R.mipmap.ic_layout_dianz_al);
+            tvPraiseactive.setText("已点赞");
             tvPraiseactive.setTextColor(context.getResources().getColor(R.color.txt_yes));
             isPraiseActive = true;
         });
@@ -167,6 +173,7 @@ public class FavoritesLikesLayout extends ConstraintLayout {
             }
             ToastUtils.showLong("取消点赞");
             ivPraiseactive.setImageResource(R.mipmap.ic_layout_dianzan);
+            tvPraiseactive.setText("点赞");
             tvPraiseactive.setTextColor(context.getResources().getColor(R.color.txt_nomal));
             isPraiseActive = false;
         });
@@ -178,6 +185,7 @@ public class FavoritesLikesLayout extends ConstraintLayout {
             }
             ToastUtils.showLong("收藏成功");
             ivAddcollection.setImageResource(R.mipmap.ic_layout_shoucang_al);
+            tvAddCollection.setText("已收藏");
             tvAddCollection.setTextColor(context.getResources().getColor(R.color.txt_yes));
             isAddcollection = true;
         });
@@ -189,6 +197,7 @@ public class FavoritesLikesLayout extends ConstraintLayout {
             }
             ToastUtils.showLong("取消收藏");
             ivAddcollection.setImageResource(R.mipmap.ic_layout_shouchang);
+            tvAddCollection.setText("收藏");
             tvAddCollection.setTextColor(context.getResources().getColor(R.color.txt_nomal));
             isAddcollection = false;
         });
@@ -205,9 +214,11 @@ public class FavoritesLikesLayout extends ConstraintLayout {
     public void setPraiseActive(boolean isPraiseActive){
         if (isPraiseActive){
             ivPraiseactive.setImageResource(R.mipmap.ic_layout_dianz_al);
+            tvPraiseactive.setText("已点赞");
             tvPraiseactive.setTextColor(context.getResources().getColor(R.color.txt_yes));
         }else{
             ivPraiseactive.setImageResource(R.mipmap.ic_layout_dianzan);
+            tvPraiseactive.setText("点赞");
             tvPraiseactive.setTextColor(context.getResources().getColor(R.color.txt_nomal));
         }
         this.isPraiseActive = isPraiseActive;
@@ -216,9 +227,11 @@ public class FavoritesLikesLayout extends ConstraintLayout {
     public void setAddcollection(boolean isAddcollection){
         if (isAddcollection){
             ivAddcollection.setImageResource(R.mipmap.ic_layout_shoucang_al);
+            tvAddCollection.setText("已收藏");
             tvAddCollection.setTextColor(context.getResources().getColor(R.color.txt_yes));
         }else{
             ivAddcollection.setImageResource(R.mipmap.ic_layout_shouchang);
+            tvAddCollection.setText("收藏");
             tvAddCollection.setTextColor(context.getResources().getColor(R.color.txt_nomal));
         }
         this.isAddcollection = isAddcollection;

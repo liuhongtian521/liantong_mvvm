@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.MediaController;
@@ -18,10 +19,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.askia.common.base.ARouterPath;
 import com.askia.common.base.BaseActivity;
+import com.askia.coremodel.datamodel.database.repository.DBRepository;
 import com.askia.coremodel.datamodel.http.entities.consume.BroadcastExpressResponBean;
+import com.askia.coremodel.datamodel.http.entities.consume.HttpLoginResult;
+import com.askia.coremodel.datamodel.http.entities.consume.Remark;
 import com.blankj.utilcode.util.EmptyUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.zdy.study.R;
 import com.zdy.study.adapter.BroadcastExpressAdapter;
 import com.zdy.study.adapter.CourseQueryDetailsAdapter;
@@ -31,6 +37,7 @@ import com.zdy.study.databinding.BroadcastExpressActivityBinding;
 import com.zdy.study.tools.Constants;
 import com.zdy.study.widgets.LoadMoreConstraintLayout;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,7 +52,7 @@ public class BroadcastExpressActivity extends BaseActivity {
     private String pageSize = "10";
     private String keyId;
     private Bundle bundle;
-
+    private Gson gson;
 
     @Override
     public void onInit() {
@@ -83,10 +90,22 @@ public class BroadcastExpressActivity extends BaseActivity {
         recyclerView.setAdapter(adapter);
 
         adapter.setOnItemClickListener((adapter, view, position) -> {
-            viewModel.addReadNotes(list.get(position).getId(), Constants.LBSD);//添加阅读记录
-            Bundle bundle1 = new Bundle();
-            bundle1.putString("url", list.get(position).getContVideo().getVideoUrl());
-            startActivityByRouter(ARouterPath.VideoActivity, bundle1);
+            switch (list.get(position).getItemType()) {
+                case BroadcastExpressAdapter.MN:
+                    HttpLoginResult httpLoginResult = DBRepository.QueryTVUserLoginData();
+                    if (!TextUtils.isEmpty(httpLoginResult.getAccess_token()))
+                        viewModel.addReadNotes(list.get(position).getId(), Constants.LBSD);//添加阅读记录
+                    Bundle bundle1 = new Bundle();
+                    bundle1.putString("url", list.get(position).getContVideo().getVideoUrl());
+                    startActivityByRouter(ARouterPath.VideoActivity, bundle1);
+                    break;
+                case BroadcastExpressAdapter.FD:
+                    Bundle bundle = new Bundle();
+                    bundle.putString("key", Constants.SJAL);
+                    bundle.putString("INTERNATIONAL_VIEW", list.get(position).getMyRemark().getId());
+                    startActivityByRouter(ARouterPath.InternationalPerspectiveDetailsActivity, bundle);
+                    break;
+            }
         });
         recyclerView.requestFocus();
     }
@@ -130,10 +149,32 @@ public class BroadcastExpressActivity extends BaseActivity {
             }
             mDataBinding.lmView.setList(listResult.getResult().getPageData(), page);
             list.clear();
-            list.addAll(listResult.getResult().getPageData());
+
+            makeFD(listResult.getResult().getPageData());
+
+//            list.addAll(listResult.getResult().getPageData());
             adapter.notifyDataSetChanged();
         });
 
+    }
+    //将分段数据加到list中
+    private void makeFD(List<BroadcastExpressResponBean.PageDataBean> data){
+        if (gson == null)
+            gson = new Gson();
+        for (BroadcastExpressResponBean.PageDataBean bean: data){
+            bean.setFieldType(BroadcastExpressAdapter.MN);
+            list.add(bean);
+            if (!TextUtils.isEmpty(bean.getRemark())){
+                Type type =new TypeToken<List<Remark>>(){}.getType();
+                List<Remark> jsonObject = gson.fromJson(bean.getRemark(), type);
+                for (Remark remark: jsonObject){
+                    BroadcastExpressResponBean.PageDataBean bean1 = new BroadcastExpressResponBean.PageDataBean();
+                    bean1.setMyRemark(remark);
+                    bean1.setFieldType(BroadcastExpressAdapter.FD);
+                    list.add(bean1);
+                }
+            }
+        }
     }
 
     @Override

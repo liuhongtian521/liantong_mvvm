@@ -49,7 +49,7 @@ public class MainActivity extends BaseActivity {
         initFragment();
 //        initPagerTab();
         initBottom();
-//        checkUpdate();
+        checkUpdate();
     }
 
     private void checkUpdate(){
