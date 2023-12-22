@@ -39,7 +39,7 @@ public class SelectedTheoryFragment extends BaseFragment {
         initList();
         initLoad();
    //     showLogadingDialog();
-        viewModel.queryContListByAudit(String.valueOf(page), pageSize, Constants.JXLL);
+        viewModel.queryContListByAudit(String.valueOf(page), pageSize,String.valueOf(page), pageSize, Constants.JXLL);
     }
 
     @Override
@@ -83,14 +83,14 @@ public class SelectedTheoryFragment extends BaseFragment {
             public void nextPage() {
                 page ++;
                 showLogadingDialog();
-                viewModel.queryContListByAudit(String.valueOf(page), pageSize, Constants.JXLL);
+                viewModel.queryContListByAudit(String.valueOf(page), pageSize,String.valueOf(page), pageSize, Constants.JXLL);
             }
 
             @Override
             public void previousPage() {
                 page --;
                 showLogadingDialog();
-                viewModel.queryContListByAudit(String.valueOf(page), pageSize, Constants.CZJQ);
+                viewModel.queryContListByAudit(String.valueOf(page), pageSize,String.valueOf(page), pageSize, Constants.CZJQ);
             }
         });
     }

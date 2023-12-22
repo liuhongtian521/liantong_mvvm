@@ -37,16 +37,13 @@ public class DiscussRoomAdapter extends BaseQuickAdapter<DiscussRoomListBean.Pag
         } else {
             textView.setVisibility(View.GONE);
         }
-        ImageView imageView = helper.getView(R.id.iv_discuss_left);
-        if (!"".equals(item.getCreateUserImg())) {
-            Glide.with(mContext).load(item.getCreateUserImg()).into(imageView);
-        }
+        LinearLayout frameLayout = helper.getView(R.id.fl_content);
+        frameLayout.removeAllViews();
         if (null != item.getTopicList() && item.getTopicList().size() > 0) {
             for (DiscussRoomListBean.PageDataBean.TopicListBean topicListBean : item.getTopicList()) {
-                LinearLayout frameLayout = helper.getView(R.id.fl_content);
                 View view = LayoutInflater.from(mContext).inflate(R.layout.add_bg, null);
                 TextView textView1 = view.findViewById(R.id.tv_discuss_content);
-                textView1.setText(topicListBean.getRoomName());
+                textView1.setText(topicListBean.getTopicTitle());
                 frameLayout.addView(view);
             }
 

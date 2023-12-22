@@ -20,6 +20,7 @@ public class CourseQueryDetailsAdapter extends BaseQuickAdapter<CourseDetailsRes
     protected void convert(BaseViewHolder helper, CourseDetailsResponse.RecordsBean item) {
         helper.setText(R.id.tv_time, item.getClassTime());
         helper.setText(R.id.tv_style, item.getCurriculumStatus());
+        helper.addOnClickListener(R.id.tv_teacher);
         if ("上课中".equals(item.getCurriculumStatus())) {
             helper.setBackgroundRes(R.id.tv_style, R.mipmap.ic_in_class);
         } else if ("未开始".equals(item.getCurriculumStatus())) {

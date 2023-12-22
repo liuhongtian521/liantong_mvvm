@@ -61,6 +61,7 @@ import com.askia.coremodel.datamodel.http.entities.consume.MainFragmentResponseT
 import com.askia.coremodel.datamodel.http.entities.consume.StudyDictionaryBean;
 import com.askia.coremodel.datamodel.http.entities.consume.StuyManualListBean;
 import com.askia.coremodel.datamodel.http.entities.consume.StuyMaterialsListBean;
+import com.askia.coremodel.datamodel.http.entities.consume.TeacherIntroductionResponseBean;
 import com.askia.coremodel.datamodel.http.entities.consume.TopicResponseBean;
 import com.askia.coremodel.datamodel.http.entities.consume.UserInfoBean;
 import com.askia.coremodel.datamodel.http.entities.consume.WebCourseResponseBean;
@@ -243,12 +244,14 @@ public class NetDataRepository {
     //联播速列表
 
     //联播速列表 、操作技巧
-    public void queryContListByAudit(String argPage,
+    public void queryContListByAudit(String current,
+                                     String size,String argPage,
                                      String argPageSize, String argStruCode,
                                      MutableLiveData<BaseResponseData<BroadcastExpressResponBean>> mLiveData,
                                      CompositeDisposable mDisposable) {
         Observable<BaseResponseData<BroadcastExpressResponBean>> responseData = ApiClient.getNetDataService()
-                .queryContListByAudit(argPage,
+                .queryContListByAudit( current,
+                         size,argPage,
                         argPageSize, argStruCode);
         if (responseObserv == null)
             responseObserv = new ResponseObserv();
@@ -347,6 +350,18 @@ public class NetDataRepository {
                                    CompositeDisposable mDisposable) {
         Observable<BaseResponseData<TopicResponseBean>> responseData = ApiClient.getNetDataService()
                 .pageMyTopicListPAD(argPage, argPageSize);
+        if (responseObserv == null)
+            responseObserv = new ResponseObserv();
+        responseObserv.responseObserv(responseData, mLiveData, mDisposable);
+    }
+
+    //师资详情
+    public void queryTeacherInfoList(String id,
+                                     String classesId,
+                                     MutableLiveData<BaseResponseData<TeacherIntroductionResponseBean>> mLiveData,
+                                     CompositeDisposable mDisposable) {
+        Observable<BaseResponseData<TeacherIntroductionResponseBean>> responseData = ApiClient.getNetDataService()
+                .queryTeacherInfoList(id, classesId);
         if (responseObserv == null)
             responseObserv = new ResponseObserv();
         responseObserv.responseObserv(responseData, mLiveData, mDisposable);

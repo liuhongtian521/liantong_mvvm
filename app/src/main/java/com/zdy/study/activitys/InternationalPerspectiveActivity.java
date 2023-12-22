@@ -62,11 +62,11 @@ public class InternationalPerspectiveActivity extends BaseActivity {
     private void initList() {
         if (Constants.GJSY.equals(KeyWord)) {
             onInTitle("国际视野");
-            viewModel.queryContListByAudit("1", "10", Constants.GJSY);
+            viewModel.queryContListByAudit("1", "10","1", "10", Constants.GJSY);
         } else {
             //实践案列
             onInTitle("实践案例");
-            viewModel.queryContListByAudit("1", "10", Constants.SJAL);
+            viewModel.queryContListByAudit("1", "10","1", "10", Constants.SJAL);
         }
         list = new ArrayList<>();
         recyclerView = mDataBinding.rvWeb;
@@ -104,14 +104,14 @@ public class InternationalPerspectiveActivity extends BaseActivity {
             public void nextPage() {
                 page++;
                 showNetDialog();
-                viewModel.queryContListByAudit(String.valueOf(page), pageSize, Constants.GJSY);
+                viewModel.queryContListByAudit(String.valueOf(page), pageSize,String.valueOf(page), pageSize,KeyWord);
             }
 
             @Override
             public void previousPage() {
                 page--;
                 showNetDialog();
-                viewModel.queryContListByAudit(String.valueOf(page), pageSize, Constants.GJSY);
+                viewModel.queryContListByAudit(String.valueOf(page), pageSize,String.valueOf(page), pageSize, KeyWord);
             }
         });
     }

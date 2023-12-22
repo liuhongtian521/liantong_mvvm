@@ -95,6 +95,10 @@
             android:name=".activitys.StudyMaterialsActivity"
             android:launchMode="singleTask"
             android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".activitys.TeacherIntroductionDetails"
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="stateHidden" />
 
         <activity
             android:name=".activitys.EBookActivity"

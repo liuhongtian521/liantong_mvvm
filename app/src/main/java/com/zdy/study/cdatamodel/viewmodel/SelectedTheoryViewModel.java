@@ -19,12 +19,13 @@ public class SelectedTheoryViewModel extends BaseViewModel {
     }
 
     //操作技巧
-    public void queryContListByAudit( String argPage,
+    public void queryContListByAudit( String current,
+                                      String size,String argPage,
                                       String argPageSize,String argStruCode) {
 
         if (netDataRepository == null)
             netDataRepository = new NetDataRepository();
-        netDataRepository.queryContListByAudit(argPage, argPageSize,argStruCode, mPageListPadData, mDisposable);
+        netDataRepository.queryContListByAudit(current,size,argPage, argPageSize,argStruCode, mPageListPadData, mDisposable);
     }
 
 }

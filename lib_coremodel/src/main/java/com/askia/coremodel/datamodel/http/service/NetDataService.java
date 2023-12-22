@@ -30,6 +30,7 @@ import com.askia.coremodel.datamodel.http.entities.consume.MainFragmentResponseT
 import com.askia.coremodel.datamodel.http.entities.consume.StudyDictionaryBean;
 import com.askia.coremodel.datamodel.http.entities.consume.StuyManualListBean;
 import com.askia.coremodel.datamodel.http.entities.consume.StuyMaterialsListBean;
+import com.askia.coremodel.datamodel.http.entities.consume.TeacherIntroductionResponseBean;
 import com.askia.coremodel.datamodel.http.entities.consume.TopicResponseBean;
 import com.askia.coremodel.datamodel.http.entities.consume.UserInfoBean;
 import com.askia.coremodel.datamodel.http.entities.consume.WebCourseResponseBean;
@@ -121,7 +122,8 @@ public interface NetDataService {
 
     // 联播速递列表 、操作技巧
     @GET("/cdls-cms/ApisController/queryContListByAudit")
-    Observable<BaseResponseData<BroadcastExpressResponBean>> queryContListByAudit(@Query("argPage") String argPage, @Query("argPageSize") String argPageSize, @Query("argStruCode") String argStruCode);
+    Observable<BaseResponseData<BroadcastExpressResponBean>> queryContListByAudit(@Query("current") String current,
+                                                                                  @Query("size") String size,@Query("argPage") String argPage, @Query("argPageSize") String argPageSize, @Query("argStruCode") String argStruCode);
 
     // 学习助手主页 联播接口1
     @GET("/cdls-cms/ApisController/queryHotAndTopContListByAudit")
@@ -176,6 +178,10 @@ public interface NetDataService {
     @POST("/cdls-cms/CommentsController/comments")
     Observable<BaseResponseData> comments(@Query("argContId") String argContId,
                                           @Query("argCommContent") String argCommContent);
+    // 教师详情
+    @GET("/cdls-bds/TeacherInfoController/queryTeacherInfoList")
+    Observable<BaseResponseData<TeacherIntroductionResponseBean>> queryTeacherInfoList(@Query("id") String id,
+                                                                                       @Query("classesId") String classesId);
 
     // 点赞
     @GET("/cdls-cms/InteractiveController/praiseActive")

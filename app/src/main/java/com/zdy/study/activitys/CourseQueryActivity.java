@@ -3,6 +3,7 @@ package com.zdy.study.activitys;
 import android.annotation.SuppressLint;
 import android.content.res.Resources;
 import android.opengl.Visibility;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -131,7 +132,19 @@ public class CourseQueryActivity extends BaseActivity {
                 mCourseQueryViewModel.queryCurriculumInfoList(list.get(position).getClassesId(), list.get(position).getCalendarDate(), "10", "1", "10", "1");
             }
         });
-
+        mCourseQueryDetailsAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                switch (view.getId()) {
+                    case R.id.tv_teacher:
+                        Bundle bundle = new Bundle();
+                        bundle.putString("id",mDetailsList.get(position).getTeacherId());
+                        bundle.putString("classesId", mDetailsList.get(position).getClassesId());
+                        startActivityByRouter(ARouterPath.TeacherIntroductionDetails, bundle);
+                        break;
+                }
+            }
+        });
     }
 
     @Override

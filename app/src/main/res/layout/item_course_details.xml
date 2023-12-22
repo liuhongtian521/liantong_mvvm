@@ -8,7 +8,6 @@
     android:layout_marginLeft="@dimen/dp_12"
     android:layout_marginTop="@dimen/dp_12"
     android:paddingBottom="12dp"
-    android:focusableInTouchMode="true"
     android:background="@drawable/white_round_corner_left"
     android:orientation="vertical">
 
@@ -104,7 +103,10 @@
             android:textColor="#4C4E5A"
             android:textSize="10sp" />
         <TextView
-            android:visibility="gone"
+            android:focusableInTouchMode="true"
+            android:focusable="true"
+            android:id="@+id/tv_teacher"
+            android:text="师资介绍 >"
             android:textColor="#714A22"
             android:textSize="10sp"
             android:layout_marginRight="13dp"

@@ -69,7 +69,7 @@ public class BroadcastExpressActivity extends BaseActivity {
         list = new ArrayList<>();
         if (EmptyUtils.isEmpty(keyId)) {
             Log.e("BroadcastExpressActivity", "keyId" + keyId);
-            viewModel.queryContListByAudit(String.valueOf(page), pageSize, Constants.LBSD);
+            viewModel.queryContListByAudit(String.valueOf(page), pageSize,String.valueOf(page), pageSize, Constants.LBSD);
         } else {
             list.clear();
             BroadcastExpressResponBean.PageDataBean pageDataBean = (BroadcastExpressResponBean.PageDataBean) bundle.getSerializable("MainFragmentList");
@@ -97,14 +97,14 @@ public class BroadcastExpressActivity extends BaseActivity {
             public void nextPage() {
                 page++;
                 showNetDialog();
-                viewModel.queryContListByAudit(String.valueOf(page), pageSize, Constants.LBSD);
+                viewModel.queryContListByAudit(String.valueOf(page), pageSize,String.valueOf(page), pageSize, Constants.LBSD);
             }
 
             @Override
             public void previousPage() {
                 page--;
                 showNetDialog();
-                viewModel.queryContListByAudit(String.valueOf(page), pageSize, Constants.LBSD);
+                viewModel.queryContListByAudit(String.valueOf(page), pageSize,String.valueOf(page), pageSize, Constants.LBSD);
             }
         });
     }

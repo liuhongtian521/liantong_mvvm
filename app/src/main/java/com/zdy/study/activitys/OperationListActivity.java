@@ -40,7 +40,7 @@ public class OperationListActivity extends BaseActivity {
         initList();
         initLoad();
         showNetDialog();
-        viewModel.queryContListByAudit(String.valueOf(page), pageSize, Constants.CZJQ);
+        viewModel.queryContListByAudit(String.valueOf(page), pageSize,String.valueOf(page), pageSize, Constants.CZJQ);
     }
 
     @Override
@@ -76,14 +76,14 @@ public class OperationListActivity extends BaseActivity {
             public void nextPage() {
                 page ++;
                 showNetDialog();
-                viewModel.queryContListByAudit(String.valueOf(page), pageSize, Constants.CZJQ);
+                viewModel.queryContListByAudit(String.valueOf(page), pageSize,String.valueOf(page), pageSize, Constants.CZJQ);
             }
 
             @Override
             public void previousPage() {
                 page --;
                 showNetDialog();
-                viewModel.queryContListByAudit(String.valueOf(page), pageSize, Constants.CZJQ);
+                viewModel.queryContListByAudit(String.valueOf(page), pageSize,String.valueOf(page), pageSize, Constants.CZJQ);
             }
         });
     }
