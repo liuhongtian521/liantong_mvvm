@@ -13,6 +13,7 @@
             android:id="@+id/include_layout"
             layout="@layout/title_style_white" />
         <RelativeLayout
+            android:background="@color/app_black3"
             android:layout_width="match_parent"
             android:layout_height="150dp">
 
@@ -26,6 +27,7 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"/>
             <TextView
+                android:layout_marginBottom="5dp"
                 android:id="@+id/tv_video_name"
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
@@ -36,12 +38,13 @@
         </RelativeLayout>
 
         <com.zdy.study.widgets.LoadMoreConstraintLayout
+            android:layout_marginTop="12dp"
             android:id="@+id/lm_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:paddingRight="100dp"
+               android:layout_marginLeft="44dp"
                 android:id="@+id/rv_web"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />

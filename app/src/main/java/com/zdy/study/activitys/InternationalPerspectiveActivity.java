@@ -35,6 +35,7 @@ public class InternationalPerspectiveActivity extends BaseActivity {
     private InternationalPerspectiveActivityBinding mDataBinding;
     private InternationalPerspectiveViewModel viewModel;
     private List<BroadcastExpressResponBean.PageDataBean> list;
+    private List<BroadcastExpressResponBean.PageDataBean> list1;
     private BroadcastExpressResponBean.PageDataBean pageDataBean;
     private InternationalPerspectiveAdapter adapter;
     private RecyclerView recyclerView;
@@ -45,6 +46,7 @@ public class InternationalPerspectiveActivity extends BaseActivity {
     @Override
     public void onInit() {
         list = new ArrayList<>();
+        list1= new ArrayList<>();
         KeyWord = getIntent().getExtras().getString("KeyWord");
         initList();
         initLoad();
@@ -75,10 +77,13 @@ public class InternationalPerspectiveActivity extends BaseActivity {
         mDataBinding.fcrVideo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (null != list && list.size() > 0) {
+                if (null != list1 && list1.size() > 0) {
                     Bundle bundle = new Bundle();
-                    bundle.putString("url", pageDataBean.getContVideo().getVideoUrl());
-                    startActivityByRouter(ARouterPath.VideoActivity, bundle);
+                    bundle.putString("key", KeyWord);
+                    bundle.putInt("PraiseCount", list1.get(0).getPraiseCount());
+                    bundle.putString("Collection", list1.get(0).getCollection());
+                    bundle.putString("INTERNATIONAL_VIEW", list1.get(0).getId());
+                    startActivityByRouter(ARouterPath.InternationalPerspectiveDetailsActivity, bundle);
                 }
 
             }
@@ -131,7 +136,9 @@ public class InternationalPerspectiveActivity extends BaseActivity {
             }
             mDataBinding.lmView.setList(listResult.getResult().getPageData(), page);
             list.clear();
+            list1.clear();
             list.addAll(listResult.getResult().getPageData());
+            list1.addAll(listResult.getResult().getPageData());
             if (list.size() > 0) {
                 pageDataBean = list.get(0);
                 mDataBinding.tvVideoName.setText(list.get(0).getContName());

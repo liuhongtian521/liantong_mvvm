@@ -193,8 +193,8 @@ public class NetDataRepository {
     //我的讨论室列表
 
     public void pageListMyPad(String argPage, String argPageSize,
-                            MutableLiveData<BaseResponseData<DiscussRoomListBean>> mLiveData,
-                            CompositeDisposable mDisposable) {
+                              MutableLiveData<BaseResponseData<DiscussRoomListBean>> mLiveData,
+                              CompositeDisposable mDisposable) {
         Observable<BaseResponseData<DiscussRoomListBean>> responseData = ApiClient.getNetDataService()
                 .pageListMyPad(argPage, argPageSize);
         if (responseObserv == null)
@@ -269,12 +269,15 @@ public class NetDataRepository {
     }
 
     //网络课程
-    public void pageByApp(String argPage,
+    public void pageByApp(String current,
+                          String size, String argPage,
                           String argPageSize,
                           MutableLiveData<BaseResponseData<WebCourseResponseBean>> mLiveData,
                           CompositeDisposable mDisposable) {
         Observable<BaseResponseData<WebCourseResponseBean>> responseData = ApiClient.getNetDataService()
-                .pageByApp(argPage,
+                .pageByApp(current,
+                        size,
+                        argPage,
                         argPageSize);
         if (responseObserv == null)
             responseObserv = new ResponseObserv();
@@ -337,12 +340,13 @@ public class NetDataRepository {
             responseObserv = new ResponseObserv();
         responseObserv.responseObserv(responseData, mLiveData, mDisposable);
     }
+
     //话题与讨论列表
-    public void pageMyTopicListPAD( String argPage, String argPageSize,
-                                  MutableLiveData<BaseResponseData<TopicResponseBean>> mLiveData,
-                                  CompositeDisposable mDisposable) {
+    public void pageMyTopicListPAD(String argPage, String argPageSize,
+                                   MutableLiveData<BaseResponseData<TopicResponseBean>> mLiveData,
+                                   CompositeDisposable mDisposable) {
         Observable<BaseResponseData<TopicResponseBean>> responseData = ApiClient.getNetDataService()
-                .pageMyTopicListPAD( argPage, argPageSize);
+                .pageMyTopicListPAD(argPage, argPageSize);
         if (responseObserv == null)
             responseObserv = new ResponseObserv();
         responseObserv.responseObserv(responseData, mLiveData, mDisposable);
@@ -455,7 +459,7 @@ public class NetDataRepository {
 
     //阅读记录标题头
     public void historyQueryStruList(MutableLiveData<BaseResponseData<MyCollectionTitleResponse>> mLiveData,
-                              CompositeDisposable mDisposable) {
+                                     CompositeDisposable mDisposable) {
         Observable<BaseResponseData<MyCollectionTitleResponse>> responseData = ApiClient.getNetDataService()
                 .historyQueryStruList();
         if (responseObserv == null)
@@ -466,8 +470,8 @@ public class NetDataRepository {
     //阅读记录列表
     public void queryReadNotes(String argStruCode, String contentParentId, String struId,
                                String content, String argPage, String argPageSize,
-                                    MutableLiveData<BaseResponseData<HistoryResponse>> mLiveData,
-                                    CompositeDisposable mDisposable) {
+                               MutableLiveData<BaseResponseData<HistoryResponse>> mLiveData,
+                               CompositeDisposable mDisposable) {
         Observable<BaseResponseData<HistoryResponse>> responseData = ApiClient.getNetDataService()
                 .queryReadNotes(argStruCode, contentParentId, struId, content,
                         argPage, argPageSize);

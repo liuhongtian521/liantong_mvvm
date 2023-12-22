@@ -48,7 +48,6 @@
                         android:layout_marginLeft="13dp"
                         android:layout_marginTop="16dp"
                         android:layout_toRightOf="@+id/iv_book_name"
-                        android:text="123"
                         android:textColor="@color/app_black3"
                         android:textSize="15sp" />
 
@@ -63,7 +62,6 @@
                         android:layout_toRightOf="@+id/iv_book_name"
                         android:ellipsize="end"
                         android:maxLines="3"
-                        android:text="123"
                         android:textColor="@color/text_908f94"
                         android:textSize="10sp" />
 
@@ -78,7 +76,6 @@
                         android:layout_toRightOf="@+id/iv_book_name"
                         android:ellipsize="end"
                         android:maxLines="3"
-                        android:text="123"
                         android:textColor="@color/text_908f94"
                         android:textSize="10sp" />
 

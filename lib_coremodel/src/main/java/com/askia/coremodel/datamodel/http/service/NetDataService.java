@@ -136,7 +136,8 @@ public interface NetDataService {
 
     // 网络课程
     @GET("/cdls-bds/App/pageByApp")
-    Observable<BaseResponseData<WebCourseResponseBean>> pageByApp(@Query("argPage") String argPage, @Query("argPageSize") String argPageSize);
+    Observable<BaseResponseData<WebCourseResponseBean>> pageByApp(@Query("current") String current,
+                                                                  @Query("size") String size,@Query("argPage") String argPage, @Query("argPageSize") String argPageSize);
 
     // 网络课程
     @GET("/cdls-cms/DiscussionRoomController/queryHotRooms")

@@ -22,6 +22,11 @@ public class CourseQueryAdapter extends BaseQuickAdapter<CourseQueryResponseBean
         if (null != item.getCalendarDate()) {
             helper.setText(R.id.tv_month, item.getCalendarDate().substring(item.getCalendarDate().length() - 2));
         }
-        helper.setText(R.id.tv_course, item.getCurriculumNum() + "节");
+        if ("0".equals(item.getCurriculumNum())) {
+            helper.setText(R.id.tv_course, "无");
+        } else {
+            helper.setText(R.id.tv_course, item.getCurriculumNum() + "节");
+        }
+
     }
 }

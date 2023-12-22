@@ -179,14 +179,14 @@ public class MyCollectionActivity extends BaseActivity {
             public void nextPage() {
                 page++;
                 showNetDialog();
-                viewModel.queryCollectionList(mListTitle.get(pageTab).getStruCode(), mListTitle.get(pageTab).getId(), mListTitle.get(pageTab).getStruCode(), mMainBinding.etSearch.getText() + "", "1", "10");
+                viewModel.queryCollectionList(mListTitle.get(pageTab).getStruCode(), mListTitle.get(pageTab).getId(), mListTitle.get(pageTab).getStruCode(), mMainBinding.etSearch.getText() + "", String.valueOf(page), "10");
             }
 
             @Override
             public void previousPage() {
                 page--;
                 showNetDialog();
-                viewModel.queryCollectionList(mListTitle.get(pageTab).getStruCode(), mListTitle.get(pageTab).getId(), mListTitle.get(pageTab).getStruCode(), mMainBinding.etSearch.getText() + "", "1", "10");
+                viewModel.queryCollectionList(mListTitle.get(pageTab).getStruCode(), mListTitle.get(pageTab).getId(), mListTitle.get(pageTab).getStruCode(), mMainBinding.etSearch.getText() + "", String.valueOf(page), "10");
             }
         });
     }

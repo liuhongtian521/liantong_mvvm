@@ -48,24 +48,43 @@
                     android:textColor="#95989E"
                     android:textSize="10sp" />
 
-                <TextView
-                    android:id="@+id/tv_author"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:gravity="center_vertical"
-                    android:text="123123123"
-                    android:textColor="#95989E"
-                    android:textSize="10sp" />
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_source"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:gravity="center_vertical"
+                        android:text="123123123"
+                        android:textColor="#95989E"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:id="@+id/tv_author"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="6dp"
+                        android:gravity="center_vertical"
+                        android:text="123123123"
+                        android:textColor="#95989E"
+                        android:textSize="10sp" />
+                </LinearLayout>
 
                 <com.zdy.study.fcWidgets.FCRelativeLayout
-                    android:visibility="gone"
-                    android:focusable="true"
-                    android:focusableInTouchMode="true"
-                    app:scale="1.02"
+                    android:layout_marginTop="5dp"
                     android:id="@+id/rl_video"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:background="@color/app_black3"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:visibility="gone"
+                    app:scale="1.02">
 
                     <ImageView
                         android:id="@+id/iv_video"
@@ -81,12 +100,12 @@
                 </com.zdy.study.fcWidgets.FCRelativeLayout>
 
                 <WebView
-                    android:visibility="visible"
                     android:id="@+id/web_content"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="#1E1E1E"
-                    android:textSize="@dimen/sp_12" />
+                    android:textSize="@dimen/sp_12"
+                    android:visibility="visible" />
 
                 <View
                     android:layout_width="match_parent"

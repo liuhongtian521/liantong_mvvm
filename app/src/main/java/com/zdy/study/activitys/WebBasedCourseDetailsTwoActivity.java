@@ -26,11 +26,16 @@ public class WebBasedCourseDetailsTwoActivity extends BaseActivity {
     private List<WebCourseResponseBean.RecordsBean.SonListBean> list;
     private int page = 1;
     private String pageSize = "10";
+    private String mTitle;
 
     @Override
     public void onInit() {
-        onInTitle();
-
+        mTitle=getIntent().getExtras().getString("ENTITY_LIST_tvTitle_two_title");
+        if ("1".equals(mTitle)){
+            onInTitle("网络课程详情");
+        }else {
+            onInTitle("网络课程分集详情");
+        }
         // 在目标活动（TargetActivity）中获取Bundle
         mDataBinding.tvTitle.setText(getIntent().getExtras().getString("ENTITY_LIST_tvTitle_two"));
         mDataBinding.tvDate.setText(getIntent().getExtras().getString("ENTITY_LIST_tvDate_two"));
@@ -40,8 +45,8 @@ public class WebBasedCourseDetailsTwoActivity extends BaseActivity {
         mDataBinding.tvTitleCourse.setText("课程介绍");
         onInitRV();
     }
-    private void onInTitle() {
-        mDataBinding.includeLayout.preferenceActivityTitleText.setText("网络课程分集详情");
+    private void onInTitle(String title) {
+        mDataBinding.includeLayout.preferenceActivityTitleText.setText(title);
         mDataBinding.includeLayout.preferenceActivityTitleImage.setOnClickListener(v -> {
             finish();
         });

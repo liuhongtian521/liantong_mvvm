@@ -130,10 +130,19 @@
             app:tabMaxWidth="200dp"
             app:tabMinWidth="0dp"
             app:tabMode="auto" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_book"
+        <com.zdy.study.widgets.LoadMoreConstraintLayout
+            android:id="@+id/lm_materials_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent"
+            android:layout_marginTop="12dp">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_book"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="44dp"
+                android:focusable="true"
+                android:focusableInTouchMode="true" />
+        </com.zdy.study.widgets.LoadMoreConstraintLayout>
     </LinearLayout>
 </layout>

@@ -19,11 +19,13 @@ public class WebBasedCourseViewModel extends BaseViewModel {
     }
 
     //通讯录
-    public void pageByApp( String argPage,
-                                      String argPageSize) {
+    public void pageByApp(String current,
+                          String size, String argPage,
+                          String argPageSize) {
 
         if (netDataRepository == null)
             netDataRepository = new NetDataRepository();
-        netDataRepository.pageByApp(argPage, argPageSize, mPageListPadData, mDisposable);
+        netDataRepository.pageByApp(current,
+                size, argPage, argPageSize, mPageListPadData, mDisposable);
     }
 }

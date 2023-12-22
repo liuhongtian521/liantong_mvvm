@@ -1,5 +1,6 @@
 package com.zdy.study.activitys;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.View;
@@ -34,30 +35,37 @@ import java.util.List;
 public class WebBasedCourseActivity extends BaseActivity {
     private WebBasedCourseActivityBinding mDataBinding;
     private WebBasedCourseViewModel viewModel;
+    //去掉第一条数据的list
     private List<WebCourseResponseBean.RecordsBean> list;
+    //未去掉第一条数据的list
+    private List<WebCourseResponseBean.RecordsBean> list1;
     private WebBaseCourseAdapter adapter;
     private RecyclerView recyclerView;
     private int page = 1;
     private String pageSize = "10";
+    private String mUrl;
 
 
     @Override
     public void onInit() {
         list = new ArrayList<>();
+        list1 = new ArrayList<>();
         onInTitle();
         initList();
         initLoad();
     }
+
     private void onInTitle() {
         mDataBinding.includeLayout.preferenceActivityTitleText.setText("网络课程列表");
         mDataBinding.includeLayout.preferenceActivityTitleImage.setOnClickListener(v -> {
             finish();
         });
     }
+
     private void initList() {
 
         list = new ArrayList<>();
-        viewModel.pageByApp("1", "10");
+        viewModel.pageByApp("1", "10", "1", "10");
         recyclerView = mDataBinding.rvWeb;
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);//数字为行数或列数
         adapter = new WebBaseCourseAdapter(list, this);
@@ -68,7 +76,7 @@ public class WebBasedCourseActivity extends BaseActivity {
             public void onClick(View v) {
                 if (null != list && list.size() > 0) {
                     Bundle bundle = new Bundle();
-                    bundle.putString("url", list.get(0).getVideoUrl());
+                    bundle.putString("url", mUrl);
                     startActivityByRouter(ARouterPath.VideoActivity, bundle);
                 }
 
@@ -77,22 +85,27 @@ public class WebBasedCourseActivity extends BaseActivity {
         adapter.setOnItemClickListener((adapter, view, position) -> {
             Bundle bundle = new Bundle();
             //bundle.putString("url", list.get(position).getVideoUrl());
-            if (null!=list&&list.size()>0){
-                bundle.putSerializable("ENTITY_LIST", (ArrayList<? extends Serializable>) list.get(position).getSonList());
-                bundle.putString("ENTITY_LIST_tvTitle", list.get(position).getTitle());
-                bundle.putString("ENTITY_LIST_tvDate",  list.get(position).getUploadTime());
-                bundle.putString("ENTITY_LIST_tvAuthor",  list.get(position).getAuthor());
-                bundle.putString("ENTITY_LIST_url",  list.get(position).getVideoUrl());
-                bundle.putString("ENTITY_LIST_show_url",  list.get(position).getShowUrl());
-                startActivityByRouter(ARouterPath.WebBasedCourseDetailsActivity, bundle);
-            }else {
-                bundle.putString("ENTITY_LIST_tvTitle_two", list.get(position).getTitle());
-                bundle.putString("ENTITY_LIST_tvDate_two",  list.get(position).getUploadTime());
-                bundle.putString("ENTITY_LIST_tvAuthor_two",  list.get(position).getAuthor());
-                bundle.putString("ENTITY_LIST_url_two",  list.get(position).getVideoUrl());
-                bundle.putString("ENTITY_LIST_show_url_two",  list.get(position).getShowUrl());
-                bundle.putString("ENTITY_LIST_introduction_two",  list.get(position).getIntroduction());
-                startActivityByRouter(ARouterPath.WebBasedCourseDetailsTwoActivity, bundle);
+            if (null != list && list.size() > 0) {
+
+                if (null != list.get(position).getSonList() && list.get(position).getSonList().size() > 0) {
+                    bundle.putSerializable("ENTITY_LIST", (ArrayList<? extends Serializable>) list.get(position).getSonList());
+                    bundle.putString("ENTITY_LIST_tvTitle", list.get(position).getTitle());
+                    bundle.putString("ENTITY_LIST_tvDate", list.get(position).getUploadTime());
+                    bundle.putString("ENTITY_LIST_tvAuthor", list.get(position).getAuthor());
+                    bundle.putString("ENTITY_LIST_url", list.get(position).getVideoUrl());
+                    bundle.putString("ENTITY_LIST_show_url", list.get(position).getShowUrl());
+                    startActivityByRouter(ARouterPath.WebBasedCourseDetailsActivity, bundle);
+                } else {
+                    //list为空直接跳转到详情页面
+                    bundle.putString("ENTITY_LIST_tvTitle_two_title","1");
+                    bundle.putString("ENTITY_LIST_tvTitle_two", list.get(position).getTitle());
+                    bundle.putString("ENTITY_LIST_tvDate_two", list.get(position).getUploadTime());
+                    bundle.putString("ENTITY_LIST_tvAuthor_two", list.get(position).getAuthor());
+                    bundle.putString("ENTITY_LIST_url_two", list.get(position).getVideoUrl());
+                    bundle.putString("ENTITY_LIST_show_url_two", list.get(position).getShowUrl());
+                    bundle.putString("ENTITY_LIST_introduction_two", list.get(position).getIntroduction());
+                    startActivityByRouter(ARouterPath.WebBasedCourseDetailsTwoActivity, bundle);
+                }
             }
 
         });
@@ -104,14 +117,14 @@ public class WebBasedCourseActivity extends BaseActivity {
             public void nextPage() {
                 page++;
                 showNetDialog();
-                viewModel.pageByApp(String.valueOf(page), pageSize);
+                viewModel.pageByApp(String.valueOf(page), pageSize, String.valueOf(page), pageSize);
             }
 
             @Override
             public void previousPage() {
                 page--;
                 showNetDialog();
-                viewModel.pageByApp(String.valueOf(page), pageSize);
+                viewModel.pageByApp(String.valueOf(page), pageSize, String.valueOf(page), pageSize);
             }
         });
     }
@@ -126,6 +139,7 @@ public class WebBasedCourseActivity extends BaseActivity {
         mDataBinding = DataBindingUtil.setContentView(this, R.layout.web_based_course_activity);
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     @Override
     public void onSubscribeViewModel() {
         viewModel.getPageListPadData().observe(this, listResult -> {
@@ -134,25 +148,21 @@ public class WebBasedCourseActivity extends BaseActivity {
                 ToastUtils.showLong(listResult.getMessage().toString());
                 return;
             }
-            if (listResult.getData().getRecords() == null ||listResult.getData().getRecords().size() == 0) {
-                mDataBinding.lmView.showEmptyView(View.VISIBLE);
-                return;
-            } else
-                mDataBinding.lmView.showEmptyView(View.GONE);
-            if (page == 1)
-                mDataBinding.lmView.setPreviousPageVisibility(View.GONE);
-            else
-                mDataBinding.lmView.setPreviousPageVisibility(View.VISIBLE);
-            if (listResult.getData().getRecords().size() < 10)
-                mDataBinding.lmView.setNextPageVisibility(View.GONE);
-            else
-                mDataBinding.lmView.setNextPageVisibility(View.VISIBLE);
             list.clear();
+            list1.clear();
             list.addAll(listResult.getData().getRecords());
+            list1.addAll(listResult.getData().getRecords());
+            mDataBinding.lmView.setList(listResult.getData().getRecords(), page);
             adapter.notifyDataSetChanged();
             if (null != list && list.size() > 0 && !"".equals(list.get(0).getShowUrl())) {
                 Glide.with(this).load(list.get(0).getShowUrl()).into(mDataBinding.ivHeadVideo);
+                mDataBinding.tvVideoName.setText(list.get(0).getTitle());
             }
+            if (null != list && list.size() > 0) {
+                mUrl = list.get(0).getVideoUrl();
+                list.remove(0);
+            }
+
         });
     }
 

@@ -37,7 +37,7 @@ public class DigitalClassesFragment extends BaseFragment {
         list.add("电子课件");
         list.add("学习资料");
         list.add("学员手册");
-        list.add("联播快速");
+        list.add("联播速速");
         list.add("网络课程");
         list.add("在院服务");
         list.add("语音记事");

@@ -1,5 +1,6 @@
 package com.zdy.study.view;
 
+import com.blankj.utilcode.util.ToastUtils;
 import com.zdy.study.R;
 import com.zdy.study.databinding.DatePickerBinding;
 import com.zdy.study.fcWidgets.FCButton;
@@ -107,12 +108,12 @@ public class DatePickerDialog extends DialogFragment implements DialogInterface.
         super.onResume();
         FCButton buttonYes = alertDialog.findViewById(R.id.yes);
         FCButton buttonNo = alertDialog.findViewById(R.id.no);
-        textView1       = alertDialog.findViewById(R.id.tv_year_1);
-        textView2       = alertDialog.findViewById(R.id.tv_year_2);
-        textView3       = alertDialog.findViewById(R.id.tv_year_3);
-        textView4       = alertDialog.findViewById(R.id.tv_year_4);
-        textView5       = alertDialog.findViewById(R.id.tv_year_5);
-        textView6       = alertDialog.findViewById(R.id.tv_year_6);
+        textView1 = alertDialog.findViewById(R.id.tv_year_1);
+        textView2 = alertDialog.findViewById(R.id.tv_year_2);
+        textView3 = alertDialog.findViewById(R.id.tv_year_3);
+        textView4 = alertDialog.findViewById(R.id.tv_year_4);
+        textView5 = alertDialog.findViewById(R.id.tv_year_5);
+        textView6 = alertDialog.findViewById(R.id.tv_year_6);
         textView_month1 = alertDialog.findViewById(R.id.tv_month_1);
         textView_month2 = alertDialog.findViewById(R.id.tv_month_2);
         textView_month3 = alertDialog.findViewById(R.id.tv_month_3);
@@ -132,7 +133,7 @@ public class DatePickerDialog extends DialogFragment implements DialogInterface.
         textView4.setScale(1.3f);
         textView5.setScale(1.3f);
         textView6.setScale(1.3f);
-        textView_month1 .setScale(1.3f);
+        textView_month1.setScale(1.3f);
         textView_month2.setScale(1.3f);
         textView_month3.setScale(1.3f);
         textView_month4.setScale(1.3f);
@@ -236,10 +237,16 @@ public class DatePickerDialog extends DialogFragment implements DialogInterface.
         buttonYes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if ("".equals(year)||null==year) {
+                    ToastUtils.showLong("请选择年");
+                } else if ("".equals(month)||null==month) {
+                    ToastUtils.showLong("请选择月份");
+                } else {
+                    // 调用回调接口，将选择的日期返回给调用方
+                    listener.onDateSet(year, month);
+                    alertDialog.dismiss();
+                }
 
-                // 调用回调接口，将选择的日期返回给调用方
-                listener.onDateSet(year, month);
-                alertDialog.dismiss();
             }
         });
         buttonNo.setOnClickListener(new View.OnClickListener() {
@@ -252,10 +259,11 @@ public class DatePickerDialog extends DialogFragment implements DialogInterface.
     }
 
     FCTextview lastYear;
-    private void setYear(FCTextview view){
+
+    private void setYear(FCTextview view) {
         view.setTextColor(getResources().getColor(R.color.app_white));
         view.setBackground(mContext.getResources().getDrawable(R.color.app_red));
-        if (lastYear != null){
+        if (lastYear != null&& !lastYear.equals(view)) {
             lastYear.setTextColor(getResources().getColor(R.color.app_black));
             lastYear.setBackground(mContext.getResources().getDrawable(R.color.app_white));
         }
@@ -263,10 +271,11 @@ public class DatePickerDialog extends DialogFragment implements DialogInterface.
     }
 
     FCTextview lastMounth;
-    private void setMonth(FCTextview view){
+
+    private void setMonth(FCTextview view) {
         view.setTextColor(getResources().getColor(R.color.app_white));
         view.setBackground(mContext.getResources().getDrawable(R.color.app_red));
-        if (lastMounth != null){
+        if (lastMounth != null&& !lastMounth.equals(view)) {
             lastMounth.setTextColor(getResources().getColor(R.color.app_black));
             lastMounth.setBackground(mContext.getResources().getDrawable(R.color.app_white));
         }

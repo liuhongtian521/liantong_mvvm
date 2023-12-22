@@ -65,9 +65,9 @@ public class InternationalPerspectiveDetailsActivity extends BaseActivity {
         mDataBinding.flOperation.getComments(getIntent().getExtras().getString("INTERNATIONAL_VIEW"), key);//获取评论
         viewModel.queryCont(getIntent().getExtras().getString("INTERNATIONAL_VIEW"));
         mDataBinding.rlVideo.setOnClickListener(v -> {
-                Bundle bundle = new Bundle();
-                bundle.putString("url", mUrl);
-                startActivityByRouter(ARouterPath.VideoActivity, bundle);
+            Bundle bundle = new Bundle();
+            bundle.putString("url", mUrl);
+            startActivityByRouter(ARouterPath.VideoActivity, bundle);
         });
     }
 
@@ -103,12 +103,25 @@ public class InternationalPerspectiveDetailsActivity extends BaseActivity {
             mDataBinding.tvTitle.setText(listResult.getResult().getContName());
             mDataBinding.tvDate.setText(listResult.getResult().getDisplayTime());
             mDataBinding.tvIntroduction.setText(getIntent().getExtras().getString("ENTITY_LIST_introduction_two"));
-            mDataBinding.tvAuthor.setText("作者：" + listResult.getResult().getLink());
-            if (null == listResult.getResult().getContVideo() || "".equals(listResult.getResult().getContVideo().getVideoUrl())||null==listResult.getResult().getContVideo().getVideoUrl()) {
+            /*实践案例作者隐藏*/
+            if (!"".equals(listResult.getResult().getLink())) {
+                mDataBinding.tvAuthor.setVisibility(View.VISIBLE);
+                mDataBinding.tvAuthor.setText("作者：" + listResult.getResult().getLink());
+            } else {
+                mDataBinding.tvAuthor.setVisibility(View.GONE);
+            }
+
+            if ("".equals(listResult.getResult().getSource())) {
+                mDataBinding.tvSource.setVisibility(View.GONE);
+            } else {
+                mDataBinding.tvSource.setVisibility(View.VISIBLE);
+                mDataBinding.tvSource.setText("来源：" + listResult.getResult().getSource());
+            }
+            if (null == listResult.getResult().getContVideo() || "".equals(listResult.getResult().getContVideo().getVideoUrl()) || null == listResult.getResult().getContVideo().getVideoUrl()) {
                 mDataBinding.rlVideo.setVisibility(View.GONE);
             } else {
                 mDataBinding.rlVideo.setVisibility(View.VISIBLE);
-                Glide.with(this).load(listResult.getResult().getImgUrl()).into(mDataBinding.ivVideo);
+                Glide.with(this).load(listResult.getResult().getImgUri()).into(mDataBinding.ivVideo);
             }
             mUrl = listResult.getResult().getContVideo().getVideoUrl();
             setContent(listResult.getResult().getAudioListList().get(0).getContText(), mDataBinding.webContent);
@@ -117,9 +130,9 @@ public class InternationalPerspectiveDetailsActivity extends BaseActivity {
     }
 
     private void setContent(String dataCont, WebView webView) {
-        if ("".equals(dataCont)){
+        if ("".equals(dataCont)) {
             mDataBinding.webContent.setVisibility(View.GONE);
-        }else {
+        } else {
             mDataBinding.webContent.setVisibility(View.VISIBLE);
         }
         StringBuffer sb = new StringBuffer();

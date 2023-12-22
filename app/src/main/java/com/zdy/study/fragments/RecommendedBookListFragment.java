@@ -31,6 +31,7 @@ import com.zdy.study.cdatamodel.viewmodel.BookListViewModel;
 import com.zdy.study.cdatamodel.viewmodel.DiscussRoomViewModel;
 import com.zdy.study.databinding.RecommendedBookListFragmentBinding;
 import com.zdy.study.tools.Constants;
+import com.zdy.study.widgets.LoadMoreConstraintLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +46,7 @@ public class RecommendedBookListFragment extends BaseFragment {
     private BookListAdapter adapter;
     private int pageTab = 0;
     private BooksRespponseBean.PageDataBean bean;
+    private int page = 1;
 
     @Override
     public void onInit() {
@@ -54,6 +56,7 @@ public class RecommendedBookListFragment extends BaseFragment {
         viewModel.bookClass(Constants.SJZD);
         viewModel.padList("1", "10", "");
         initRvListener();
+        initLoad();
     }
 
     @Override
@@ -94,6 +97,22 @@ public class RecommendedBookListFragment extends BaseFragment {
         mDataBinding = DataBindingUtil.inflate(inflater, R.layout.recommended_book_list_fragment, container, false);
         mDataBinding.setHandlers(this);
         return mDataBinding.getRoot();
+    }
+
+    private void initLoad() {
+        mDataBinding.lmMaterialsView.setLoadLitetsner(new LoadMoreConstraintLayout.LoadLitetsner() {
+            @Override
+            public void nextPage() {
+                page++;
+                viewModel.padList(String.valueOf(page), "10", mBookList.get(pageTab).getClassification());
+            }
+
+            @Override
+            public void previousPage() {
+                page--;
+                viewModel.padList(String.valueOf(page), "10", mBookList.get(pageTab).getClassification());
+            }
+        });
     }
 
     private void initTab() {
@@ -155,10 +174,11 @@ public class RecommendedBookListFragment extends BaseFragment {
             }
             list.clear();
             if (null != listResult.getResult() && null != listResult.getResult().getPageData() && listResult.getResult().getPageData().size() > 0) {
+                mDataBinding.lmMaterialsView.setList(listResult.getResult().getPageData(), page);
                 list.addAll(listResult.getResult().getPageData());
                 bean = list.get(0);
                 mDataBinding.tvBookName.setText(list.get(0).getBookName());
-                mDataBinding.tvBookAuthor.setText("(" + list.get(0).getAuthorName() + ")");
+                mDataBinding.tvBookAuthor.setText("(作者：" + list.get(0).getAuthorName() + ")");
                 mDataBinding.tvContent.setText(list.get(0).getBriefIntroduction());
                 if (!"".equals(list.get(0).getCoverUrl())) {
                     Glide.with(getActivity()).load(list.get(0).getCoverUrl()).into(mDataBinding.ivBookName);
