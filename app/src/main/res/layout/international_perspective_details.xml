@@ -24,7 +24,7 @@
             android:fillViewport="true"
             android:scrollbars="none">
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
@@ -36,7 +36,9 @@
                     android:gravity="center_vertical"
                     android:text="123123123"
                     android:textColor="@color/app_black3"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tv_date"
@@ -46,12 +48,17 @@
                     android:gravity="center_vertical"
                     android:text="123123123"
                     android:textColor="#95989E"
-                    android:textSize="10sp" />
+                    android:textSize="10sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_title" />
 
                 <LinearLayout
+                    android:id="@+id/ll_check"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_date">
 
                     <TextView
                         android:id="@+id/tv_source"
@@ -76,10 +83,12 @@
                 </LinearLayout>
 
                 <com.zdy.study.fcWidgets.FCRelativeLayout
-                    android:layout_marginTop="5dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ll_check"
                     android:id="@+id/rl_video"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
                     android:background="@color/app_black3"
                     android:focusable="true"
                     android:focusableInTouchMode="true"
@@ -100,6 +109,8 @@
                 </com.zdy.study.fcWidgets.FCRelativeLayout>
 
                 <WebView
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/rl_video"
                     android:id="@+id/web_content"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -108,12 +119,17 @@
                     android:visibility="visible" />
 
                 <View
+                    android:id="@+id/view_red"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/web_content"
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
                     android:layout_marginTop="15dp"
                     android:background="#E2E4E8" />
 
                 <TextView
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view_red"
                     android:id="@+id/tv_introduction"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -121,10 +137,12 @@
                     android:textSize="16sp" />
 
                 <com.zdy.study.widgets.FavoritesLikesLayout
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_introduction"
                     android:id="@+id/fl_operation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
-            </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
     </LinearLayout>
 </layout>

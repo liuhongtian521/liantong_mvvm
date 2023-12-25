@@ -86,6 +86,9 @@ public class TeacherIntroductionDetails extends BaseActivity {
                 ToastUtils.showLong(listResult.getMessage().toString());
                 return;
             }
+            if (null==listResult.getData().getRecords()){
+                ToastUtils.showLong("暂无师资数据");
+            }
             if (null != listResult.getData() && null != listResult.getData().getRecords() && listResult.getData().getRecords().size() > 0) {
                 mMainBinding.tvTeacherName.setText(listResult.getData().getRecords().get(0).getTeacherName());
                 mMainBinding.tvCareer.setText(listResult.getData().getRecords().get(0).getTeacherPost());
