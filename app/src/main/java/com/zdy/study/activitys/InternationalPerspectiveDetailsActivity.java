@@ -20,6 +20,7 @@ import com.askia.common.base.BaseActivity;
 import com.askia.coremodel.datamodel.http.entities.consume.WebCourseResponseBean;
 import com.blankj.utilcode.util.ToastUtils;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.zdy.study.R;
 import com.zdy.study.adapter.WebBaseCourseDetailsAdapter;
@@ -29,6 +30,7 @@ import com.zdy.study.databinding.InternationalPerspectiveDetailsBinding;
 import com.zdy.study.databinding.WebBasedCourseDetailsTwoActivityBinding;
 import com.zdy.study.tools.Constants;
 import com.zdy.study.tools.URLEncodeing;
+import com.zdy.study.uitls.VideoFrameExtractor;
 
 import java.util.List;
 
@@ -43,7 +45,7 @@ public class InternationalPerspectiveDetailsActivity extends BaseActivity {
     private String pageSize = "10";
     private InternationalPerspectiveDetailsViewModel viewModel;
     private String key;
-    private String mUrl;
+    private String mUrl = "";
 
     @Override
     public void onInit() {
@@ -122,22 +124,27 @@ public class InternationalPerspectiveDetailsActivity extends BaseActivity {
                 mDataBinding.tvSource.setVisibility(View.VISIBLE);
                 mDataBinding.tvSource.setText("来源：" + listResult.getResult().getSource());
             }
+            mUrl = listResult.getResult().getContVideo().getVideoUrl();
             if (null == listResult.getResult().getContVideo() || "".equals(listResult.getResult().getContVideo().getVideoUrl()) || null == listResult.getResult().getContVideo().getVideoUrl()) {
                 mDataBinding.rlVideo.setVisibility(View.GONE);
             } else {
                 mDataBinding.rlVideo.setVisibility(View.VISIBLE);
+                RequestOptions options = new RequestOptions();
+                options.skipMemoryCache(true).diskCacheStrategy(DiskCacheStrategy.ALL)
+                        .frame(1000000)
+                        .centerCrop();
                 //glide显示第一帧图像
-      /*          Glide.with(getContext())
-                        .setDefaultRequestOptions(
-                                new RequestOptions()
-                                        .frame(0)
-                                        .centerCrop()
-                        )
-                        .load(listResult.getResult().getContVideo().getVideoUrl())
-                        .into(mDataBinding.ivVideo);*/
-               Glide.with(this).load(listResult.getResult().getImgUri()).into(mDataBinding.ivVideo);
+                Glide.with(this)
+                        .setDefaultRequestOptions(options)
+                        .load(mUrl)
+                        .into(mDataBinding.ivVideo);
+//                try {
+//                    Glide.with(this).load(VideoFrameExtractor.getVideoFirstFrame(mUrl)).into(mDataBinding.ivVideo);
+//                } catch (Exception e) {
+//                    throw new RuntimeException(e);
+//                }
             }
-            mUrl = listResult.getResult().getContVideo().getVideoUrl();
+
             setContent(listResult.getResult().getAudioListList().get(0).getContText(), mDataBinding.webContent);
         });
 

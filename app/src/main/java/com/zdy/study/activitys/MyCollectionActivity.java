@@ -70,7 +70,6 @@ public class MyCollectionActivity extends BaseActivity {
                 case R.id.iv_delete:
                     //删除一条
                     viewModel.delCollectionList(list.get(position).getId(), mListTitle.get(pageTab).getStruCode());
-                    viewModel.queryCollectionList(mListTitle.get(pageTab).getStruCode(), mListTitle.get(pageTab).getId(), mListTitle.get(pageTab).getStruCode(), mMainBinding.etSearch.getText() + "", "1", "10");
                     break;
             }
         });
@@ -114,7 +113,13 @@ public class MyCollectionActivity extends BaseActivity {
             //  tab2.setText(studyDictionaryBean.getDictValue());
             view = LayoutInflater.from(this).inflate(R.layout.tablayout_bg_two, null);
             TextView tv = (TextView) view.findViewById(R.id.tv_tablayout_name);
-            tv.setText(dataBean.getStruName());
+            if ("联播主新闻".equals(dataBean.getStruName())){
+                tv.setText("联播速递");
+            }else {
+                tv.setText(dataBean.getStruName());
+            }
+
+
             tab2.setCustomView(view);
             mMainBinding.tabLayout.addTab(tab2);
         }
@@ -207,6 +212,16 @@ public class MyCollectionActivity extends BaseActivity {
                 }
             }
             adapter.notifyDataSetChanged();
+        });
+        viewModel.getmDelCollectionListData().observe(this, listResult -> {
+            if (!listResult.isSuccess()) {
+                ToastUtils.showLong(listResult.getMessage().toString());
+                return;
+            }
+            if (listResult.isSuccess()) {
+                viewModel.queryCollectionList(mListTitle.get(pageTab).getStruCode(), mListTitle.get(pageTab).getId(), mListTitle.get(pageTab).getStruCode(), mMainBinding.etSearch.getText() + "", "1", "10");
+            }
+
         });
         viewModel.getPageListPadData1().observe(this, listResult -> {
             if (!listResult.isSuccess()) {

@@ -32,8 +32,10 @@ public class DiscussRoomAdapter extends BaseQuickAdapter<DiscussRoomListBean.Pag
         helper.setText(R.id.subject, item.getTopicCount() + "个话题");
         helper.setText(R.id.tv_dfdsf, item.getRoomName());
         TextView textView = helper.getView(R.id.tv_my_create);
+        ImageView imageView = helper.getView(R.id.iv_discuss_left);
         if (item.getCreateBy().equals(item.getMyId())) {
             textView.setVisibility(View.VISIBLE);
+            Glide.with(mContext).load(item.getCreateUserImg()).into(imageView);
         } else {
             textView.setVisibility(View.GONE);
         }

@@ -27,7 +27,7 @@ public class BookDetailsActivity extends BaseActivity {
         //图片
         Glide.with(this).load(dataBean.getCoverUrl()).into(detailsActivityBinding.ivBookName);
         detailsActivityBinding.tvBookName.setText(dataBean.getBookName());
-        detailsActivityBinding.tvContentBook.setText("作者：" + dataBean.getRecommendPerson());
+        detailsActivityBinding.tvContentBook.setText("作者：" + dataBean.getAuthorName());
         detailsActivityBinding.tvContent2.setText(dataBean.getBriefIntroduction());
         detailsActivityBinding.tvContent3.setText(dataBean.getChapterContent());
     }
