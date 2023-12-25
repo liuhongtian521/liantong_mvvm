@@ -1,5 +1,9 @@
 package com.zdy.study.activitys;
 
+import static com.askia.common.util.Utils.getContext;
+
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -16,6 +20,7 @@ import com.askia.common.base.BaseActivity;
 import com.askia.coremodel.datamodel.http.entities.consume.WebCourseResponseBean;
 import com.blankj.utilcode.util.ToastUtils;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.zdy.study.R;
 import com.zdy.study.adapter.WebBaseCourseDetailsAdapter;
 import com.zdy.study.cdatamodel.viewmodel.InternationalPerspectiveDetailsViewModel;
@@ -121,7 +126,16 @@ public class InternationalPerspectiveDetailsActivity extends BaseActivity {
                 mDataBinding.rlVideo.setVisibility(View.GONE);
             } else {
                 mDataBinding.rlVideo.setVisibility(View.VISIBLE);
-                Glide.with(this).load(listResult.getResult().getImgUri()).into(mDataBinding.ivVideo);
+                //glide显示第一帧图像
+      /*          Glide.with(getContext())
+                        .setDefaultRequestOptions(
+                                new RequestOptions()
+                                        .frame(0)
+                                        .centerCrop()
+                        )
+                        .load(listResult.getResult().getContVideo().getVideoUrl())
+                        .into(mDataBinding.ivVideo);*/
+               Glide.with(this).load(listResult.getResult().getImgUri()).into(mDataBinding.ivVideo);
             }
             mUrl = listResult.getResult().getContVideo().getVideoUrl();
             setContent(listResult.getResult().getAudioListList().get(0).getContText(), mDataBinding.webContent);

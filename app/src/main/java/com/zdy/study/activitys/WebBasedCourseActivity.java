@@ -74,10 +74,27 @@ public class WebBasedCourseActivity extends BaseActivity {
         mDataBinding.ivHeadVideo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (null != list && list.size() > 0) {
-                    Bundle bundle = new Bundle();
-                    bundle.putString("url", mUrl);
-                    startActivityByRouter(ARouterPath.VideoActivity, bundle);
+                Bundle bundle = new Bundle();
+                if (null != list1 && list1.size() > 0) {
+                    if (null != list1.get(0).getSonList() && list1.get(0).getSonList().size() > 0) {
+                        bundle.putSerializable("ENTITY_LIST", (ArrayList<? extends Serializable>) list1.get(0).getSonList());
+                        bundle.putString("ENTITY_LIST_tvTitle", list1.get(0).getTitle());
+                        bundle.putString("ENTITY_LIST_tvDate", list1.get(0).getUploadTime());
+                        bundle.putString("ENTITY_LIST_tvAuthor", list1.get(0).getAuthor());
+                        bundle.putString("ENTITY_LIST_url", list1.get(0).getVideoUrl());
+                        bundle.putString("ENTITY_LIST_show_url", list1.get(0).getShowUrl());
+                        startActivityByRouter(ARouterPath.WebBasedCourseDetailsActivity, bundle);
+                    } else {
+                        //list为空直接跳转到详情页面
+                        bundle.putString("ENTITY_LIST_tvTitle_two_title","1");
+                        bundle.putString("ENTITY_LIST_tvTitle_two", list1.get(0).getTitle());
+                        bundle.putString("ENTITY_LIST_tvDate_two", list1.get(0).getUploadTime());
+                        bundle.putString("ENTITY_LIST_tvAuthor_two", list1.get(0).getAuthor());
+                        bundle.putString("ENTITY_LIST_url_two", list1.get(0).getVideoUrl());
+                        bundle.putString("ENTITY_LIST_show_url_two", list1.get(0).getShowUrl());
+                        bundle.putString("ENTITY_LIST_introduction_two", list1.get(0).getIntroduction());
+                        startActivityByRouter(ARouterPath.WebBasedCourseDetailsTwoActivity, bundle);
+                    }
                 }
 
             }

@@ -145,6 +145,12 @@ public class CourseQueryActivity extends BaseActivity {
                 }
             }
         });
+        mDataBinding.rlLeader.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivityByRouter(ARouterPath.MapActivity);
+            }
+        });
     }
 
     @Override

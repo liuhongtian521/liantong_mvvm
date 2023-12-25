@@ -14,6 +14,8 @@ public class ARouterPath {
     public static final String LOGIN_ACTIVITY = "/activity/login";
     /*首页*/
     public static final String MAIN_ACTIVITY = "/activity/main";
+    /*地图页面*/
+    public static final String MapActivity = "/activity/MapActivity";
     /*我的收藏*/
     public static final String MyCollectionActivity = "/activity/MyCollectionActivity";
     /*书单*/
