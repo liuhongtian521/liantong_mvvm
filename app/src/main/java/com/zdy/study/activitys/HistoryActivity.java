@@ -1,6 +1,7 @@
 package com.zdy.study.activitys;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -14,12 +15,17 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.askia.common.base.ARouterPath;
 import com.askia.common.base.BaseActivity;
 import com.askia.coremodel.datamodel.http.entities.consume.BooksRespponseBean;
+import com.askia.coremodel.datamodel.http.entities.consume.BroadcastExpressResponBean;
 import com.askia.coremodel.datamodel.http.entities.consume.HistoryResponse;
 import com.askia.coremodel.datamodel.http.entities.consume.MyCollectionTitleResponse;
+import com.askia.coremodel.datamodel.http.entities.consume.Remark;
 import com.blankj.utilcode.util.ToastUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.google.android.material.tabs.TabLayout;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.zdy.study.R;
+import com.zdy.study.adapter.BroadcastExpressAdapter;
 import com.zdy.study.adapter.HistoryAdapter;
 import com.zdy.study.adapter.MyCollectionAdapter;
 import com.zdy.study.cdatamodel.viewmodel.HistoryViewModel;
@@ -27,6 +33,7 @@ import com.zdy.study.databinding.ActivityHistoryBinding;
 import com.zdy.study.tools.Constants;
 import com.zdy.study.widgets.LoadMoreConstraintLayout;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,6 +49,7 @@ public class HistoryActivity extends BaseActivity {
     private int page = 1;
     private int itemType = -1;//item样式
     private int pageTab;
+    private Gson gson;
 
     @Override
     public void onInit() {
@@ -71,9 +79,16 @@ public class HistoryActivity extends BaseActivity {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 if (itemType == HistoryAdapter.LBSD){
-                    Bundle bundle1 = new Bundle();
-                    bundle1.putString("url", histotyList.get(position).getContVideo().getVideoUrl());
-                    startActivityByRouter(ARouterPath.VideoActivity, bundle1);
+                    if (HistoryAdapter.MN == histotyList.get(position).getItemType()) {
+                        Bundle bundle1 = new Bundle();
+                        bundle1.putString("url", histotyList.get(position).getContVideo().getVideoUrl());
+                        startActivityByRouter(ARouterPath.VideoActivity, bundle1);
+                    }else if (HistoryAdapter.FD == histotyList.get(position).getItemType()) {
+                        Bundle bundle = new Bundle();
+                        bundle.putString("key", Constants.SJAL);
+                        bundle.putString("INTERNATIONAL_VIEW", histotyList.get(position).getMyRemark().getId());
+                        startActivityByRouter(ARouterPath.InternationalPerspectiveDetailsActivity, bundle);
+                    }
                 }else if(itemType == HistoryAdapter.TJSD){
                     Bundle bundle = new Bundle();
                     BooksRespponseBean.PageDataBean pageDataBean = new BooksRespponseBean.PageDataBean();
@@ -135,11 +150,16 @@ public class HistoryActivity extends BaseActivity {
             //设置上一页 下一页 缺省页
             binding.lmHistoryView.setList(listResult.getResult().getPageData(), page);
             histotyList.clear();
-            histotyList.addAll(listResult.getResult().getPageData());
-            //添加item样式
-            for (HistoryResponse.PageDataBean pageDataBean: histotyList)
-                pageDataBean.setFieldType(itemType);
 
+            if (itemType ==HistoryAdapter.LBSD)
+                makeFD(listResult.getResult().getPageData());
+            else {
+                histotyList.addAll(listResult.getResult().getPageData());
+                //添加item样式
+                for (HistoryResponse.PageDataBean pageDataBean : histotyList)
+                    pageDataBean.setFieldType(itemType);
+
+            }
             adapter.notifyDataSetChanged();
         });
     }
@@ -233,6 +253,26 @@ public class HistoryActivity extends BaseActivity {
         showNetDialog();
         viewModel.queryReadNotes(title.getStruCode(), title.getId(), title.getStruCode(),
                 binding.etSearch.getText().toString(), String.valueOf(page), "10");
+    }
+
+    //将分段数据加到list中
+    private void makeFD(List<HistoryResponse.PageDataBean> data){
+        if (gson == null)
+            gson = new Gson();
+        for (HistoryResponse.PageDataBean bean: data){
+            bean.setFieldType(HistoryAdapter.MN);
+            histotyList.add(bean);
+            if (!TextUtils.isEmpty(bean.getRemark())){
+                Type type =new TypeToken<List<Remark>>(){}.getType();
+                List<Remark> jsonObject = gson.fromJson(bean.getRemark(), type);
+                for (Remark remark: jsonObject){
+                    HistoryResponse.PageDataBean bean1 = new HistoryResponse.PageDataBean();
+                    bean1.setMyRemark(remark);
+                    bean1.setFieldType(HistoryAdapter.FD);
+                    histotyList.add(bean1);
+                }
+            }
+        }
     }
 
     public void onClickSearch(View view) {

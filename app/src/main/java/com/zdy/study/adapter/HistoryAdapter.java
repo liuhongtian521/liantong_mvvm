@@ -1,6 +1,7 @@
 package com.zdy.study.adapter;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
@@ -33,10 +34,16 @@ public class HistoryAdapter extends BaseMultiItemQuickAdapter<HistoryResponse.Pa
     //推荐书单
     public static final int TJSD = 6;
 
+    //联播速递默认
+    public static final int MN = 11;
+    //联播速递分段
+    public static final int FD = 12;
 
     public HistoryAdapter(@Nullable List<HistoryResponse.PageDataBean> data) {
         super(data);
         addItemType(LBSD, R.layout.broadcast_item);
+        addItemType(MN, R.layout.broadcast_item);
+        addItemType(FD, R.layout.layout_fdyd);
         addItemType(YWSL, R.layout.web_based_course_item);
         addItemType(GJSY, R.layout.web_based_course_item);
         addItemType(SJAL, R.layout.web_based_course_item);
@@ -49,11 +56,19 @@ public class HistoryAdapter extends BaseMultiItemQuickAdapter<HistoryResponse.Pa
     protected void convert(BaseViewHolder helper, HistoryResponse.PageDataBean item) {
         switch (helper.getItemViewType()){
             case LBSD:
+            case MN:
                 helper.setText(R.id.tv_content, item.getContName());
                 helper.setText(R.id.tv_date, item.getContVideo().getTimeLength());
-//                helper.setVisible(R.id.ll_fdyd, false);
+                if (TextUtils.isEmpty(item.getRemark())||"[]".equals(item.getRemark()))
+                    helper.setVisible(R.id.ll_fdyd, false);
+                else
+                    helper.setVisible(R.id.ll_fdyd, true);
                 ImageView imageView = helper.getView(R.id.iv_broadcast_video);
                 Glide.with(mContext).load("http://cdls-cms-image.oss-cn-huhehaote-nebula-1.aliyuncs.com/xinwen_video.jpeg").into(imageView);
+                break;
+            case FD:
+                helper.setText(R.id.tv_content_fdyd, item.getMyRemark().getContName())
+                        .setText(R.id.tv_fd_time, item.getMyRemark().getCreateTime().substring(0, 10));
                 break;
             case YWSL:
             case GJSY:

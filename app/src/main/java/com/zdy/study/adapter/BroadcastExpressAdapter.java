@@ -42,7 +42,8 @@ public class BroadcastExpressAdapter extends BaseMultiItemQuickAdapter<Broadcast
             case MN:
                 helper.setText(R.id.tv_content, item.getContName());
                 helper.setText(R.id.tv_date, item.getContVideo().getTimeLength()).
-                        setText(R.id.tv_create_time, item.getCreateTime().substring(0, 10));
+                        setText(R.id.tv_create_time,
+                                TextUtils.isEmpty(item.getCreateTime())? "": item.getCreateTime().substring(0, 10));
                 /*FCLinearLayout layout = helper.getView(R.id.fcll);
                 layout.setLitScale();*/
                 if (TextUtils.isEmpty(item.getRemark()))

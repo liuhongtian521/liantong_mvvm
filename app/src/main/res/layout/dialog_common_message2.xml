@@ -94,7 +94,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="horizontal">
-            <com.zdy.study.fcWidgets.FCTextview
+            <TextView
                 android:id="@+id/tv_cancel"
                 android:layout_width="match_parent"
                 android:layout_weight="1"
@@ -103,11 +103,11 @@
                 android:focusableInTouchMode="true"
                 android:textSize="14sp"
                 android:text="取消"
-                android:textColor="#4C4E5A"
+                android:textColor="@drawable/text_tab_selector"
                 android:gravity="center"
-                android:background="@drawable/bg_btn_cancel" />
+                android:background="@drawable/ic_tab_selector_bg" />
 
-            <com.zdy.study.fcWidgets.FCTextview
+            <TextView
                 android:id="@+id/tv_sure"
                 android:layout_width="match_parent"
                 android:layout_weight="1"
@@ -115,9 +115,9 @@
                 android:focusableInTouchMode="true"
                 android:focusable="true"
                 android:textSize="14sp"
-                android:background="@drawable/bg_btn_blue"
+                android:background="@drawable/ic_tab_selector_bg"
                 android:text="确定"
-                android:textColor="#FFFFFF"
+                android:textColor="@drawable/text_tab_selector"
                 android:gravity="center"/>
 
 

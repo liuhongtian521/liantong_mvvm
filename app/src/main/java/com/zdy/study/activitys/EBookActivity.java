@@ -163,6 +163,7 @@ public class EBookActivity extends BaseActivity {
             //获取文件名
             URL myURL = new URL(url);
             URLConnection conn = myURL.openConnection();
+            conn.setRequestProperty("Accept-Encoding", "identity");
             conn.connect();
             InputStream is = conn.getInputStream();
             int fileSize = conn.getContentLength();//根据响应获取文件大小

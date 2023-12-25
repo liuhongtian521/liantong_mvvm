@@ -145,8 +145,17 @@ public class HistoryResponse {
         private String authorName;
         private String briefIntroduction;
         private String coverUrl;
+        private Remark myRemark;
 
+        public Remark getMyRemark() {
+            if (myRemark == null)
+                myRemark = new Remark();
+            return myRemark;
+        }
 
+        public void setMyRemark(Remark myRemark) {
+            this.myRemark = myRemark;
+        }
 
         public String getBriefIntroduction() {
             return briefIntroduction == null ? "" : briefIntroduction;
