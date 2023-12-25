@@ -135,8 +135,9 @@ public class RecommendedBookListFragment extends BaseFragment {
         mDataBinding.tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
+                page = 1;
                 pageTab = tab.getPosition();
-                viewModel.padList("1", "10", mBookList.get(pageTab).getClassification());
+                viewModel.padList(String.valueOf(page), "10", mBookList.get(pageTab).getClassification());
             }
 
             @Override

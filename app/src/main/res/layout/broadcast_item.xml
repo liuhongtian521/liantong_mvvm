@@ -73,4 +73,28 @@
             android:layout_marginRight="@dimen/dp_15"
             android:layout_marginTop="@dimen/dp_43" />-->
     </RelativeLayout>
+    <LinearLayout
+        android:id="@+id/ll_fdyd"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="分段要点"
+            android:textColor="@color/app_black3"
+            android:textSize="@dimen/sp_14"
+            android:layout_marginLeft="@dimen/dp_13"
+            android:layout_weight="1"/>
+        <TextView
+            android:id="@+id/tv_create_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/dp_13"
+            android:text=""
+            android:textSize="@dimen/sp_13"
+            android:textColor="#767882"/>
+    </LinearLayout>
 </com.zdy.study.fcWidgets.FCLinearLayout>

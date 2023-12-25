@@ -27,7 +27,7 @@ public class TopicAdapter extends BaseQuickAdapter<TopicResponseBean.PageDataBea
     protected void convert(BaseViewHolder helper, TopicResponseBean.PageDataBean item) {
         helper.setText(R.id.tv_title, item.getTopicTitle());
         helper.setText(R.id.tv_name, item.getCreateName());
-        helper.setText(R.id.tv_follows, item.getFollowCount()+"人关注");
+        helper.setText(R.id.tv_follows, item.getFollowCount()+"人参与");
         ImageView imageView = helper.getView(R.id.iv_head);
         if (!"".equals(item.getCreateUserImg())) {
             Glide.with(mContext).load(item.getCreateUserImg()).into(imageView);

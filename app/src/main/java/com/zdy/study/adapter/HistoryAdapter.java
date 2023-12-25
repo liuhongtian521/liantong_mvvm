@@ -51,6 +51,7 @@ public class HistoryAdapter extends BaseMultiItemQuickAdapter<HistoryResponse.Pa
             case LBSD:
                 helper.setText(R.id.tv_content, item.getContName());
                 helper.setText(R.id.tv_date, item.getContVideo().getTimeLength());
+//                helper.setVisible(R.id.ll_fdyd, false);
                 ImageView imageView = helper.getView(R.id.iv_broadcast_video);
                 Glide.with(mContext).load("http://cdls-cms-image.oss-cn-huhehaote-nebula-1.aliyuncs.com/xinwen_video.jpeg").into(imageView);
                 break;
@@ -71,7 +72,7 @@ public class HistoryAdapter extends BaseMultiItemQuickAdapter<HistoryResponse.Pa
                 break;
             case TJSD:
                 helper.setText(R.id.tv_book_name, item.getContName());
-                helper.setText(R.id.tv_book_author, "(作者" + item.getAuthorName() + ")");
+                helper.setText(R.id.tv_book_author, "(作者：" + item.getAuthorName() + ")");
                 helper.setText(R.id.tv_content_book, item.getBriefIntroduction());
                 ImageView imageViewTjsd = helper.getView(R.id.iv_book_name);
                 Glide.with(mContext).load(item.getImgUri()).into(imageViewTjsd);

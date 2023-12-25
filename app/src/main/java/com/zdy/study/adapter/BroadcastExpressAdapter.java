@@ -41,15 +41,20 @@ public class BroadcastExpressAdapter extends BaseMultiItemQuickAdapter<Broadcast
         switch (helper.getItemViewType()) {
             case MN:
                 helper.setText(R.id.tv_content, item.getContName());
-                helper.setText(R.id.tv_date, item.getContVideo().getTimeLength());
-                FCLinearLayout layout = helper.getView(R.id.fcll);
-                layout.setLitScale();
+                helper.setText(R.id.tv_date, item.getContVideo().getTimeLength()).
+                        setText(R.id.tv_create_time, item.getCreateTime().substring(0, 10));
+                /*FCLinearLayout layout = helper.getView(R.id.fcll);
+                layout.setLitScale();*/
+                if (TextUtils.isEmpty(item.getRemark()))
+                    helper.setVisible(R.id.ll_fdyd, false);
+                else
+                    helper.setVisible(R.id.ll_fdyd, true);
                 ImageView imageView = helper.getView(R.id.iv_broadcast_video);
                 Glide.with(mContext).load("http://cdls-cms-image.oss-cn-huhehaote-nebula-1.aliyuncs.com/xinwen_video.jpeg").into(imageView);
                 break;
             case FD:
                 helper.setText(R.id.tv_content_fdyd, item.getMyRemark().getContName())
-                    .setText(R.id.tv_fd_time, item.getMyRemark().getCreateTime());
+                    .setText(R.id.tv_fd_time, item.getMyRemark().getCreateTime().substring(0, 10));
                 break;
         }
 

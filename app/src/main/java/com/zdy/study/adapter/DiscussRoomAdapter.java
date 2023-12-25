@@ -28,7 +28,7 @@ public class DiscussRoomAdapter extends BaseQuickAdapter<DiscussRoomListBean.Pag
 
     @Override
     protected void convert(BaseViewHolder helper, DiscussRoomListBean.PageDataBean item) {
-        helper.setText(R.id.tv_person, item.getFollowCount() + "人关注");
+        helper.setText(R.id.tv_person, item.getFollowCount() + "人参与");
         helper.setText(R.id.subject, item.getTopicCount() + "个话题");
         helper.setText(R.id.tv_dfdsf, item.getRoomName());
         TextView textView = helper.getView(R.id.tv_my_create);

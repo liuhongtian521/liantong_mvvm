@@ -21,7 +21,7 @@ public class OperationAdapter extends BaseQuickAdapter<BroadcastExpressResponBea
     @Override
     protected void convert(BaseViewHolder helper, BroadcastExpressResponBean.PageDataBean item) {
         helper.setText(R.id.tv_title, item.getContName());
-        helper.setText(R.id.tv_time, item.getCreateTime());
+        helper.setText(R.id.tv_time, item.getCreateTime().substring(0, 10));
         ImageView ivOperation = helper.getView(R.id.iv_operation);
         Glide.with(mContext).load(item.getImgUrl()).into(ivOperation);
         FCLinearLayout layout = helper.getView(R.id.fcll);

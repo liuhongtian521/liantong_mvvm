@@ -52,6 +52,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerInParent="true"
             android:layout_marginRight="50dp"
+            android:visibility="gone"
             android:background="@mipmap/ic_video_play" />
     </com.zdy.study.fcWidgets.FCRelativeLayout>
 

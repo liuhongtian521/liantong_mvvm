@@ -140,6 +140,8 @@ public class HistoryResponse {
         private ContVideoBean contVideo;
         private String remark;
         private String bookName;
+        private String recommendPerson;
+        private String chapterContent;
         private String authorName;
         private String briefIntroduction;
         private String coverUrl;
@@ -168,6 +170,30 @@ public class HistoryResponse {
 
         public void setBookName(String bookName) {
             this.bookName = bookName;
+        }
+
+        public String getRecommendPerson() {
+            return recommendPerson == null ? "" : recommendPerson;
+        }
+
+        public void setRecommendPerson(String recommendPerson) {
+            this.recommendPerson = recommendPerson;
+        }
+
+        public String getChapterContent() {
+            return chapterContent == null ? "" : chapterContent;
+        }
+
+        public void setChapterContent(String chapterContent) {
+            this.chapterContent = chapterContent;
+        }
+
+        public String getCoverUrl() {
+            return coverUrl == null ? "" : coverUrl;
+        }
+
+        public void setCoverUrl(String coverUrl) {
+            this.coverUrl = coverUrl;
         }
 
         private List<AudioListListBean> audioListList;

@@ -34,10 +34,10 @@ public class InternationalPerspectiveAdapter extends BaseQuickAdapter<BroadcastE
         }
         ImageView imageView = helper.getView(R.id.iv_right_video);
         if (!"".equals(item.getImgUrl())) {
-            helper.getView(R.id.iv_play).setVisibility(View.VISIBLE);
+//            helper.getView(R.id.iv_play).setVisibility(View.VISIBLE);
             Glide.with(mContext).load(item.getImgUrl()).into(imageView);
         } else {
-            helper.getView(R.id.iv_play).setVisibility(View.GONE);
+//            helper.getView(R.id.iv_play).setVisibility(View.GONE);
         }
 
 

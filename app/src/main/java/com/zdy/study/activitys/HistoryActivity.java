@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.askia.common.base.ARouterPath;
 import com.askia.common.base.BaseActivity;
+import com.askia.coremodel.datamodel.http.entities.consume.BooksRespponseBean;
 import com.askia.coremodel.datamodel.http.entities.consume.HistoryResponse;
 import com.askia.coremodel.datamodel.http.entities.consume.MyCollectionTitleResponse;
 import com.blankj.utilcode.util.ToastUtils;
@@ -75,7 +76,13 @@ public class HistoryActivity extends BaseActivity {
                     startActivityByRouter(ARouterPath.VideoActivity, bundle1);
                 }else if(itemType == HistoryAdapter.TJSD){
                     Bundle bundle = new Bundle();
-                    bundle.putSerializable("BookListDetails", histotyList.get(position));
+                    BooksRespponseBean.PageDataBean pageDataBean = new BooksRespponseBean.PageDataBean();
+                    pageDataBean.setBookName(histotyList.get(position).getBookName());
+                    pageDataBean.setCoverUrl(histotyList.get(position).getImgUrl());
+                    pageDataBean.setRecommendPerson(histotyList.get(position).getRecommendPerson());
+                    pageDataBean.setBriefIntroduction(histotyList.get(position).getBriefIntroduction());
+                    pageDataBean.setChapterContent(histotyList.get(position).getChapterContent());
+                    bundle.putSerializable("BookListDetails", pageDataBean);
                     startActivityByRouter(ARouterPath.BookDetailsActivity, bundle);
                 }else{
                     Bundle bundle = new Bundle();
@@ -222,9 +229,10 @@ public class HistoryActivity extends BaseActivity {
     private void getListData(MyCollectionTitleResponse.DataBean title){
         //设置itemtype 样式
         setItemType(title.getStruCode());
+        page = 1;
         showNetDialog();
         viewModel.queryReadNotes(title.getStruCode(), title.getId(), title.getStruCode(),
-                binding.etSearch.getText().toString(),"1", "10");
+                binding.etSearch.getText().toString(), String.valueOf(page), "10");
     }
 
     public void onClickSearch(View view) {
