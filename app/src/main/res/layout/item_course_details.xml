@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.zdy.study.fcWidgets.FCLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/fcll"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -102,7 +103,8 @@
             android:layout_toRightOf="@+id/iv_name"
             android:textColor="#4C4E5A"
             android:textSize="10sp" />
-        <TextView
+        <com.zdy.study.fcWidgets.FCTextview
+            app:scale="1.05"
             android:focusableInTouchMode="true"
             android:focusable="true"
             android:id="@+id/tv_teacher"
