@@ -36,9 +36,5 @@ public class DiscussRoomMyAdapter extends BaseQuickAdapter<DiscussRoomListBean.P
         } else {
             textView.setVisibility(View.GONE);
         }
-        ImageView imageView = helper.getView(R.id.iv_discuss_left);
-        if (!"".equals(item.getCreateUserImg())) {
-            Glide.with(mContext).load(item.getCreateUserImg()).into(imageView);
-        }
     }
 }

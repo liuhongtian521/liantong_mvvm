@@ -35,7 +35,7 @@ public class DiscussRoomAdapter extends BaseQuickAdapter<DiscussRoomListBean.Pag
         ImageView imageView = helper.getView(R.id.iv_discuss_left);
         if (item.getCreateBy().equals(item.getMyId())) {
             textView.setVisibility(View.VISIBLE);
-            Glide.with(mContext).load(item.getCreateUserImg()).into(imageView);
+//            Glide.with(mContext).load(item.getCreateUserImg()).into(imageView);
         } else {
             textView.setVisibility(View.GONE);
         }

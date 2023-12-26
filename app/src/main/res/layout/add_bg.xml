@@ -11,7 +11,7 @@
         android:layout_width="12dp"
         android:layout_height="10dp"
         android:layout_marginLeft="@dimen/dp_8"
-        android:background="@mipmap/ic_add_discuss"
+        android:background="@mipmap/ic_discuss_2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

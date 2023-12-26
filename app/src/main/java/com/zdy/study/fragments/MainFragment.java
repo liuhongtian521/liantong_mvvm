@@ -110,25 +110,25 @@ public class MainFragment extends BaseFragment {
         int weekDay = calendar.get(Calendar.DAY_OF_WEEK);
         switch (weekDay) {
             case Calendar.SUNDAY:
-                mWeekDay="星期日";
+                mWeekDay = "星期日";
                 break;
             case Calendar.MONDAY:
-                mWeekDay="星期一";
+                mWeekDay = "星期一";
                 break;
             case Calendar.TUESDAY:
-                mWeekDay="星期二";
+                mWeekDay = "星期二";
                 break;
             case Calendar.WEDNESDAY:
-                mWeekDay="星期三";
+                mWeekDay = "星期三";
                 break;
             case Calendar.THURSDAY:
-                mWeekDay="星期四";
+                mWeekDay = "星期四";
                 break;
             case Calendar.FRIDAY:
-                mWeekDay="星期五";
+                mWeekDay = "星期五";
                 break;
             case Calendar.SATURDAY:
-                mWeekDay="星期六";
+                mWeekDay = "星期六";
                 break;
         }
         mFragmentMainBinding.tvMainMonth.setText(month + "月");
@@ -159,29 +159,37 @@ public class MainFragment extends BaseFragment {
             startActivityByRouter(ARouterPath.BookListActivity);
         });
         mFragmentMainBinding.fcrBroadcastSpeed.setOnClickListener(v -> {
-            Bundle bundle = new Bundle();
-            bundle.putString("keyId", "0");
-            bundle.putSerializable("MainFragmentList", (Serializable) list3.get(0));
-            startActivityByRouter(ARouterPath.BroadcastExpressActivity, bundle);
+            if (null != list3 && list3.size() >= 1) {
+                Bundle bundle = new Bundle();
+                bundle.putString("keyId", "0");
+                bundle.putSerializable("MainFragmentList", (Serializable) list3.get(0));
+                startActivityByRouter(ARouterPath.BroadcastExpressActivity, bundle);
+            }
         });
         mFragmentMainBinding.fcllRight.setOnClickListener(v -> {
-            Bundle bundle = new Bundle();
-            bundle.putString("keyId", "1");
-            bundle.putSerializable("MainFragmentList", (Serializable) list3.get(1));
-            startActivityByRouter(ARouterPath.BroadcastExpressActivity, bundle);
+            if (null != list3 && list3.size() >= 2) {
+                Bundle bundle = new Bundle();
+                bundle.putString("keyId", "1");
+                bundle.putSerializable("MainFragmentList", (Serializable) list3.get(1));
+                startActivityByRouter(ARouterPath.BroadcastExpressActivity, bundle);
+            }
         });
         mFragmentMainBinding.fcllRight1.setOnClickListener(v -> {
-            Bundle bundle = new Bundle();
-            bundle.putString("keyId", "2");
-            bundle.putSerializable("MainFragmentList", (Serializable) list3.get(2));
-            startActivityByRouter(ARouterPath.BroadcastExpressActivity, bundle);
+            if (null != list3 && list3.size() >= 3) {
+                Bundle bundle = new Bundle();
+                bundle.putString("keyId", "2");
+                bundle.putSerializable("MainFragmentList", (Serializable) list3.get(2));
+                startActivityByRouter(ARouterPath.BroadcastExpressActivity, bundle);
+            }
+
         });
         mFragmentMainBinding.fnButtonDiscussionMore.setOnClickListener(v -> {
             MainActivity activity = (MainActivity) getActivity();
             activity.showdiscussRoom();
             /*getActivity().getSupportFragmentManager().
                     beginTransaction().replace(R.id.main_layout_content,new DiscussRoomFragment(),null).
-                    addToBackStack(null).commit()*/;
+                    addToBackStack(null).commit()*/
+            ;
         });
     }
 
