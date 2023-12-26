@@ -6,30 +6,30 @@ public class UserInfoBean implements Serializable {
 
 
     /**
-     * id : 1673870114430152705
+     * id : 1390539106141884417
      * createUser : -1
      * createDept : -1
-     * createTime : 2023-06-28 09:45:09
-     * updateUser : 1673870114430152705
-     * updateTime : 2023-09-12 14:26:24
-     * status : -1
+     * createTime : 2021-05-07 13:28:52
+     * updateUser : 1410414946339442689
+     * updateTime : 2023-12-12 10:49:43
+     * status : 1
      * isDeleted : 0
      * tenantId : 000000
      * studentCode :
-     * studentName : 鱼鱼
-     * sex : 0
+     * studentName : 邵美瑜
+     * sex : 1
      * sexDict :
      * nation :
      * nationDict :
-     * studentClassesId : -1
+     * studentClassesId : 1390486374068592642
      * classesId : -1
-     * studentPhone : 18943453434
+     * studentPhone : 18611998478
      * studentEmail :
-     * studentGroup :
-     * studentCompany : 测试
+     * studentGroup : 1
+     * studentCompany : 中国大连高级经理学院
      * studentPostType : -1
      * studentPostTypeDict : -1
-     * studentPost : 测试
+     * studentPost : 信息化管理岗
      * studentCardType : -1
      * studentCardTypeDict :
      * studentCardCode :
@@ -52,16 +52,16 @@ public class UserInfoBean implements Serializable {
      * contactsAddress :
      * groupLeader :
      * classCommittee :
-     * classesName : 中央企业领导人员治企能力提升专题培训班（第6期）
+     * classesName : 提升国资国企改革发展能力，助推辽宁全面振兴新突破专题培训班,高经院内部试运行培训班,学习贯彻习近平外交思想专题培训班（第1期）,演示班级,地市级国资委主要负责人专题培训班（第2期）,中央企业中青年高级管理人员培训班（第十期）,学习贯彻习近平总书记“七一”重要讲话精神研讨班暨提高政治能力专题培训班（第2期）,贯彻新发展理念，推动中央企业高质量发展,学习贯彻习近平总书记“七一”重要讲话精神研讨班暨提高政治能力专题培训班（第1期）,中央企业总会计师履职能力强化培训班（第2期）,宣传思想文化领域高层次人才国情研修班,2021年度海南省国有企业董事履职能力提升培训班,中国建筑技术集团有限公司中层干部和基层党支部书记专题培训班
      * classStudentHandbookUrl :
-     * classesStartTime : 2023-05-08 00:00:00
-     * classesEndTime : 2023-06-04 00:00:00
+     * classesStartTime : 2023-12-01 00:00:00
+     * classesEndTime : 2024-02-29 00:00:00
      * studentImg :
      */
 
     private String id;
-    private int createUser;
-    private int createDept;
+    /*private String createUser;
+    private String createDept;*/
     private String createTime;
     private String updateUser;
     private String updateTime;
@@ -74,7 +74,7 @@ public class UserInfoBean implements Serializable {
     private String sexDict;
     private String nation;
     private String nationDict;
-    private int studentClassesId;
+    private String studentClassesId;
     private int classesId;
     private String studentPhone;
     private String studentEmail;
@@ -112,28 +112,28 @@ public class UserInfoBean implements Serializable {
     private String studentImg;
 
     public String getId() {
-        return id == null ? "" : id;
+        return id;
     }
 
     public void setId(String id) {
         this.id = id;
     }
 
-    public int getCreateUser() {
+    /*public String getCreateUser() {
         return createUser;
     }
 
-    public void setCreateUser(int createUser) {
+    public void setCreateUser(String createUser) {
         this.createUser = createUser;
     }
 
-    public int getCreateDept() {
+    public String getCreateDept() {
         return createDept;
     }
 
-    public void setCreateDept(int createDept) {
+    public void setCreateDept(String createDept) {
         this.createDept = createDept;
-    }
+    }*/
 
     public String getCreateTime() {
         return createTime;
@@ -192,7 +192,7 @@ public class UserInfoBean implements Serializable {
     }
 
     public String getStudentName() {
-        return studentName == null ? "" : studentName;
+        return studentName;
     }
 
     public void setStudentName(String studentName) {
@@ -231,11 +231,11 @@ public class UserInfoBean implements Serializable {
         this.nationDict = nationDict;
     }
 
-    public int getStudentClassesId() {
+    public String getStudentClassesId() {
         return studentClassesId;
     }
 
-    public void setStudentClassesId(int studentClassesId) {
+    public void setStudentClassesId(String studentClassesId) {
         this.studentClassesId = studentClassesId;
     }
 
@@ -296,7 +296,7 @@ public class UserInfoBean implements Serializable {
     }
 
     public String getStudentPost() {
-        return studentPost == null ? "" : studentPost;
+        return studentPost;
     }
 
     public void setStudentPost(String studentPost) {
@@ -480,7 +480,7 @@ public class UserInfoBean implements Serializable {
     }
 
     public String getClassesName() {
-        return classesName == null ? "" : classesName;
+        return classesName;
     }
 
     public void setClassesName(String classesName) {

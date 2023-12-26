@@ -129,7 +129,7 @@ public class ApiClient {
                             Request.Builder builder = chain.request().newBuilder();
                             Log.e("Blade-Auth", "intercept: "+DBRepository.QueryTVUserLoginData().getAccess_token());
                             builder.addHeader("Blade-Auth", DBRepository.QueryTVUserLoginData().getAccess_token())
-                                    .addHeader("Authorization","Basic cGFkOnBhZF9zZWNyZXQ=")
+                                    .addHeader("Authorization","Basic VFY6VFZfc2VjcmV0QDIwMjE=")
                                     .addHeader("Tenant-Id","000000");
                             Response response = chain.proceed(builder.build());
                             return response;

@@ -145,7 +145,7 @@ public class InternationalPerspectiveDetailsActivity extends BaseActivity {
 //                }
             }
 
-            setContent(listResult.getResult().getAudioListList().get(0).getContText(), mDataBinding.webContent);
+            setContent(listResult.getResult().getCont(), mDataBinding.webContent);
         });
 
     }
