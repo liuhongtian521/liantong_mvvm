@@ -92,11 +92,12 @@ public class HistoryActivity extends BaseActivity {
                 }else if(itemType == HistoryAdapter.TJSD){
                     Bundle bundle = new Bundle();
                     BooksRespponseBean.PageDataBean pageDataBean = new BooksRespponseBean.PageDataBean();
-                    pageDataBean.setBookName(histotyList.get(position).getBookName());
+                    pageDataBean.setBookName(histotyList.get(position).getContName());
                     pageDataBean.setCoverUrl(histotyList.get(position).getImgUrl());
                     pageDataBean.setRecommendPerson(histotyList.get(position).getRecommendPerson());
                     pageDataBean.setBriefIntroduction(histotyList.get(position).getBriefIntroduction());
                     pageDataBean.setChapterContent(histotyList.get(position).getChapterContent());
+                    pageDataBean.setAuthorName(histotyList.get(position).getAuthorName());
                     bundle.putSerializable("BookListDetails", pageDataBean);
                     startActivityByRouter(ARouterPath.BookDetailsActivity, bundle);
                 }else{

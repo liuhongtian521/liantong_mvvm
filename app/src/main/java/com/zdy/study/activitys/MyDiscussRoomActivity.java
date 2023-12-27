@@ -111,6 +111,7 @@ public class MyDiscussRoomActivity extends BaseActivity {
                 ToastUtils.showLong(listResult.getMessage().toString());
                 return;
             }
+            mDataBinding.lmView.setList(listResult.getResult().getPageData(), page);
             if (null != listResult.getResult().getPageData() && listResult.getResult().getPageData().size() > 0) {
                 list.clear();
                 list.addAll(listResult.getResult().getPageData());
@@ -118,7 +119,6 @@ public class MyDiscussRoomActivity extends BaseActivity {
                     pageDataBean.setMyId(mMyId);
                 }
                 adapter.notifyDataSetChanged();
-                mDataBinding.lmView.setList(listResult.getResult().getPageData(), page);
             }
 
 

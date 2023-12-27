@@ -119,6 +119,7 @@ public class MineFragment extends BaseFragment {
         if (TextUtils.isEmpty(httpLoginResult.getAccess_token())) {
             mDataBinding.tvMineName.setText("未登录");
             mDataBinding.tvClassName.setVisibility(View.GONE);
+            mDataBinding.ivMineHeader.setImageResource(R.mipmap.ic_mine_header);
         }else {
             UserInfoBean infoResult = DBRepository.QueryTVUserInfoData();
             mDataBinding.tvClassName.setVisibility(View.VISIBLE);

@@ -132,7 +132,16 @@ public class CourseQueryActivity extends BaseActivity {
                 mCourseQueryViewModel.queryCurriculumInfoList(list.get(position).getClassesId(), list.get(position).getCalendarDate(), "10", "1", "10", "1");
             }
         });
-        mCourseQueryDetailsAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+        mCourseQueryDetailsAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                Bundle bundle = new Bundle();
+                bundle.putString("id",mDetailsList.get(position).getTeacherId());
+                bundle.putString("classesId", mDetailsList.get(position).getClassesId());
+                startActivityByRouter(ARouterPath.TeacherIntroductionDetails, bundle);
+            }
+        });
+        /*mCourseQueryDetailsAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
                 switch (view.getId()) {
@@ -144,13 +153,14 @@ public class CourseQueryActivity extends BaseActivity {
                         break;
                 }
             }
-        });
+        });*/
         mDataBinding.rlLeader.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivityByRouter(ARouterPath.MapActivity);
             }
         });
+        mDataBinding.tvYearClick.requestFocus();
     }
 
     @Override

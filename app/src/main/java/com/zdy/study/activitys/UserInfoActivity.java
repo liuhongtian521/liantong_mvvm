@@ -2,6 +2,7 @@ package com.zdy.study.activitys;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.text.TextUtils;
 
 import androidx.annotation.DrawableRes;
 import androidx.databinding.DataBindingUtil;
@@ -34,7 +35,10 @@ public class UserInfoActivity extends BaseActivity {
         binding.includeLayout.preferenceActivityTitleText.setText("个人信息");
         HttpLoginResult httpLoginResult = DBRepository.QueryTVUserLoginData();
         UserInfoBean infoResult = DBRepository.QueryTVUserInfoData();
-        setHeardImg(httpLoginResult.getAvatar());//设置头像
+        if (TextUtils.isEmpty(httpLoginResult.getAvatar()))
+            binding.ivInfoHeader.setImageResource(R.mipmap.ic_mine_header);
+        else
+            setHeardImg(httpLoginResult.getAvatar());//设置头像
 //        viewModel.queryClassesByPhone(httpLoginResult.getUser_name());//获取用户信息
         binding.tvInfoName.setText(infoResult.getStudentName());//设置昵称
         binding.tvInfoZhiwu.setText(infoResult.getStudentPost());//设置职位

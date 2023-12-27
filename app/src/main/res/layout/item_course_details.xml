@@ -9,6 +9,9 @@
     android:layout_marginLeft="@dimen/dp_12"
     android:layout_marginTop="@dimen/dp_12"
     android:paddingBottom="12dp"
+    android:focusableInTouchMode="true"
+    android:focusable="true"
+    app:scale="1.02"
     android:background="@drawable/white_round_corner_left"
     android:orientation="vertical">
 
@@ -103,8 +106,7 @@
             android:layout_toRightOf="@+id/iv_name"
             android:textColor="#4C4E5A"
             android:textSize="10sp" />
-        <com.zdy.study.fcWidgets.FCTextview
-            app:scale="1.05"
+        <TextView
             android:focusableInTouchMode="true"
             android:focusable="true"
             android:id="@+id/tv_teacher"
