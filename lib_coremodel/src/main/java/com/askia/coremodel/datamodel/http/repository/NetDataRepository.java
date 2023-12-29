@@ -323,11 +323,11 @@ public class NetDataRepository {
     }
 
     //操作技巧详情
-    public void queryCont(String argContId,
+    public void queryCont(String argContId, String argContChildId,
                           MutableLiveData<BaseResponseData<OperationDetailBean>> mLiveData,
                           CompositeDisposable mDisposable) {
         Observable<BaseResponseData<OperationDetailBean>> responseData = ApiClient.getNetDataService()
-                .queryCont(argContId);
+                .queryCont(argContId, argContChildId);
         if (responseObserv == null)
             responseObserv = new ResponseObserv();
         responseObserv.responseObserv(responseData, mLiveData, mDisposable);

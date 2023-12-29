@@ -161,7 +161,7 @@ public interface NetDataService {
 
     // 操作技巧详情
     @GET("/cdls-cms/ApisController/queryCont")
-    Observable<BaseResponseData<OperationDetailBean>> queryCont(@Query("argContId") String argContId);
+    Observable<BaseResponseData<OperationDetailBean>> queryCont(@Query("argContId") String argContId, @Query("argContChildId") String argContChildId);
 
     // 获取评论
     @GET("/cdls-cms/CommentsController/queryCommentsList")

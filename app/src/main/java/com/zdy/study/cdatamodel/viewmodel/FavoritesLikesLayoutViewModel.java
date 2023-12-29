@@ -94,9 +94,10 @@ public class FavoritesLikesLayoutViewModel extends BaseViewModel {
     }
 
     //收藏
-    public void addCollectionList( String argContId, String struId) {
+    public void addCollectionList( String argContId,String contentChildrenId, String struId) {
         AddCollectionParams params = new AddCollectionParams();
         params.setContentParentId(argContId);
+        params.setContentChildrenId(contentChildrenId);
         params.setStruId(struId);
         if (netDataRepository == null)
             netDataRepository = new NetDataRepository();
@@ -104,9 +105,10 @@ public class FavoritesLikesLayoutViewModel extends BaseViewModel {
     }
 
     //取消收藏
-    public void delCollectionList( String argContId, String struId) {
+    public void delCollectionList( String argContId,String contentChildrenId, String struId) {
         AddCollectionParams params = new AddCollectionParams();
         params.setContentParentId(argContId);
+        params.setContentChildrenId(contentChildrenId);
         params.setStruId(struId);
         if (netDataRepository == null)
             netDataRepository = new NetDataRepository();

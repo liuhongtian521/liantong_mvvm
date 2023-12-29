@@ -44,6 +44,7 @@ public class FavoritesLikesLayout extends ConstraintLayout {
     private FCButton fcbSent;
     private FavoritesLikesBack flback;
     private String argContId;
+    private String contentChildrenId;
     private String struId;
     private Context context;
     private ImageView ivPraiseactive, ivAddcollection;
@@ -95,6 +96,17 @@ public class FavoritesLikesLayout extends ConstraintLayout {
             viewModel.addReadNotes(argContId, struId);//添加阅读记录
     }
 
+    public void getComments(String argContId, String contentChildrenId, String struId){
+        this.argContId = argContId;
+        this.contentChildrenId = contentChildrenId == null? "": contentChildrenId;
+        this.struId = struId;
+        viewModel.queryCommentsList(TextUtils.isEmpty(contentChildrenId)? argContId: contentChildrenId
+                , "1", "100");
+        HttpLoginResult httpLoginResult = DBRepository.QueryTVUserLoginData();
+        if (!TextUtils.isEmpty(httpLoginResult.getAccess_token()))
+            viewModel.addReadNotes(argContId, struId);//添加阅读记录
+    }
+
     private void initList(Context context){
         commentsList = new ArrayList<>();
         adapter = new CommentsAdapter(commentsList);
@@ -115,19 +127,20 @@ public class FavoritesLikesLayout extends ConstraintLayout {
                 ToastUtils.showLong("评论内容不能为空！");
                 return;
             }
-            viewModel.comments(argContId, etComment.getText().toString().trim());
+            viewModel.comments(TextUtils.isEmpty(contentChildrenId)? argContId: contentChildrenId
+                    , etComment.getText().toString().trim());
         });
         llDianzan.setOnClickListener(view -> {
             if (isPraiseActive){
-                viewModel.cancelPraiseActive(argContId);
+                viewModel.cancelPraiseActive(TextUtils.isEmpty(contentChildrenId)? argContId: contentChildrenId);
             }else
-                viewModel.praiseActive(argContId);
+                viewModel.praiseActive(TextUtils.isEmpty(contentChildrenId)? argContId: contentChildrenId);
         });
         llShoucang.setOnClickListener(view -> {
             if (isAddcollection){
-                viewModel.delCollectionList(argContId, struId);
+                viewModel.delCollectionList(argContId, contentChildrenId, struId);
             }else
-                viewModel.addCollectionList(argContId, struId);
+                viewModel.addCollectionList(argContId, contentChildrenId, struId);
         });
     }
 

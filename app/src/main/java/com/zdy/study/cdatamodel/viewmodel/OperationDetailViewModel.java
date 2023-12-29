@@ -28,7 +28,7 @@ public class OperationDetailViewModel extends BaseViewModel {
 
         if (netDataRepository == null)
             netDataRepository = new NetDataRepository();
-        netDataRepository.queryCont(argContId, mPageListPadData, mDisposable);
+        netDataRepository.queryCont(argContId,"", mPageListPadData, mDisposable);
     }
 
 

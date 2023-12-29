@@ -1,5 +1,9 @@
 package com.askia.coremodel.datamodel.http.entities.consume;
 
+import com.chad.library.adapter.base.entity.MultiItemEntity;
+
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MyCollectionResponse {
@@ -71,6 +75,9 @@ public class MyCollectionResponse {
     }
 
     public List<PageDataBean> getPageData() {
+        if (pageData == null) {
+            return new ArrayList<>();
+        }
         return pageData;
     }
 
@@ -78,7 +85,7 @@ public class MyCollectionResponse {
         this.pageData = pageData;
     }
 
-    public static class PageDataBean {
+    public static class PageDataBean implements MultiItemEntity {
         public boolean isTrueOrFalse() {
             return isTrueOrFalse;
         }
@@ -125,7 +132,30 @@ public class MyCollectionResponse {
         private String createTime;
         private String imgUrl;
         private String remark;
+        private ContVideoBean contVideo;
         private List<AudioListListBean> audioListList;
+        private Remark myRemark;
+        //item类型
+        private int fieldType;
+
+        public void setFieldType(int fieldType) {
+            this.fieldType = fieldType;
+        }
+
+        @Override
+        public int getItemType() {
+            return fieldType;
+        }
+
+        public Remark getMyRemark() {
+            if (myRemark == null)
+                myRemark = new Remark();
+            return myRemark;
+        }
+
+        public void setMyRemark(Remark myRemark) {
+            this.myRemark = myRemark;
+        }
 
         public String getId() {
             return id;
@@ -240,7 +270,7 @@ public class MyCollectionResponse {
         }
 
         public String getCreateTime() {
-            return createTime;
+            return createTime == null ? "" : createTime;
         }
 
         public void setCreateTime(String createTime) {
@@ -263,12 +293,78 @@ public class MyCollectionResponse {
             this.remark = remark;
         }
 
+        public ContVideoBean getContVideo() {
+            if (contVideo == null)
+                contVideo = new ContVideoBean();
+            return contVideo;
+        }
+
+        public void setContVideo(ContVideoBean contVideo) {
+            this.contVideo = contVideo;
+        }
+
         public List<AudioListListBean> getAudioListList() {
             return audioListList;
         }
 
         public void setAudioListList(List<AudioListListBean> audioListList) {
             this.audioListList = audioListList;
+        }
+
+        public static class ContVideoBean implements Serializable {
+            /**
+             * contId : 1036561358004420608
+             * taCmFlId : 1036561348768563200
+             * taCmFsId : 1
+             * timeLength : 29:59
+             * videoUrl : http://cldscmsvideo.oss-cn-huhehaote-nebula-1.aliyuncs.com/bb1d69e58e75428c887bdeebcd9ea2f6.mp4?Expires=1702967448&OSSAccessKeyId=LTAI5tE8k22tASfQeMbdKwo6&Signature=MU5gahJnx0HZqf%2BFgnUVcUUwBes%3D
+             */
+
+            private String contId;
+            private String taCmFlId;
+            private String taCmFsId;
+            private String timeLength;
+            private String videoUrl;
+
+            public String getContId() {
+                return contId;
+            }
+
+            public void setContId(String contId) {
+                this.contId = contId;
+            }
+
+            public String getTaCmFlId() {
+                return taCmFlId;
+            }
+
+            public void setTaCmFlId(String taCmFlId) {
+                this.taCmFlId = taCmFlId;
+            }
+
+            public String getTaCmFsId() {
+                return taCmFsId;
+            }
+
+            public void setTaCmFsId(String taCmFsId) {
+                this.taCmFsId = taCmFsId;
+            }
+
+            public String getTimeLength() {
+                return timeLength == null ? "" : timeLength;
+            }
+
+            public void setTimeLength(String timeLength) {
+                this.timeLength = timeLength;
+            }
+
+            public String getVideoUrl() {
+                return videoUrl;
+            }
+
+            public void setVideoUrl(String videoUrl) {
+                this.videoUrl = videoUrl;
+            }
         }
 
         public static class AudioListListBean {

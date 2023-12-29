@@ -123,7 +123,10 @@ public class MineFragment extends BaseFragment {
         }else {
             UserInfoBean infoResult = DBRepository.QueryTVUserInfoData();
             mDataBinding.tvClassName.setVisibility(View.VISIBLE);
-            setHeardImg(httpLoginResult.getAvatar());//设置头像
+            if (TextUtils.isEmpty(httpLoginResult.getAvatar()))
+                mDataBinding.ivMineHeader.setImageResource(R.mipmap.ic_mine_header);
+            else
+                setHeardImg(httpLoginResult.getAvatar());//设置头像
 //            viewModel.queryClassesByPhone(httpLoginResult.getUser_name());//获取用户信息
             mDataBinding.tvMineName.setText(infoResult.getStudentName());//设置昵称
             mDataBinding.tvClassName.setText(infoResult.getClassesName());//设置班级名

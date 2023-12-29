@@ -102,7 +102,8 @@ public class BroadcastExpressActivity extends BaseActivity {
                 case BroadcastExpressAdapter.FD:
                     Bundle bundle = new Bundle();
                     bundle.putString("key", Constants.SJAL);
-                    bundle.putString("INTERNATIONAL_VIEW", list.get(position).getMyRemark().getId());
+                    bundle.putString("INTERNATIONAL_VIEW", list.get(position).getId());
+                    bundle.putString("argContChildId", list.get(position).getMyRemark().getId());
                     startActivityByRouter(ARouterPath.InternationalPerspectiveDetailsActivity, bundle);
                     break;
             }
@@ -169,6 +170,7 @@ public class BroadcastExpressActivity extends BaseActivity {
                 List<Remark> jsonObject = gson.fromJson(bean.getRemark(), type);
                 for (Remark remark: jsonObject){
                     BroadcastExpressResponBean.PageDataBean bean1 = new BroadcastExpressResponBean.PageDataBean();
+                    bean1.setId(bean.getId());
                     bean1.setMyRemark(remark);
                     bean1.setFieldType(BroadcastExpressAdapter.FD);
                     list.add(bean1);

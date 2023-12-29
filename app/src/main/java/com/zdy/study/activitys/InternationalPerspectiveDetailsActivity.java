@@ -69,8 +69,10 @@ public class InternationalPerspectiveDetailsActivity extends BaseActivity {
                 break;
 
         }
-        mDataBinding.flOperation.getComments(getIntent().getExtras().getString("INTERNATIONAL_VIEW"), key);//获取评论
-        viewModel.queryCont(getIntent().getExtras().getString("INTERNATIONAL_VIEW"));
+        String argContId = getIntent().getExtras().getString("INTERNATIONAL_VIEW");
+        String argContChildId = getIntent().getExtras().getString("argContChildId");
+        mDataBinding.flOperation.getComments(argContId, argContChildId, key);//获取评论
+        viewModel.queryCont(argContId, argContChildId);
         mDataBinding.rlVideo.setOnClickListener(v -> {
             Bundle bundle = new Bundle();
             bundle.putString("url", mUrl);

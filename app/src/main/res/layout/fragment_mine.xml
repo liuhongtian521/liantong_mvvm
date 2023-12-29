@@ -44,9 +44,10 @@
                 app:layout_constraintLeft_toRightOf="@+id/iv_mine_header"
                 app:layout_constraintTop_toTopOf="@+id/iv_mine_header" />
 
+
             <TextView
                 android:id="@+id/tv_class_name"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_9"
                 android:background="#F5F2ED"
@@ -57,6 +58,7 @@
                 android:text=""
                 android:textColor="#644A1F"
                 android:textSize="@dimen/sp_11"
+                android:maxWidth="840dp"
                 app:layout_constraintLeft_toLeftOf="@+id/tv_mine_name"
                 app:layout_constraintTop_toBottomOf="@+id/tv_mine_name" />
 

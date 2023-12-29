@@ -25,7 +25,7 @@
         android:textSize="@dimen/sp_14"
         android:maxLines="2"
         android:ellipsize="end"/>
-    
+
     <ImageView
         android:layout_width="@dimen/dp_18"
         android:layout_height="@dimen/dp_18"

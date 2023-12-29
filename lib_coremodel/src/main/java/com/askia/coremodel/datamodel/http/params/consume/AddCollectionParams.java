@@ -5,7 +5,16 @@ import com.askia.coremodel.datamodel.http.params.BaseRequestParams;
 public class AddCollectionParams extends BaseRequestParams {
 
     private String contentParentId;
+    private String contentChildrenId;
     private String struId;
+
+    public String getContentChildrenId() {
+        return contentChildrenId == null ? "" : contentChildrenId;
+    }
+
+    public void setContentChildrenId(String contentChildrenId) {
+        this.contentChildrenId = contentChildrenId;
+    }
 
     public String getContentParentId() {
         return contentParentId == null ? "" : contentParentId;

@@ -86,7 +86,8 @@ public class HistoryActivity extends BaseActivity {
                     }else if (HistoryAdapter.FD == histotyList.get(position).getItemType()) {
                         Bundle bundle = new Bundle();
                         bundle.putString("key", Constants.SJAL);
-                        bundle.putString("INTERNATIONAL_VIEW", histotyList.get(position).getMyRemark().getId());
+                        bundle.putString("INTERNATIONAL_VIEW", histotyList.get(position).getId());
+                        bundle.putString("argContChildId", histotyList.get(position).getMyRemark().getId());
                         startActivityByRouter(ARouterPath.InternationalPerspectiveDetailsActivity, bundle);
                     }
                 }else if(itemType == HistoryAdapter.TJSD){
@@ -268,6 +269,7 @@ public class HistoryActivity extends BaseActivity {
                 List<Remark> jsonObject = gson.fromJson(bean.getRemark(), type);
                 for (Remark remark: jsonObject){
                     HistoryResponse.PageDataBean bean1 = new HistoryResponse.PageDataBean();
+                    bean1.setId(bean.getId());
                     bean1.setMyRemark(remark);
                     bean1.setFieldType(HistoryAdapter.FD);
                     histotyList.add(bean1);

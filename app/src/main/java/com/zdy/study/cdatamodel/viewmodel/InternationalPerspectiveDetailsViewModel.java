@@ -19,10 +19,10 @@ public class InternationalPerspectiveDetailsViewModel extends BaseViewModel {
     }
 
     //通讯录
-    public void queryCont( String argContId) {
+    public void queryCont( String argContId, String argContChildId) {
 
         if (netDataRepository == null)
             netDataRepository = new NetDataRepository();
-        netDataRepository.queryCont(argContId, mPageListPadData, mDisposable);
+        netDataRepository.queryCont(argContId, argContChildId, mPageListPadData, mDisposable);
     }
 }
