@@ -1,15 +1,26 @@
 package com.zdy.study.activitys;
 
+import static android.provider.MediaStore.Video.Thumbnails.MINI_KIND;
 import static com.askia.common.util.Utils.getContext;
+import static com.bumptech.glide.load.resource.bitmap.VideoDecoder.FRAME_OPTION;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.media.MediaMetadataRetriever;
+import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.widget.ImageView;
 
+import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,6 +32,8 @@ import com.askia.coremodel.datamodel.http.entities.consume.WebCourseResponseBean
 import com.blankj.utilcode.util.ToastUtils;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool;
+import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
 import com.bumptech.glide.request.RequestOptions;
 import com.zdy.study.R;
 import com.zdy.study.adapter.WebBaseCourseDetailsAdapter;
@@ -32,6 +45,8 @@ import com.zdy.study.tools.Constants;
 import com.zdy.study.tools.URLEncodeing;
 import com.zdy.study.uitls.VideoFrameExtractor;
 
+import java.security.MessageDigest;
+import java.util.HashMap;
 import java.util.List;
 
 @Route(path = ARouterPath.InternationalPerspectiveDetailsActivity)
@@ -46,10 +61,12 @@ public class InternationalPerspectiveDetailsActivity extends BaseActivity {
     private InternationalPerspectiveDetailsViewModel viewModel;
     private String key;
     private String mUrl = "";
+    private Handler mHandler; // 定义全局变量mHandler
 
     @Override
     public void onInit() {
         key = getIntent().getExtras().getString("key");
+        mHandler = new Handler(); // 初始化Handler对象
         switch (key) {
             case Constants.GJSY:
                 onInTitle("国际视野详情");
@@ -96,6 +113,90 @@ public class InternationalPerspectiveDetailsActivity extends BaseActivity {
         mDataBinding = DataBindingUtil.setContentView(this, R.layout.international_perspective_details);
     }
 
+    /**
+     * 使用Glide方式获取视频某一帧
+     *
+     * @param context         上下文
+     * @param uri             视频地址
+     * @param imageView       设置image
+     * @param frameTimeMicros 获取某一时间帧.
+     */
+    public static void loadVideoScreenshot(final Context context, String uri, ImageView imageView, long frameTimeMicros) {
+        RequestOptions requestOptions = RequestOptions.frameOf(frameTimeMicros);
+        requestOptions.set(FRAME_OPTION, MediaMetadataRetriever.OPTION_CLOSEST);
+        requestOptions.transform(new BitmapTransformation() {
+            @Override
+            protected Bitmap transform(@NonNull BitmapPool pool, @NonNull Bitmap toTransform, int outWidth, int outHeight) {
+                Log.d("--使用glide方式--", "高度为" + toTransform.getHeight() + "寛度为" + toTransform.getWidth());
+                return toTransform;
+            }
+
+            @Override
+            public void updateDiskCacheKey(MessageDigest messageDigest) {
+                try {
+                    messageDigest.update((context.getPackageName() + "RotateTransform").getBytes("utf-8"));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        Glide.with(context).load(uri).apply(requestOptions).into(imageView);
+    }
+
+    /**
+     * 使用MediaMetadataRetriever获取视频指定微秒处的帧图片
+     * url  网络url
+     * timeUs 微秒
+     */
+    @SuppressLint("LongLogTag")
+    public static Bitmap GetFramePictures(String url, long timeUs) {
+        Bitmap videoShortCut = null;
+        String width;
+        String height;
+        MediaMetadataRetriever mediaMetadataRetriever = new MediaMetadataRetriever();
+        try {
+            if (url != null) {
+                HashMap<String, String> headers;
+                headers = new HashMap<>();
+                headers.put("User-Agent", "Mozilla/5.0 (Linux; U; Android 4.4.2; zh-CN; MW-KW-001 Build/JRO03C) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 UCBrowser/1.0.0.001 U4/0.8.0 Mobile Safari/533.1");
+                mediaMetadataRetriever.setDataSource(url, headers);
+            } else {
+                //mmr.setDataSource(mFD, mOffset, mLength);
+            }
+            videoShortCut = mediaMetadataRetriever.getFrameAtTime(timeUs, MediaMetadataRetriever.OPTION_CLOSEST);
+            width = mediaMetadataRetriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_WIDTH);
+            height = mediaMetadataRetriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_HEIGHT);
+            Log.d("--使用MediaMetadata方式--", "图片高度为：" + width + "图片宽度为：" + height);
+        } catch (IllegalArgumentException e) {
+            Log.e("setFrameAtTimeWithView ERROR:", e.toString(), e);
+        }
+        mediaMetadataRetriever.release();
+        return videoShortCut;
+    }
+
+    /**
+     * 获取视频的第一帧缩略图
+     * 先通过ThumbnailUtils来创建一个视频的缩略图，然后再利用ThumbnailUtils来生成指定大小的缩略图。
+     * 如果想要的缩略图的宽和高都小于MICRO_KIND，则类型要使用MICRO_KIND作为kind的值，这样会节省内存。
+     *
+     * @param videoPath 视频的路径
+     * @param width     指定输出视频缩略图的宽度
+     * @param height    指定输出视频缩略图的高度度
+     * @param kind      参照MediaStore.Images(Video).Thumbnails类中的常量MINI_KIND和MICRO_KIND。
+     *                  其中，MINI_KIND: 512 x 384，MICRO_KIND: 96 x 96
+     * @return 指定大小的视频缩略图
+     */
+    public static Bitmap getVideoThumbnail(String videoPath, int width, int height, int kind) {
+        Bitmap bitmap = null;
+        // 获取视频的缩略图
+        bitmap = ThumbnailUtils.createVideoThumbnail(videoPath, kind); //调用ThumbnailUtils类的静态方法createVideoThumbnail获取视频的截图；
+        if (bitmap != null) {
+            bitmap = ThumbnailUtils.extractThumbnail(bitmap, width, height,
+                    ThumbnailUtils.OPTIONS_RECYCLE_INPUT);//调用ThumbnailUtils类的静态方法extractThumbnail将原图片（即上方截取的图片）转化为指定大小；
+        }
+        return bitmap;
+    }
+
     @Override
     public void onSubscribeViewModel() {
 
@@ -129,23 +230,25 @@ public class InternationalPerspectiveDetailsActivity extends BaseActivity {
                 mDataBinding.rlVideo.setVisibility(View.GONE);
             } else {
                 mDataBinding.rlVideo.setVisibility(View.VISIBLE);
-                RequestOptions options = new RequestOptions();
-                options.skipMemoryCache(true).diskCacheStrategy(DiskCacheStrategy.ALL)
-                        .frame(1000000)
-                        .centerCrop();
-                //glide显示第一帧图像
-                Glide.with(this)
-                        .setDefaultRequestOptions(options)
-                        .load(mUrl)
-                        .into(mDataBinding.ivVideo);
-//                try {
-//                    Glide.with(this).load(VideoFrameExtractor.getVideoFirstFrame(mUrl)).into(mDataBinding.ivVideo);
-//                } catch (Exception e) {
-//                    throw new RuntimeException(e);
-//                }
             }
 
             setContent(listResult.getResult().getCont(), mDataBinding.webContent);
+            //该方法加载视频的第一帧时间较长，放到子线程中
+            // 在后台线程中执行耗时操作
+            new Thread(() -> {
+                try {
+                    // 模拟耗时操作
+                    Thread.sleep(100);
+                    // 更新UI界面
+                    runOnUiThread(() -> {
+                        Glide.with(this).load(GetFramePictures(mUrl, 100000)).into(mDataBinding.ivVideo);
+                        // UI相关操作
+                    });
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }).start();
+
         });
 
     }

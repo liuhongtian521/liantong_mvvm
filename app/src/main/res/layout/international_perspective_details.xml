@@ -92,14 +92,13 @@
                     android:background="@color/app_black3"
                     android:focusable="true"
                     android:focusableInTouchMode="true"
-                    android:visibility="gone"
                     app:scale="1.02">
 
                     <ImageView
                         android:id="@+id/iv_video"
                         android:layout_width="match_parent"
                         android:layout_height="150dp"
-                        android:layout_marginTop="6dp" />
+                     />
 
                     <ImageView
                         android:layout_width="40dp"
