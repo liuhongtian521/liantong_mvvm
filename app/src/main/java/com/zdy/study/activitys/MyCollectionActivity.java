@@ -145,6 +145,7 @@ public class MyCollectionActivity extends BaseActivity {
                 pageTab = tab.getPosition();
                 setItemType(mListTitle.get(pageTab).getStruCode());
                 mMainBinding.etSearch.setText("");
+                mMainBinding.tvDelete.setBackgroundResource(R.mipmap.ic_delect);
                 viewModel.queryCollectionList(mListTitle.get(pageTab).getStruCode(), mListTitle.get(pageTab).getId(),
                         mListTitle.get(pageTab).getStruCode(), mMainBinding.etSearch.getText() + "", String.valueOf(page), "10");
             }
