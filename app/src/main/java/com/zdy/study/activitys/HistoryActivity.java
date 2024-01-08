@@ -100,6 +100,8 @@ public class HistoryActivity extends BaseActivity {
                     pageDataBean.setChapterContent(histotyList.get(position).getChapterContent());
                     pageDataBean.setAuthorName(histotyList.get(position).getAuthorName());
                     bundle.putSerializable("BookListDetails", pageDataBean);
+                    bundle.putString("key", mListTitle.get(pageTab).getStruCode());
+                    bundle.putString("INTERNATIONAL_VIEW", histotyList.get(position).getId());
                     startActivityByRouter(ARouterPath.BookDetailsActivity, bundle);
                 }else{
                     Bundle bundle = new Bundle();

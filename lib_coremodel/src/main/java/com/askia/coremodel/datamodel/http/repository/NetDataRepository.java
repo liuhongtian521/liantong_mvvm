@@ -495,7 +495,7 @@ public class NetDataRepository {
         responseObserv.responseObserv(responseData, mLiveData, mDisposable);
     }
 
-    //埋点记录时长
+    //数字班级 埋点记录时长
     public void save(RequestBody body,
                              MutableLiveData<BaseResponseData> mLiveData,
                              CompositeDisposable mDisposable) {
@@ -506,7 +506,7 @@ public class NetDataRepository {
         responseObserv.responseObserv(responseData, mLiveData, mDisposable);
     }
 
-    //埋点记录时长
+    //学习助手 埋点记录时长
     public void addReadTime(RequestBody body,
                      MutableLiveData<BaseResponseData> mLiveData,
                      CompositeDisposable mDisposable) {

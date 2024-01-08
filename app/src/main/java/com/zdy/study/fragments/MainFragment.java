@@ -203,6 +203,8 @@ public class MainFragment extends BaseFragment {
         adapter.setOnItemClickListener((adapter, view, position) -> {
             Bundle bundle = new Bundle();
             bundle.putSerializable("BookListDetails", list6.get(position));
+            bundle.putString("key", Constants.TJSD);
+            bundle.putString("INTERNATIONAL_VIEW", list6.get(position).getId());
             startActivityByRouter(ARouterPath.BookDetailsActivity, bundle);
         });
     }
@@ -431,19 +433,29 @@ public class MainFragment extends BaseFragment {
     //精选理论第一条
     public void theoryFirstClick(View view) {
         MainFragmentResponseBean.PageDataBean pageDataBean = mViewModel.getPageListPadData4().getValue().getResult().getPageData().get(0);
-        Bundle bundle = new Bundle();
+        /*Bundle bundle = new Bundle();
         bundle.putString("argContId", pageDataBean.getId());
         bundle.putString("struId", Constants.JXLL);
-        startActivityByRouter(ARouterPath.OpreationDetailActivity, bundle);
+        startActivityByRouter(ARouterPath.OpreationDetailActivity, bundle);*/
+
+        Bundle bundle = new Bundle();
+        bundle.putString("key", Constants.JXLL);
+        bundle.putString("INTERNATIONAL_VIEW", pageDataBean.getId());
+        startActivityByRouter(ARouterPath.InternationalPerspectiveDetailsActivity, bundle);
     }
 
     //精选理论第二条
     public void theorySecondClick(View view) {
         MainFragmentResponseBean.PageDataBean pageDataBean = mViewModel.getPageListPadData4().getValue().getResult().getPageData().get(1);
-        Bundle bundle = new Bundle();
+        /*Bundle bundle = new Bundle();
         bundle.putString("argContId", pageDataBean.getId());
         bundle.putString("struId", Constants.JXLL);
-        startActivityByRouter(ARouterPath.OpreationDetailActivity, bundle);
+        startActivityByRouter(ARouterPath.OpreationDetailActivity, bundle);*/
+
+        Bundle bundle = new Bundle();
+        bundle.putString("key", Constants.JXLL);
+        bundle.putString("INTERNATIONAL_VIEW", pageDataBean.getId());
+        startActivityByRouter(ARouterPath.InternationalPerspectiveDetailsActivity, bundle);
     }
 
     //操作技巧更多
@@ -454,18 +466,28 @@ public class MainFragment extends BaseFragment {
     //操作技巧第一条
     public void operationFirstClick(View view) {
         MainFragmentResponseBean.PageDataBean pageDataBean = mViewModel.getPageListPadData5().getValue().getResult().getPageData().get(0);
-        Bundle bundle = new Bundle();
+        /*Bundle bundle = new Bundle();
         bundle.putString("argContId", pageDataBean.getId());
         bundle.putString("struId", Constants.CZJQ);
-        startActivityByRouter(ARouterPath.OpreationDetailActivity, bundle);
+        startActivityByRouter(ARouterPath.OpreationDetailActivity, bundle);*/
+
+        Bundle bundle = new Bundle();
+        bundle.putString("key", Constants.CZJQ);
+        bundle.putString("INTERNATIONAL_VIEW", pageDataBean.getId());
+        startActivityByRouter(ARouterPath.InternationalPerspectiveDetailsActivity, bundle);
     }
 
     //操作技巧第二条
     public void operationSecondClick(View view) {
         MainFragmentResponseBean.PageDataBean pageDataBean = mViewModel.getPageListPadData5().getValue().getResult().getPageData().get(1);
-        Bundle bundle = new Bundle();
+        /*Bundle bundle = new Bundle();
         bundle.putString("argContId", pageDataBean.getId());
         bundle.putString("struId", Constants.CZJQ);
-        startActivityByRouter(ARouterPath.OpreationDetailActivity, bundle);
+        startActivityByRouter(ARouterPath.OpreationDetailActivity, bundle);*/
+
+        Bundle bundle = new Bundle();
+        bundle.putString("key", Constants.CZJQ);
+        bundle.putString("INTERNATIONAL_VIEW", pageDataBean.getId());
+        startActivityByRouter(ARouterPath.InternationalPerspectiveDetailsActivity, bundle);
     }
 }

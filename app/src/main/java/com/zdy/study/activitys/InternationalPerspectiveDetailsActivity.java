@@ -46,6 +46,8 @@ import com.zdy.study.tools.URLEncodeing;
 import com.zdy.study.uitls.VideoFrameExtractor;
 
 import java.security.MessageDigest;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -60,6 +62,9 @@ public class InternationalPerspectiveDetailsActivity extends BaseActivity {
     private String pageSize = "10";
     private InternationalPerspectiveDetailsViewModel viewModel;
     private String key;
+    String argContId;
+    String argContChildId;
+    private String readStartTime; //埋点 开始时间
     private String mUrl = "";
     private Handler mHandler; // 定义全局变量mHandler
 
@@ -86,8 +91,9 @@ public class InternationalPerspectiveDetailsActivity extends BaseActivity {
                 break;
 
         }
-        String argContId = getIntent().getExtras().getString("INTERNATIONAL_VIEW");
-        String argContChildId = getIntent().getExtras().getString("argContChildId");
+        seveStartTime();
+        argContId = getIntent().getExtras().getString("INTERNATIONAL_VIEW");
+        argContChildId = getIntent().getExtras().getString("argContChildId");
         mDataBinding.flOperation.getComments(argContId, argContChildId, key);//获取评论
         viewModel.queryCont(argContId, argContChildId);
         mDataBinding.rlVideo.setOnClickListener(v -> {
@@ -104,6 +110,12 @@ public class InternationalPerspectiveDetailsActivity extends BaseActivity {
         });
     }
 
+    private void seveStartTime(){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// HH:mm:ss
+        //获取当前时间
+        Date date = new Date(System.currentTimeMillis());
+        readStartTime = simpleDateFormat.format(date);
+    }
 
     @Override
     public void onInitViewModel() {
@@ -290,5 +302,15 @@ public class InternationalPerspectiveDetailsActivity extends BaseActivity {
     @Override
     public void onMResume() {
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// HH:mm:ss
+        //获取当前时间
+        Date date = new Date(System.currentTimeMillis());
+        //埋点记录
+        viewModel.addReadTime(argContId, argContChildId, key, readStartTime, simpleDateFormat.format(date));
     }
 }

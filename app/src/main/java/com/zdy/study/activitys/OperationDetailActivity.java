@@ -28,9 +28,12 @@ import com.zdy.study.widgets.FavoritesLikesLayout;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+//没有用
 @Route(path = ARouterPath.OpreationDetailActivity)
 public class OperationDetailActivity extends BaseActivity {
 
@@ -39,6 +42,7 @@ public class OperationDetailActivity extends BaseActivity {
 
     private String argContId = "";
     private String struId = "";
+    private String readStartTime; //埋点 开始时间
 
     @Override
     public void onInit() {
@@ -49,6 +53,7 @@ public class OperationDetailActivity extends BaseActivity {
         }else {
             onInTitle("精选理论详情");
         }
+        seveStartTime();
         showNetDialog();
         viewModel.queryContListByAudit(argContId);
         binding.flOperation.getComments(argContId, struId);//获取评论
@@ -69,6 +74,13 @@ public class OperationDetailActivity extends BaseActivity {
     @Override
     public void onInitDataBinding() {
         binding = DataBindingUtil.setContentView(this, R.layout.act_operation_detail);
+    }
+
+    private void seveStartTime(){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// HH:mm:ss
+        //获取当前时间
+        Date date = new Date(System.currentTimeMillis());
+        readStartTime = simpleDateFormat.format(date);
     }
 
     @Override
@@ -140,5 +152,15 @@ public class OperationDetailActivity extends BaseActivity {
     @Override
     public void onMResume() {
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// HH:mm:ss
+        //获取当前时间
+        Date date = new Date(System.currentTimeMillis());
+        //埋点记录
+        viewModel.addReadTime("", argContId, struId, readStartTime, simpleDateFormat.format(date));
     }
 }

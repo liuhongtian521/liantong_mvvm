@@ -67,6 +67,8 @@ public class RecommendedBookListFragment extends BaseFragment {
     public void operationSecondClick(View view) {
         Bundle bundle = new Bundle();
         bundle.putSerializable("BookListDetails", bean);
+        bundle.putString("key", Constants.TJSD);
+        bundle.putString("INTERNATIONAL_VIEW", list.get(0).getId());
         startActivityByRouter(ARouterPath.BookDetailsActivity, bundle);
     }
 
@@ -87,6 +89,8 @@ public class RecommendedBookListFragment extends BaseFragment {
         adapter.setOnItemClickListener((adapter, view, position) -> {
             Bundle bundle = new Bundle();
             bundle.putSerializable("BookListDetails", list.get(position));
+            bundle.putString("key", Constants.TJSD);
+            bundle.putString("INTERNATIONAL_VIEW", list.get(position).getId());
             startActivityByRouter(ARouterPath.BookDetailsActivity, bundle);
 
         });

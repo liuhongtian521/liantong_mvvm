@@ -94,18 +94,28 @@ public class MyCollectionActivity extends BaseActivity {
             }
         });
         adapter.setOnItemClickListener((adapter, view, position) -> {
-            //跳转详情
-            if (MyCollectionAdapter.MN == list.get(position).getItemType()) {//联播速递默认 跳视频播放
-                Bundle bundle1 = new Bundle();
-                bundle1.putString("url", list.get(position).getContVideo().getVideoUrl());
-                startActivityByRouter(ARouterPath.VideoActivity, bundle1);
+
+            Bundle bundle = new Bundle();
+            switch (list.get(position).getItemType()) {
+                case MyCollectionAdapter.YWSL:
+                    bundle.putString("key", mListTitle.get(pageTab).getStruCode());
+                    bundle.putString("INTERNATIONAL_VIEW", list.get(position).getId());
+                    startActivityByRouter(ARouterPath.InternationalPerspectiveDetailsActivity, bundle);
+                    break;
+                case MyCollectionAdapter.MN:
+                    //联播速递默认 跳视频播放
+                    bundle.putString("url", list.get(position).getContVideo().getVideoUrl());
+                    startActivityByRouter(ARouterPath.VideoActivity, bundle);
+                    break;
+
+                case MyCollectionAdapter.FD:
+                    //联播速递分段 详情
+                    bundle.putString("key", Constants.LBSD);
+                    bundle.putString("INTERNATIONAL_VIEW", list.get(position).getId());
+                    bundle.putString("argContChildId", list.get(position).getMyRemark().getId());
+                    startActivityByRouter(ARouterPath.InternationalPerspectiveDetailsActivity, bundle);
+                    break;
             }
-            /*else if(MyCollectionAdapter.FD == list.get(position).getItemType()){//联播速递分段
-                Bundle bundle = new Bundle();
-                bundle.putString("key", Constants.SJAL);
-                bundle.putString("INTERNATIONAL_VIEW", list.get(position).getMyRemark().getId());
-                startActivityByRouter(ARouterPath.InternationalPerspectiveDetailsActivity, bundle);
-            }*/
         });
 
     }

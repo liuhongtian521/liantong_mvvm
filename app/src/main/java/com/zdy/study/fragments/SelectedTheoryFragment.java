@@ -69,10 +69,15 @@ public class SelectedTheoryFragment extends BaseFragment {
         binding.rlOperation.setAdapter(adapter);
 
         adapter.setOnItemClickListener((adapter, view, position) -> {
-            Bundle bundle = new Bundle();
+            /*Bundle bundle = new Bundle();
             bundle.putString("argContId", list.get(position).getId());
             bundle.putString("struId", Constants.JXLL);
-            startActivityByRouter(ARouterPath.OpreationDetailActivity, bundle);
+            startActivityByRouter(ARouterPath.OpreationDetailActivity, bundle);*/
+
+            Bundle bundle = new Bundle();
+            bundle.putString("key", Constants.JXLL);
+            bundle.putString("INTERNATIONAL_VIEW", list.get(position).getId());
+            startActivityByRouter(ARouterPath.InternationalPerspectiveDetailsActivity, bundle);
         });
 //        binding.rlOperation.requestFocus();
     }
