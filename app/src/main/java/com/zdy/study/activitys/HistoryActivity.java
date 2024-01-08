@@ -69,6 +69,7 @@ public class HistoryActivity extends BaseActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_history);
         binding.setHandlers(this);
     }
+
     private void inItRecycleView() {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);//数字为行数或列数
         adapter = new HistoryAdapter(histotyList);
@@ -78,19 +79,19 @@ public class HistoryActivity extends BaseActivity {
         adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                if (itemType == HistoryAdapter.LBSD){//联播速递
+                if (itemType == HistoryAdapter.LBSD) {//联播速递
                     if (HistoryAdapter.MN == histotyList.get(position).getItemType()) {//默认样式
                         Bundle bundle1 = new Bundle();
                         bundle1.putString("url", histotyList.get(position).getContVideo().getVideoUrl());
                         startActivityByRouter(ARouterPath.VideoActivity, bundle1);
-                    }else if (HistoryAdapter.FD == histotyList.get(position).getItemType()) {//分段要点
+                    } else if (HistoryAdapter.FD == histotyList.get(position).getItemType()) {//分段要点
                         Bundle bundle = new Bundle();
                         bundle.putString("key", Constants.LBSD);
                         bundle.putString("INTERNATIONAL_VIEW", histotyList.get(position).getId());
                         bundle.putString("argContChildId", histotyList.get(position).getMyRemark().getId());
                         startActivityByRouter(ARouterPath.InternationalPerspectiveDetailsActivity, bundle);
                     }
-                }else if(itemType == HistoryAdapter.TJSD){
+                } else if (itemType == HistoryAdapter.TJSD) {
                     Bundle bundle = new Bundle();
                     BooksRespponseBean.PageDataBean pageDataBean = new BooksRespponseBean.PageDataBean();
                     pageDataBean.setBookName(histotyList.get(position).getContName());
@@ -103,7 +104,7 @@ public class HistoryActivity extends BaseActivity {
                     bundle.putString("key", mListTitle.get(pageTab).getStruCode());
                     bundle.putString("INTERNATIONAL_VIEW", histotyList.get(position).getId());
                     startActivityByRouter(ARouterPath.BookDetailsActivity, bundle);
-                }else{
+                } else {
                     Bundle bundle = new Bundle();
                     bundle.putString("key", mListTitle.get(pageTab).getStruCode());
                     bundle.putString("INTERNATIONAL_VIEW", histotyList.get(position).getId());
@@ -119,9 +120,11 @@ public class HistoryActivity extends BaseActivity {
             public void nextPage() {
                 page++;
                 showNetDialog();
-                viewModel.queryReadNotes(mListTitle.get(pageTab).getStruCode(), mListTitle.get(pageTab).getId(),
-                        mListTitle.get(pageTab).getStruCode(), binding.etSearch.getText().toString(),
-                        String.valueOf(page), "10");
+                if (null != mListTitle && mListTitle.size() > 0) {
+                    viewModel.queryReadNotes(mListTitle.get(pageTab).getStruCode(), mListTitle.get(pageTab).getId(),
+                            mListTitle.get(pageTab).getStruCode(), binding.etSearch.getText().toString(),
+                            String.valueOf(page), "10");
+                }
             }
 
             @Override
@@ -129,11 +132,12 @@ public class HistoryActivity extends BaseActivity {
                 page--;
                 showNetDialog();
                 viewModel.queryReadNotes(mListTitle.get(pageTab).getStruCode(), mListTitle.get(pageTab).getId(),
-                        mListTitle.get(pageTab).getStruCode(),binding.etSearch.getText().toString(),
+                        mListTitle.get(pageTab).getStruCode(), binding.etSearch.getText().toString(),
                         String.valueOf(page), "10");
             }
         });
     }
+
     @Override
     public void onSubscribeViewModel() {
         //标题tab
@@ -155,7 +159,7 @@ public class HistoryActivity extends BaseActivity {
             binding.lmHistoryView.setList(listResult.getResult().getPageData(), page);
             histotyList.clear();
 
-            if (itemType ==HistoryAdapter.LBSD)
+            if (itemType == HistoryAdapter.LBSD)
                 makeFD(listResult.getResult().getPageData());
             else {
                 histotyList.addAll(listResult.getResult().getPageData());
@@ -168,9 +172,9 @@ public class HistoryActivity extends BaseActivity {
         });
     }
 
-    private void setTitle(List<MyCollectionTitleResponse.DataBean> data){
+    private void setTitle(List<MyCollectionTitleResponse.DataBean> data) {
         //删除第七条
-        if (data.size() >=7 )
+        if (data.size() >= 7)
             data.remove(6);
 
         List<MyCollectionTitleResponse.DataBean> titles = new ArrayList<>();
@@ -192,8 +196,8 @@ public class HistoryActivity extends BaseActivity {
         setTab();
     }
 
-    private void setItemType(String struCode){
-        switch (struCode){
+    private void setItemType(String struCode) {
+        switch (struCode) {
             case Constants.YWSL:
                 itemType = HistoryAdapter.YWSL;
                 break;
@@ -217,7 +221,8 @@ public class HistoryActivity extends BaseActivity {
                 break;
         }
     }
-    private void setTab(){
+
+    private void setTab() {
         TabLayout.Tab tab;
         View view;
         for (MyCollectionTitleResponse.DataBean dataBean : mListTitle) {
@@ -250,7 +255,7 @@ public class HistoryActivity extends BaseActivity {
         getListData(mListTitle.get(0));//根据选择tab 获取第一页列表数据
     }
 
-    private void getListData(MyCollectionTitleResponse.DataBean title){
+    private void getListData(MyCollectionTitleResponse.DataBean title) {
         //设置itemtype 样式
         setItemType(title.getStruCode());
         page = 1;
@@ -260,16 +265,17 @@ public class HistoryActivity extends BaseActivity {
     }
 
     //将分段数据加到list中
-    private void makeFD(List<HistoryResponse.PageDataBean> data){
+    private void makeFD(List<HistoryResponse.PageDataBean> data) {
         if (gson == null)
             gson = new Gson();
-        for (HistoryResponse.PageDataBean bean: data){
+        for (HistoryResponse.PageDataBean bean : data) {
             bean.setFieldType(HistoryAdapter.MN);
             histotyList.add(bean);
-            if (!TextUtils.isEmpty(bean.getRemark())){
-                Type type =new TypeToken<List<Remark>>(){}.getType();
+            if (!TextUtils.isEmpty(bean.getRemark())) {
+                Type type = new TypeToken<List<Remark>>() {
+                }.getType();
                 List<Remark> jsonObject = gson.fromJson(bean.getRemark(), type);
-                for (Remark remark: jsonObject){
+                for (Remark remark : jsonObject) {
                     HistoryResponse.PageDataBean bean1 = new HistoryResponse.PageDataBean();
                     bean1.setId(bean.getId());
                     bean1.setMyRemark(remark);
@@ -283,6 +289,7 @@ public class HistoryActivity extends BaseActivity {
     public void onClickSearch(View view) {
         getListData(mListTitle.get(pageTab));//根据选择tab 获取第一页列表数据
     }
+
     @Override
     public void onMResume() {
 
