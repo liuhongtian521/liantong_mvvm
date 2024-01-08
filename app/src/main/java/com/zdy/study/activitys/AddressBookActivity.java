@@ -19,7 +19,9 @@ import com.zdy.study.adapter.AddressBookAdapter;
 import com.zdy.study.cdatamodel.viewmodel.AddressBookViewModel;
 import com.zdy.study.databinding.AddressBookActivityBinding;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /*通讯录 */
@@ -30,11 +32,13 @@ public class AddressBookActivity extends BaseActivity {
     private List<AddressBookResponseBean.RecordsBean> list;
     private RecyclerView recyclerView;
     private AddressBookAdapter adapter;
+    private String readStartTime; //埋点 开始时间
 
     @Override
     public void onInit() {
         //标题
         initTitle();
+        seveStartTime();
         list = new ArrayList<>();
         viewModel.queryStudentInfoListByClass("1", "10000", "");
         initRecycleView();
@@ -71,6 +75,12 @@ public class AddressBookActivity extends BaseActivity {
         });
     }
 
+    private void seveStartTime(){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// HH:mm:ss
+        //获取当前时间
+        Date date = new Date(System.currentTimeMillis());
+        readStartTime = simpleDateFormat.format(date);
+    }
     @Override
     public void onInitViewModel() {
         viewModel = ViewModelProviders.of(this).get(AddressBookViewModel.class);
@@ -102,5 +112,15 @@ public class AddressBookActivity extends BaseActivity {
     @Override
     public void onMResume() {
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// HH:mm:ss
+        //获取当前时间
+        Date date = new Date(System.currentTimeMillis());
+        //埋点记录
+        viewModel.save("9", readStartTime, simpleDateFormat.format(date));
     }
 }

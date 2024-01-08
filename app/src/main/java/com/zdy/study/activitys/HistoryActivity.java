@@ -78,14 +78,14 @@ public class HistoryActivity extends BaseActivity {
         adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                if (itemType == HistoryAdapter.LBSD){
-                    if (HistoryAdapter.MN == histotyList.get(position).getItemType()) {
+                if (itemType == HistoryAdapter.LBSD){//联播速递
+                    if (HistoryAdapter.MN == histotyList.get(position).getItemType()) {//默认样式
                         Bundle bundle1 = new Bundle();
                         bundle1.putString("url", histotyList.get(position).getContVideo().getVideoUrl());
                         startActivityByRouter(ARouterPath.VideoActivity, bundle1);
-                    }else if (HistoryAdapter.FD == histotyList.get(position).getItemType()) {
+                    }else if (HistoryAdapter.FD == histotyList.get(position).getItemType()) {//分段要点
                         Bundle bundle = new Bundle();
-                        bundle.putString("key", Constants.SJAL);
+                        bundle.putString("key", Constants.LBSD);
                         bundle.putString("INTERNATIONAL_VIEW", histotyList.get(position).getId());
                         bundle.putString("argContChildId", histotyList.get(position).getMyRemark().getId());
                         startActivityByRouter(ARouterPath.InternationalPerspectiveDetailsActivity, bundle);

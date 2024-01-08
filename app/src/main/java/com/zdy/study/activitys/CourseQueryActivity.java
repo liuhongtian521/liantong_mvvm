@@ -49,6 +49,7 @@ public class CourseQueryActivity extends BaseActivity {
     private List<CourseDetailsResponse.RecordsBean> mDetailsList;
     private String mYear;
     private String mMonth;
+    private String readStartTime; //埋点 开始时间
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -136,7 +137,7 @@ public class CourseQueryActivity extends BaseActivity {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 Bundle bundle = new Bundle();
-                bundle.putString("id",mDetailsList.get(position).getTeacherId());
+                bundle.putString("id", mDetailsList.get(position).getTeacherId());
                 bundle.putString("classesId", mDetailsList.get(position).getClassesId());
                 startActivityByRouter(ARouterPath.TeacherIntroductionDetails, bundle);
             }
@@ -161,8 +162,15 @@ public class CourseQueryActivity extends BaseActivity {
             }
         });
         mDataBinding.tvYearClick.requestFocus();
+        seveStartTime();//记录页面开始时间 埋点
     }
 
+    private void seveStartTime(){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// HH:mm:ss
+        //获取当前时间
+        Date date = new Date(System.currentTimeMillis());
+        readStartTime = simpleDateFormat.format(date);
+    }
     @Override
     public void onInitViewModel() {
         mCourseQueryViewModel = ViewModelProviders.of(this).get(CourseQueryViewModel.class);
@@ -208,5 +216,15 @@ public class CourseQueryActivity extends BaseActivity {
     @Override
     public void onMResume() {
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// HH:mm:ss
+        //获取当前时间
+        Date date = new Date(System.currentTimeMillis());
+        //埋点记录
+        mCourseQueryViewModel.save("1", readStartTime, simpleDateFormat.format(date));
     }
 }

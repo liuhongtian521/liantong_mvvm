@@ -28,7 +28,9 @@ import com.zdy.study.databinding.WebBasedCourseActivityBinding;
 import com.zdy.study.widgets.LoadMoreConstraintLayout;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Route(path = ARouterPath.WebBasedCourseActivity)
@@ -44,6 +46,7 @@ public class WebBasedCourseActivity extends BaseActivity {
     private int page = 1;
     private String pageSize = "10";
     private String mUrl;
+    private String readStartTime; //埋点 开始时间
 
 
     @Override
@@ -53,8 +56,15 @@ public class WebBasedCourseActivity extends BaseActivity {
         onInTitle();
         initList();
         initLoad();
+        seveStartTime();//记录页面开始时间 埋点
     }
 
+    private void seveStartTime(){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// HH:mm:ss
+        //获取当前时间
+        Date date = new Date(System.currentTimeMillis());
+        readStartTime = simpleDateFormat.format(date);
+    }
     private void onInTitle() {
         mDataBinding.includeLayout.preferenceActivityTitleText.setText("网络课程列表");
         mDataBinding.includeLayout.preferenceActivityTitleImage.setOnClickListener(v -> {
@@ -186,5 +196,15 @@ public class WebBasedCourseActivity extends BaseActivity {
     @Override
     public void onMResume() {
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// HH:mm:ss
+        //获取当前时间
+        Date date = new Date(System.currentTimeMillis());
+        //埋点记录
+        viewModel.save("15", readStartTime, simpleDateFormat.format(date));
     }
 }

@@ -231,4 +231,12 @@ public interface NetDataService {
                                                                  @Query("argPage") String argPage,
                                                                  @Query("argPageSize") String argPageSize);
 
+    //  数字班级 埋点 记录时长
+    @POST("/cdls-bds/behaviortimeinfo/save")
+    Observable<BaseResponseData> save(@Body RequestBody body);
+
+    // 学习助手埋点 记录时长
+    @POST("/cdls-cms/ReadingTimeController/addReadTime")
+    Observable<BaseResponseData> addReadTime(@Body RequestBody body);
+
 }

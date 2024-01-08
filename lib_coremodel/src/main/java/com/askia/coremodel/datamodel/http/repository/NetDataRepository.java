@@ -495,4 +495,25 @@ public class NetDataRepository {
         responseObserv.responseObserv(responseData, mLiveData, mDisposable);
     }
 
+    //埋点记录时长
+    public void save(RequestBody body,
+                             MutableLiveData<BaseResponseData> mLiveData,
+                             CompositeDisposable mDisposable) {
+        Observable<BaseResponseData> responseData = ApiClient.getNetDataService()
+                .save(body);
+        if (responseObserv == null)
+            responseObserv = new ResponseObserv();
+        responseObserv.responseObserv(responseData, mLiveData, mDisposable);
+    }
+
+    //埋点记录时长
+    public void addReadTime(RequestBody body,
+                     MutableLiveData<BaseResponseData> mLiveData,
+                     CompositeDisposable mDisposable) {
+        Observable<BaseResponseData> responseData = ApiClient.getNetDataService()
+                .addReadTime(body);
+        if (responseObserv == null)
+            responseObserv = new ResponseObserv();
+        responseObserv.responseObserv(responseData, mLiveData, mDisposable);
+    }
 }

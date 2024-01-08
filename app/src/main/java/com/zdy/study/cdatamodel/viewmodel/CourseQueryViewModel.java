@@ -6,6 +6,8 @@ import com.askia.coremodel.datamodel.http.entities.consume.BaseResponseData;
 import com.askia.coremodel.datamodel.http.entities.consume.CourseDetailsResponse;
 import com.askia.coremodel.datamodel.http.entities.consume.CourseQueryResponseBean;
 import com.askia.coremodel.datamodel.http.entities.consume.DiscussRoomListBean;
+import com.askia.coremodel.datamodel.http.params.consume.AddCollectionParams;
+import com.askia.coremodel.datamodel.http.params.consume.SaveParams;
 import com.askia.coremodel.datamodel.http.repository.NetDataRepository;
 import com.askia.coremodel.viewmodel.BaseViewModel;
 
@@ -41,5 +43,16 @@ public class CourseQueryViewModel extends BaseViewModel {
         if (netDataRepository == null)
             netDataRepository = new NetDataRepository();
         netDataRepository.queryCurriculumInfoList(classesId, curriculumDate, size, current, argPage, argPageSize, mPageListPadDataDetails, mDisposable);
+    }
+
+    // 埋点记录时长
+    public void save( String menuId, String readStartTime, String readEndTime) {
+        SaveParams params = new SaveParams();
+        params.setMenuId(menuId);
+        params.setReadStartTime(readStartTime);
+        params.setReadEndTime(readEndTime);
+        if (netDataRepository == null)
+            netDataRepository = new NetDataRepository();
+        netDataRepository.save(convertPostBody(params), new MutableLiveData<>(), mDisposable);
     }
 }

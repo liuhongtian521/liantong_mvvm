@@ -32,7 +32,9 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLDecoder;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 //学习手册
@@ -50,10 +52,12 @@ public class StudyManualActivity extends BaseActivity {
     private int pageNo = 1;
     private String pageSize = "10";
     private String fileName = "/zdy.pdf";
+    private String readStartTime; //埋点 开始时间
     @Override
     public void onInit() {
         initDataList();
         initLoad();
+        seveStartTime();//记录页面开始时间 埋点
         //标题
         mDataBinding.includeLayout.preferenceActivityTitleText.setText("学员手册");
         mDataBinding.includeLayout.preferenceActivityTitleImage.setOnClickListener(v -> {
@@ -61,6 +65,13 @@ public class StudyManualActivity extends BaseActivity {
         });
         showNetDialog();
         mViewModel.queryStudentHandbook(String.valueOf(pageNo), pageSize);
+    }
+
+    private void seveStartTime(){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// HH:mm:ss
+        //获取当前时间
+        Date date = new Date(System.currentTimeMillis());
+        readStartTime = simpleDateFormat.format(date);
     }
 
     @Override
@@ -243,5 +254,15 @@ public class StudyManualActivity extends BaseActivity {
     @Override
     public void onMResume() {
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// HH:mm:ss
+        //获取当前时间
+        Date date = new Date(System.currentTimeMillis());
+        //埋点记录
+        mViewModel.save("4", readStartTime, simpleDateFormat.format(date));
     }
 }

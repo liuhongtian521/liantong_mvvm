@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData;
 import com.askia.coremodel.datamodel.http.entities.consume.AddressBookResponseBean;
 import com.askia.coremodel.datamodel.http.entities.consume.BaseResponseData;
 import com.askia.coremodel.datamodel.http.entities.consume.WebCourseResponseBean;
+import com.askia.coremodel.datamodel.http.params.consume.SaveParams;
 import com.askia.coremodel.datamodel.http.repository.NetDataRepository;
 import com.askia.coremodel.viewmodel.BaseViewModel;
 
@@ -27,5 +28,16 @@ public class WebBasedCourseViewModel extends BaseViewModel {
             netDataRepository = new NetDataRepository();
         netDataRepository.pageByApp(current,
                 size, argPage, argPageSize, mPageListPadData, mDisposable);
+    }
+
+    // 埋点记录时长
+    public void save( String menuId, String readStartTime, String readEndTime) {
+        SaveParams params = new SaveParams();
+        params.setMenuId(menuId);
+        params.setReadStartTime(readStartTime);
+        params.setReadEndTime(readEndTime);
+        if (netDataRepository == null)
+            netDataRepository = new NetDataRepository();
+        netDataRepository.save(convertPostBody(params), new MutableLiveData<>(), mDisposable);
     }
 }

@@ -18,15 +18,27 @@ import com.zdy.study.cdatamodel.viewmodel.TeacherIntroductionModel;
 import com.zdy.study.databinding.ActivityTeacherInttoductionBinding;
 import com.zdy.study.tools.URLEncodeing;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 @Route(path = ARouterPath.TeacherIntroductionDetails)
 public class TeacherIntroductionDetails extends BaseActivity {
     private ActivityTeacherInttoductionBinding mMainBinding;
     private TeacherIntroductionModel mViewModel;
+    private String readStartTime; //埋点 开始时间
 
     @Override
     public void onInit() {
         onInTitle("师资介绍");
+        seveStartTime();//记录页面开始时间 埋点
         mViewModel.queryTeacherInfoList(getIntent().getExtras().getString("id"), getIntent().getExtras().getString("classesId"));
+    }
+
+    private void seveStartTime(){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// HH:mm:ss
+        //获取当前时间
+        Date date = new Date(System.currentTimeMillis());
+        readStartTime = simpleDateFormat.format(date);
     }
 
     private void onInTitle(String title) {
@@ -101,5 +113,15 @@ public class TeacherIntroductionDetails extends BaseActivity {
     @Override
     public void onMResume() {
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// HH:mm:ss
+        //获取当前时间
+        Date date = new Date(System.currentTimeMillis());
+        //埋点记录
+        mViewModel.save("11", readStartTime, simpleDateFormat.format(date));
     }
 }

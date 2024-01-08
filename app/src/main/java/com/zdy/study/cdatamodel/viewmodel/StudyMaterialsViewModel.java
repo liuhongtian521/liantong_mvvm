@@ -11,6 +11,7 @@ import com.askia.coremodel.datamodel.http.entities.consume.HttpLoginResult;
 import com.askia.coremodel.datamodel.http.entities.consume.StudyDictionaryBean;
 import com.askia.coremodel.datamodel.http.entities.consume.StuyMaterialsListBean;
 import com.askia.coremodel.datamodel.http.params.consume.HttpLoginParams;
+import com.askia.coremodel.datamodel.http.params.consume.SaveParams;
 import com.askia.coremodel.datamodel.http.repository.NetDataRepository;
 import com.askia.coremodel.util.EncryptUtils;
 import com.askia.coremodel.viewmodel.BaseViewModel;
@@ -56,4 +57,14 @@ public class StudyMaterialsViewModel extends BaseViewModel {
         netDataRepository.queryLearningMaterials(dictKey, page, size, mMaterialsLiveData, mDisposable);
     }
 
+    // 埋点记录时长
+    public void save( String menuId, String readStartTime, String readEndTime) {
+        SaveParams params = new SaveParams();
+        params.setMenuId(menuId);
+        params.setReadStartTime(readStartTime);
+        params.setReadEndTime(readEndTime);
+        if (netDataRepository == null)
+            netDataRepository = new NetDataRepository();
+        netDataRepository.save(convertPostBody(params), new MutableLiveData<>(), mDisposable);
+    }
 }

@@ -101,7 +101,7 @@ public class BroadcastExpressActivity extends BaseActivity {
                     break;
                 case BroadcastExpressAdapter.FD:
                     Bundle bundle = new Bundle();
-                    bundle.putString("key", Constants.SJAL);
+                    bundle.putString("key", Constants.LBSD);
                     bundle.putString("INTERNATIONAL_VIEW", list.get(position).getId());
                     bundle.putString("argContChildId", list.get(position).getMyRemark().getId());
                     startActivityByRouter(ARouterPath.InternationalPerspectiveDetailsActivity, bundle);

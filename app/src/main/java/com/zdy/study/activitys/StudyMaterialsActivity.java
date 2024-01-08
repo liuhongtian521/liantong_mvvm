@@ -42,7 +42,9 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLDecoder;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 //学习资料
@@ -61,12 +63,14 @@ public class StudyMaterialsActivity extends BaseActivity {
     private String fileName = "";
     private List<StudyDictionaryBean> list;
     private int pageTab = 0;
+    private String readStartTime; //埋点 开始时间
 
     @Override
     public void onInit() {
         list = new ArrayList<>();
         initDataList();
         initLoad();
+        seveStartTime();//记录页面开始时间 埋点
         //标题
         mDataBinding.includeLayout.preferenceActivityTitleText.setText("学习资料");
         mDataBinding.includeLayout.preferenceActivityTitleImage.setOnClickListener(v -> {
@@ -89,6 +93,12 @@ public class StudyMaterialsActivity extends BaseActivity {
         adapter.notifyDataSetChanged();*/
 
 
+    }
+    private void seveStartTime(){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// HH:mm:ss
+        //获取当前时间
+        Date date = new Date(System.currentTimeMillis());
+        readStartTime = simpleDateFormat.format(date);
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")
@@ -309,5 +319,15 @@ public class StudyMaterialsActivity extends BaseActivity {
     @Override
     public void onMResume() {
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// HH:mm:ss
+        //获取当前时间
+        Date date = new Date(System.currentTimeMillis());
+        //埋点记录
+        mViewModel.save("3", readStartTime, simpleDateFormat.format(date));
     }
 }

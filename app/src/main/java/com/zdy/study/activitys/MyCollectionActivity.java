@@ -86,7 +86,7 @@ public class MyCollectionActivity extends BaseActivity {
                     break;
                 case R.id.fcc_fdyd:
                     //联播速递分段 详情
-                    bundle.putString("key", Constants.SJAL);
+                    bundle.putString("key", Constants.LBSD);
                     bundle.putString("INTERNATIONAL_VIEW", list.get(position).getId());
                     bundle.putString("argContChildId", list.get(position).getMyRemark().getId());
                     startActivityByRouter(ARouterPath.InternationalPerspectiveDetailsActivity, bundle);

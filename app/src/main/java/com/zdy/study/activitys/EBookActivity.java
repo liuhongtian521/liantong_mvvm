@@ -32,7 +32,9 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLDecoder;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 //电子课件
@@ -49,10 +51,12 @@ public class EBookActivity extends BaseActivity {
     private int pageNo = 1;
     private String pageSize = "10";
     private String fileName = "";
+    private String readStartTime; //埋点 开始时间
     @Override
     public void onInit() {
         initDataList();
         initLoad();
+        seveStartTime();//记录页面开始时间 埋点
         //标题
         mDataBinding.includeLayout.preferenceActivityTitleText.setText("电子课件");
         mDataBinding.includeLayout.preferenceActivityTitleImage.setOnClickListener(v -> {
@@ -61,6 +65,14 @@ public class EBookActivity extends BaseActivity {
         showNetDialog();
         mViewModel.queryCoursewareListByUser(String.valueOf(pageNo), pageSize);
     }
+
+    private void seveStartTime(){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// HH:mm:ss
+        //获取当前时间
+        Date date = new Date(System.currentTimeMillis());
+        readStartTime = simpleDateFormat.format(date);
+    }
+
     private void initLoad(){
         mDataBinding.lmView.setLoadLitetsner(new LoadMoreConstraintLayout.LoadLitetsner() {
             @Override
@@ -215,5 +227,15 @@ public class EBookActivity extends BaseActivity {
     @Override
     public void onMResume() {
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// HH:mm:ss
+        //获取当前时间
+        Date date = new Date(System.currentTimeMillis());
+        //埋点记录
+        mViewModel.save("2", readStartTime, simpleDateFormat.format(date));
     }
 }
