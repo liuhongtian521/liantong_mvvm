@@ -14,6 +14,15 @@ public class CaptchaResultBean implements Serializable {
     private String image;
 
     private String error;
+    private String message;
+
+    public String getMessage() {
+        return message == null ? "" : message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
 
     public String getError() {
         return error == null ? "" : error;

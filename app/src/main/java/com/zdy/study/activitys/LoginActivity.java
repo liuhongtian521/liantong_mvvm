@@ -105,6 +105,7 @@ public class LoginActivity extends BaseActivity {
                 ToastUtils.showLong(listResult.getError().toString());
                 return;
             }
+            ToastUtils.showLong(listResult.getMessage());
             key = listResult.getKey();
         });
         //获取用户信息
