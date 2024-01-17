@@ -2,9 +2,11 @@ package com.zdy.study.activitys;
 
 
 import android.annotation.SuppressLint;
+import android.graphics.drawable.Drawable;
 import android.view.View;
 
 import android.util.Log;
+import android.widget.RadioButton;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
@@ -43,6 +45,8 @@ public class MainActivity extends BaseActivity {
     private FragmentManager manager;
     private FragmentTransaction transaction;
     private Fragment currentFragment;
+
+    private RadioButton lastRb = null;//上一次选中RadioButton
 
     @Override
     public void onInit() {
@@ -141,25 +145,82 @@ public class MainActivity extends BaseActivity {
 
     @SuppressLint("SuspiciousIndentation")
     private void initBottom() {
+        lastRb = mDataBinding.rbSzbj;
         mDataBinding.rbSzbj.requestFocus();
         mDataBinding.rbSzbj.setOnFocusChangeListener((view, b) -> {
-            if (b) FragmentHideShwo(digitalClassesFragment);
-//            mDataBinding.viewPager.setCurrentItem(0, true);
+            if (b){
+                FragmentHideShwo(digitalClassesFragment);
+//                mDataBinding.viewPager.setCurrentItem(0, true);
+                rbSelected(mDataBinding.rbSzbj, R.mipmap.ic_tab_banji_select);
+            }
+
         });
         mDataBinding.rbXxzs.setOnFocusChangeListener((view, b) -> {
-            if (b) FragmentHideShwo(mainFragment);
+            if (b) {
+                FragmentHideShwo(mainFragment);
 //            mDataBinding.viewPager.setCurrentItem(1, true);
+                rbSelected(mDataBinding.rbXxzs, R.mipmap.ic_tab_zhushou_select);
+            }
         });
         mDataBinding.rbTl.setOnFocusChangeListener((view, b) -> {
-            if (b) FragmentHideShwo(discussRoomFragment);
+            if (b) {
+                FragmentHideShwo(discussRoomFragment);
 //            mDataBinding.viewPager.setCurrentItem(2, true);
+                rbSelected(mDataBinding.rbTl, R.mipmap.ic_tab_banji_select);
+            }
         });
         mDataBinding.rbGr.setOnFocusChangeListener((view, b) -> {
-            if (b)
+            if (b) {
                 FragmentHideShwo(mineFragment);
 //            mDataBinding.viewPager.setCurrentItem(3, true);
+                rbSelected(mDataBinding.rbGr, R.mipmap.ic_tab_geren_select);
+            }
         });
 
+    }
+
+    //设置选中效果
+    private void rbSelected(RadioButton rbSel, int leftDra){
+        if (lastRb != null)
+            setTabUnSelect(lastRb);//将上此选中 设置为未选择
+        rbSel.setBackgroundResource(R.drawable.shape_4_red);
+        // 使用代码设置drawableleft
+        Drawable drawable = getResources().getDrawable(leftDra);
+        // 这一步必须要做，否则不会显示。
+        drawable.setBounds(0, 0, drawable.getMinimumWidth(),
+                drawable.getMinimumHeight());
+        rbSel.setCompoundDrawables(drawable, null, null, null);
+        rbSel.setTextColor(getResources().getColor(R.color.white));
+        lastRb = rbSel;
+    }
+
+    //将上此选中 设置为未选择
+    private void setTabUnSelect(RadioButton rbSel){
+        Drawable drawable = null;
+        switch (rbSel.getId()){
+            case R.id.rb_szbj:
+                // 使用代码设置drawableleft
+                drawable = getResources().getDrawable(R.mipmap.ic_tab_banji_unselect);
+                break;
+            case R.id.rb_xxzs:
+                // 使用代码设置drawableleft
+                drawable = getResources().getDrawable(R.mipmap.ic_tab_zushou_unselect);
+                break;
+            case R.id.rb_tl:
+                // 使用代码设置drawableleft
+                drawable = getResources().getDrawable(R.mipmap.ic_tab_taolun_unselect);
+                break;
+            case R.id.rb_gr:
+                // 使用代码设置drawableleft
+                drawable = getResources().getDrawable(R.mipmap.ic_tab_geren_unselect);
+                break;
+        }
+        // 这一步必须要做，否则不会显示。
+        drawable.setBounds(0, 0, drawable.getMinimumWidth(),
+                drawable.getMinimumHeight());
+        rbSel.setCompoundDrawables(drawable, null, null, null);
+        rbSel.setTextColor(getResources().getColor(R.color.txt_main_tab));
+        rbSel.setBackgroundResource(R.drawable.shape_4_e6e6e6);
     }
 
     public void showdiscussRoom(){

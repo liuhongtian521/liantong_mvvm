@@ -9,10 +9,12 @@ import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.view.ViewCompat;
 
+import com.meetsl.scardview.SCardView;
 import com.zdy.study.R;
 
 public class FCConstraintLayout  extends ConstraintLayout {
     private float i = 0;
+    private SCardView bgSelected, bgUnSelect;
     public FCConstraintLayout(@NonNull Context context) {
         super(context);
         setFocusChange();
@@ -43,6 +45,10 @@ public class FCConstraintLayout  extends ConstraintLayout {
                         .scaleY(i==0? 1.10f: i)
                         .translationZ(1)
                         .start();
+                if (bgSelected != null)
+                    bgSelected.setVisibility(VISIBLE);
+                if (bgUnSelect != null)
+                    bgUnSelect.setVisibility(GONE);
 //                view.setBackgroundColor(Color.LTGRAY);
             } else {
                 // 此处为失去焦点时的处理内容
@@ -51,6 +57,10 @@ public class FCConstraintLayout  extends ConstraintLayout {
                         .scaleY(1)
                         .translationZ(1)
                         .start();
+                if (bgSelected != null)
+                    bgSelected.setVisibility(GONE);
+                if (bgUnSelect != null)
+                    bgUnSelect.setVisibility(VISIBLE);
 //                view.setBackgroundColor(Color.TRANSPARENT);
             }
         });
@@ -65,5 +75,10 @@ public class FCConstraintLayout  extends ConstraintLayout {
 
     public void setBigScale(){
         this.i = 1.25f;
+    }
+
+    public void setBackGround(SCardView bgSelected, SCardView bgUnSelect){
+        this.bgSelected = bgSelected;
+        this.bgUnSelect = bgUnSelect;
     }
 }

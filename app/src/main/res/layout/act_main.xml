@@ -62,7 +62,7 @@
         <RadioGroup
             android:id="@+id/rg_bottom"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_50"
+            android:layout_height="@dimen/dp_67"
             android:orientation="horizontal"
             android:background="#E6E6E6"
             android:gravity="center_vertical"
@@ -72,21 +72,27 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_40"
                 android:layout_weight="1"
                 android:gravity="center">
                 <RadioButton
                     android:focusableInTouchMode="true"
                     android:id="@+id/rb_szbj"
-                    android:layout_width="@dimen/dp_100"
-                    android:layout_height="@dimen/dp_34"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/dp_41"
                     android:text="数字班级"
                     android:textSize="@dimen/sp_13"
-                    android:textColor="@drawable/text_tab_selector"
+                    android:textColor="@color/white"
                     android:button="@null"
                     android:gravity="center"
-                    android:paddingLeft="@dimen/dp_10"
-                    android:drawableLeft="@drawable/ic_tab_selector_szbj"
-                    android:background="@drawable/ic_tab_selector_bg"/>
+                    android:paddingLeft="@dimen/dp_42"
+                    android:paddingRight="@dimen/dp_40"
+                    android:drawablePadding="@dimen/dp_10"
+                    android:drawableLeft="@mipmap/ic_tab_banji_select"
+                    android:background="@drawable/shape_4_red"/>
+                <!--android:textColor="@drawable/text_tab_selector"
+                android:drawableLeft="@drawable/ic_tab_selector_szbj"
+                android:background="@drawable/ic_tab_selector_bg"-->
             </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -96,16 +102,21 @@
                 <RadioButton
                     android:focusableInTouchMode="true"
                     android:id="@+id/rb_xxzs"
-                    android:layout_width="@dimen/dp_100"
-                    android:layout_height="@dimen/dp_34"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/dp_41"
                     android:text="学习助手"
                     android:textSize="@dimen/sp_13"
-                    android:textColor="@drawable/text_tab_selector"
+                    android:textColor="#4C4E5A"
                     android:button="@null"
                     android:gravity="center"
-                    android:paddingLeft="@dimen/dp_10"
-                    android:drawableLeft="@drawable/ic_tab_selector_xxzy"
-                    android:background="@drawable/ic_tab_selector_bg"/>
+                    android:paddingLeft="@dimen/dp_42"
+                    android:paddingRight="@dimen/dp_40"
+                    android:drawablePadding="@dimen/dp_10"
+                    android:drawableLeft="@mipmap/ic_tab_zushou_unselect"
+                    android:background="@drawable/shape_4_e6e6e6"/>
+                <!--android:textColor="@drawable/text_tab_selector"
+                android:drawableLeft="@drawable/ic_tab_selector_xxzy"
+                android:background="@drawable/ic_tab_selector_bg"-->
             </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -115,35 +126,46 @@
                 <RadioButton
                     android:focusableInTouchMode="true"
                     android:id="@+id/rb_tl"
-                    android:layout_width="@dimen/dp_100"
-                    android:layout_height="@dimen/dp_34"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/dp_41"
                     android:text="讨论"
                     android:textSize="@dimen/sp_13"
-                    android:textColor="@drawable/text_tab_selector"
+                    android:textColor="#4C4E5A"
                     android:button="@null"
                     android:gravity="center"
-                    android:paddingLeft="@dimen/dp_10"
-                    android:drawableLeft="@drawable/ic_tab_selector_tl"
-                    android:background="@drawable/ic_tab_selector_bg"/>
+                    android:paddingLeft="@dimen/dp_42"
+                    android:paddingRight="@dimen/dp_40"
+                    android:drawablePadding="@dimen/dp_10"
+                    android:drawableLeft="@mipmap/ic_tab_taolun_unselect"
+                    android:background="@drawable/shape_4_e6e6e6"/>
+                <!--android:textColor="@drawable/text_tab_selector"
+                android:drawableLeft="@drawable/ic_tab_selector_tl"
+                android:background="@drawable/ic_tab_selector_bg"-->
             </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/dp_40"
                 android:layout_weight="1"
                 android:gravity="center">
                 <RadioButton
                     android:focusableInTouchMode="true"
                     android:id="@+id/rb_gr"
-                    android:layout_width="@dimen/dp_100"
-                    android:layout_height="@dimen/dp_34"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/dp_41"
                     android:text="个人"
                     android:textSize="@dimen/sp_13"
-                    android:textColor="@drawable/text_tab_selector"
+                    android:textColor="#4C4E5A"
                     android:button="@null"
                     android:gravity="center"
-                    android:paddingLeft="@dimen/dp_10"
-                    android:drawableLeft="@drawable/ic_tab_selector_gr"
-                    android:background="@drawable/ic_tab_selector_bg"/>
+                    android:paddingLeft="@dimen/dp_42"
+                    android:paddingRight="@dimen/dp_40"
+                    android:drawablePadding="@dimen/dp_10"
+                    android:drawableLeft="@mipmap/ic_tab_geren_unselect"
+                    android:background="@drawable/shape_4_e6e6e6"/>
+                <!--android:textColor="@drawable/text_tab_selector"
+                android:drawableLeft="@drawable/ic_tab_selector_gr"
+                android:background="@drawable/ic_tab_selector_bg"-->
             </LinearLayout>
 
 

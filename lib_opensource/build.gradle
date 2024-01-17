@@ -184,6 +184,8 @@ dependencies {
     api "androidx.leanback:leanback-tab:1.1.0-beta01"
     //pdf2
     api 'com.joanzapata.pdfview:android-pdfview:1.0.4@aar'
+    //阴影效果
+    api 'io.github.meetsl:SCardView:1.1'
 
 
 }

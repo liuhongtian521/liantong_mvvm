@@ -1,7 +1,10 @@
 package com.zdy.study.adapter;
 
 import android.graphics.Color;
+import android.os.Build;
 import android.view.View;
+
+import androidx.annotation.RequiresApi;
 
 import com.askia.common.base.ARouterPath;
 import com.askia.coremodel.datamodel.database.db.consume.ShoppingRecord;
@@ -9,7 +12,9 @@ import com.blankj.utilcode.util.TimeUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
+import com.meetsl.scardview.SCardView;
 import com.zdy.study.R;
+import com.zdy.study.fcWidgets.FCConstraintLayout;
 import com.zdy.study.fcWidgets.FCLinearLayout;
 
 import java.util.List;
@@ -22,11 +27,13 @@ public class MainMenuAdapter extends BaseQuickAdapter<String, BaseViewHolder>  {
     }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.P)
     @Override
     protected void convert(BaseViewHolder baseViewHolder, String item) {
         baseViewHolder.setText(R.id.tv_menu, item);
-        FCLinearLayout layout = baseViewHolder.getView(R.id.fcll);
-        layout.setBigScale();
+        FCConstraintLayout layout = baseViewHolder.getView(R.id.fcll);
+        layout.setBackGround(baseViewHolder.getView(R.id.scv_bg_menu_sel),
+                baseViewHolder.getView(R.id.scv_bg_menu));
         int position = baseViewHolder.getAdapterPosition();
         switch (position){
             case 0:

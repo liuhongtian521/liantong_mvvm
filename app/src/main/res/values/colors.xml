@@ -23,4 +23,5 @@
     <color name="txt_not">#B7B7B7</color>
     <color name="txt_yes">#B27537</color>
     <color name="txt_nomal">#1E1E1E</color>
+    <color name="txt_main_tab">#4C4E5A</color>
 </resources>
