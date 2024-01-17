@@ -36,6 +36,7 @@ import com.zdy.study.adapter.DiscussAdapter;
 import com.zdy.study.cdatamodel.viewmodel.DiscussRoomViewModel;
 import com.zdy.study.cdatamodel.viewmodel.MainFragmentViewModel;
 import com.zdy.study.databinding.FragmentMainBinding;
+import com.zdy.study.databinding.FragmentMainNewBinding;
 import com.zdy.study.tools.Constants;
 
 import java.io.Serializable;
@@ -44,7 +45,7 @@ import java.util.Calendar;
 import java.util.List;
 
 public class MainFragment extends BaseFragment {
-    FragmentMainBinding mFragmentMainBinding;
+    FragmentMainNewBinding mFragmentMainBinding;
     private MainFragmentViewModel mViewModel;
     private List<MainFragmentResponseBean.PageDataBean> list;
     private List<MainFragmentResponseBean.PageDataBean> listExample;
@@ -233,7 +234,7 @@ public class MainFragment extends BaseFragment {
 
     @Override
     public View onInitDataBinding(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {
-        mFragmentMainBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_main, container, false);
+        mFragmentMainBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_main_new, container, false);
         mFragmentMainBinding.setHandlers(this);
         return mFragmentMainBinding.getRoot();
     }
@@ -365,7 +366,11 @@ public class MainFragment extends BaseFragment {
             }
             list6.clear();
             if (null != listResult.getResult() && null != listResult.getResult().getPageData() && listResult.getResult().getPageData().size() > 0) {
-                list6.addAll(listResult.getResult().getPageData());
+              if (listResult.getResult().getPageData().size()>=2){
+                  list6.addAll(listResult.getResult().getPageData().subList(0,2));
+              }else {
+                  list6.addAll(listResult.getResult().getPageData());
+              }
                 adapter.notifyDataSetChanged();
             }
 

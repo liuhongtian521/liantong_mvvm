@@ -16,53 +16,54 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="233dp"
             android:background="@drawable/book_list_bg_color"
             android:orientation="vertical">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical">
 
-                <ImageView
-                    android:id="@+id/iv_head_left"
-                    android:layout_width="14dp"
-                    android:layout_height="14dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginTop="11dp"
-                    android:background="@mipmap/ic_title_star" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="6dp"
-                    android:layout_toRightOf="@+id/iv_head_left"
-                    android:text="本周必读"
-                    android:textColor="@color/white"
-                    android:textSize="13sp" />
-            </RelativeLayout>
 
             <RelativeLayout
-                android:onClick="@{handlers::operationSecondClick}"
                 android:layout_marginBottom="17dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <ImageView
                     android:id="@+id/iv_book_name"
-                    android:layout_width="68.21dp"
-                    android:layout_height="98.53dp"
+                    android:layout_width="127.47dp"
+                    android:layout_height="183.66dp"
                     android:layout_marginLeft="25dp" />
+                <RelativeLayout
+                    android:id="@+id/rl_top"
+                 android:layout_toRightOf="@+id/iv_book_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical">
 
+                    <ImageView
+                        android:id="@+id/iv_head_left"
+                        android:layout_width="14dp"
+                        android:layout_height="14dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginTop="11dp"
+                        android:background="@mipmap/ic_title_star" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="6dp"
+                        android:layout_toRightOf="@+id/iv_head_left"
+                        android:text="本周必读"
+                        android:textColor="@color/white"
+                        android:textSize="13sp" />
+                </RelativeLayout>
                 <TextView
                     android:id="@+id/tv_book_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="13dp"
+                    android:layout_marginLeft="40dp"
                     android:layout_toRightOf="@+id/iv_book_name"
                     android:textColor="@color/white"
                     android:textSize="12sp" />
@@ -78,17 +79,31 @@
 
                 <TextView
                     android:id="@+id/tv_content"
-                    android:maxLines="3"
+                    android:maxLines="2"
                     android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tv_book_author"
-                    android:layout_marginLeft="13dp"
-                    android:layout_marginTop="7dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginTop="16dp"
                     android:layout_marginRight="22dp"
                     android:layout_toRightOf="@+id/iv_book_name"
                     android:textColor="@color/text_908f94"
                     android:textSize="10sp" />
+                <TextView
+                    android:onClick="@{handlers::operationSecondClick}"
+                    android:id="@+id/tv_see"
+                    android:textColor="@color/app_black3"
+                    android:textSize="14sp"
+                    android:layout_marginLeft="40dp"
+                    android:gravity="center"
+                    android:text="查看详情"
+                    android:background="@drawable/white_round_corner"
+                    android:layout_marginTop="16dp"
+                    android:layout_toRightOf="@+id/iv_book_name"
+                    android:layout_below="@+id/tv_content"
+                    android:layout_width="120dp"
+                    android:layout_height="36dp"/>
 
             </RelativeLayout>
         </LinearLayout>
@@ -118,18 +133,19 @@
                 android:text="推荐阅读"
                 android:textColor="@color/app_black3"
                 android:textSize="13sp" />
+            <androidx.leanback.tab.LeanbackTabLayout
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="15dp"
+                android:id="@+id/tab_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/sp_10"
+                app:tabIndicatorHeight="0dp"
+                app:tabMaxWidth="200dp"
+                app:tabMinWidth="0dp"
+                app:tabMode="auto" />
         </RelativeLayout>
 
-        <androidx.leanback.tab.LeanbackTabLayout
-            android:layout_marginLeft="15dp"
-            android:id="@+id/tab_layout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/sp_10"
-            app:tabIndicatorHeight="0dp"
-            app:tabMaxWidth="200dp"
-            app:tabMinWidth="0dp"
-            app:tabMode="auto" />
         <com.zdy.study.widgets.LoadMoreConstraintLayout
             android:id="@+id/lm_materials_view"
             android:layout_width="match_parent"
