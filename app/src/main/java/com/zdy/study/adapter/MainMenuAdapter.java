@@ -26,8 +26,6 @@ public class MainMenuAdapter extends BaseQuickAdapter<String, BaseViewHolder>  {
 
     }
 
-
-    @RequiresApi(api = Build.VERSION_CODES.P)
     @Override
     protected void convert(BaseViewHolder baseViewHolder, String item) {
         baseViewHolder.setText(R.id.tv_menu, item);

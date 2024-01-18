@@ -18,8 +18,6 @@ public class MineMenuAdapter extends BaseQuickAdapter<String, BaseViewHolder>  {
     @Override
     protected void convert(BaseViewHolder baseViewHolder, String item) {
         baseViewHolder.setText(R.id.tv_menu, item);
-        FCLinearLayout layout = baseViewHolder.getView(R.id.fcll);
-        layout.setBigScale();
         int position = baseViewHolder.getAdapterPosition();
         switch (position){
             case 0:

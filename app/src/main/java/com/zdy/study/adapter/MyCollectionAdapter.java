@@ -64,10 +64,10 @@ public class MyCollectionAdapter extends BaseMultiItemQuickAdapter<MyCollectionR
             case MN:
                 helper.setText(R.id.tv_content, item.getContName());
                 helper.setText(R.id.tv_date, item.getContVideo().getTimeLength());
-                if (TextUtils.isEmpty(item.getRemark())||"[]".equals(item.getRemark()))
+                /*if (TextUtils.isEmpty(item.getRemark())||"[]".equals(item.getRemark()))
                     helper.setVisible(R.id.ll_fdyd, false);
                 else
-                    helper.setVisible(R.id.ll_fdyd, true);
+                    helper.setVisible(R.id.ll_fdyd, true);*/
                 ImageView imageViewcv = helper.getView(R.id.iv_broadcast_video);
                 Glide.with(mContext).load("http://cdls-cms-image.oss-cn-huhehaote-nebula-1.aliyuncs.com/xinwen_video.jpeg").into(imageViewcv);
                 break;

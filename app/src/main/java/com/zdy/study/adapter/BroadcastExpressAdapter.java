@@ -18,6 +18,7 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.zdy.study.R;
+import com.zdy.study.fcWidgets.FCConstraintLayout;
 import com.zdy.study.fcWidgets.FCLinearLayout;
 import com.zdy.study.widgets.VideoViewConstraintLayout;
 
@@ -41,15 +42,15 @@ public class BroadcastExpressAdapter extends BaseMultiItemQuickAdapter<Broadcast
         switch (helper.getItemViewType()) {
             case MN:
                 helper.setText(R.id.tv_content, item.getContName());
-                helper.setText(R.id.tv_date, item.getContVideo().getTimeLength()).
-                        setText(R.id.tv_create_time,
+                helper.setText(R.id.tv_date, item.getContVideo().getTimeLength());
+                   /*     setText(R.id.tv_create_time,
                                 TextUtils.isEmpty(item.getCreateTime())? "": item.getCreateTime().substring(0, 10));
-                /*FCLinearLayout layout = helper.getView(R.id.fcll);
-                layout.setLitScale();*/
                 if (TextUtils.isEmpty(item.getRemark()))
                     helper.setVisible(R.id.ll_fdyd, false);
                 else
-                    helper.setVisible(R.id.ll_fdyd, true);
+                    helper.setVisible(R.id.ll_fdyd, true);*/
+                FCConstraintLayout layout = helper.getView(R.id.fcll);
+                layout.setBackGround(helper.getView(R.id.scv_bg_menu_sel), null);
                 ImageView imageView = helper.getView(R.id.iv_broadcast_video);
                 Glide.with(mContext).load("http://cdls-cms-image.oss-cn-huhehaote-nebula-1.aliyuncs.com/xinwen_video.jpeg").into(imageView);
                 break;

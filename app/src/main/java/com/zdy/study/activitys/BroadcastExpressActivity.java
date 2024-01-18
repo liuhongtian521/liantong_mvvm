@@ -49,7 +49,7 @@ public class BroadcastExpressActivity extends BaseActivity {
     private RecyclerView recyclerView;
     private BroadcastExpressAdapter adapter;
     private int page = 1;
-    private String pageSize = "10";
+    private String pageSize = "9";
     private String keyId;
     private Bundle bundle;
     private Gson gson;
@@ -83,8 +83,8 @@ public class BroadcastExpressActivity extends BaseActivity {
             list.add(pageDataBean);
         }
         recyclerView = mDataBinding.rvBroadcastExpress;
-        // GridLayoutManager layoutManager = new GridLayoutManager(this, 2);//第二个参数为网格的列数
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);//数字为行数或列数
+         GridLayoutManager layoutManager = new GridLayoutManager(this, 3);//第二个参数为网格的列数
+//        LinearLayoutManager layoutManager = new LinearLayoutManager(this);//数字为行数或列数
         adapter = new BroadcastExpressAdapter(list);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
@@ -151,9 +151,9 @@ public class BroadcastExpressActivity extends BaseActivity {
             mDataBinding.lmView.setList(listResult.getResult().getPageData(), page);
             list.clear();
 
-            makeFD(listResult.getResult().getPageData());
+//            makeFD(listResult.getResult().getPageData());//添加分段要点
 
-//            list.addAll(listResult.getResult().getPageData());
+            list.addAll(listResult.getResult().getPageData());
             adapter.notifyDataSetChanged();
         });
 
