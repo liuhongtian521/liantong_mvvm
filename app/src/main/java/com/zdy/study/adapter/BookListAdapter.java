@@ -1,6 +1,7 @@
 package com.zdy.study.adapter;
 
 import android.content.Context;
+import android.text.Html;
 import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
@@ -24,8 +25,7 @@ public class BookListAdapter extends BaseQuickAdapter<BooksRespponseBean.PageDat
 
     @Override
     protected void convert(BaseViewHolder helper, BooksRespponseBean.PageDataBean item) {
-        helper.setText(R.id.tv_book_name, item.getBookName());
-        helper.setText(R.id.tv_book_author, "(作者：" + item.getAuthorName() + ")");
+        helper.setText(R.id.tv_book_name, Html.fromHtml(item.getBookName()+"<font color='#767882'>"+"(作者：" + item.getAuthorName() + ")"+"</font>"));
         helper.setText(R.id.tv_content_book, item.getBriefIntroduction());
         ImageView imageView = helper.getView(R.id.iv_book_name);
         if (!"".equals(item.getCoverUrl())) {

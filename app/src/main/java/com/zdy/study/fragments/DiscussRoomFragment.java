@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -64,7 +65,7 @@ public class DiscussRoomFragment extends BaseFragment {
 
     private void initRecycleView() {
         recyclerView = mDataBinding.rvDiscuss;
-        LinearLayoutManager manager2 = new LinearLayoutManager(getActivity());//数字为行数或列数
+        GridLayoutManager manager2 = new GridLayoutManager(getActivity(),2);//数字为行数或列数
         adapter = new DiscussRoomAdapter(list, getActivity());
         recyclerView.setLayoutManager(manager2);
         recyclerView.setAdapter(adapter);

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Build;
 import android.util.AttributeSet;
+import android.view.LayoutInflater;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
@@ -11,10 +12,11 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.core.view.ViewCompat;
 
+import com.meetsl.scardview.SCardView;
 import com.zdy.study.R;
 
 public class FCRelativeLayout extends RelativeLayout {
-
+    private SCardView sCardView;
     private float i = 0;
     public FCRelativeLayout(Context context) {
         super(context);
@@ -23,6 +25,8 @@ public class FCRelativeLayout extends RelativeLayout {
 
     public FCRelativeLayout(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
+        LayoutInflater.from(context).inflate(R.layout.bg_textview_layout2, this);
+        sCardView=findViewById(R.id.scv_bg_menu_sel_bg1);
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.FCRelativeLayout);
         i = ta.getFloat(R.styleable.FCRelativeLayout_scale, 1.10f);
         setFocusChange();
@@ -48,6 +52,7 @@ public class FCRelativeLayout extends RelativeLayout {
                         .scaleY(i==0? 1.10f: i)
                         .translationZ(1)
                         .start();
+                sCardView.setVisibility(VISIBLE);
 //                view.setBackgroundColor(Color.LTGRAY);
             } else {
                 // 此处为失去焦点时的处理内容
@@ -56,6 +61,7 @@ public class FCRelativeLayout extends RelativeLayout {
                         .scaleY(1)
                         .translationZ(1)
                         .start();
+                sCardView.setVisibility(GONE);
 //                view.setBackgroundColor(Color.TRANSPARENT);
             }
         });

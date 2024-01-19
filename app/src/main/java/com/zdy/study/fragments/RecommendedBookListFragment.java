@@ -5,30 +5,25 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.askia.common.base.ARouterPath;
 import com.askia.common.base.BaseFragment;
 import com.askia.coremodel.datamodel.http.entities.consume.BookListResponseBean;
 import com.askia.coremodel.datamodel.http.entities.consume.BooksRespponseBean;
-import com.askia.coremodel.datamodel.http.entities.consume.StudyDictionaryBean;
 import com.blankj.utilcode.util.ToastUtils;
 import com.bumptech.glide.Glide;
-import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.google.android.material.tabs.TabLayout;
 import com.zdy.study.R;
-import com.zdy.study.adapter.BookAdapter;
 import com.zdy.study.adapter.BookListAdapter;
 import com.zdy.study.cdatamodel.viewmodel.BookListViewModel;
-import com.zdy.study.cdatamodel.viewmodel.DiscussRoomViewModel;
 import com.zdy.study.databinding.RecommendedBookListFragmentBinding;
 import com.zdy.study.tools.Constants;
 import com.zdy.study.widgets.LoadMoreConstraintLayout;
@@ -54,7 +49,7 @@ public class RecommendedBookListFragment extends BaseFragment {
         list = new ArrayList<>();
         mBookList = new ArrayList<>();
         viewModel.bookClass(Constants.SJZD);
-        viewModel.padList("1", "10", "");
+        viewModel.padList("1", "4", "");
         initRvListener();
         initLoad();
     }
@@ -82,9 +77,9 @@ public class RecommendedBookListFragment extends BaseFragment {
 
     private void initRvListener() {
         recyclerView = mDataBinding.rvBook;
-        LinearLayoutManager manager = new LinearLayoutManager(getActivity());//数字为行数或列数
+        GridLayoutManager layoutManager= new GridLayoutManager(getActivity(),3);
         adapter = new BookListAdapter(list, getActivity());
-        recyclerView.setLayoutManager(manager);
+        recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
         adapter.setOnItemClickListener((adapter, view, position) -> {
             Bundle bundle = new Bundle();
@@ -108,13 +103,13 @@ public class RecommendedBookListFragment extends BaseFragment {
             @Override
             public void nextPage() {
                 page++;
-                viewModel.padList(String.valueOf(page), "10", mBookList.get(pageTab).getClassification());
+                viewModel.padList(String.valueOf(page), "4", mBookList.get(pageTab).getClassification());
             }
 
             @Override
             public void previousPage() {
                 page--;
-                viewModel.padList(String.valueOf(page), "10", mBookList.get(pageTab).getClassification());
+                viewModel.padList(String.valueOf(page), "4", mBookList.get(pageTab).getClassification());
             }
         });
     }
@@ -141,7 +136,7 @@ public class RecommendedBookListFragment extends BaseFragment {
             public void onTabSelected(TabLayout.Tab tab) {
                 page = 1;
                 pageTab = tab.getPosition();
-                viewModel.padList(String.valueOf(page), "10", mBookList.get(pageTab).getClassification());
+                viewModel.padList(String.valueOf(page), "4", mBookList.get(pageTab).getClassification());
             }
 
             @Override

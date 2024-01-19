@@ -278,12 +278,12 @@ public class MainFragment extends BaseFragment {
                 listExample.addAll(listResult.getResult().getPageData());
                 if (listExample.size() > 0) {
                     mFragmentMainBinding.tvInternationalPerspective.setText(listExample.get(0).getContName());
-                    mFragmentMainBinding.viewCircle.setVisibility(View.VISIBLE);
+                    mFragmentMainBinding.tvInternationalPerspective.setCircleVisibility(true);
                 }
                 if (listExample.size() > 1) {
                     mFragmentMainBinding.tvInternationalPerspective1.setText(listExample.get(1).getContName());
-                    mFragmentMainBinding.viewCircle12.setVisibility(View.VISIBLE);
-                    mFragmentMainBinding.fclInternationalPerspective1.setVisibility(View.VISIBLE);//有数据显示 没有数据时隐藏 否则还会获取焦点
+                    mFragmentMainBinding.tvInternationalPerspective1.setCircleVisibility(true);
+                    mFragmentMainBinding.tvInternationalPerspective1.setVisibility(View.VISIBLE);//有数据显示 没有数据时隐藏 否则还会获取焦点
                 }
 
 
@@ -301,12 +301,12 @@ public class MainFragment extends BaseFragment {
             if (null != listResult.getResult() && null != listResult.getResult().getPageData() && listResult.getResult().getPageData().size() > 0) {
                 listPractical.addAll(listResult.getResult().getPageData());
                 if (listPractical.size() > 0) {
-                    mFragmentMainBinding.tvPracticalCases.setText(listPractical.get(0).getContName());
-                    mFragmentMainBinding.viewCircle1.setVisibility(View.VISIBLE);
+                    mFragmentMainBinding.fclSjalFrist.setText(listPractical.get(0).getContName());
+                    mFragmentMainBinding.fclSjalFrist.setCircleVisibility(true);
                 }
                 if (listPractical.size() > 1) {
-                    mFragmentMainBinding.tvPracticalCases2.setText(listPractical.get(1).getContName());
-                    mFragmentMainBinding.viewCircle3.setVisibility(View.VISIBLE);
+                    mFragmentMainBinding.fclSjalSecond.setText(listPractical.get(1).getContName());
+                    mFragmentMainBinding.fclSjalSecond.setCircleVisibility(true);
                 }
 
 
@@ -324,12 +324,12 @@ public class MainFragment extends BaseFragment {
             if (null != listResult.getResult() && null != listResult.getResult().getPageData() && listResult.getResult().getPageData().size() > 0) {
                 list.addAll(listResult.getResult().getPageData());
                 if (list.size() > 0) {
-                    mFragmentMainBinding.tvSelectedTheory.setText(list.get(0).getContName());
-                    mFragmentMainBinding.viewCircle7.setVisibility(View.VISIBLE);
+                    mFragmentMainBinding.fclJxllFrist.setText(list.get(0).getContName());
+                    mFragmentMainBinding.fclJxllFrist.setCircleVisibility(true);
                 }
                 if (list.size() > 1) {
-                    mFragmentMainBinding.tvSelectedTheory2.setText(list.get(1).getContName());
-                    mFragmentMainBinding.viewCircle8.setVisibility(View.VISIBLE);
+                    mFragmentMainBinding.fclJxllSecond.setText(list.get(1).getContName());
+                    mFragmentMainBinding.fclJxllSecond.setCircleVisibility(true);
                 }
 
 
@@ -346,12 +346,12 @@ public class MainFragment extends BaseFragment {
             if (null != listResult.getResult() && null != listResult.getResult().getPageData() && listResult.getResult().getPageData().size() > 0) {
                 list.addAll(listResult.getResult().getPageData());
                 if (list.size() > 0) {
-                    mFragmentMainBinding.tvOperatingSkills.setText(list.get(0).getContName());
-                    mFragmentMainBinding.viewCircle9.setVisibility(View.VISIBLE);
+                    mFragmentMainBinding.fclCzjqFrist.setText(list.get(0).getContName());
+                    mFragmentMainBinding.fclCzjqFrist.setCircleVisibility(true);
                 }
                 if (list.size() > 1) {
-                    mFragmentMainBinding.tvOperatingSkills1.setText(list.get(1).getContName());
-                    mFragmentMainBinding.viewCircle10.setVisibility(View.VISIBLE);
+                    mFragmentMainBinding.fclCzjqSecond.setText(list.get(1).getContName());
+                    mFragmentMainBinding.fclCzjqSecond.setCircleVisibility(true);
                 }
 
 

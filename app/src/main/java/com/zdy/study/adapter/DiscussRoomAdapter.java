@@ -42,6 +42,7 @@ public class DiscussRoomAdapter extends BaseQuickAdapter<DiscussRoomListBean.Pag
         LinearLayout frameLayout = helper.getView(R.id.fl_content);
         frameLayout.removeAllViews();
         if (null != item.getTopicList() && item.getTopicList().size() > 0) {
+            frameLayout.setVisibility(View.VISIBLE);
             for (DiscussRoomListBean.PageDataBean.TopicListBean topicListBean : item.getTopicList()) {
                 View view = LayoutInflater.from(mContext).inflate(R.layout.add_bg, null);
                 TextView textView1 = view.findViewById(R.id.tv_discuss_content);

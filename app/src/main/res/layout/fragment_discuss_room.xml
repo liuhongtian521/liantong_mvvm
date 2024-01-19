@@ -43,6 +43,7 @@
             app:layout_constraintTop_toTopOf="@+id/iv_discuss" />
     </androidx.constraintlayout.widget.ConstraintLayout>
         <androidx.recyclerview.widget.RecyclerView
+            android:background="@mipmap/ic_background"
             android:id="@+id/rv_discuss"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
