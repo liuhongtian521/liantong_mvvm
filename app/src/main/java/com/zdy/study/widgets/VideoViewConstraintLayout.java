@@ -19,7 +19,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.view.ViewCompat;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.meetsl.scardview.SCardView;
 import com.zdy.study.R;
 import com.zdy.study.fcWidgets.FCImageView;
 
@@ -29,8 +31,10 @@ import java.util.Calendar;
 public class VideoViewConstraintLayout extends ConstraintLayout {
     private VideoView videoView;
     private TVSeekBar seekBar;
+    private SCardView scv_bg_seekbar;//seekbar背景框
     private ImageView fiv_onoff;
-    private TextView textViewTime ,textViewCurrentPosition;
+    private RecyclerView rv_fdyd;
+    private TextView textViewTime ,textViewCurrentPosition, fct_fdyd;
     private boolean isPlaying = false;
     private String url;
 
@@ -55,13 +59,19 @@ public class VideoViewConstraintLayout extends ConstraintLayout {
         // 获取控件
         videoView =  findViewById(R.id.videoView);
         textViewTime =  findViewById(R.id.textViewTime);
+        fct_fdyd =  findViewById(R.id.fct_fdyd);
         textViewCurrentPosition =  findViewById(R.id.textViewCurrentPosition);
         fiv_onoff =  findViewById(R.id.fiv_onoff);
         seekBar = (TVSeekBar) findViewById(R.id.seekBar);
+        scv_bg_seekbar = findViewById(R.id.scv_bg_seekbar);//seekbar背景框
+        rv_fdyd = findViewById(R.id.rv_fdyd);
         fiv_onoff.setOnClickListener(view -> play());
         fiv_onoff.setEnabled(false);
+        fiv_onoff.requestFocus();
+        seekBarSetLintener();
+    }
 
-        seekBar.requestFocus();
+    private void seekBarSetLintener(){
         // 为进度条添加进度更改事件
         seekBar.setOnSeekBarChangeListener(onSeekBarChangeListener); //拖到监听好用
         //按键监听重写
@@ -82,6 +92,10 @@ public class VideoViewConstraintLayout extends ConstraintLayout {
             }
         });
 
+        seekBar.setOnFocusChangeListener((view, b) -> {
+            if (b)scv_bg_seekbar.setVisibility(VISIBLE);//seekbar背景框显示
+            else scv_bg_seekbar.setVisibility(GONE);//seekbar背景框隐藏
+        });
     }
 
     public VideoViewConstraintLayout(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
@@ -97,6 +111,13 @@ public class VideoViewConstraintLayout extends ConstraintLayout {
 
     }
 
+    public TextView getBTfdyd(){
+        return fct_fdyd;
+    }
+
+    public RecyclerView getRVfdyd(){
+        return rv_fdyd;
+    }
 
     public void setUrl(String url){
         this.url = url;

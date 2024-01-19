@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zdy.study.fcWidgets.FCConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fcll"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/dp_8"
+    android:focusableInTouchMode="true"
+    app:scale="1.05"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/img_item_card"
+        android:layout_width="@dimen/dp_175"
+        android:layout_height="@dimen/dp_100"
+        app:cardCornerRadius="@dimen/dp_4"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+        <ImageView
+            android:id="@+id/iv_broadcast_video"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"/>
+
+        <TextView
+            android:id="@+id/tv_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:gravity="center_vertical"
+            android:text="新闻联播"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_14"
+            android:layout_margin="@dimen/dp_10"
+            android:layout_gravity="bottom"/>
+
+    </androidx.cardview.widget.CardView>
+    <View
+        android:id="@+id/scv_bg_menu_sel"
+        android:layout_width="@dimen/dp_177"
+        android:layout_height="@dimen/dp_102"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="@+id/img_item_card"
+        app:layout_constraintBottom_toBottomOf="@+id/img_item_card"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@drawable/shape_4_gray_line"/>
+</com.zdy.study.fcWidgets.FCConstraintLayout>

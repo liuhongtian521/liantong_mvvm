@@ -99,26 +99,18 @@ public class ApiClient {
         if (okHttpClientInstance == null) {
             synchronized (ApiClient.class) {
                 if (okHttpClientInstance == null) {
-
-                    HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
-                        @Override
-                        public void log(String message) {
-                            //打印retrofit日志
-                            Log.i("RetrofitLog","retrofitBack = "+message);
-                        }
-                    });
-                    loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-
-
-
-
                     OkHttpClient.Builder builder = new OkHttpClient().newBuilder();
                     builder.connectTimeout(10, TimeUnit.SECONDS)
                             .writeTimeout(10, TimeUnit.SECONDS)
-                            .readTimeout(10, TimeUnit.SECONDS)
-                            .addInterceptor(loggingInterceptor);
+                            .readTimeout(10, TimeUnit.SECONDS);
                     if (BuildConfig.DEBUG) {
-                        HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
+                        HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
+                            @Override
+                            public void log(String message) {
+                                //打印retrofit日志
+                                Log.i("RetrofitLog","retrofitBack = "+message);
+                            }
+                        });
                         httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
                         builder.addInterceptor(httpLoggingInterceptor);
                     }

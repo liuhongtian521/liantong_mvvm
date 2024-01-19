@@ -3,6 +3,7 @@ package com.zdy.study.fcWidgets;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,7 +15,7 @@ import com.zdy.study.R;
 
 public class FCConstraintLayout  extends ConstraintLayout {
     private float i = 0;
-    private SCardView bgSelected, bgUnSelect;
+    private View bgSelected, bgUnSelect;
     public FCConstraintLayout(@NonNull Context context) {
         super(context);
         setFocusChange();
@@ -76,9 +77,9 @@ public class FCConstraintLayout  extends ConstraintLayout {
     public void setBigScale(){
         this.i = 1.25f;
     }
-
-    public void setBackGround(SCardView bgSelected, SCardView bgUnSelect){
-        this.bgSelected = bgSelected;
-        this.bgUnSelect = bgUnSelect;
+    //设置背景阴影效果
+    public void setBackGround(View bgSelected, View bgUnSelect){
+        this.bgSelected = bgSelected;//背景选中效果
+        this.bgUnSelect = bgUnSelect;//背景未选中效果
     }
 }

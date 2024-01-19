@@ -14,63 +14,112 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dp_8"
         android:orientation="vertical"
+        android:background="#90000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
+        <com.zdy.study.fcWidgets.FCTextview
+            android:id="@+id/fct_fdyd"
+            android:layout_width="@dimen/dp_120"
+            android:layout_height="@dimen/dp_36"
+            android:visibility="visible"
+            android:background="@drawable/shape_4_999999"
+            android:text="分段要点"
+            android:textSize="@dimen/sp_14"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_marginLeft="@dimen/dp_20"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
 
-
-        <LinearLayout
-            android:layout_width="match_parent"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_fdyd"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@+id/fct_fdyd"
+            app:layout_constraintStart_toStartOf="parent"/>
 
-            <ImageView
-                android:id="@+id/fiv_onoff"
-                android:layout_width="@dimen/dp_20"
-                android:layout_height="@dimen/dp_20"
-                android:src="@mipmap/ic_video_paly2"
-                android:layout_marginBottom="@dimen/dp_10"
-                android:layout_marginTop="@dimen/dp_10"
-                android:layout_marginLeft="@dimen/dp_20"/>
+        <com.zdy.study.fcWidgets.FCImageView
+            android:id="@+id/fiv_onoff"
+            android:layout_width="@dimen/dp_20"
+            android:layout_height="@dimen/dp_20"
+            android:src="@mipmap/ic_video_paly2"
+            android:layout_marginBottom="@dimen/dp_10"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_marginLeft="@dimen/dp_20"
+            app:scale="1.2"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            app:layout_constraintTop_toBottomOf="@+id/rv_fdyd"
+            app:layout_constraintStart_toStartOf="parent"/>
 
-            <TextView
-                android:id="@+id/textViewCurrentPosition"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:layout_marginLeft="@dimen/dp_20"
-                android:text="00:00" />
+        <TextView
+            android:id="@+id/textViewCurrentPosition"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_marginLeft="@dimen/dp_20"
+            android:layout_marginBottom="@dimen/dp_10"
+            android:text="00:00"
+            app:layout_constraintTop_toBottomOf="@+id/fiv_onoff"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
-            <com.zdy.study.widgets.TVSeekBar
-                android:id="@+id/seekBar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:focusableInTouchMode="true"
-                android:focusable="true"
-                android:progressTint="@color/white"
-                android:thumbTint="@color/white"/>
+        <com.zdy.study.widgets.TVSeekBar
+            android:id="@+id/seekBar"
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:focusableInTouchMode="true"
+            android:focusable="true"
+            android:progressTint="@color/white"
+            android:thumbTint="@color/white"
+            app:layout_constraintTop_toTopOf="@+id/textViewCurrentPosition"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewCurrentPosition"
+            app:layout_constraintStart_toEndOf="@+id/textViewCurrentPosition"
+            app:layout_constraintEnd_toStartOf="@+id/textViewTime"/>
 
-            <TextView
-                android:id="@+id/textViewTime"
-                android:textColor="@color/white"
-                android:layout_marginRight="@dimen/dp_20"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="00:00" />
+        <com.meetsl.scardview.SCardView
+            android:id="@+id/scv_bg_seekbar"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_centerHorizontal="true"
+            android:visibility="gone"
+            app:cardBackgroundColor="@color/transparent"
+            app:cardCornerRadius="@dimen/dp_4"
+            app:cardElevation="@dimen/dp_4"
+            app:cardShadowStartColor="@color/dash_red"
+            app:cardShadowEndColor="@color/transparent"
+            app:layout_constraintTop_toTopOf="@+id/seekBar"
+            app:layout_constraintBottom_toBottomOf="@+id/seekBar"
+            app:layout_constraintStart_toStartOf="@+id/seekBar"
+            app:layout_constraintEnd_toEndOf="@+id/seekBar"
+            app:cardLightDirection="none"/>  <!--光源位置在左侧，则阴影出现在反方向右侧 -->
 
 
-        </LinearLayout>
+        <TextView
+            android:id="@+id/textViewTime"
+            android:textColor="@color/white"
+            android:layout_marginRight="@dimen/dp_20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="00:00"
+            app:layout_constraintStart_toEndOf="@+id/seekBar"
+            app:layout_constraintTop_toTopOf="@+id/textViewCurrentPosition"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
 
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

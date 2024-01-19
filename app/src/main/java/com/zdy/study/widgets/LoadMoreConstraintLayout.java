@@ -13,18 +13,20 @@ import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.askia.coremodel.datamodel.http.entities.consume.BroadcastExpressResponBean;
+import com.meetsl.scardview.SCardView;
 import com.zdy.study.R;
 import com.zdy.study.fcWidgets.FCButton;
 
 import java.util.List;
 
-public class LoadMoreConstraintLayout extends ConstraintLayout {
+public class LoadMoreConstraintLayout extends ConstraintLayout implements View.OnFocusChangeListener, View.OnClickListener {
 
-    private TextView fcbNextPage, fcbPreviousPage;
+    private ImageView ivRightPage, ivLeftPage;
+    private SCardView scv_bg_right_sel, scv_bg_left_sel;
     private ImageView ivEmpty;
     private TextView tvEmpty;
-    private View viewLeft;
     private LoadLitetsner loadLitetsner;
+    private int pageSize = 10;//条数默认10
 
     public LoadMoreConstraintLayout(@NonNull Context context) {
         super(context);
@@ -42,20 +44,26 @@ public class LoadMoreConstraintLayout extends ConstraintLayout {
         super(context, attrs);
         // 加载布局
         LayoutInflater.from(context).inflate(R.layout.layout_load_more, this);
-        fcbNextPage = findViewById(R.id.fcb_next_page);
-        fcbPreviousPage = findViewById(R.id.fcb_previous_page);
-        viewLeft = findViewById(R.id.view_left);
+        ivRightPage = findViewById(R.id.iv_right_page);
+        ivLeftPage = findViewById(R.id.iv_left_page);
+        scv_bg_right_sel = findViewById(R.id.scv_bg_right_sel);
+        scv_bg_left_sel = findViewById(R.id.scv_bg_left_sel);
         ivEmpty = findViewById(R.id.iv_empty);
         tvEmpty = findViewById(R.id.tv_empty);
-        fcbNextPage.setOnClickListener(view -> {
-            if (loadLitetsner != null)
-                loadLitetsner.nextPage();
-        });
-        fcbPreviousPage.setOnClickListener(view -> {
-            if (loadLitetsner != null)
-                loadLitetsner.previousPage();
-        });
+        initListener();
         showEmptyView(GONE);
+    }
+
+    private void initListener(){
+        ivRightPage.setOnClickListener(this);
+        ivLeftPage.setOnClickListener(this);
+        ivRightPage.setOnFocusChangeListener(this);
+        ivLeftPage.setOnFocusChangeListener(this);
+    }
+
+    //设置页面条数
+    public void setPageSize(int pageSize){
+        this.pageSize = pageSize;
     }
 
     public void setLoadLitetsner(LoadLitetsner loadLitetsner){
@@ -63,13 +71,13 @@ public class LoadMoreConstraintLayout extends ConstraintLayout {
     }
 
     public void setPreviousPageVisibility(int visibility){
-        if (fcbPreviousPage.getVisibility() != visibility)
-            fcbPreviousPage.setVisibility(visibility);
+        if (ivLeftPage.getVisibility() != visibility)
+            ivLeftPage.setVisibility(visibility);
     }
 
     public void setNextPageVisibility(int visibility){
-        if (fcbNextPage.getVisibility() != visibility)
-            fcbNextPage.setVisibility(visibility);
+        if (ivRightPage.getVisibility() != visibility)
+            ivRightPage.setVisibility(visibility);
     }
 
     public void showEmptyView(int visibility){
@@ -91,13 +99,41 @@ public class LoadMoreConstraintLayout extends ConstraintLayout {
             setPreviousPageVisibility(View.GONE);// 第一页隐藏上一页
         else
             setPreviousPageVisibility(View.VISIBLE);// 其它显示上一页
-        if (list.size() < 10)
-            setNextPageVisibility(View.GONE);// 数据小于10条隐藏下一页
+        if (list.size() < pageSize)
+            setNextPageVisibility(View.GONE);// 数据小于pageSize条隐藏下一页
         else
             setNextPageVisibility(View.VISIBLE);// 显示下一页
 
 //        if (fcbNextPage.getVisibility() == GONE && fcbPreviousPage.getVisibility() == GONE)
 //            viewLeft.setVisibility(GONE); //设置左侧上下按键背景 隐藏
+    }
+
+    @Override
+    public void onFocusChange(View view, boolean b) {
+        switch (view.getId()){
+            case R.id.iv_right_page:
+                if (b)scv_bg_right_sel.setVisibility(VISIBLE);
+                else scv_bg_right_sel.setVisibility(GONE);
+                break;
+            case R.id.iv_left_page:
+                if (b)scv_bg_left_sel.setVisibility(VISIBLE);
+                else scv_bg_left_sel.setVisibility(GONE);
+                break;
+        }
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.iv_right_page:
+                if (loadLitetsner != null)
+                    loadLitetsner.nextPage();
+                break;
+            case R.id.iv_left_page:
+                if (loadLitetsner != null)
+                    loadLitetsner.previousPage();
+                break;
+        }
     }
 
     public interface LoadLitetsner{

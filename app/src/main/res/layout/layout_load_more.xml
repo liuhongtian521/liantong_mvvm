@@ -25,22 +25,67 @@
         app:layout_constraintLeft_toLeftOf="@+id/iv_empty"
         app:layout_constraintRight_toRightOf="@+id/iv_empty"/>
     
-    <View
-        android:id="@+id/view_left"
-        android:layout_width="@dimen/dp_43"
-        android:layout_height="match_parent"
-        android:background="#F0F0F1"
-        app:layout_constraintLeft_toLeftOf="parent"/>
 
-    <View
-        android:layout_width="@dimen/dp_1"
-        android:layout_height="@dimen/dp_0"
-        android:background="#E2E4E8"
+    <com.meetsl.scardview.SCardView
+        android:id="@+id/scv_bg_right_sel"
+        android:layout_width="@dimen/dp_28"
+        android:layout_height="@dimen/dp_38"
+        android:layout_centerHorizontal="true"
+        android:visibility="gone"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="@dimen/dp_2"
+        app:cardElevation="@dimen/dp_5"
+        app:cardShadowStartColor="@color/dash_red"
+        app:cardShadowEndColor="@color/transparent"
+        app:layout_constraintTop_toTopOf="@+id/iv_right_page"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_right_page"
+        app:layout_constraintStart_toStartOf="@+id/iv_right_page"
+        app:layout_constraintEnd_toEndOf="@+id/iv_right_page"
+        app:cardLightDirection="none"/>  <!--光源位置在左侧，则阴影出现在反方向右侧 -->
+    <ImageView
+        android:id="@+id/iv_right_page"
+        android:layout_width="@dimen/dp_18"
+        android:layout_height="@dimen/dp_18"
+        android:src="@mipmap/ic_load_right"
+        android:scaleType="centerInside"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@+id/view_left"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginRight="@dimen/dp_10"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:focusableInTouchMode="true"
+        android:focusable="true"/>
 
-    <TextView
+    <com.meetsl.scardview.SCardView
+        android:id="@+id/scv_bg_left_sel"
+        android:layout_width="@dimen/dp_28"
+        android:layout_height="@dimen/dp_38"
+        android:layout_centerHorizontal="true"
+        android:visibility="gone"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="@dimen/dp_2"
+        app:cardElevation="@dimen/dp_5"
+        app:cardShadowStartColor="@color/dash_red"
+        app:cardShadowEndColor="@color/transparent"
+        app:layout_constraintTop_toTopOf="@+id/iv_left_page"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_left_page"
+        app:layout_constraintStart_toStartOf="@+id/iv_left_page"
+        app:layout_constraintEnd_toEndOf="@+id/iv_left_page"
+        app:cardLightDirection="none"/>  <!--光源位置在左侧，则阴影出现在反方向右侧 -->
+
+    <ImageView
+        android:id="@+id/iv_left_page"
+        android:layout_width="@dimen/dp_18"
+        android:layout_height="@dimen/dp_18"
+        android:src="@mipmap/ic_load_left"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:focusableInTouchMode="true"
+        android:focusable="true"/>
+
+    <!--<TextView
         android:id="@+id/fcb_next_page"
         android:layout_width="@dimen/dp_32"
         android:layout_height="@dimen/dp_140"
@@ -83,7 +128,7 @@
         android:paddingRight="@dimen/dp_8"
         android:paddingTop="@dimen/dp_28"
         android:paddingBottom="@dimen/dp_28"
-        android:layout_marginBottom="@dimen/dp_20"/>
+        android:layout_marginBottom="@dimen/dp_20"/>-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

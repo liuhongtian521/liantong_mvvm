@@ -96,6 +96,7 @@ public class BroadcastExpressActivity extends BaseActivity {
                     if (!TextUtils.isEmpty(httpLoginResult.getAccess_token()))
                         viewModel.addReadNotes(list.get(position).getId(), Constants.LBSD);//添加阅读记录
                     Bundle bundle1 = new Bundle();
+                    bundle1.putString("remark", list.get(position).getRemark());//分段要点数据
                     bundle1.putString("url", list.get(position).getContVideo().getVideoUrl());
                     startActivityByRouter(ARouterPath.VideoActivity, bundle1);
                     break;
@@ -112,6 +113,7 @@ public class BroadcastExpressActivity extends BaseActivity {
     }
 
     private void initLoad() {
+        mDataBinding.lmView.setPageSize(Integer.parseInt(pageSize));//设置页面条数
         mDataBinding.lmView.setLoadLitetsner(new LoadMoreConstraintLayout.LoadLitetsner() {
             @Override
             public void nextPage() {
