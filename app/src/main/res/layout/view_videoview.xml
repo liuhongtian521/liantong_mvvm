@@ -83,6 +83,7 @@
             android:focusable="true"
             android:progressTint="@color/white"
             android:thumbTint="@color/white"
+            android:nextFocusUp="@+id/fiv_onoff"
             app:layout_constraintTop_toTopOf="@+id/textViewCurrentPosition"
             app:layout_constraintBottom_toBottomOf="@+id/textViewCurrentPosition"
             app:layout_constraintStart_toEndOf="@+id/textViewCurrentPosition"

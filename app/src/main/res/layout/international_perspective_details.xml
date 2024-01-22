@@ -87,7 +87,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/ll_check"
                     android:id="@+id/rl_video"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/dp_150"
                     android:layout_marginTop="5dp"
                     android:background="@color/app_black3"
                     android:focusable="true"

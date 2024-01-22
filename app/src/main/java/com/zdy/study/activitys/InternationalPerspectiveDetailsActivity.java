@@ -249,7 +249,7 @@ public class InternationalPerspectiveDetailsActivity extends BaseActivity {
             setContent(listResult.getResult().getCont(), mDataBinding.webContent);
             //该方法加载视频的第一帧时间较长，放到子线程中
             // 在后台线程中执行耗时操作
-            new Thread(() -> {
+            /*new Thread(() -> {
                 try {
                     // 模拟耗时操作
                     Thread.sleep(100);
@@ -261,7 +261,7 @@ public class InternationalPerspectiveDetailsActivity extends BaseActivity {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-            }).start();
+            }).start();*/
 
         });
 

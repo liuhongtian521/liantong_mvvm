@@ -1,5 +1,6 @@
 package com.zdy.study.activitys;
 
+import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
@@ -14,11 +15,13 @@ import com.askia.common.base.ARouterPath;
 import com.askia.common.base.BaseActivity;
 import com.askia.coremodel.datamodel.http.entities.consume.Remark;
 import com.blankj.utilcode.util.ToastUtils;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.zdy.study.R;
 import com.zdy.study.adapter.VideoFdydAdapter;
 import com.zdy.study.databinding.ActVideoBinding;
+import com.zdy.study.tools.Constants;
 
 import java.lang.reflect.Type;
 import java.util.List;
@@ -74,12 +77,20 @@ public class VideoActivity extends BaseActivity {
             });
             Type type =new TypeToken<List<Remark>>(){}.getType();
             List<Remark> jsonObject = new Gson().fromJson(remark, type);
-
             VideoFdydAdapter adapter = new VideoFdydAdapter(jsonObject);
             LinearLayoutManager layoutManager = new LinearLayoutManager(this);
             layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
             rvfdyd.setLayoutManager(layoutManager);
             rvfdyd.setAdapter(adapter);
+
+            adapter.setOnItemClickListener((adapter1, view, position) -> {
+                Bundle bundle = new Bundle();
+                bundle.putString("key", Constants.LBSD);
+                bundle.putString("INTERNATIONAL_VIEW", jsonObject.get(position).getId());
+                bundle.putString("argContChildId", jsonObject.get(position).getId());
+                startActivityByRouter(ARouterPath.InternationalPerspectiveDetailsActivity, bundle);
+                finish();
+            });
         }
     }
     @Override
