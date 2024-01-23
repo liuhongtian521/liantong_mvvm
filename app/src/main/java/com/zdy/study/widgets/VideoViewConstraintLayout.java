@@ -31,7 +31,7 @@ import java.util.Calendar;
 public class VideoViewConstraintLayout extends ConstraintLayout {
     private VideoView videoView;
     private TVSeekBar seekBar;
-    private SCardView scv_bg_seekbar;//seekbar背景框
+    private View scv_bg_seekbar;//seekbar背景框
     private ImageView fiv_onoff;
     private RecyclerView rv_fdyd;
     private TextView textViewTime ,textViewCurrentPosition, fct_fdyd;

@@ -15,6 +15,21 @@
     </declare-styleable>
 
     <attr name="scale" format="float"/>
+    <!--圆角度-->
+    <attr name="shadowRound" format="dimension" />
+    <!--阴影的高度-->
+    <attr name="shadowLeftHeight" format="dimension" />
+    <attr name="shadowTopHeight" format="dimension" />
+    <attr name="shadowRightHeight" format="dimension" />
+    <attr name="shadowBottomHeight" format="dimension" />
+    <!--上方阴影的偏离度-->
+    <attr name="shadowOffsetY" format="dimension" />
+    <attr name="shadowOffsetX" format="dimension" />
+    <!--阴影颜色-->
+    <attr name="shadowCardColor" format="color" />
+    <attr name="shadowColor" format="color" />
+    <!--阴影颜色模糊度，越大越模糊-->
+    <attr name="shadowRadius" format="integer" />
 
     <declare-styleable name="FCButton">
         <attr name="scale"/>
@@ -36,7 +51,24 @@
         <attr name="scale"/>
     </declare-styleable>
     <declare-styleable name="FCConstraintLayout">
+        <!--大小变化程度-->
         <attr name="scale" />
+        <!--圆角度-->
+        <attr name="shadowRound"  />
+        <!--阴影的高度-->
+        <attr name="shadowLeftHeight"  />
+        <attr name="shadowTopHeight"  />
+        <attr name="shadowRightHeight"  />
+        <attr name="shadowBottomHeight"  />
+        <!--上方阴影的偏离度-->
+        <attr name="shadowOffsetY"  />
+        <attr name="shadowOffsetX"  />
+        <!--阴影颜色-->
+        <attr name="shadowCardColor"  />
+        <attr name="shadowColor"  />
+        <!--阴影颜色模糊度，越大越模糊-->
+        <attr name="shadowRadius"  />
     </declare-styleable>
+
 
 </resources>

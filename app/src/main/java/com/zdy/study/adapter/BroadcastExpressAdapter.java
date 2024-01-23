@@ -12,6 +12,8 @@ import androidx.annotation.Nullable;
 import com.askia.coremodel.datamodel.http.entities.consume.BroadcastExpressResponBean;
 import com.askia.coremodel.datamodel.http.entities.consume.Remark;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
@@ -20,6 +22,7 @@ import com.google.gson.reflect.TypeToken;
 import com.zdy.study.R;
 import com.zdy.study.fcWidgets.FCConstraintLayout;
 import com.zdy.study.fcWidgets.FCLinearLayout;
+import com.zdy.study.uitls.DipPx;
 import com.zdy.study.widgets.VideoViewConstraintLayout;
 
 import java.lang.reflect.Type;
@@ -49,10 +52,17 @@ public class BroadcastExpressAdapter extends BaseMultiItemQuickAdapter<Broadcast
                     helper.setVisible(R.id.ll_fdyd, false);
                 else
                     helper.setVisible(R.id.ll_fdyd, true);*/
-                FCConstraintLayout layout = helper.getView(R.id.fcll);
-                layout.setBackGround(helper.getView(R.id.scv_bg_menu_sel), null);
+//                FCConstraintLayout layout = helper.getView(R.id.fcll);
+//                layout.setBackGround(helper.getView(R.id.scv_bg_menu_sel), null);
+
+                // 加载为四个都是圆角的图片 可以设置圆角幅度
+                RequestOptions options = new RequestOptions()
+                        .placeholder(R.drawable.loading)
+                        .bitmapTransform(new RoundedCorners(DipPx.dip2px(mContext, 7)));
+
                 ImageView imageView = helper.getView(R.id.iv_broadcast_video);
-                Glide.with(mContext).load("http://cdls-cms-image.oss-cn-huhehaote-nebula-1.aliyuncs.com/xinwen_video.jpeg").into(imageView);
+                Glide.with(mContext).load("http://cdls-cms-image.oss-cn-huhehaote-nebula-1.aliyuncs.com/xinwen_video.jpeg")
+                        .apply(options).into(imageView);
                 break;
             case FD:
                 helper.setText(R.id.tv_content_fdyd, item.getMyRemark().getContName())

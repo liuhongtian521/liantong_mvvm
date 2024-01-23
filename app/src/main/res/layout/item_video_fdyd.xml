@@ -7,6 +7,13 @@
     android:layout_margin="@dimen/dp_8"
     android:focusableInTouchMode="true"
     app:scale="1.05"
+    app:shadowRound="@dimen/dp_4"
+    app:shadowLeftHeight="@dimen/dp_2"
+    app:shadowTopHeight="@dimen/dp_2"
+    app:shadowBottomHeight="@dimen/dp_2"
+    app:shadowRightHeight="@dimen/dp_2"
+    app:shadowColor="@color/transparent"
+    app:shadowRadius="2"
     android:orientation="vertical">
 
     <androidx.cardview.widget.CardView

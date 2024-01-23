@@ -89,22 +89,17 @@
             app:layout_constraintStart_toEndOf="@+id/textViewCurrentPosition"
             app:layout_constraintEnd_toStartOf="@+id/textViewTime"/>
 
-        <com.meetsl.scardview.SCardView
+        <View
             android:id="@+id/scv_bg_seekbar"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_centerHorizontal="true"
             android:visibility="gone"
-            app:cardBackgroundColor="@color/transparent"
-            app:cardCornerRadius="@dimen/dp_4"
-            app:cardElevation="@dimen/dp_4"
-            app:cardShadowStartColor="@color/dash_red"
-            app:cardShadowEndColor="@color/transparent"
+            android:background="@drawable/shape_4_red_line_nobg"
             app:layout_constraintTop_toTopOf="@+id/seekBar"
             app:layout_constraintBottom_toBottomOf="@+id/seekBar"
             app:layout_constraintStart_toStartOf="@+id/seekBar"
-            app:layout_constraintEnd_toEndOf="@+id/seekBar"
-            app:cardLightDirection="none"/>  <!--光源位置在左侧，则阴影出现在反方向右侧 -->
+            app:layout_constraintEnd_toEndOf="@+id/seekBar" />  <!--光源位置在左侧，则阴影出现在反方向右侧 -->
 
 
         <TextView

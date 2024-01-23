@@ -26,17 +26,13 @@
         app:layout_constraintRight_toRightOf="@+id/iv_empty"/>
     
 
-    <com.meetsl.scardview.SCardView
+    <View
         android:id="@+id/scv_bg_right_sel"
         android:layout_width="@dimen/dp_28"
         android:layout_height="@dimen/dp_38"
         android:layout_centerHorizontal="true"
         android:visibility="gone"
-        app:cardBackgroundColor="@color/white"
-        app:cardCornerRadius="@dimen/dp_2"
-        app:cardElevation="@dimen/dp_5"
-        app:cardShadowStartColor="@color/dash_red"
-        app:cardShadowEndColor="@color/transparent"
+        android:background="@drawable/shape_4_red_line_nobg"
         app:layout_constraintTop_toTopOf="@+id/iv_right_page"
         app:layout_constraintBottom_toBottomOf="@+id/iv_right_page"
         app:layout_constraintStart_toStartOf="@+id/iv_right_page"
@@ -56,17 +52,13 @@
         android:focusableInTouchMode="true"
         android:focusable="true"/>
 
-    <com.meetsl.scardview.SCardView
+    <View
         android:id="@+id/scv_bg_left_sel"
         android:layout_width="@dimen/dp_28"
         android:layout_height="@dimen/dp_38"
         android:layout_centerHorizontal="true"
         android:visibility="gone"
-        app:cardBackgroundColor="@color/white"
-        app:cardCornerRadius="@dimen/dp_2"
-        app:cardElevation="@dimen/dp_5"
-        app:cardShadowStartColor="@color/dash_red"
-        app:cardShadowEndColor="@color/transparent"
+        android:background="@drawable/shape_4_red_line_nobg"
         app:layout_constraintTop_toTopOf="@+id/iv_left_page"
         app:layout_constraintBottom_toBottomOf="@+id/iv_left_page"
         app:layout_constraintStart_toStartOf="@+id/iv_left_page"

@@ -30,7 +30,7 @@ public class VideoFdydAdapter extends BaseQuickAdapter<Remark, BaseViewHolder> {
         helper.setText(R.id.tv_content, item.getContName());
 
         FCConstraintLayout layout = helper.getView(R.id.fcll);
-        layout.setBackGround(helper.getView(R.id.scv_bg_menu_sel), null);
+        layout.setShadowColor(R.color.white);
         ImageView imageView = helper.getView(R.id.iv_broadcast_video);
         Glide.with(mContext).load("http://cdls-cms-image.oss-cn-huhehaote-nebula-1.aliyuncs.com/xinwen_video.jpeg").into(imageView);
 

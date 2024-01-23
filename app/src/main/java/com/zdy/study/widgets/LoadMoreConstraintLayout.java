@@ -12,8 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import com.askia.coremodel.datamodel.http.entities.consume.BroadcastExpressResponBean;
-import com.meetsl.scardview.SCardView;
 import com.zdy.study.R;
 import com.zdy.study.fcWidgets.FCButton;
 
@@ -22,7 +20,7 @@ import java.util.List;
 public class LoadMoreConstraintLayout extends ConstraintLayout implements View.OnFocusChangeListener, View.OnClickListener {
 
     private ImageView ivRightPage, ivLeftPage;
-    private SCardView scv_bg_right_sel, scv_bg_left_sel;
+    private View scv_bg_right_sel, scv_bg_left_sel;
     private ImageView ivEmpty;
     private TextView tvEmpty;
     private LoadLitetsner loadLitetsner;

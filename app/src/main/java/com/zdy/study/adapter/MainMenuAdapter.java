@@ -29,9 +29,8 @@ public class MainMenuAdapter extends BaseQuickAdapter<String, BaseViewHolder>  {
     @Override
     protected void convert(BaseViewHolder baseViewHolder, String item) {
         baseViewHolder.setText(R.id.tv_menu, item);
-        FCConstraintLayout layout = baseViewHolder.getView(R.id.fcll);
-        layout.setBackGround(baseViewHolder.getView(R.id.scv_bg_menu_sel),
-                baseViewHolder.getView(R.id.scv_bg_menu));
+        /*FCConstraintLayout layout = baseViewHolder.getView(R.id.fcll);
+        layout.setShadowColor(R.color.dash_red);*/
         int position = baseViewHolder.getAdapterPosition();
         switch (position){
             case 0:
