@@ -19,8 +19,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="@dimen/dp_40"
-            android:layout_marginRight="@dimen/dp_40"
             android:background="@mipmap/ic_background"
             android:orientation="vertical">
 
@@ -630,10 +628,12 @@
                         android:background="@color/transparent"
                         android:focusableInTouchMode="true"
                         android:gravity="right"
+                        android:nextFocusRight="@id/flrl_jxll"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:scale="1.2" >
                         <TextView
+
                             android:layout_centerVertical="true"
                             android:text="更多 >"
                             android:textColor="#FF4C4E5A"
@@ -684,6 +684,7 @@
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <com.zdy.study.uitls.BGTextview
+                            android:nextFocusLeft="@id/course_example_more"
                             android:id="@+id/fcl_jxll_frist"
                             android:layout_width="match_parent"
                             android:layout_height="28dp"
@@ -699,6 +700,7 @@
                             app:layout_constraintTop_toBottomOf="@+id/tv_title_jxll" />
 
                         <com.zdy.study.uitls.BGTextview
+                            android:nextFocusLeft="@id/course_example_more"
                             android:id="@+id/fcl_jxll_second"
                             android:layout_width="match_parent"
                             android:layout_height="28dp"
@@ -715,9 +717,11 @@
                             android:onClick="@{handlers::theoryMoreClick}"
                             android:layout_width="45dp"
                             android:layout_height="30dp"
+                            android:id="@+id/flrl_jxll"
                             android:layout_alignParentEnd="true"
                             android:layout_marginTop="@dimen/dp_10"
                             android:layout_marginRight="15dp"
+                            android:nextFocusLeft="@id/course_example_more"
                             android:background="@color/transparent"
                             android:focusableInTouchMode="true"
                             android:gravity="right"

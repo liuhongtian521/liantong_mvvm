@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@mipmap/ic_background"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="38.5dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginRight="@dimen/dp_30">
+
+            <ImageView
+                android:id="@+id/im_start"
+                android:layout_width="70dp"
+                android:layout_height="32dp"
+                android:background="@mipmap/ic_main_start"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/iv_discuss"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@mipmap/ic_discuss"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="6dp"
+                    android:gravity="center"
+                    android:text="讨论室"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_discuss"
+                    app:layout_constraintStart_toEndOf="@+id/iv_discuss"
+                    app:layout_constraintTop_toTopOf="@+id/iv_discuss" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.zdy.study.fcWidgets.FCConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="182dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="@dimen/dp_30"
+            android:focusableInTouchMode="true"
+            android:paddingTop="15dp"
+            app:scale="1.02">
+
+            <ImageView
+                android:id="@+id/iv_discuss_left"
+                android:layout_width="@dimen/dp_150"
+                android:layout_height="@dimen/dp_150"
+                android:layout_marginLeft="@dimen/dp_15"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_top"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="6dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/iv_discuss_left"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/tv_dfdsf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="@dimen/dp_70"
+                    android:textSize="@dimen/sp_14"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_my_create"
+                    android:layout_width="44dp"
+                    android:layout_height="18dp"
+                    android:background="@drawable/shape_4_new"
+                    android:gravity="center"
+                    android:text="我创建的"
+                    android:textColor="#B27537"
+                    android:textSize="9sp"
+                    app:layout_constraintRight_toRightOf="@+id/tv_dfdsf"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_person"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:textColor="#767882"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_dfdsf" />
+
+                <View
+                    android:id="@+id/view_gray"
+                    android:layout_width="1dp"
+                    android:layout_height="10dp"
+                    android:layout_marginLeft="8dp"
+                    android:background="#767882"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_person"
+                    app:layout_constraintStart_toEndOf="@+id/tv_person"
+                    app:layout_constraintTop_toTopOf="@+id/tv_person" />
+
+                <TextView
+                    android:id="@+id/subject"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_8"
+                    android:textColor="#767882"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_person"
+                    app:layout_constraintStart_toEndOf="@+id/view_gray"
+                    app:layout_constraintTop_toTopOf="@+id/tv_person" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:ellipsize="end"
+                    android:maxLines="3"
+                    android:textColor="#4C4E5A"
+                    android:textSize="13sp"
+                    app:layout_constraintStart_toEndOf="@+id/view_gray"
+                    app:layout_constraintTop_toBottomOf="@+id/subject" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="15dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fl_content" />
+        </com.zdy.study.fcWidgets.FCConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/iv_head_discuss"
+                android:background="@mipmap/ic_discuss"
+                android:layout_marginLeft="@dimen/dp_30"
+                android:layout_width="17dp"
+                android:layout_height="17dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:layout_marginLeft="7dp"
+                app:layout_constraintStart_toEndOf="@+id/iv_head_discuss"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:text="讨论室内的话题"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"/>
+            <TextView
+                android:id="@+id/tv_name_number"
+                android:text="共123人"
+                android:textColor="#714A22"
+                android:textSize="12sp"
+                android:layout_marginRight="@dimen/dp_30"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_discuss"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_15"
+            android:layout_marginTop="@dimen/dp_13"
+            android:layout_marginRight="@dimen/dp_30"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_discuss" />
+    </LinearLayout>
+</layout>

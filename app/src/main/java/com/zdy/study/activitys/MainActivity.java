@@ -3,6 +3,7 @@ package com.zdy.study.activitys;
 
 import android.annotation.SuppressLint;
 import android.graphics.drawable.Drawable;
+import android.view.KeyEvent;
 import android.view.View;
 
 import android.util.Log;
@@ -47,6 +48,7 @@ public class MainActivity extends BaseActivity {
     private Fragment currentFragment;
 
     private RadioButton lastRb = null;//上一次选中RadioButton
+    private String mCurrentPage = "0";
 
     @Override
     public void onInit() {
@@ -56,10 +58,10 @@ public class MainActivity extends BaseActivity {
         checkUpdate();
     }
 
-    private void checkUpdate(){
-        new UpdateChecker("c2cad66e174bff947b8e2067c57d4eec",this)
+    private void checkUpdate() {
+        new UpdateChecker("c2cad66e174bff947b8e2067c57d4eec", this)
                 .check("bc7efbffa17e035b23efe34cd4114f85",
-                        BuildConfig.VERSION_CODE+"",
+                        BuildConfig.VERSION_CODE + "",
                         null,
                         "13045503e2bd7dacbbba370db0393dd3",
                         new UpdateChecker.Callback() {
@@ -67,12 +69,12 @@ public class MainActivity extends BaseActivity {
                             public void result(UpdateChecker.UpdateInfo updateInfo) {
 
 //                                Toast.makeText(reactContext,updateInfo.buildBuildVersion,Toast.LENGTH_LONG).show();
-                                Log.i("DOWNLOAD",updateInfo.buildBuildVersion.toString());
+                                Log.i("DOWNLOAD", updateInfo.buildBuildVersion.toString());
                             }
 
                             @Override
                             public void error(String message) {
-                                Log.i("DOWNLOAD",message);
+                                Log.i("DOWNLOAD", message);
                             }
                         }
                 );
@@ -148,7 +150,8 @@ public class MainActivity extends BaseActivity {
         lastRb = mDataBinding.rbSzbj;
         mDataBinding.rbSzbj.requestFocus();
         mDataBinding.rbSzbj.setOnFocusChangeListener((view, b) -> {
-            if (b){
+            if (b) {
+                mCurrentPage = "0";
                 FragmentHideShwo(digitalClassesFragment);
 //                mDataBinding.viewPager.setCurrentItem(0, true);
                 rbSelected(mDataBinding.rbSzbj, R.mipmap.ic_tab_banji_select);
@@ -157,6 +160,7 @@ public class MainActivity extends BaseActivity {
         });
         mDataBinding.rbXxzs.setOnFocusChangeListener((view, b) -> {
             if (b) {
+                mCurrentPage = "1";
                 FragmentHideShwo(mainFragment);
 //            mDataBinding.viewPager.setCurrentItem(1, true);
                 rbSelected(mDataBinding.rbXxzs, R.mipmap.ic_tab_zhushou_select);
@@ -164,6 +168,7 @@ public class MainActivity extends BaseActivity {
         });
         mDataBinding.rbTl.setOnFocusChangeListener((view, b) -> {
             if (b) {
+                mCurrentPage = "2";
                 FragmentHideShwo(discussRoomFragment);
 //            mDataBinding.viewPager.setCurrentItem(2, true);
                 rbSelected(mDataBinding.rbTl, R.mipmap.ic_tab_banji_select);
@@ -171,6 +176,7 @@ public class MainActivity extends BaseActivity {
         });
         mDataBinding.rbGr.setOnFocusChangeListener((view, b) -> {
             if (b) {
+                mCurrentPage = "3";
                 FragmentHideShwo(mineFragment);
 //            mDataBinding.viewPager.setCurrentItem(3, true);
                 rbSelected(mDataBinding.rbGr, R.mipmap.ic_tab_geren_select);
@@ -180,7 +186,7 @@ public class MainActivity extends BaseActivity {
     }
 
     //设置选中效果
-    private void rbSelected(RadioButton rbSel, int leftDra){
+    private void rbSelected(RadioButton rbSel, int leftDra) {
         if (lastRb != null)
             setTabUnSelect(lastRb);//将上此选中 设置为未选择
         rbSel.setBackgroundResource(R.drawable.shape_4_red);
@@ -195,9 +201,9 @@ public class MainActivity extends BaseActivity {
     }
 
     //将上此选中 设置为未选择
-    private void setTabUnSelect(RadioButton rbSel){
+    private void setTabUnSelect(RadioButton rbSel) {
         Drawable drawable = null;
-        switch (rbSel.getId()){
+        switch (rbSel.getId()) {
             case R.id.rb_szbj:
                 // 使用代码设置drawableleft
                 drawable = getResources().getDrawable(R.mipmap.ic_tab_banji_unselect);
@@ -223,7 +229,7 @@ public class MainActivity extends BaseActivity {
         rbSel.setBackgroundResource(R.drawable.shape_4_e6e6e6);
     }
 
-    public void showdiscussRoom(){
+    public void showdiscussRoom() {
         mDataBinding.rbTl.requestFocus();
     }
 

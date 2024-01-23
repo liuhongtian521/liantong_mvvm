@@ -5,9 +5,9 @@
     android:layout_height="wrap_content"
     android:layout_marginLeft="16dp"
     android:layout_marginTop="15dp"
-    android:background="@drawable/white_round_corner"
-    android:focusable="true"
+    android:paddingTop="15dp"
     android:focusableInTouchMode="true"
+    android:background="@drawable/white_round_corner"
     app:scale="1.02">
 
     <ImageView
@@ -34,7 +34,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingRight="@dimen/dp_70"
-            android:text="33333333333333333333333333333333"
             android:textSize="@dimen/sp_14"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -56,7 +55,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
-            android:text="12313"
             android:textColor="#767882"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_dfdsf" />
@@ -76,7 +74,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dp_8"
-            android:text="12313"
             android:textColor="#767882"
             app:layout_constraintBottom_toBottomOf="@+id/tv_person"
             app:layout_constraintStart_toEndOf="@+id/view_gray"
