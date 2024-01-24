@@ -87,6 +87,7 @@ public class TipsDialog extends Dialog implements View.OnClickListener {
         }
         tv_cannel.setOnClickListener(this);
         tv_confirm.setOnClickListener(this);
+        tv_confirm.requestFocus();
     }
 
     @Override

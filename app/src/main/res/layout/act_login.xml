@@ -9,22 +9,21 @@
             type="com.zdy.study.activitys.LoginActivity" />
     </data>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@mipmap/bg_login_zdy">
 
             <ImageView
-                android:layout_width="@dimen/dp_160"
-                android:layout_height="@dimen/dp_71"
+                android:id="@+id/iv_logo"
+                android:layout_width="@dimen/dp_225"
+                android:layout_height="@dimen/dp_100"
                 android:src="@mipmap/ic_login_logo"
                 app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                android:layout_marginTop="@dimen/dp_60"/>
+                android:layout_marginLeft="@dimen/dp_150"/>
 
 
             <androidx.leanback.tab.LeanbackTabLayout
@@ -39,9 +38,9 @@
                 app:tabSelectedTextColor="#1E1E1E"
                 app:tabTextColor="#767882"
                 app:tabIndicatorHeight="0dp"
-                android:layout_marginTop="@dimen/dp_132"
+                android:layout_marginTop="@dimen/dp_85"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintLeft_toRightOf="@+id/iv_logo"
                 app:layout_constraintRight_toRightOf="parent"/>
             
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -49,8 +48,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@+id/tab_layout"
-                android:layout_marginTop="@dimen/dp_22"
-                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginTop="@dimen/dp_34"
+                app:layout_constraintLeft_toRightOf="@+id/iv_logo"
                 app:layout_constraintRight_toRightOf="parent">
 
                 <EditText
@@ -191,17 +190,13 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/sp_14"
                 android:onClick="login"
-                android:layout_marginTop="@dimen/dp_40"
-                android:layout_marginBottom="@dimen/dp_40"
+                android:layout_marginTop="@dimen/dp_50"
                 android:background="@drawable/shape_4_red"
-                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintLeft_toRightOf="@+id/iv_logo"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cl_input"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </ScrollView>
 
 
 

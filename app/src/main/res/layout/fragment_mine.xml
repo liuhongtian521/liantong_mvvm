@@ -17,68 +17,100 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
+            android:layout_height="match_parent"
+            android:background="@mipmap/bg_digtalclass_fragment">
 
             <ImageView
-                android:id="@+id/iv_mine_header"
-                android:layout_width="@dimen/dp_50"
-                android:layout_height="@dimen/dp_50"
-                android:layout_marginLeft="@dimen/dp_20"
-                android:layout_marginTop="@dimen/dp_55"
-                android:src="@mipmap/ic_mine_header"
+                android:layout_width="@dimen/dp_70"
+                android:layout_height="@dimen/dp_32"
+                android:src="@mipmap/ic_logo"
+                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <com.zdy.study.fcWidgets.FCTextview
-                android:id="@+id/tv_mine_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dp_12"
+                android:layout_marginTop="@dimen/dp_8"
+                android:layout_marginLeft="@dimen/dp_40"/>
+            <com.zdy.study.fcWidgets.FCConstraintLayout
+                android:id="@+id/fcc_userinfo"
+                android:layout_width="@dimen/dp_207"
+                android:layout_height="@dimen/dp_275"
+                android:layout_marginTop="@dimen/dp_61"
+                android:layout_marginRight="@dimen/dp_40"
+                app:scale="1.07"
+                app:shadowRound="@dimen/dp_9"
+                app:shadowRadius="5"
+                app:shadowColor="@color/bg_999999"
+                android:onClick="@{handlers::goToLogin}"
                 android:focusable="true"
                 android:focusableInTouchMode="true"
-                android:onClick="@{handlers::goToLogin}"
-                android:text=""
-                android:textColor="#1E1E1E"
-                android:textSize="@dimen/sp_17"
-                app:layout_constraintLeft_toRightOf="@+id/iv_mine_header"
-                app:layout_constraintTop_toTopOf="@+id/iv_mine_header" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
 
 
-            <TextView
-                android:id="@+id/tv_class_name"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_9"
-                android:background="#F5F2ED"
-                android:paddingLeft="@dimen/dp_11"
-                android:paddingTop="@dimen/dp_2"
-                android:paddingRight="@dimen/dp_11"
-                android:paddingBottom="@dimen/dp_2"
-                android:text=""
-                android:textColor="#644A1F"
-                android:textSize="@dimen/sp_11"
-                android:maxWidth="840dp"
-                app:layout_constraintLeft_toLeftOf="@+id/tv_mine_name"
-                app:layout_constraintTop_toBottomOf="@+id/tv_mine_name" />
+                <ImageView
+                    android:id="@+id/iv_mine_header"
+                    android:layout_width="@dimen/dp_80"
+                    android:layout_height="@dimen/dp_80"
+                    android:layout_marginTop="@dimen/dp_37"
+                    android:src="@mipmap/ic_mine_header"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_mine_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_12"
+                    android:text=""
+                    android:textColor="#1E1E1E"
+                    android:textSize="@dimen/sp_24"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/iv_mine_header" />
+
+
+                <TextView
+                    android:id="@+id/tv_class_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dp_9"
+                    android:background="#F5F2ED"
+                    android:paddingLeft="@dimen/dp_11"
+                    android:paddingTop="@dimen/dp_2"
+                    android:paddingRight="@dimen/dp_11"
+                    android:paddingBottom="@dimen/dp_2"
+                    android:text=""
+                    android:textColor="#644A1F"
+                    android:textSize="@dimen/sp_16"
+                    android:maxWidth="840dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_mine_name" />
+
+            </com.zdy.study.fcWidgets.FCConstraintLayout>
+
+
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_mine_menu"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_33"
-                app:layout_constraintTop_toBottomOf="@+id/tv_class_name" />
+                android:layout_marginTop="@dimen/dp_55"
+                android:layout_marginLeft="@dimen/dp_40"
+                android:layout_marginRight="@dimen/dp_14"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/fcc_userinfo"/>
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_150"
-                android:layout_marginLeft="@dimen/dp_30"
-                android:layout_marginTop="@dimen/dp_50"
-                android:layout_marginRight="@dimen/dp_30"
+                android:layout_height="@dimen/dp_130"
+                android:layout_marginLeft="@dimen/dp_40"
+                android:layout_marginTop="@dimen/dp_13"
+                android:layout_marginRight="@dimen/dp_40"
                 android:layout_marginBottom="30dp"
                 android:scaleType="fitXY"
                 android:src="@mipmap/ic_mine_bottom"
-                app:layout_constraintTop_toBottomOf="@+id/rv_mine_menu" />
+                app:layout_constraintTop_toBottomOf="@+id/fcc_userinfo" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

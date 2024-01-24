@@ -1,6 +1,7 @@
 package com.zdy.study.adapter;
 
 import android.content.Context;
+import android.text.Html;
 import android.text.TextUtils;
 import android.widget.ImageView;
 
@@ -9,11 +10,14 @@ import androidx.annotation.Nullable;
 import com.askia.coremodel.datamodel.http.entities.consume.HistoryResponse;
 import com.askia.coremodel.datamodel.http.entities.consume.MyCollectionResponse;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.zdy.study.R;
 import com.zdy.study.fcWidgets.FCLinearLayout;
+import com.zdy.study.uitls.DipPx;
 
 import java.util.List;
 
@@ -63,8 +67,12 @@ public class HistoryAdapter extends BaseMultiItemQuickAdapter<HistoryResponse.Pa
                     helper.setVisible(R.id.ll_fdyd, false);
                 else
                     helper.setVisible(R.id.ll_fdyd, true);*/
+                RequestOptions options = new RequestOptions()
+                        .placeholder(R.drawable.loading)
+                        .bitmapTransform(new RoundedCorners(DipPx.dip2px(mContext, 7)));
                 ImageView imageView = helper.getView(R.id.iv_broadcast_video);
-                Glide.with(mContext).load("http://cdls-cms-image.oss-cn-huhehaote-nebula-1.aliyuncs.com/xinwen_video.jpeg").into(imageView);
+                Glide.with(mContext).load("http://cdls-cms-image.oss-cn-huhehaote-nebula-1.aliyuncs.com/xinwen_video.jpeg")
+                        .apply(options).into(imageView);
                 break;
             case FD:
                 helper.setText(R.id.tv_content_fdyd, item.getMyRemark().getContName())
@@ -86,8 +94,8 @@ public class HistoryAdapter extends BaseMultiItemQuickAdapter<HistoryResponse.Pa
                 Glide.with(mContext).load(item.getImgUrl()).into(ivOperation);
                 break;
             case TJSD:
-                helper.setText(R.id.tv_book_name, item.getContName());
-                helper.setText(R.id.tv_book_author, "(作者：" + item.getAuthorName() + ")");
+                helper.setText(R.id.tv_book_name, Html.fromHtml(item.getContName()+"<font color='#767882'>"
+                        +"(作者：" + item.getAuthorName() + ")"+"</font>"));
                 helper.setText(R.id.tv_content_book, item.getBriefIntroduction());
                 ImageView imageViewTjsd = helper.getView(R.id.iv_book_name);
                 Glide.with(mContext).load(item.getImgUri()).into(imageViewTjsd);

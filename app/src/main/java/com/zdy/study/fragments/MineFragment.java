@@ -137,6 +137,8 @@ public class MineFragment extends BaseFragment {
         HttpLoginResult httpLoginResult = DBRepository.QueryTVUserLoginData();
         if (TextUtils.isEmpty(httpLoginResult.getAccess_token())) {
             startActivityByRouter(ARouterPath.LOGIN_ACTIVITY);
+        }else{
+            startActivityByRouter(ARouterPath.USERINFO_ACTIVIGY);
         }
     }
 

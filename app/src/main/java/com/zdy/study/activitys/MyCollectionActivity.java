@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -122,7 +123,8 @@ public class MyCollectionActivity extends BaseActivity {
 
     private void inItRecycleView() {
         recyclerView = mMainBinding.rvBook;
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);//数字为行数或列数
+        GridLayoutManager layoutManager = new GridLayoutManager(this, 3);//第二个参数为网格的列数
+//        LinearLayoutManager layoutManager = new LinearLayoutManager(this);//数字为行数或列数
         adapter = new MyCollectionAdapter(list, clickTrueOrFalse);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
@@ -270,15 +272,15 @@ public class MyCollectionActivity extends BaseActivity {
             }
             mMainBinding.lmMaterialsView.setList(listResult.getResult().getPageData(), page);
             list.clear();
-            if (itemType ==HistoryAdapter.LBSD)
+            /*if (itemType ==HistoryAdapter.LBSD)
                 makeFD(listResult.getResult().getPageData());
-            else {
+            else {*/
                 list.addAll(listResult.getResult().getPageData());
                 //添加item样式
                 for (MyCollectionResponse.PageDataBean pageDataBean : list)
                     pageDataBean.setFieldType(itemType);
 
-            }
+//            }
 
             adapter.notifyDataSetChanged();
         });

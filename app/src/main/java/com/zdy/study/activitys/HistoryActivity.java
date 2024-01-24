@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.databinding.BindingConversion;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -71,7 +72,8 @@ public class HistoryActivity extends BaseActivity {
     }
 
     private void inItRecycleView() {
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);//数字为行数或列数
+        GridLayoutManager layoutManager = new GridLayoutManager(this, 3);//第二个参数为网格的列数
+//        LinearLayoutManager layoutManager = new LinearLayoutManager(this);//数字为行数或列数
         adapter = new HistoryAdapter(histotyList);
         binding.rvHistory.setLayoutManager(layoutManager);
         binding.rvHistory.setAdapter(adapter);
@@ -159,15 +161,15 @@ public class HistoryActivity extends BaseActivity {
             binding.lmHistoryView.setList(listResult.getResult().getPageData(), page);
             histotyList.clear();
 
-            if (itemType == HistoryAdapter.LBSD)
+            /*if (itemType == HistoryAdapter.LBSD)
                 makeFD(listResult.getResult().getPageData());
-            else {
+            else {*/
                 histotyList.addAll(listResult.getResult().getPageData());
                 //添加item样式
                 for (HistoryResponse.PageDataBean pageDataBean : histotyList)
                     pageDataBean.setFieldType(itemType);
 
-            }
+//            }
             adapter.notifyDataSetChanged();
         });
     }
