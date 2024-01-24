@@ -31,8 +31,5 @@ public class BookListAdapter extends BaseQuickAdapter<BooksRespponseBean.PageDat
         if (!"".equals(item.getCoverUrl())) {
             Glide.with(mContext).load(item.getCoverUrl()).into(imageView);
         }
-        FCLinearLayout layout = helper.getView(R.id.fcll);
-        layout.setScale(1.02f);
-
     }
 }

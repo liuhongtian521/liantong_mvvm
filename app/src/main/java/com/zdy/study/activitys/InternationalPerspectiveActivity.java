@@ -5,6 +5,7 @@ import android.view.View;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,6 +21,7 @@ import com.zdy.study.adapter.InternationalPerspectiveAdapter;
 import com.zdy.study.adapter.WebBaseCourseAdapter;
 import com.zdy.study.cdatamodel.viewmodel.InternationalPerspectiveViewModel;
 import com.zdy.study.cdatamodel.viewmodel.WebBasedCourseViewModel;
+import com.zdy.study.databinding.ActOperationListBinding;
 import com.zdy.study.databinding.InternationalPerspectiveActivityBinding;
 import com.zdy.study.databinding.WebBasedCourseActivityBinding;
 import com.zdy.study.tools.Constants;
@@ -32,7 +34,7 @@ import java.util.List;
 /*国际视野列表*/
 @Route(path = ARouterPath.InternationalPerspectiveActivity)
 public class InternationalPerspectiveActivity extends BaseActivity {
-    private InternationalPerspectiveActivityBinding mDataBinding;
+    private ActOperationListBinding binding;
     private InternationalPerspectiveViewModel viewModel;
     private List<BroadcastExpressResponBean.PageDataBean> list;
     private List<BroadcastExpressResponBean.PageDataBean> list1;
@@ -40,8 +42,9 @@ public class InternationalPerspectiveActivity extends BaseActivity {
     private InternationalPerspectiveAdapter adapter;
     private RecyclerView recyclerView;
     private int page = 1;
-    private String pageSize = "10";
+    private String pageSize = "5";
     private String KeyWord;
+    private String Id;
 
     @Override
     public void onInit() {
@@ -53,8 +56,8 @@ public class InternationalPerspectiveActivity extends BaseActivity {
     }
 
     private void onInTitle(String title) {
-        mDataBinding.includeLayout.preferenceActivityTitleText.setText(title);
-        mDataBinding.includeLayout.preferenceActivityTitleImage.setOnClickListener(v -> {
+        binding.includeLayout.preferenceActivityTitleText.setText(title);
+        binding.includeLayout.preferenceActivityTitleImage.setOnClickListener(v -> {
             finish();
         });
     }
@@ -62,19 +65,19 @@ public class InternationalPerspectiveActivity extends BaseActivity {
     private void initList() {
         if (Constants.GJSY.equals(KeyWord)) {
             onInTitle("国际视野");
-            viewModel.queryContListByAudit("1", "10","1", "10", Constants.GJSY);
+            viewModel.queryContListByAudit("1", pageSize,"1", pageSize, Constants.GJSY);
         } else {
             //实践案列
             onInTitle("实践案例");
-            viewModel.queryContListByAudit("1", "10","1", "10", Constants.SJAL);
+            viewModel.queryContListByAudit("1", pageSize,"1", pageSize, Constants.SJAL);
         }
         list = new ArrayList<>();
-        recyclerView = mDataBinding.rvWeb;
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);//数字为行数或列数
+        recyclerView = binding.includeLayoutList.rlOperation;
+        GridLayoutManager layoutManager = new GridLayoutManager(this,4,LinearLayoutManager.HORIZONTAL,false);//数字为行数或列数
         adapter = new InternationalPerspectiveAdapter(list, this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
-        mDataBinding.fcrVideo.setOnClickListener(new View.OnClickListener() {
+        binding.includeLayoutList.clItemLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (null != list1 && list1.size() > 0) {
@@ -99,7 +102,8 @@ public class InternationalPerspectiveActivity extends BaseActivity {
     }
 
     private void initLoad() {
-        mDataBinding.lmView.setLoadLitetsner(new LoadMoreConstraintLayout.LoadLitetsner() {
+        binding.includeLayoutList.lmViewOperation.setPageSize(Integer.parseInt(pageSize));//设置页面条数
+        binding.includeLayoutList.lmViewOperation.setLoadLitetsner(new LoadMoreConstraintLayout.LoadLitetsner() {
             @Override
             public void nextPage() {
                 page++;
@@ -123,7 +127,7 @@ public class InternationalPerspectiveActivity extends BaseActivity {
 
     @Override
     public void onInitDataBinding() {
-        mDataBinding = DataBindingUtil.setContentView(this, R.layout.international_perspective_activity);
+        binding = DataBindingUtil.setContentView(this, R.layout.act_operation_list);
     }
 
     @Override
@@ -134,17 +138,18 @@ public class InternationalPerspectiveActivity extends BaseActivity {
                 ToastUtils.showLong(listResult.getMessage().toString());
                 return;
             }
-            mDataBinding.lmView.setList(listResult.getResult().getPageData(), page);
+            binding.includeLayoutList.lmViewOperation.setList(listResult.getResult().getPageData(), page);
             list.clear();
             list1.clear();
             list.addAll(listResult.getResult().getPageData());
             list1.addAll(listResult.getResult().getPageData());
             if (list.size() > 0) {
+                Id=listResult.getResult().getPageData().get(0).getId();
                 pageDataBean = list.get(0);
-                mDataBinding.tvVideoName.setText(list.get(0).getContName());
-                mDataBinding.tvVideoDate.setText(list.get(0).getCreateTime().substring(0, 10));
+                binding.includeLayoutList.tvItemName.setText(list.get(0).getContName());
+                binding.includeLayoutList.tvItemDate.setText(list.get(0).getCreateTime().substring(0, 10));
                 if (null != list && list.size() > 0 && !"".equals(list.get(0).getImgUrl())) {
-                    Glide.with(this).load(list.get(0).getImgUrl()).into(mDataBinding.ivHeadVideo);
+                    Glide.with(this).load(list.get(0).getImgUrl()).into(binding.includeLayoutList.ivItemLeft);
                 }
                 list.remove(0);
             }

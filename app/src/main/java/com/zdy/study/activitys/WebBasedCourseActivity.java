@@ -24,6 +24,7 @@ import com.zdy.study.adapter.BroadcastExpressAdapter;
 import com.zdy.study.adapter.WebBaseCourseAdapter;
 import com.zdy.study.cdatamodel.viewmodel.AddressBookViewModel;
 import com.zdy.study.cdatamodel.viewmodel.WebBasedCourseViewModel;
+import com.zdy.study.databinding.ActOperationListBinding;
 import com.zdy.study.databinding.WebBasedCourseActivityBinding;
 import com.zdy.study.widgets.LoadMoreConstraintLayout;
 
@@ -35,7 +36,7 @@ import java.util.List;
 
 @Route(path = ARouterPath.WebBasedCourseActivity)
 public class WebBasedCourseActivity extends BaseActivity {
-    private WebBasedCourseActivityBinding mDataBinding;
+    private ActOperationListBinding binding;
     private WebBasedCourseViewModel viewModel;
     //去掉第一条数据的list
     private List<WebCourseResponseBean.RecordsBean> list;
@@ -44,7 +45,7 @@ public class WebBasedCourseActivity extends BaseActivity {
     private WebBaseCourseAdapter adapter;
     private RecyclerView recyclerView;
     private int page = 1;
-    private String pageSize = "10";
+    private String pageSize = "5";
     private String mUrl;
     private String readStartTime; //埋点 开始时间
 
@@ -66,8 +67,8 @@ public class WebBasedCourseActivity extends BaseActivity {
         readStartTime = simpleDateFormat.format(date);
     }
     private void onInTitle() {
-        mDataBinding.includeLayout.preferenceActivityTitleText.setText("网络课程列表");
-        mDataBinding.includeLayout.preferenceActivityTitleImage.setOnClickListener(v -> {
+        binding.includeLayout.preferenceActivityTitleText.setText("网络课程列表");
+        binding.includeLayout.preferenceActivityTitleImage.setOnClickListener(v -> {
             finish();
         });
     }
@@ -75,13 +76,13 @@ public class WebBasedCourseActivity extends BaseActivity {
     private void initList() {
 
         list = new ArrayList<>();
-        viewModel.pageByApp("1", "10", "1", "10");
-        recyclerView = mDataBinding.rvWeb;
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);//数字为行数或列数
+        viewModel.pageByApp("1", pageSize, "1", pageSize);
+        recyclerView = binding.includeLayoutList.rlOperation;
+        GridLayoutManager layoutManager = new GridLayoutManager(this,4,LinearLayoutManager.HORIZONTAL,false);//数字为行数或列数
         adapter = new WebBaseCourseAdapter(list, this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
-        mDataBinding.ivHeadVideo.setOnClickListener(new View.OnClickListener() {
+        binding.includeLayoutList.clItemLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Bundle bundle = new Bundle();
@@ -139,7 +140,8 @@ public class WebBasedCourseActivity extends BaseActivity {
     }
 
     private void initLoad() {
-        mDataBinding.lmView.setLoadLitetsner(new LoadMoreConstraintLayout.LoadLitetsner() {
+        binding.includeLayoutList.lmViewOperation.setPageSize(Integer.parseInt(pageSize));//设置页面条数
+        binding.includeLayoutList.lmViewOperation.setLoadLitetsner(new LoadMoreConstraintLayout.LoadLitetsner() {
             @Override
             public void nextPage() {
                 page++;
@@ -163,7 +165,7 @@ public class WebBasedCourseActivity extends BaseActivity {
 
     @Override
     public void onInitDataBinding() {
-        mDataBinding = DataBindingUtil.setContentView(this, R.layout.web_based_course_activity);
+        binding = DataBindingUtil.setContentView(this, R.layout.act_operation_list);
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -179,11 +181,12 @@ public class WebBasedCourseActivity extends BaseActivity {
             list1.clear();
             list.addAll(listResult.getData().getRecords());
             list1.addAll(listResult.getData().getRecords());
-            mDataBinding.lmView.setList(listResult.getData().getRecords(), page);
+            binding.includeLayoutList.lmViewOperation.setList(listResult.getData().getRecords(), page);
             adapter.notifyDataSetChanged();
             if (null != list && list.size() > 0 && !"".equals(list.get(0).getShowUrl())) {
-                Glide.with(this).load(list.get(0).getShowUrl()).into(mDataBinding.ivHeadVideo);
-                mDataBinding.tvVideoName.setText(list.get(0).getTitle());
+                Glide.with(this).load(list.get(0).getShowUrl()).into(binding.includeLayoutList.ivItemLeft);
+                binding.includeLayoutList.tvItemName.setText(list.get(0).getTitle());
+                binding.includeLayoutList.tvItemDate.setVisibility(View.GONE);
             }
             if (null != list && list.size() > 0) {
                 mUrl = list.get(0).getVideoUrl();

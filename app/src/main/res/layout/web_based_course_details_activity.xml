@@ -1,90 +1,139 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
     </data>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
         android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/im_start"
+            android:layout_width="84dp"
+            android:layout_height="38dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="12dp"
+            android:background="@mipmap/ic_main_start" />
 
         <include
             android:id="@+id/include_layout"
             layout="@layout/title_style_white" />
+    <LinearLayout
+        android:layout_marginTop="@dimen/dp_12"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/dp_30"
+        android:layout_marginRight="@dimen/dp_30"
+        android:orientation="horizontal">
 
-        <TextView
-            android:textStyle="bold"
-            android:id="@+id/tv_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:text="123123123"
-            android:textColor="@color/app_black3"
-            android:textSize="16sp" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
 
-        <TextView
-            android:id="@+id/tv_date"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:gravity="center_vertical"
-            android:text="123123123"
-            android:textColor="#95989E"
-            android:textSize="10sp" />
+            <TextView
+                android:layout_marginLeft="@dimen/dp_10"
+                android:id="@+id/tv_item_name"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dp_48"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:maxLines="2"
+                android:textColor="@color/app_black3"
+                android:textSize="@dimen/sp_16"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/tv_author"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:gravity="center_vertical"
-            android:text="123123123"
-            android:textColor="#95989E"
-            android:textSize="10sp" />
+            <TextView
+                android:layout_marginLeft="@dimen/dp_10"
+                android:id="@+id/tv_item_date"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dp_21"
+                android:layout_marginTop="10dp"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:maxLines="2"
+                android:textColor="#95989E"
+                android:textSize="@dimen/sp_15"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_item_name" />
 
-        <RelativeLayout
-            android:layout_marginTop="5dp"
-            android:background="@color/app_black3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv_item_author"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dp_21"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:layout_marginTop="10dp"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:maxLines="2"
+                android:textColor="#95989E"
+                android:textSize="@dimen/sp_15"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_item_date" />
 
-            <ImageView
-                android:id="@+id/iv_video"
+            <com.zdy.study.fcWidgets.FCConstraintLayout
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:layout_margin="@dimen/dp_10"
+                app:scale="1.02"
+                app:shadowBottomHeight="@dimen/dp_5"
+                app:shadowColor="@color/transparent"
+                app:shadowLeftHeight="@dimen/dp_10"
+                app:shadowRightHeight="@dimen/dp_5"
+                app:shadowRound="@dimen/dp_4"
+                app:shadowTopHeight="@dimen/dp_10"
+                android:id="@+id/cl_item_left"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:layout_marginTop="6dp" />
+                android:layout_height="300dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_item_author">
 
-            <ImageView
-                android:background="@mipmap/ic_video_play"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-             android:layout_centerInParent="true"/>
-        </RelativeLayout>
+                <ImageView
+                    android:background="@color/app_black3"
+                    android:id="@+id/iv_item_left"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:textStyle="bold"
-            android:id="@+id/tv_title_course"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:gravity="center_vertical"
-            android:text="123123123"
-            android:textColor="@color/app_black3"
-            android:textSize="16sp" />
+                <ImageView
+                    android:id="@+id/iv_item_left1"
+                    android:layout_width="@dimen/dp_40"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:background="@mipmap/ic_video_play"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </com.zdy.study.fcWidgets.FCConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:layout_marginTop="15dp"
-            android:background="#E2E4E8" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_course"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            <com.zdy.study.widgets.LoadMoreConstraintLayout
+                android:id="@+id/lm_view_operation"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rl_operation"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/dp_35"
+                    android:layout_marginRight="@dimen/dp_35"
+                    android:layout_marginBottom="@dimen/dp_20"
+                    app:focusOutFront="true" />
+            </com.zdy.study.widgets.LoadMoreConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+
     </LinearLayout>
 </layout>

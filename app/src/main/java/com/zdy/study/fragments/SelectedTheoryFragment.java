@@ -10,12 +10,14 @@ import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.askia.common.base.ARouterPath;
 import com.askia.common.base.BaseFragment;
 import com.askia.coremodel.datamodel.http.entities.consume.BroadcastExpressResponBean;
 import com.blankj.utilcode.util.ToastUtils;
+import com.bumptech.glide.Glide;
 import com.zdy.study.R;
 import com.zdy.study.adapter.OperationAdapter;
 import com.zdy.study.cdatamodel.viewmodel.SelectedTheoryViewModel;
@@ -30,9 +32,10 @@ public class SelectedTheoryFragment extends BaseFragment {
     private SelectedTheoryFragmentBinding binding;
     private SelectedTheoryViewModel viewModel;
     private int page = 1;
-    private String pageSize = "10";
+    private String pageSize = "5";
     private List<BroadcastExpressResponBean.PageDataBean> list;
     private OperationAdapter adapter;
+    private String Id;
     @Override
     public void onInit() {
 
@@ -63,10 +66,16 @@ public class SelectedTheoryFragment extends BaseFragment {
     private void initList(){
         list = new ArrayList<>();
 //        GridLayoutManager layoutManager = new GridLayoutManager(this, 2);//第二个参数为网格的列数
-        LinearLayoutManager manager2 = new LinearLayoutManager(getActivity());//数字为行数或列数
+        GridLayoutManager manager2 = new GridLayoutManager(getActivity(),4,LinearLayoutManager.HORIZONTAL,false);//数字为行数或列数
         adapter = new OperationAdapter(list);
         binding.rlOperation.setLayoutManager(manager2);
         binding.rlOperation.setAdapter(adapter);
+        binding.clItemLeft.setOnClickListener(v -> {
+            Bundle bundle = new Bundle();
+            bundle.putString("key", Constants.JXLL);
+            bundle.putString("INTERNATIONAL_VIEW", Id);
+            startActivityByRouter(ARouterPath.InternationalPerspectiveDetailsActivity, bundle);
+        });
 
         adapter.setOnItemClickListener((adapter, view, position) -> {
             /*Bundle bundle = new Bundle();
@@ -83,6 +92,7 @@ public class SelectedTheoryFragment extends BaseFragment {
     }
 
     private void initLoad(){
+        binding.lmViewOperation.setPageSize(Integer.parseInt(pageSize));//设置页面条数
         binding.lmViewOperation.setLoadLitetsner(new LoadMoreConstraintLayout.LoadLitetsner() {
             @Override
             public void nextPage() {
@@ -110,7 +120,14 @@ public class SelectedTheoryFragment extends BaseFragment {
             }
             binding.lmViewOperation.setList(listResult.getResult().getPageData(), page);
             list.clear();
-            list.addAll(listResult.getResult().getPageData());
+            if (null!=listResult.getResult().getPageData()&&listResult.getResult().getPageData().size()>0){
+                binding.tvItemName.setText(listResult.getResult().getPageData().get(0).getContName());
+                Id=listResult.getResult().getPageData().get(0).getId();
+                binding.tvItemDate.setText(listResult.getResult().getPageData().get(0).getCreateTime().substring(0, 10));
+                Glide.with(this).load(listResult.getResult().getPageData().get(0).getImgUrl()).into(binding.ivItemLeft);
+                listResult.getResult().getPageData().remove(0);
+                list.addAll(listResult.getResult().getPageData());
+            }
             adapter.notifyDataSetChanged();
         });
     }

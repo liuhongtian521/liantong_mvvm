@@ -20,19 +20,17 @@ public class InternationalPerspectiveAdapter extends BaseQuickAdapter<BroadcastE
     private Context mContext;
 
     public InternationalPerspectiveAdapter(@Nullable List<BroadcastExpressResponBean.PageDataBean> data, Context context) {
-        super(R.layout.web_based_course_item, data);
+        super(R.layout.item_operation, data);
         mContext = context;
     }
 
     @Override
     protected void convert(BaseViewHolder helper, BroadcastExpressResponBean.PageDataBean item) {
-        FCLinearLayout fcLinearLayout = helper.getView(R.id.fc_linearLayout);
-        fcLinearLayout.setLitScale();
-        helper.setText(R.id.tv_content_web, item.getContName());
+        helper.setText(R.id.tv_title, item.getContName());
         if (!"".equals(item.getCreateTime())) {
-            helper.setText(R.id.tv_date, item.getCreateTime().substring(0, 10));
+            helper.setText(R.id.tv_time, item.getCreateTime().substring(0, 10));
         }
-        ImageView imageView = helper.getView(R.id.iv_right_video);
+        ImageView imageView = helper.getView(R.id.iv_operation);
         if (!"".equals(item.getImgUrl())) {
 //            helper.getView(R.id.iv_play).setVisibility(View.VISIBLE);
             Glide.with(mContext).load(item.getImgUrl()).into(imageView);

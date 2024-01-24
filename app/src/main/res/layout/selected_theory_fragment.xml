@@ -7,23 +7,104 @@
     </data>
 
     <LinearLayout
+        android:layout_marginTop="@dimen/dp_12"
         android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/dp_30"
+        android:layout_marginRight="@dimen/dp_30"
+        android:orientation="horizontal">
 
-        <com.zdy.study.widgets.LoadMoreConstraintLayout
-            android:id="@+id/lm_view_operation"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rl_operation"
-                app:focusOutFront="true"
+            <TextView
+                android:layout_marginLeft="@dimen/dp_10"
+                android:id="@+id/tv_item_name"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dp_48"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:maxLines="2"
+                android:textColor="@color/app_black3"
+                android:textSize="@dimen/sp_16"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_marginLeft="@dimen/dp_10"
+                android:id="@+id/tv_item_date"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dp_21"
+                android:layout_marginTop="10dp"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:maxLines="2"
+                android:textColor="#95989E"
+                android:textSize="@dimen/sp_15"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_item_name" />
+
+            <com.zdy.study.fcWidgets.FCConstraintLayout
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:layout_margin="@dimen/dp_10"
+                app:scale="1.02"
+                app:shadowBottomHeight="@dimen/dp_5"
+                app:shadowColor="@color/transparent"
+                app:shadowLeftHeight="@dimen/dp_10"
+                app:shadowRightHeight="@dimen/dp_5"
+                app:shadowRound="@dimen/dp_4"
+                app:shadowTopHeight="@dimen/dp_10"
+                android:id="@+id/cl_item_left"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="@dimen/dp_44"
-                android:layout_marginBottom="@dimen/dp_20"/>
-        </com.zdy.study.widgets.LoadMoreConstraintLayout>
+                android:layout_height="300dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_item_date">
+
+                <ImageView
+                    android:background="@color/app_black3"
+                    android:id="@+id/iv_item_left"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/iv_item_left1"
+                    android:layout_width="@dimen/dp_40"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:background="@mipmap/ic_video_play"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </com.zdy.study.fcWidgets.FCConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <com.zdy.study.widgets.LoadMoreConstraintLayout
+                android:id="@+id/lm_view_operation"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rl_operation"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/dp_35"
+                    android:layout_marginRight="@dimen/dp_35"
+                    android:layout_marginBottom="@dimen/dp_20"
+                    app:focusOutFront="true" />
+            </com.zdy.study.widgets.LoadMoreConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     </LinearLayout>
 </layout>

@@ -24,9 +24,6 @@ public class OperationAdapter extends BaseQuickAdapter<BroadcastExpressResponBea
         helper.setText(R.id.tv_time, item.getCreateTime().substring(0, 10));
         ImageView ivOperation = helper.getView(R.id.iv_operation);
         Glide.with(mContext).load(item.getImgUrl()).into(ivOperation);
-        FCLinearLayout layout = helper.getView(R.id.fcll);
-        layout.setLitScale();
-
         /*VideoViewConstraintLayout layout = helper.getView(R.id.vcl_video);
         layout.setUrl(item.getContVideo().getVideoUrl());*/
 

@@ -5,6 +5,7 @@ import android.os.Parcelable;
 import android.view.View;
 
 import androidx.databinding.DataBindingUtil;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -38,11 +39,11 @@ public class WebBasedCourseDetailsActivity extends BaseActivity {
         // 在目标活动（TargetActivity）中获取Bundle
         Bundle receivedBundle = getIntent().getExtras();
         list = (List<WebCourseResponseBean.RecordsBean.SonListBean>) receivedBundle.getSerializable("ENTITY_LIST");
-        mDataBinding.tvTitle.setText(getIntent().getExtras().getString("ENTITY_LIST_tvTitle"));
-        mDataBinding.tvDate.setText(getIntent().getExtras().getString("ENTITY_LIST_tvDate"));
-        mDataBinding.tvAuthor.setText("作者：" + getIntent().getExtras().getString("ENTITY_LIST_tvAuthor"));
-        Glide.with(this).load(getIntent().getExtras().getString("ENTITY_LIST_show_url")).into(mDataBinding.ivVideo);
-        mDataBinding.tvTitleCourse.setText("课程分集");
+        mDataBinding.tvItemName.setText(getIntent().getExtras().getString("ENTITY_LIST_tvTitle"));
+        mDataBinding.tvItemDate.setText(getIntent().getExtras().getString("ENTITY_LIST_tvDate"));
+        mDataBinding.tvItemAuthor.setText("作者：" + getIntent().getExtras().getString("ENTITY_LIST_tvAuthor"));
+        Glide.with(this).load(getIntent().getExtras().getString("ENTITY_LIST_show_url")).into(mDataBinding.ivItemLeft);
+        mDataBinding.includeLayout.preferenceActivityTitleText.setText("课程分集");
         Bundle bundle = new Bundle();
         bundle.putString("url", getIntent().getExtras().getString("ENTITY_LIST_url"));
         onInitRV();
@@ -56,12 +57,12 @@ public class WebBasedCourseDetailsActivity extends BaseActivity {
     }
 
     private void onInitRV() {
-        recyclerView = mDataBinding.rvCourse;
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);//数字为行数或列数
+        recyclerView = mDataBinding.rlOperation;
+        GridLayoutManager layoutManager = new GridLayoutManager(this,4,LinearLayoutManager.HORIZONTAL,false);//数字为行数或列数
         adapter = new WebBaseCourseDetailsAdapter(list, this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
-        mDataBinding.ivVideo.setOnClickListener(new View.OnClickListener() {
+        mDataBinding.ivItemLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 

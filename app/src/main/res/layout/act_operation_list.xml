@@ -9,25 +9,24 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@mipmap/ic_background"
         android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/im_start"
+            android:layout_width="84dp"
+            android:layout_height="38dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="12dp"
+            android:background="@mipmap/ic_main_start" />
 
         <include
             android:id="@+id/include_layout"
             layout="@layout/title_style_white" />
 
-        <com.zdy.study.widgets.LoadMoreConstraintLayout
-            android:id="@+id/lm_view_operation"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rl_operation"
-                app:focusOutFront="true"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="@dimen/dp_44"
-                android:layout_marginBottom="@dimen/dp_20"/>
-        </com.zdy.study.widgets.LoadMoreConstraintLayout>
+        <include
+            android:id="@+id/include_layout_list"
+            layout="@layout/selected_theory_fragment" />
 
     </LinearLayout>
 </layout>

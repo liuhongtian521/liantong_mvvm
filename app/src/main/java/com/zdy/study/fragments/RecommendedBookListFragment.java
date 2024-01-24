@@ -99,6 +99,7 @@ public class RecommendedBookListFragment extends BaseFragment {
     }
 
     private void initLoad() {
+        mDataBinding.lmMaterialsView.setPageSize(Integer.parseInt("4"));//设置页面条数
         mDataBinding.lmMaterialsView.setLoadLitetsner(new LoadMoreConstraintLayout.LoadLitetsner() {
             @Override
             public void nextPage() {

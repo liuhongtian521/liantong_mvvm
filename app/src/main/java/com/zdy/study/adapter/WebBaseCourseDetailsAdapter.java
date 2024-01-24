@@ -17,17 +17,17 @@ public class WebBaseCourseDetailsAdapter extends BaseQuickAdapter<WebCourseRespo
     private Context mContext;
 
     public WebBaseCourseDetailsAdapter(@Nullable List<WebCourseResponseBean.RecordsBean.SonListBean> data, Context context) {
-        super(R.layout.web_based_course_item, data);
+        super(R.layout.item_operation, data);
         mContext = context;
     }
 
     @Override
     protected void convert(BaseViewHolder helper, WebCourseResponseBean.RecordsBean.SonListBean item) {
-      helper.setText(R.id.tv_content_web, item.getTitle());
+      helper.setText(R.id.tv_title, item.getTitle());
       if (!"".equals(item.getUploadTime())){
-          helper.setText(R.id.tv_date, item.getUploadTime().substring(0,10));
+          helper.setText(R.id.tv_time, item.getUploadTime().substring(0,10));
       }
-      ImageView imageView = helper.getView(R.id.iv_right_video);
+      ImageView imageView = helper.getView(R.id.iv_operation);
         if (!"".equals(item.getShowUrl())) {
             Glide.with(mContext).load(item.getShowUrl()).into(imageView);
         }
