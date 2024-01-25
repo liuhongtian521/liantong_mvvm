@@ -71,4 +71,6 @@ public class ARouterPath {
     /*关于我们*/
     public static final String AboutUsActivity = "/activity/AboutUsActivity";
     public static final String TeacherIntroductionDetails = "/activity/TeacherIntroductionDetails";
+    /*讨论室详情*/
+    public static final String DiscussRoomDetailsActivity = "/activity/DiscussRoomDetailsActivity";
 }

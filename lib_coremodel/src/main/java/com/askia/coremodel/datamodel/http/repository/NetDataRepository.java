@@ -29,6 +29,7 @@ import com.askia.coremodel.datamodel.http.entities.consume.CommentsBean;
 import com.askia.coremodel.datamodel.http.entities.consume.CourseDetailsResponse;
 import com.askia.coremodel.datamodel.http.entities.consume.CourseQueryResponseBean;
 import com.askia.coremodel.datamodel.http.entities.consume.DiscussResponseBean;
+import com.askia.coremodel.datamodel.http.entities.consume.DiscussRoomDetailsResponse;
 import com.askia.coremodel.datamodel.http.entities.consume.DiscussRoomListBean;
 import com.askia.coremodel.datamodel.http.entities.consume.EBookListBean;
 import com.askia.coremodel.datamodel.http.entities.consume.HistoryResponse;
@@ -266,6 +267,18 @@ public class NetDataRepository {
         Observable<BaseResponseData<AddressBookResponseBean>> responseData = ApiClient.getNetDataService()
                 .queryStudentInfoListByClass(argPage,
                         argPageSize, classesId);
+        if (responseObserv == null)
+            responseObserv = new ResponseObserv();
+        responseObserv.responseObserv(responseData, mLiveData, mDisposable);
+    }
+    //讨论室详情
+    public void pageTopicListPAD(String argPage,
+                                            String argPageSize, String roomId,
+                                            MutableLiveData<BaseResponseData<DiscussRoomDetailsResponse>> mLiveData,
+                                            CompositeDisposable mDisposable) {
+        Observable<BaseResponseData<DiscussRoomDetailsResponse>> responseData = ApiClient.getNetDataService()
+                .pageTopicListPAD(argPage,
+                        argPageSize, roomId);
         if (responseObserv == null)
             responseObserv = new ResponseObserv();
         responseObserv.responseObserv(responseData, mLiveData, mDisposable);

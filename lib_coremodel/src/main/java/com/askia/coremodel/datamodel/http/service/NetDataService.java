@@ -12,6 +12,7 @@ import com.askia.coremodel.datamodel.http.entities.consume.CommentsBean;
 import com.askia.coremodel.datamodel.http.entities.consume.CourseDetailsResponse;
 import com.askia.coremodel.datamodel.http.entities.consume.CourseQueryResponseBean;
 import com.askia.coremodel.datamodel.http.entities.consume.DiscussResponseBean;
+import com.askia.coremodel.datamodel.http.entities.consume.DiscussRoomDetailsResponse;
 import com.askia.coremodel.datamodel.http.entities.consume.DiscussRoomListBean;
 import com.askia.coremodel.datamodel.http.entities.consume.EBookListBean;
 import com.askia.coremodel.datamodel.http.entities.consume.HistoryResponse;
@@ -134,7 +135,10 @@ public interface NetDataService {
 
     // 通讯录列表
     @GET("/cdls-bds/App/queryStudentInfoListByClass")
-    Observable<BaseResponseData<AddressBookResponseBean>> queryStudentInfoListByClass(@Query("argPage") String argPage, @Query("argPageSize") String argPageSize, @Query("classesId") String classesId);
+    Observable<BaseResponseData<AddressBookResponseBean>> queryStudentInfoListByClass(@Query("argPage") String argPage, @Query("argPageSize") String argPageSize, @Query("classesId") String classesId);   // 通讯录列表
+/*讨论室详情*/
+    @GET("/cdls-cms/DiscussionRoomController/pageTopicListPAD")
+    Observable<BaseResponseData<DiscussRoomDetailsResponse>> pageTopicListPAD(@Query("argPage") String argPage, @Query("argPageSize") String argPageSize, @Query("roomId") String roomId);
 
     // 网络课程
     @GET("/cdls-bds/App/pageByApp")

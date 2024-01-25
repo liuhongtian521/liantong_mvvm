@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.askia.common.base.ARouterPath;
 import com.askia.common.base.BaseFragment;
 import com.askia.common.util.ImageUtil;
 import com.askia.coremodel.datamodel.database.repository.DBRepository;
@@ -65,11 +66,34 @@ public class DiscussRoomFragment extends BaseFragment {
 
     private void initRecycleView() {
         recyclerView = mDataBinding.rvDiscuss;
-        GridLayoutManager manager2 = new GridLayoutManager(getActivity(),2);//数字为行数或列数
+        GridLayoutManager manager2 = new GridLayoutManager(getActivity(), 2);//数字为行数或列数
         adapter = new DiscussRoomAdapter(list, getActivity());
         recyclerView.setLayoutManager(manager2);
         recyclerView.setAdapter(adapter);
         // initRVListeners();
+        adapter.setOnItemClickListener((adapter, view, position) -> {
+            Bundle bundle = new Bundle();
+            if (list.get(position).getCreateBy().equals( list.get(position).getMyId())) {
+                bundle.putString("true", "true");
+            }
+
+            bundle.putString("roomIntroduction", list.get(position).getRoomIntroduction());
+            bundle.putString("followCount", list.get(position).getFollowCount());
+            bundle.putString("topicCount", list.get(position).getTopicCount());
+            bundle.putString("roomName", list.get(position).getRoomName());
+            bundle.putString("userCount", list.get(position).getUserCount());
+            if (null != list.get(position).getTopicList() && list.get(position).getTopicList().size() > 0) {
+                bundle.putString("roomId", list.get(position).getTopicList().get(0).getRoomId());
+
+            } else {
+                bundle.putString("roomId", "");
+            }
+//            bundle.putInt("PraiseCount", list1.get(0).getPraiseCount());
+//            bundle.putString("Collection", list1.get(0).getCollection());
+//            bundle.putString("INTERNATIONAL_VIEW", list1.get(0).getId());
+            startActivityByRouter(ARouterPath.DiscussRoomDetailsActivity, bundle);
+
+        });
     }
 
     @Override

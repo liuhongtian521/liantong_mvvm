@@ -5,10 +5,12 @@
     android:layout_height="wrap_content"
     android:layout_marginLeft="16dp"
     android:layout_marginTop="15dp"
-    android:paddingTop="15dp"
     android:focusableInTouchMode="true"
-    android:background="@drawable/white_round_corner"
-    app:scale="1.02">
+    app:scale="1.02"
+    app:shadowRound="5dp"
+    android:layout_margin="@dimen/dp_8"
+    app:shadowColor="@color/dash_gray"
+    app:shadowRadius="8">
 
     <ImageView
         android:id="@+id/iv_discuss_left"

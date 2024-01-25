@@ -54,7 +54,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activitys.SplashActivity"
+        <activity
+            android:name=".activitys.SplashActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -93,6 +94,10 @@
 
         <activity
             android:name=".activitys.StudyMaterialsActivity"
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".activitys.DiscussRoomDetailsActivity"
             android:launchMode="singleTask"
             android:windowSoftInputMode="stateHidden" />
         <activity
@@ -211,12 +216,11 @@
             android:authorities="com.zdy.study.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true"
-            tools:replace="android:authorities"
-            >
+            tools:replace="android:authorities">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                tools:replace="android:resource"
-                android:resource="@xml/file_path" />
+                android:resource="@xml/file_path"
+                tools:replace="android:resource" />
         </provider>
 
         <meta-data
