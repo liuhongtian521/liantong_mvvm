@@ -54,7 +54,7 @@ public class DiscussRoomDetailsActivity extends BaseActivity {
         if (!"".equals(mRoomId)) {
             viewModel.pageTopicListPAD(String.valueOf(page), pageSize, mRoomId);
         }
-
+        initLoad();
     }
 
     private void initLoad() {
