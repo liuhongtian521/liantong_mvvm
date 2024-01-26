@@ -48,9 +48,12 @@ public class HistoryAdapter extends BaseMultiItemQuickAdapter<HistoryResponse.Pa
         addItemType(LBSD, R.layout.broadcast_item);
         addItemType(MN, R.layout.broadcast_item);
         addItemType(FD, R.layout.layout_fdyd);
-        addItemType(YWSL, R.layout.web_based_course_item);
+        /*addItemType(YWSL, R.layout.web_based_course_item);
         addItemType(GJSY, R.layout.web_based_course_item);
-        addItemType(SJAL, R.layout.web_based_course_item);
+        addItemType(SJAL, R.layout.web_based_course_item);*/
+        addItemType(YWSL, R.layout.item_operation);
+        addItemType(GJSY, R.layout.item_operation);
+        addItemType(SJAL, R.layout.item_operation);
         addItemType(JXLL, R.layout.item_operation);
         addItemType(CZJQ, R.layout.item_operation);
         addItemType(TJSD, R.layout.item_book_list);
@@ -81,15 +84,15 @@ public class HistoryAdapter extends BaseMultiItemQuickAdapter<HistoryResponse.Pa
             case YWSL:
             case GJSY:
             case SJAL:
-                helper.setText(R.id.tv_content_web, item.getContName())
+                /*helper.setText(R.id.tv_content_web, item.getContName())
                         .setText(R.id.tv_date, item.getCreateTime().substring(0, 10));
                 ImageView imageViewGjsy = helper.getView(R.id.iv_right_video);
                 Glide.with(mContext).load(item.getImgUrl()).into(imageViewGjsy);
-                break;
+                break;*/
             case JXLL:
             case CZJQ:
                 helper.setText(R.id.tv_title, item.getContName());
-                helper.setText(R.id.tv_time, item.getCreateTime());
+                helper.setText(R.id.tv_time, item.getCreateTime().substring(0, 10));
                 ImageView ivOperation = helper.getView(R.id.iv_operation);
                 Glide.with(mContext).load(item.getImgUrl()).into(ivOperation);
                 break;

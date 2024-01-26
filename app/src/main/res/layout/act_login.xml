@@ -13,7 +13,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@mipmap/bg_login_zdy">
+            android:background="@mipmap/bg_digtalclass_fragment">
 
             <ImageView
                 android:id="@+id/iv_logo"
@@ -43,10 +43,23 @@
                 app:layout_constraintLeft_toRightOf="@+id/iv_logo"
                 app:layout_constraintRight_toRightOf="parent"/>
             
+            <ImageView
+                android:id="@+id/iv_qrcode"
+                android:layout_width="@dimen/dp_300"
+                android:layout_height="@dimen/dp_300"
+                android:padding="@dimen/dp_2"
+                app:layout_constraintTop_toBottomOf="@+id/tab_layout"
+                android:layout_marginTop="@dimen/dp_34"
+                app:layout_constraintLeft_toRightOf="@+id/iv_logo"
+                app:layout_constraintRight_toRightOf="parent"
+                android:background="@drawable/shape_4_red_line"/>
+
+            
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/cl_input"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 app:layout_constraintTop_toBottomOf="@+id/tab_layout"
                 android:layout_marginTop="@dimen/dp_34"
                 app:layout_constraintLeft_toRightOf="@+id/iv_logo"
@@ -184,8 +197,10 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <com.zdy.study.fcWidgets.FCButton
+                android:id="@+id/fcb_login"
                 android:layout_width="@dimen/dp_280"
                 android:layout_height="@dimen/dp_40"
+                android:visibility="gone"
                 android:text="登录"
                 android:textColor="@color/white"
                 android:textSize="@dimen/sp_14"

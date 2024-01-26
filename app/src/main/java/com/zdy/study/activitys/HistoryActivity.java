@@ -48,6 +48,7 @@ public class HistoryActivity extends BaseActivity {
     private List<HistoryResponse.PageDataBean> histotyList;
     private HistoryAdapter adapter;
     private int page = 1;
+    private String pageSize = "9";
     private int itemType = -1;//item样式
     private int pageTab;
     private Gson gson;
@@ -117,6 +118,7 @@ public class HistoryActivity extends BaseActivity {
     }
 
     private void initLoad() {
+        binding.lmHistoryView.setPageSize(Integer.parseInt(pageSize));//设置页面条数
         binding.lmHistoryView.setLoadLitetsner(new LoadMoreConstraintLayout.LoadLitetsner() {
             @Override
             public void nextPage() {
@@ -125,7 +127,7 @@ public class HistoryActivity extends BaseActivity {
                 if (null != mListTitle && mListTitle.size() > 0) {
                     viewModel.queryReadNotes(mListTitle.get(pageTab).getStruCode(), mListTitle.get(pageTab).getId(),
                             mListTitle.get(pageTab).getStruCode(), binding.etSearch.getText().toString(),
-                            String.valueOf(page), "10");
+                            String.valueOf(page), pageSize);
                 }
             }
 
@@ -135,7 +137,7 @@ public class HistoryActivity extends BaseActivity {
                 showNetDialog();
                 viewModel.queryReadNotes(mListTitle.get(pageTab).getStruCode(), mListTitle.get(pageTab).getId(),
                         mListTitle.get(pageTab).getStruCode(), binding.etSearch.getText().toString(),
-                        String.valueOf(page), "10");
+                        String.valueOf(page), pageSize);
             }
         });
     }
@@ -263,7 +265,7 @@ public class HistoryActivity extends BaseActivity {
         page = 1;
         showNetDialog();
         viewModel.queryReadNotes(title.getStruCode(), title.getId(), title.getStruCode(),
-                binding.etSearch.getText().toString(), String.valueOf(page), "10");
+                binding.etSearch.getText().toString(), String.valueOf(page), pageSize);
     }
 
     //将分段数据加到list中

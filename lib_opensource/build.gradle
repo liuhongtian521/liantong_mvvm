@@ -135,9 +135,6 @@ dependencies {
     //event bus
     api 'org.greenrobot:eventbus:3.0.0'
 
-    /*添加zxing依赖*/
-    api 'com.github.yuzhiqiang1993:zxing:2.1.4'
-
     // 今日头条适配方案
     api 'me.jessyan:autosize:1.1.2'
 
@@ -186,6 +183,7 @@ dependencies {
     api 'com.joanzapata.pdfview:android-pdfview:1.0.4@aar'
     //卡片阴影效果 可设置颜色
     api 'io.github.meetsl:SCardView:1.1'
-
+    //二维码
+    api 'com.journeyapps:zxing-android-embedded:4.1.0'
 
 }

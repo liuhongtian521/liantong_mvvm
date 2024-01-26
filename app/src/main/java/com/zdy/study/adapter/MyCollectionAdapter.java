@@ -31,7 +31,8 @@ public class MyCollectionAdapter extends BaseMultiItemQuickAdapter<MyCollectionR
 
     public MyCollectionAdapter(@Nullable List<MyCollectionResponse.PageDataBean> data, boolean isClick) {
         super(data);
-        addItemType(YWSL, R.layout.my_collection_item);
+//        addItemType(YWSL, R.layout.my_collection_item);
+        addItemType(YWSL, R.layout.item_operation);
         addItemType(LBSD, R.layout.broadcast_item);
         addItemType(MN, R.layout.broadcast_item);
         addItemType(FD, R.layout.item_fdyd);
@@ -42,7 +43,7 @@ public class MyCollectionAdapter extends BaseMultiItemQuickAdapter<MyCollectionR
     protected void convert(BaseViewHolder helper, MyCollectionResponse.PageDataBean item) {
         switch (helper.getItemViewType()){
             case YWSL:
-                FCRelativeLayout fcLinearLayout = helper.getView(R.id.fc_linearLayout);
+                /*FCRelativeLayout fcLinearLayout = helper.getView(R.id.fc_linearLayout);
                 fcLinearLayout.setLitScale();
                 helper.addOnClickListener(R.id.iv_delete);
                 helper.addOnClickListener(R.id.fc_linearLayout);
@@ -58,7 +59,12 @@ public class MyCollectionAdapter extends BaseMultiItemQuickAdapter<MyCollectionR
                     helper.getView(R.id.iv_delete).setVisibility(View.VISIBLE);
                 } else {
                     helper.getView(R.id.iv_delete).setVisibility(View.GONE);
-                }
+                }*/
+
+                helper.setText(R.id.tv_title, item.getContName());
+                helper.setText(R.id.tv_time, item.getCreateTime().substring(0, 10));
+                ImageView ivOperation = helper.getView(R.id.iv_operation);
+                Glide.with(mContext).load(item.getImgUrl()).into(ivOperation);
                 break;
             case LBSD:
             case MN:

@@ -13,12 +13,9 @@
     android:padding="10dp"
     android:layout_margin="@dimen/dp_10"
     app:scale="1.02"
-    app:shadowBottomHeight="@dimen/dp_5"
-    app:shadowColor="@color/transparent"
-    app:shadowLeftHeight="@dimen/dp_10"
-    app:shadowRightHeight="@dimen/dp_5"
-    app:shadowRound="@dimen/dp_4"
-    app:shadowTopHeight="@dimen/dp_10">
+    app:shadowColor="@color/bg_999999"
+    app:shadowRadius="5"
+    app:shadowRound="@dimen/dp_4">
 
 
     <ImageView

@@ -2,6 +2,8 @@ package com.zdy.study.activitys;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.text.TextUtils;
@@ -30,6 +32,7 @@ import com.google.gson.Gson;
 import com.zdy.study.R;
 import com.zdy.study.cdatamodel.viewmodel.LoginViewModel;
 import com.zdy.study.databinding.ActLoginBinding;
+import com.zdy.study.uitls.QRcode;
 import com.zdy.study.widgets.AesEncryptUtil;
 
 import java.io.IOException;
@@ -66,7 +69,7 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     public void onInit() {
-
+        initQrCode();
         initTab();
         mViewModel.getCaptcha();
     }
@@ -124,9 +127,17 @@ public class LoginActivity extends BaseActivity {
         });
     }
 
+    private void initQrCode(){
+        QRcode qrcode = new QRcode();
+        Bitmap bitmap= qrcode.createQRCodeBitmap("CSDN");
+        mDataBinding.ivQrcode.setImageBitmap(bitmap);
+//        mDataBinding.ivQrcode.setImageBitmap(qrcode.createQRCodeBitmap("test",80,80,
+//                "UTF-8","L","1", Color.BLACK,Color.WHITE));
+    }
+
     private void initTab(){
         TabLayout.Tab tab2 = mDataBinding.tabLayout.newTab();
-        tab2.setText("密码登录");
+        tab2.setText("手机扫码");
         mDataBinding.tabLayout.addTab(tab2);
 
         TabLayout.Tab tab = mDataBinding.tabLayout.newTab();
@@ -138,13 +149,19 @@ public class LoginActivity extends BaseActivity {
             public void onTabSelected(TabLayout.Tab tab) {
                 pageTab = tab.getPosition();
                 if(tab.getPosition() == 0){//点击密码登录
-                    mDataBinding.clLoginPhonecode.setVisibility(View.GONE);
+                    /*mDataBinding.clLoginPhonecode.setVisibility(View.GONE);
                     mDataBinding.llLoginPassword.setVisibility(View.VISIBLE);
-                    mDataBinding.clLoginImcode.setVisibility(View.VISIBLE);
+                    mDataBinding.clLoginImcode.setVisibility(View.VISIBLE);*/
+                    mDataBinding.clInput.setVisibility(View.GONE);
+                    mDataBinding.fcbLogin.setVisibility(View.GONE);
+                    mDataBinding.ivQrcode.setVisibility(View.VISIBLE);
                 }else if(tab.getPosition() == 1){//点击验证码登录
-                    mDataBinding.clLoginPhonecode.setVisibility(View.VISIBLE);
+                    /*mDataBinding.clLoginPhonecode.setVisibility(View.VISIBLE);
                     mDataBinding.llLoginPassword.setVisibility(View.GONE);
-                    mDataBinding.clLoginImcode.setVisibility(View.GONE);
+                    mDataBinding.clLoginImcode.setVisibility(View.GONE);*/
+                    mDataBinding.clInput.setVisibility(View.VISIBLE);
+                    mDataBinding.fcbLogin.setVisibility(View.VISIBLE);
+                    mDataBinding.ivQrcode.setVisibility(View.GONE);
                 }
 
             }

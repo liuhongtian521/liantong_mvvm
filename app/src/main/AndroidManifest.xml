@@ -45,6 +45,8 @@
         android:name="android.hardware.nfc"
         android:required="true" />
 
+    <uses-sdk tools:overrideLibrary="com.google.zxing.client.android" />
+
     <application
         android:name="com.askia.common.base.APP"
         android:allowBackup="true"
